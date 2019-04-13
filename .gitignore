@@ -2,6 +2,7 @@
 !.idea/artifacts
 out/
 classes/
+*.iml
 
 # Compiled class file
 *.class
