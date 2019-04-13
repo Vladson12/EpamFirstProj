@@ -1,6 +1,7 @@
 .idea/
 !.idea/artifacts
 out/
+classes/
 
 # Compiled class file
 *.class
