@@ -18,7 +18,7 @@ import static com.epam.app.model.BookState.getBookState;
 @SuppressWarnings("ALL")
 public class SQLBookDAO implements BookDAO {
 
-    private  final Logger log = LoggerFactory.getLogger(getClass());
+//    private  final Logger log = LoggerFactory.getLogger(getClass());
 
     private static String insert = "insert into book (author, title, book_state_id, description) values (?,?,?,?);";
     private static String update = "update book set author = ? , title =? , book_state_id = ? , description = ? where idbook = ?;";
@@ -29,12 +29,14 @@ public class SQLBookDAO implements BookDAO {
     @Override
     public List<Book> getAllBooks() {
         List<Book> array= new ArrayList<>();
-        try(ResultSet rs = getAll()){
+        try (Connection connection = SQLUtil.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery("select * from book");){
             while (rs.next()){
                 array.add(new Book(rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description")));
             }
         } catch (SQLException e) {
-            log.info("");
+//            log.info("");
         }
         return array;
     }
@@ -42,7 +44,8 @@ public class SQLBookDAO implements BookDAO {
     @Override
     public Book getBook(int bookId)  {
         Book book = null;
-        try (Connection connection = SQLUtil.getConnection();
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                "root","");
                 PreparedStatement statement = connection.prepareStatement(select)){
             statement.setInt(1,bookId);
             try (ResultSet rs = statement.executeQuery()) {
@@ -50,14 +53,15 @@ public class SQLBookDAO implements BookDAO {
                 book = new Book(rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description") );
             }
         } catch (SQLException e) {
-            log.info("");
+//            log.info("");
         }
         return book;
     }
 
     @Override
     public void addBook(Book book) {
-        try (Connection connection = SQLUtil.getConnection();
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                "root","");
              PreparedStatement statement = connection.prepareStatement(insert)){
             statement.setString(1, book.getAuthor());
             statement.setString(2, book.getTitle());
@@ -65,7 +69,7 @@ public class SQLBookDAO implements BookDAO {
             statement.setString(4, book.getDescription());
             statement.executeUpdate();
         } catch (SQLException e) {
-            log.info("");
+//            log.info("");
         }
     }
 
@@ -80,7 +84,7 @@ public class SQLBookDAO implements BookDAO {
             statement.setInt(5,book.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            log.info("");
+//            log.info("");
         }
     }
 
@@ -91,7 +95,7 @@ public class SQLBookDAO implements BookDAO {
             statement.setInt(1,book.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            log.info("");
+//            log.info("");
         }
     }
 
@@ -100,9 +104,9 @@ public class SQLBookDAO implements BookDAO {
         try (Connection connection = SQLUtil.getConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery("select * from book");){
-            resultSet = rs;
+             resultSet = rs;
         } catch (SQLException e) {
-            log.info("");
+//            log.info("");
         }
         return resultSet;
     }
