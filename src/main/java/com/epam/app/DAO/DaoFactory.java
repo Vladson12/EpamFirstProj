@@ -1,6 +1,6 @@
 package com.epam.app.DAO;
 
-public interface DAOFactory {
+public interface DaoFactory {
 
     UserDAO getUserDAO();
 

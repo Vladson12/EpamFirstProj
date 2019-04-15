@@ -15,9 +15,17 @@ import static com.epam.app.model.Role.getRole;
 
 
 @SuppressWarnings("ALL")
-public class SQLUserDAO implements UserDAO {
+public class SqlUserDao implements UserDAO {
 
-    private  final Logger log = LoggerFactory.getLogger(getClass());
+    private static final String url = "jdbc:mysql://localhost:3306/library" +
+            "?verifyServerCertificate=false"+
+            "&useSSL=false"+
+            "&requireSSL=false"+
+            "&useLegacyDatetimeCode=false"+
+            "&amp"+
+            "&serverTimezone=UTC";
+    private static final String userName = "root";
+    private static final String password = "Polina2313";
 
     private static String insert = "insert into user (name, role, login, password) values (?,?,?,?);";
     private static String update = "update user set name = ? , role =? , login = ? , password = ? where id = ?;";
