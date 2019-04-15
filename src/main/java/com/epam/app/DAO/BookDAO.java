@@ -1,6 +1,6 @@
-package com.mycompany.DAO;
+package com.epam.app.DAO;
 
-import com.mycompany.model.Book;
+import com.epam.app.model.Book;
 
 import java.sql.SQLException;
 import java.util.List;

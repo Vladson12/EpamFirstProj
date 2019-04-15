@@ -1,9 +1,9 @@
-package com.mycompany.DAO.mySQL;
+package com.epam.app.DAO.mySQL;
 
-import com.mycompany.DAO.BookDAO;
-import com.mycompany.DAO.CardDAO;
-import com.mycompany.DAO.DAOFactory;
-import com.mycompany.DAO.UserDAO;
+import com.epam.app.DAO.BookDAO;
+import com.epam.app.DAO.CardDAO;
+import com.epam.app.DAO.DAOFactory;
+import com.epam.app.DAO.UserDAO;
 
 public class SQLDAOFactory implements DAOFactory {
 

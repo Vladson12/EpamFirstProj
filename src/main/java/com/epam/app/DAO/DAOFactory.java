@@ -1,4 +1,4 @@
-package com.mycompany.DAO;
+package com.epam.app.DAO;
 
 public interface DAOFactory {
 

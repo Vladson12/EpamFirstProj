@@ -1,7 +1,7 @@
-package com.mycompany.DAO.mySQL;
+package com.epam.app.DAO.mySQL;
 
-import com.mycompany.DAO.UserDAO;
-import com.mycompany.model.User;
+import com.epam.app.DAO.UserDAO;
+import com.epam.app.model.User;
 import lombok.Cleanup;
 
 import java.sql.*;
@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import static com.mycompany.model.Role.getRole;
+import static com.epam.app.model.Role.getRole;
 
 
 @SuppressWarnings("ALL")
 public class SQLUserDAO implements UserDAO {
 
-    private static final String url = "jdbc:mysql://localhost:3306/library";
+    private static final String url = "jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String userName = "root";
-    private static final String password = "ksusha11";
+    private static final String password = "root";
 
     private static String insert = "insert into user (name, role, login, password) values (?,?,?,?);";
     private static String update = "update user set name = ? , role =? , login = ? , password = ? where id = ?;";
