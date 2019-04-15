@@ -1,10 +1,11 @@
 package com.epam.app.model;
 
+import com.epam.app.model.enums.Role;
 import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+
 public class User {
     private int id;
     private String name;
@@ -19,7 +20,26 @@ public class User {
         this.password = password;
     }
 
-    //    public static class UserBuilder {
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+//    public static class UserBuilder {
 //        private int id;
 //        private String name;
 //        private Role role;

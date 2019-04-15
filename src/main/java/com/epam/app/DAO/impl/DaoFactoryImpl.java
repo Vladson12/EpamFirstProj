@@ -1,25 +1,24 @@
-package com.epam.app.DAO.mySQL;
+package com.epam.app.DAO.impl;
 
 import com.epam.app.DAO.BookDAO;
 import com.epam.app.DAO.CardDAO;
-import com.epam.app.DAO.DaoFactory;
 import com.epam.app.DAO.UserDAO;
 
-public class SqlDaoFactory implements DaoFactory {
+public class DaoFactoryImpl implements com.epam.app.DAO.DaoFactory {
 
-    static SqlDaoFactory instance = null;
+    static DaoFactoryImpl instance = null;
     final private BookDAO bookDAO;
     final private CardDAO cardDAO;
     final private UserDAO userDAO;
 
-    private SqlDaoFactory() {
-        bookDAO =  new SqlBookDao();
-        cardDAO = new SqlCardDao();
-        userDAO = new SqlUserDao();
+    private DaoFactoryImpl() {
+        bookDAO =  new BookDaoImpl();
+        cardDAO = new CardDaoImpl();
+        userDAO = new UserDaoImpl();
     }
 
-    public static SqlDaoFactory getInstance() {
-        if (instance == null) instance = new SqlDaoFactory();
+    public static DaoFactoryImpl getInstance() {
+        if (instance == null) instance = new DaoFactoryImpl();
         return instance;
     }
 

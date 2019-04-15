@@ -1,7 +1,8 @@
 package com.epam.app.model;
 
 public class PagerModel {
-    private int buttonsToShow = 10;    private int startPage;
+    private int buttonsToShow = 10;
+    private int startPage;
     private int endPage;
 
     public PagerModel(int totalPages, int currentPage, int buttonsToShow) {

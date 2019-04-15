@@ -1,4 +1,4 @@
-package com.epam.app.servlets;
+package com.epam.app.controller;
 
 import com.epam.app.model.Book;
 import com.epam.app.service.BookService;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BookshelfController extends HttpServlet {
+public class BookListController extends HttpServlet {
     private static final int BUTTONS_TO_SHOW = 3;
     public static final int INITIAL_PAGE = 0;
     public static final int INITIAL_PAGE_SIZE = 10;
@@ -26,10 +26,8 @@ public class BookshelfController extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        req.getSession().setAttribute("booklist", allBooks);
-
-
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/currbooklist.jsp");
+        req.getSession().setAttribute("list", allBooks);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/BookListView.jsp");
         requestDispatcher.forward(req, resp);
     }
 
