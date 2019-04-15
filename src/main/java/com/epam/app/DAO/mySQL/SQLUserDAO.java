@@ -1,6 +1,7 @@
 package com.epam.app.DAO.mySQL;
 
 import com.epam.app.DAO.UserDAO;
+import com.epam.app.model.Role;
 import com.epam.app.model.User;
 import lombok.Cleanup;
 import org.slf4j.Logger;
@@ -67,10 +68,12 @@ public class SQLUserDAO implements UserDAO {
     @Override
     public List<User> getAllUser(){
         List<User> array= new ArrayList<>();
-        try(ResultSet rs = getAll()){
-            while (rs.next()){
-                array.add(new User(rs.getString("name"), getRole(rs.getInt("role")),rs.getString("login"), rs.getString("password")));
-            }
+            try (Connection connection = SQLUtil.getConnection();
+                 Statement statement = connection.createStatement();
+                 ResultSet rs = statement.executeQuery("select * from user");){
+                while (rs.next()){
+                    array.add(new User(rs.getString("name"), getRole(rs.getInt("role")),rs.getString("login"), rs.getString("password")));
+                }
         } catch (SQLException e) {
             log.info("");
         }
