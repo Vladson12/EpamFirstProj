@@ -7,12 +7,12 @@ import java.util.List;
 
 public interface UserDAO {
 
-    void addUser(User user) throws SQLException;
+    void addUser(User user);
 
-    void updateUser(User user) throws SQLException;
+    void updateUser(User user);
 
-    List<User> getAllUser() throws SQLException;
+    List<User> getAllUser();
 
-    User getUser(int userId) throws SQLException;
+    User getUser(int userId);
 }
 

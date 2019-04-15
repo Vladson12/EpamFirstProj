@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface BookDAO {
 
-    List<Book> getAllBooks() throws SQLException;
+    List<Book> getAllBooks();
 
-    Book getBook(int bookId) throws SQLException;
+    Book getBook(int bookId);
 
-    void addBook(Book book) throws SQLException;
+    void addBook(Book book);
 
-    void updateBook(Book book) throws SQLException;
+    void updateBook(Book book);
 
-    void deleteBook(Book book) throws SQLException;
+    void deleteBook(Book book);
 
 }

@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface CardDAO {
 
-    void addCard(Card card) throws SQLException;
+    void addCard(Card card);
 
-    List<Book> getAllBook(User user) throws SQLException;
+    List<Book> getAllBook(User user);
 
-    List<User> getAllUser(Book book) throws SQLException;
+    List<User> getAllUser(Book book);
 
-    void updateCardStatus (Card card) throws SQLException;
+    void updateCardStatus (Card card);
 }
