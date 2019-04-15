@@ -10,7 +10,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("ALL")
 public class CardDaoImpl implements CardDAO {
 
 
@@ -31,7 +30,7 @@ public class CardDaoImpl implements CardDAO {
             statement.setBoolean(5, card.getIsReturn());
             statement.executeUpdate();
         } catch (SQLException e) {
-//            log.info("");
+            e.printStackTrace();
         }
     }
 
@@ -47,7 +46,7 @@ public class CardDaoImpl implements CardDAO {
                 }
             }
         } catch (SQLException e) {
-//            log.info("");
+            e.printStackTrace();
         }
         return array;
     }
@@ -64,7 +63,7 @@ public class CardDaoImpl implements CardDAO {
                 }
             }
         } catch (SQLException e) {
-//            log.info("");
+            e.printStackTrace();
         }
         return array;
     }
@@ -78,7 +77,7 @@ public class CardDaoImpl implements CardDAO {
             statement.setInt(2, card.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-//            log.info("");
+            e.printStackTrace();
         }
     }
 }

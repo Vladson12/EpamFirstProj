@@ -1,42 +1,36 @@
-package com.epam.app.DAO.mySQL;
+package com.epam.app.DAO.impl;
 
 import com.epam.app.DAO.BookDAO;
+import com.epam.app.util.ConnectionManager;
 import com.epam.app.model.Book;
 
-import com.epam.app.model.BookState;
-import lombok.Cleanup;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
-import static com.epam.app.model.BookState.getBookState;
+import static com.epam.app.model.enums.BookState.getBookState;
 
 @SuppressWarnings("ALL")
-public class SQLBookDAO implements BookDAO {
 
-//    private  final Logger log = LoggerFactory.getLogger(getClass());
+public class BookDaoImpl implements BookDAO {
 
     private static String insert = "insert into book (author, title, book_state_id, description) values (?,?,?,?);";
     private static String update = "update book set author = ? , title =? , book_state_id = ? , description = ? where idbook = ?;";
     private static String select = "select * from book where idbook = ?";
     private static String delete = "delete from book where idbook =?";
 
-
     @Override
     public List<Book> getAllBooks() {
-        List<Book> array= new ArrayList<>();
-        try (Connection connection = SQLUtil.getConnection();
+        List<Book> array = new ArrayList<>();
+        try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery("select * from book");){
             while (rs.next()){
-                array.add(new Book(rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description")));
+                array.add(new Book(Integer.parseInt(rs.getString("idbook")), rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description")));
             }
         } catch (SQLException e) {
-//            log.info("");
+            e.printStackTrace();
         }
         return array;
     }
@@ -44,24 +38,22 @@ public class SQLBookDAO implements BookDAO {
     @Override
     public Book getBook(int bookId)  {
         Book book = null;
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                "root","");
-                PreparedStatement statement = connection.prepareStatement(select)){
+        try (Connection connection = ConnectionManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(select)){
             statement.setInt(1,bookId);
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
                 book = new Book(rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description") );
             }
         } catch (SQLException e) {
-//            log.info("");
+            e.printStackTrace();
         }
         return book;
     }
 
     @Override
     public void addBook(Book book) {
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-                "root","");
+        try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(insert)){
             statement.setString(1, book.getAuthor());
             statement.setString(2, book.getTitle());
@@ -69,13 +61,13 @@ public class SQLBookDAO implements BookDAO {
             statement.setString(4, book.getDescription());
             statement.executeUpdate();
         } catch (SQLException e) {
-//            log.info("");
+            e.printStackTrace();
         }
     }
 
     @Override
     public void updateBook(Book book) {
-        try (Connection connection = SQLUtil.getConnection();
+        try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(update);){
             statement.setString(1, book.getAuthor());
             statement.setString(2, book.getTitle());
@@ -84,29 +76,29 @@ public class SQLBookDAO implements BookDAO {
             statement.setInt(5,book.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-//            log.info("");
+            e.printStackTrace();
         }
     }
 
     @Override
     public void deleteBook(Book book) {
-        try (Connection connection = SQLUtil.getConnection();
+        try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(delete);){
             statement.setInt(1,book.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-//            log.info("");
+            e.printStackTrace();
         }
     }
 
     private ResultSet getAll() throws SQLException {
-        ResultSet resultSet =null;
-        try (Connection connection = SQLUtil.getConnection();
+        ResultSet resultSet = null;
+        try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery("select * from book");){
-             resultSet = rs;
+            resultSet = rs;
         } catch (SQLException e) {
-//            log.info("");
+            e.printStackTrace();
         }
         return resultSet;
     }
