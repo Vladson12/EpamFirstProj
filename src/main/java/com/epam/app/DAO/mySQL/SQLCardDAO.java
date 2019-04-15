@@ -1,16 +1,14 @@
-package com.mycompany.DAO.mySQL;
+package com.epam.app.DAO.mySQL;
 
-import com.mycompany.DAO.CardDAO;
-import com.mycompany.model.Book;
-import com.mycompany.model.Card;
-import com.mycompany.model.User;
+import com.epam.app.DAO.CardDAO;
+import com.epam.app.model.Book;
+import com.epam.app.model.Card;
+import com.epam.app.model.User;
 import lombok.Cleanup;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.mycompany.model.BookState.getBookState;
 
 @SuppressWarnings("ALL")
 public class SQLCardDAO implements CardDAO {

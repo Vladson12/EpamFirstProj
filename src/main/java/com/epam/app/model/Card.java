@@ -1,4 +1,4 @@
-package com.mycompany.model;
+package com.epam.app.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

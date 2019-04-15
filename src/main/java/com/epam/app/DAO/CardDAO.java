@@ -1,8 +1,8 @@
-package com.mycompany.DAO;
+package com.epam.app.DAO;
 
-import com.mycompany.model.Book;
-import com.mycompany.model.Card;
-import com.mycompany.model.User;
+import com.epam.app.model.Book;
+import com.epam.app.model.Card;
+import com.epam.app.model.User;
 
 import java.sql.SQLException;
 import java.util.List;

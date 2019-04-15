@@ -1,7 +1,7 @@
-package com.mycompany.DAO.mySQL;
+package com.epam.app.DAO.mySQL;
 
-import com.mycompany.DAO.BookDAO;
-import com.mycompany.model.Book;
+import com.epam.app.DAO.BookDAO;
+import com.epam.app.model.Book;
 
 import lombok.Cleanup;
 
@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mycompany.model.BookState.getBookState;
+import static com.epam.app.model.BookState.getBookState;
 
 @SuppressWarnings("ALL")
 public class SQLBookDAO implements BookDAO {
