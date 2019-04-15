@@ -1,4 +1,4 @@
-package com.epam.app.model;
+package com.epam.app.model.enums;
 
 public enum Role {
     READER,

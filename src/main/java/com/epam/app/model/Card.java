@@ -3,6 +3,7 @@ package com.epam.app.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
@@ -10,53 +11,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 public class Card {
-    public User getUser() {
-        return user;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Boolean getReturn() {
-        return isReturn;
-    }
-
-    public void setReturn(Boolean aReturn) {
-        isReturn = aReturn;
-    }
 
     private int id;
     private User user;

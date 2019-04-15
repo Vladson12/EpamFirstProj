@@ -7,7 +7,7 @@
     <!-- add servlet -->
     <servlet>
         <servlet-name>add</servlet-name>
-        <servlet-class>com.epam.app.servlets.AddServlet</servlet-class>
+        <servlet-class>com.epam.app.controller.AddServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -18,7 +18,7 @@
     <!-- list servlet -->
     <servlet>
         <servlet-name>list</servlet-name>
-        <servlet-class>com.epam.app.servlets.ListServlet</servlet-class>
+        <servlet-class>com.epam.app.controller.ListServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -29,11 +29,13 @@
     <!-- bookslist servlet -->
     <servlet>
         <servlet-name>bookslist</servlet-name>
-        <servlet-class>com.epam.app.servlets.BooksListServlet</servlet-class>
+        <servlet-class>com.epam.app.controller.BookListController</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>bookslist</servlet-name>
-        <url-pattern>/bookslist</url-pattern>
+        <url-pattern>/BookListView</url-pattern>
     </servlet-mapping>
+
+
 </web-app>

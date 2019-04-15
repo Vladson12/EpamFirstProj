@@ -1,4 +1,4 @@
-package com.epam.app.servlets;
+package com.epam.app.controller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +10,7 @@ import java.io.IOException;
 public class BooksListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/bookslist.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/noname.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

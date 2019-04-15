@@ -80,6 +80,24 @@ CREATE TABLE IF NOT EXISTS `library`.`book` (
 ENGINE = InnoDB;
 
 
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
 -- -----------------------------------------------------
 -- Table `library`.`card`
 -- -----------------------------------------------------
