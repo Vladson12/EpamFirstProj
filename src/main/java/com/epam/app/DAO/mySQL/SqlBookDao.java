@@ -12,11 +12,17 @@ import java.util.List;
 import static com.epam.app.model.BookState.getBookState;
 
 @SuppressWarnings("ALL")
-public class SQLBookDAO implements BookDAO {
+public class SqlBookDao implements BookDAO {
 
-    private static final String url = "jdbc:mysql://localhost:3306/library";
+    private static final String url = "jdbc:mysql://localhost:3306/library" +
+            "?verifyServerCertificate=false"+
+            "&useSSL=false"+
+            "&requireSSL=false"+
+            "&useLegacyDatetimeCode=false"+
+            "&amp"+
+            "&serverTimezone=UTC";
     private static final String userName = "root";
-    private static final String password = "ksusha11";
+    private static final String password = "Polina2313";
 
     private static String insert = "insert into book (author, title, book_state_id, description) values (?,?,?,?);";
     private static String update = "update book set author = ? , title =? , book_state_id = ? , description = ? where idbook = ?;";

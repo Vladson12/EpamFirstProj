@@ -1,36 +1,16 @@
 package com.epam.app.model;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class User {
     private int id;
     private String name;
     private Role role;
     private String login;
     private String password;
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
 
     public User(String name, Role role, String login, String password) {
         this.name = name;
@@ -39,23 +19,28 @@ public class User {
         this.password = password;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    //    public static class UserBuilder {
+//        private int id;
+//        private String name;
+//        private Role role;
+//        private String login;
+//        private String password;
+//
+//        public UserBuilder(int id, String name, Role role, String login, String password) {
+//            this.id = id;
+//            this.name = name;
+//            this.role = role;
+//            this.login = login;
+//            this.password = password;
+//        }
+//    }
+//
+//        private User(UserBuilder builder) {
+//            this.id = builder.id;
+//            this.name = builder.name;
+//            this.role = builder.role;
+//            this.login = builder.login;
+//            this.password = builder.password;
+//        }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

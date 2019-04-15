@@ -11,11 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class SQLCardDAO implements CardDAO {
+public class SqlCardDao implements CardDAO {
 
-    private static final String url = "jdbc:mysql://localhost:3306/library";
+    private static final String url = "jdbc:mysql://localhost:3306/library" +
+            "?verifyServerCertificate=false"+
+            "&useSSL=false"+
+            "&requireSSL=false"+
+            "&useLegacyDatetimeCode=false"+
+            "&amp"+
+            "&serverTimezone=UTC";
     private static final String userName = "root";
-    private static final String password = "ksusha11";
+    private static final String password = "Polina2313";
 
     private static String insert = "insert into card (user, book, start_date, end_date,is_return) values (?,?,?,?);";
     private static String update = "update card set is_return = ? where idbook = ?;";
@@ -43,7 +49,7 @@ public class SQLCardDAO implements CardDAO {
         ResultSet rs = statement.executeQuery();
         List<Book> array= new ArrayList<>();
         while (rs.next()){
-            array.add(new SQLBookDAO().getBook(rs.getInt("book")));
+            array.add(new SqlBookDao().getBook(rs.getInt("book")));
         }
         return array;
     }
@@ -56,7 +62,7 @@ public class SQLCardDAO implements CardDAO {
         ResultSet rs = statement.executeQuery();
         List<User> array= new ArrayList<>();
         while (rs.next()){
-            array.add(new SQLUserDAO().getUser(rs.getInt("user")));
+            array.add(new SqlUserDao().getUser(rs.getInt("user")));
         }
         return array;
     }

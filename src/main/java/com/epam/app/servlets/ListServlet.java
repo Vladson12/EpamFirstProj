@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ListServlet extends HttpServlet {
-    protected final Logger log = LoggerFactory.getLogger(getClass());
+//    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,7 +23,7 @@ public class ListServlet extends HttpServlet {
 //        req.setAttribute("userNames", names);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/list.jsp");
-        log.info("get {}");
+//        log.info("get {}");
         requestDispatcher.forward(req, resp);
     }
 }

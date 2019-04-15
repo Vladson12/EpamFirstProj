@@ -12,6 +12,8 @@ public class Book {
     private String author;
     private BookState bookState;
     private String title;
+    private String description;
+
 
     public int getId() {
         return id;
@@ -59,6 +61,4 @@ public class Book {
         this.title = title;
         this.description = description;
     }
-
-    private String description;
 }

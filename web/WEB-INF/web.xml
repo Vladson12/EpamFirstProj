@@ -29,11 +29,13 @@
     <!-- bookslist servlet -->
     <servlet>
         <servlet-name>bookslist</servlet-name>
-        <servlet-class>com.epam.app.servlets.BooksListServlet</servlet-class>
+        <servlet-class>com.epam.app.servlets.BookshelfController</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>bookslist</servlet-name>
         <url-pattern>/bookslist</url-pattern>
     </servlet-mapping>
+
+
 </web-app>
