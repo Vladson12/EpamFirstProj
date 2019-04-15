@@ -1,24 +1,31 @@
 package com.epam.app.service;
 
-import com.epam.app.DAO.mySQL.SqlUserDao;
+import com.epam.app.dao.impl.DaoFactoryImpl;
+import com.epam.app.dao.impl.UserDaoImpl;
 import com.epam.app.model.User;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserService {
-//    protected final Logger log = LoggerFactory.getLogger(getClass());
 
 
-    public void create(User user) throws SQLException, ClassNotFoundException {
-//        log.info("get {}");
-        new SqlUserDao().addUser(user);
+    public void addUser(User user) throws SQLException {
+        DaoFactoryImpl.getInstance().getUserDao().addUser(user);
     }
 
-    //get by roles,
-//    public ArrayList<String> getName(){
-//
-//        return null;
-//    }
+    public void updateUser(User user) throws SQLException {
+        DaoFactoryImpl.getInstance().getUserDao().updateUser(user);
+    }
+
+    public User getUser(int userId) throws SQLException {
+        return DaoFactoryImpl.getInstance().getUserDao().getUser(userId);
+    }
+
+    public List<User> getAllUsers() throws SQLException {
+        return DaoFactoryImpl.getInstance().getUserDao().getAllUsers();
+    }
 
 
 }

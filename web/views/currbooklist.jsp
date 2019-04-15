@@ -36,13 +36,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="booklist : ${booklist}">
-                <td th:text="${booklist.title}"></td>
-                <td th:text="${booklist.description}"></td>
-                <td th:text="${booklist.author}"></td>
+            <tr th:each="book : ${booklist}">
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.description}"></td>
+                <td th:text="${book.author}"></td>
                 <td>
-                    <a style="color:#FB667A" th:href="@{'/take/'+${booklist.id}}">Take</a></br>
-                    <a style="color:#FB667A" th:href="@{'/read/'+${booklist.id}}">Read</a></br>
+                    <a style="color:#FB667A" th:href="@{'/take/'+${book.id}}">Take</a></br>
+                    <a style="color:#FB667A" th:href="@{'/read/'+${book.id}}">Read</a></br>
                 </td>
             </tr>
             <tr>

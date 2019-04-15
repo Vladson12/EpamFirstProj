@@ -1,4 +1,4 @@
-package com.epam.app.model;
+package com.epam.app.temp;
 
 public class PagerModel {
     private int buttonsToShow = 10;    private int startPage;

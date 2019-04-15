@@ -29,7 +29,7 @@
     <!-- bookslist servlet -->
     <servlet>
         <servlet-name>bookslist</servlet-name>
-        <servlet-class>com.epam.app.servlets.BookshelfController</servlet-class>
+        <servlet-class>com.epam.app.servlets.BookListController</servlet-class>
     </servlet>
 
     <servlet-mapping>

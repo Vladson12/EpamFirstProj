@@ -12,22 +12,21 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BookshelfController extends HttpServlet {
+public class BookListController extends HttpServlet {
     private static final int BUTTONS_TO_SHOW = 3;
     public static final int INITIAL_PAGE = 0;
     public static final int INITIAL_PAGE_SIZE = 10;
-    public static final int[] PAGE_SIZES = {10};
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<Book> allBooks = null;
         try {
-            allBooks = BookService.getAll();
+            allBooks = BookService.getAllBooks();
         } catch (SQLException e) {
-            e.printStackTrace();
         }
-        req.getSession().setAttribute("booklist", allBooks);
 
+        req.getSession().setAttribute("booklist", allBooks);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/currbooklist.jsp");
         requestDispatcher.forward(req, resp);

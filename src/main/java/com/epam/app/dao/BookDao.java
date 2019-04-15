@@ -1,11 +1,11 @@
-package com.epam.app.DAO;
+package com.epam.app.dao;
 
 import com.epam.app.model.Book;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface BookDAO {
+public interface BookDao {
 
     List<Book> getAllBooks() throws SQLException;
 
