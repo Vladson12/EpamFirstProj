@@ -12,20 +12,20 @@ import java.sql.SQLException;
  */
 public class CardService {
 
-    public void addCard(Card card) throws SQLException {
-        DaoFactoryImpl.getInstance().getCardDao().addCard(card);
-    }
-
-    public void updateCardStatus(Card card) throws SQLException {
-        DaoFactoryImpl.getInstance().getCardDao().updateStatus(card);
-    }
-
-    public void getAllBooksByUser(User user) throws SQLException {
-        DaoFactoryImpl.getInstance().getCardDao().getAllBooksByUser(user);
-    }
-
-    public void getAllUsersByBook(Book book) throws SQLException {
-        DaoFactoryImpl.getInstance().getCardDao().getAllUsersByBook(book);
-    }
+//    public void addCard(Card card) throws SQLException {
+//        DaoFactoryImpl.getInstance().getCardDao().addCard(card);
+//    }
+//
+//    public void updateCardStatus(Card card) throws SQLException {
+//        DaoFactoryImpl.getInstance().getCardDao().updateStatus(card);
+//    }
+//
+//    public void getAllBooksByUser(User user) throws SQLException {
+//        DaoFactoryImpl.getInstance().getCardDao().getAllBooksByUser(user);
+//    }
+//
+//    public void getAllUsersByBook(Book book) throws SQLException {
+//        DaoFactoryImpl.getInstance().getCardDao().getAllUsersByBook(book);
+//    }
 
 }

@@ -9,20 +9,20 @@ import java.sql.SQLException;
 
 public class DaoFactoryImpl implements DaoFactory {
 
-    private static DaoFactoryImpl INSTANCE = new DaoFactoryImpl();
+//    private static DaoFactoryImpl INSTANCE = new DaoFactoryImpl();
 
     final private BookDao bookDao;
     final private CardDao cardDao;
     final private UserDao userDao;
 
-    private DaoFactoryImpl() {
+    public DaoFactoryImpl() {
         bookDao =  new BookDaoImpl();
         cardDao = new CardDaoImpl();
         userDao = new UserDaoImpl();
     }
 
-    public static DaoFactoryImpl getInstance() {
-        return INSTANCE;
+    public DaoFactoryImpl getInstance() {
+        return this;
     }
 
     @Override

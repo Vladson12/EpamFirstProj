@@ -19,23 +19,23 @@ import java.util.List;
  */
 public class BookService {
 
-    public static void addBook(Book book) throws SQLException {
-        DaoFactoryImpl.getInstance().getBookDao().addBook(book);
-    }
-
-    public static void updateBook(Book book) throws SQLException {
-        DaoFactoryImpl.getInstance().getBookDao().updateBook(book);
-    }
-
-    public static void deleteBook(Book book) throws SQLException {
-        DaoFactoryImpl.getInstance().getBookDao().deleteBook(book);
-    }
-
-    public static Book getBook(int bookId) throws SQLException {
-        return DaoFactoryImpl.getInstance().getBookDao().getBook(bookId);
-    }
+//    public static void addBook(Book book) throws SQLException {
+//        DaoFactoryImpl.getInstance().getBookDao().addBook(book);
+//    }
+//
+//    public static void updateBook(Book book) throws SQLException {
+//        DaoFactoryImpl.getInstance().getBookDao().updateBook(book);
+//    }
+//
+//    public static void deleteBook(Book book) throws SQLException {
+//        DaoFactoryImpl.getInstance().getBookDao().deleteBook(book);
+//    }
+//
+//    public static Book getBook(int bookId) throws SQLException {
+//        return DaoFactoryImpl.getInstance().getBookDao().getBook(bookId);
+//    }
 
     public static List<Book> getAllBooks() throws SQLException {
-        return DaoFactoryImpl.getInstance().getBookDao().getAllBooks();
+        return new DaoFactoryImpl().getInstance().getBookDao().getAllBooks();
     }
 }

@@ -32,9 +32,4 @@ public class BookListController extends HttpServlet {
         requestDispatcher.forward(req, resp);
     }
 
-    public static void main(String[] args) throws SQLException {
-        Book allBooks = BookService.getBook(6);
-        System.out.println(allBooks);
-    }
-
 }
