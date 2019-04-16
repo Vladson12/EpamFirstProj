@@ -5,6 +5,8 @@ import com.epam.app.dao.CardDao;
 import com.epam.app.dao.DaoFactory;
 import com.epam.app.dao.UserDao;
 
+import java.sql.SQLException;
+
 public class DaoFactoryImpl implements DaoFactory {
 
     private static DaoFactoryImpl INSTANCE = new DaoFactoryImpl();
@@ -37,4 +39,5 @@ public class DaoFactoryImpl implements DaoFactory {
     public BookDao getBookDao() {
         return bookDao;
     }
+
 }

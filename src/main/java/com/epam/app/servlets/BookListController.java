@@ -28,8 +28,13 @@ public class BookListController extends HttpServlet {
 
         req.getSession().setAttribute("booklist", allBooks);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/currbooklist.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/bookslist.jsp");
         requestDispatcher.forward(req, resp);
+    }
+
+    public static void main(String[] args) throws SQLException {
+        Book allBooks = BookService.getBook(6);
+        System.out.println(allBooks);
     }
 
 }

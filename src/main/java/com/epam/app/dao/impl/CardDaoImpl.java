@@ -2,7 +2,7 @@ package com.epam.app.dao.impl;
 
 import com.epam.app.dao.CardDao;
 import com.epam.app.model.*;
-import com.epam.app.utils.DbUtils;
+import com.epam.app.utils.DbHelper;
 
 import java.sql.*;
 import java.sql.Date;
@@ -11,15 +11,15 @@ import java.util.*;
 @SuppressWarnings("All")
 public class CardDaoImpl implements CardDao {
 
-    private static String INSERT = "insert into card (user, book, start_date, end_date,is_return) values (?,?,?,?);";
-    private static String UPDATE = "update card set is_return = ? where idbook = ?;";
-    private static String SELECT_BY_BOOK = "select * from card where book = ?";
-    private static String SELECT_BY_USER = "select * from card where user = ?";
+    public static final String INSERT = "insert into card (user, book, start_date, end_date,is_return) values (?,?,?,?);";
+    public static final String UPDATE = "update card set is_return = ? where idbook = ?;";
+    public static final String SELECT_BY_BOOK = "select * from card where book = ?";
+    public static final String SELECT_BY_USER = "select * from card where user = ?";
 
     @Override
     public void addCard(Card card) throws SQLException {
 
-        Connection connection = DbUtils.getConnection();
+        Connection connection = DbHelper.getConnection();
         PreparedStatement statement = connection.prepareStatement(INSERT);
         statement.setInt(1, card.getUser().getId());
         statement.setInt(2, card.getBook().getId());
@@ -33,7 +33,7 @@ public class CardDaoImpl implements CardDao {
     @Override
     public List<Book> getAllBooksByUser(User user) throws SQLException {
 
-        Connection connection = DbUtils.getConnection();
+        Connection connection = DbHelper.getConnection();
         PreparedStatement statement = connection.prepareStatement(SELECT_BY_USER);
         statement.setInt(1,user.getId());
         ResultSet rs = statement.executeQuery();
@@ -49,7 +49,7 @@ public class CardDaoImpl implements CardDao {
     @Override
     public List<User> getAllUsersByBook(Book book) throws SQLException {
 
-        Connection connection = DbUtils.getConnection();
+        Connection connection = DbHelper.getConnection();
         PreparedStatement statement = connection.prepareStatement(SELECT_BY_BOOK);
         statement.setInt(1,book.getId());
         ResultSet rs = statement.executeQuery();
@@ -64,7 +64,7 @@ public class CardDaoImpl implements CardDao {
     @Override
     public void updateStatus(Card card) throws SQLException {
 
-        Connection connection = DbUtils.getConnection();
+        Connection connection = DbHelper.getConnection();
         PreparedStatement statement = connection.prepareStatement(UPDATE);
         statement.setInt(1, card.getId());
         statement.setBoolean(6, card.isReturn());

@@ -1,13 +1,13 @@
 package com.epam.app.service;
 
 import com.epam.app.dao.impl.DaoFactoryImpl;
+import com.epam.app.dao.impl.UserDaoImpl;
 import com.epam.app.model.User;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class UserService {
-
 
     public void addUser(User user) throws SQLException {
         DaoFactoryImpl.getInstance().getUserDao().addUser(user);
@@ -23,6 +23,7 @@ public class UserService {
 
     public List<User> getAllUsers() throws SQLException {
         return DaoFactoryImpl.getInstance().getUserDao().getAllUsers();
+
     }
 
 
