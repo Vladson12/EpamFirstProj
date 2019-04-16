@@ -4,6 +4,9 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <welcome-file-list>
+        <welcome-file>/view/register.jsp</welcome-file>
+    </welcome-file-list>
     <!-- add servlet -->
     <servlet>
         <servlet-name>add</servlet-name>
@@ -37,5 +40,16 @@
         <url-pattern>/BookListView</url-pattern>
     </servlet-mapping>
 
+
+    <!-- register servlet -->
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>com.epam.app.controller.RegisterUserController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
 
 </web-app>

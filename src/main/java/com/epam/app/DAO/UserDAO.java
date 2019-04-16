@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserDAO {
 
-    void addUser(User user);
+    String addUser(User user);
 
     void updateUser(User user);
 

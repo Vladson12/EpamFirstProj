@@ -20,10 +20,10 @@ public class UserDaoImpl implements UserDAO {
     private static String select = "select * from user where id = ?";
 
     private ResultSet getAll() {
-        ResultSet resultSet =null;
+        ResultSet resultSet = null;
         try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery("select * from user");){
+             ResultSet rs = statement.executeQuery("select * from user");) {
             resultSet = rs;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -32,25 +32,31 @@ public class UserDaoImpl implements UserDAO {
     }
 
     @Override
-    public void addUser(User user){
+    public String addUser(User user) {
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(insert)){
+             PreparedStatement statement = connection.prepareStatement(insert)) {
             statement.setString(1, user.getName());
-            statement.setInt(2, user.getRole().ordinal()+1);
+            statement.setInt(2, user.getRole().ordinal() + 1);
             statement.setString(3, user.getLogin());
             statement.setString(4, user.getPassword());
-            statement.executeUpdate();
-        } catch (SQLException e) {
+            int i = statement.executeUpdate();
+
+            if (i != 0)  //Just to ensure data has been inserted into the database
+                return "SUCCESS";
+        } catch (
+                SQLException e) {
             e.printStackTrace();
         }
+
+        return "Oops.. Something went wrong there..!";  // On failure, send a message from here.
     }
 
     @Override
     public void updateUser(User user) {
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(update);){
+             PreparedStatement statement = connection.prepareStatement(update);) {
             statement.setString(1, user.getName());
-            statement.setInt(2, user.getRole().ordinal()+1);
+            statement.setInt(2, user.getRole().ordinal() + 1);
             statement.setString(3, user.getLogin());
             statement.setString(4, user.getPassword());
             statement.setInt(4, user.getId());
@@ -61,13 +67,13 @@ public class UserDaoImpl implements UserDAO {
     }
 
     @Override
-    public List<User> getAllUser(){
-        List<User> array= new ArrayList<>();
+    public List<User> getAllUser() {
+        List<User> array = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery("select * from user");){
-            while (rs.next()){
-                array.add(new User(rs.getString("name"), getRole(rs.getInt("role")),rs.getString("login"), rs.getString("password")));
+             ResultSet rs = statement.executeQuery("select * from user");) {
+            while (rs.next()) {
+                array.add(new User(rs.getString("name"), getRole(rs.getInt("role")), rs.getString("login"), rs.getString("password")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,11 +85,11 @@ public class UserDaoImpl implements UserDAO {
     public User getUser(int userId) {
         User user = null;
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(select)){
-            statement.setInt(1,userId);
+             PreparedStatement statement = connection.prepareStatement(select)) {
+            statement.setInt(1, userId);
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
-                user =new  User(rs.getString("name"), getRole(rs.getInt("role")),rs.getString("login"), rs.getString("password"));
+                user = new User(rs.getString("name"), getRole(rs.getInt("role")), rs.getString("login"), rs.getString("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
