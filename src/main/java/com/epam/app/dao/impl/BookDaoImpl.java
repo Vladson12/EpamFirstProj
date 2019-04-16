@@ -3,22 +3,13 @@ package com.epam.app.dao.impl;
 import com.epam.app.dao.BookDao;
 import com.epam.app.model.*;
 import com.epam.app.model.emuns.BookState;
+import com.epam.app.utils.DbUtils;
 
 import java.sql.*;
 import java.util.*;
 
 @SuppressWarnings("All")
 public class BookDaoImpl implements BookDao {
-
-    private static final String url = "jdbc:mysql://localhost:3306/library" +
-            "?verifyServerCertificate=false"+
-            "&useSSL=false"+
-            "&requireSSL=false"+
-            "&useLegacyDatetimeCode=false"+
-            "&amp"+
-            "&serverTimezone=UTC";
-    private static final String userName = "root";
-    private static final String password = "Polina2313";
 
     private static String INSERT = "insert into book (author, title, book_state_id, description) values (?,?,?,?);";
     private static String UPDATE = "update book set author = ? , title =? , book_state_id = ? , description = ? where idbook = ?;";
@@ -29,7 +20,7 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<Book> getAllBooks() throws SQLException {
         List<Book> bookList = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection(url, userName, password);
+        try (Connection connection = DbUtils.getConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(SELECT_ALL);){
             while (rs.next()){
@@ -44,7 +35,8 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book getBook(int bookId) throws SQLException {
-        Connection connection = DriverManager.getConnection(url, userName, password);
+
+        Connection connection = DbUtils.getConnection();
         PreparedStatement statement = connection.prepareStatement(SELECT);
         statement.setInt(1, bookId);
         ResultSet rs = statement.executeQuery();
@@ -55,32 +47,38 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void addBook(Book book) throws SQLException {
-        Connection connection = DriverManager.getConnection(url, userName, password);
+
+        Connection connection = DbUtils.getConnection();
         PreparedStatement statement = connection.prepareStatement(INSERT);
         statement.setString(1, book.getAuthor());
         statement.setString(2, book.getTitle());
-        statement.setInt(3, book.getBookState().ordinal()+1);
+        statement.setInt(3, book.getBookState().ordinal() + 1);
         statement.setString(4, book.getDescription());
         statement.executeUpdate();
+
     }
 
     @Override
     public void updateBook(Book book) throws SQLException {
-        Connection connection = DriverManager.getConnection(url, userName, password);
+
+        Connection connection = DbUtils.getConnection();
         PreparedStatement statement = connection.prepareStatement(UPDATE);
         statement.setString(1, book.getAuthor());
         statement.setString(2, book.getTitle());
-        statement.setInt(3, book.getBookState().ordinal()+1);
+        statement.setInt(3, book.getBookState().ordinal() + 1);
         statement.setString(4, book.getDescription());
-        statement.setInt(5,book.getId());
+        statement.setInt(5, book.getId());
         statement.executeUpdate();
+
     }
 
     @Override
     public void deleteBook(Book book) throws SQLException {
-        Connection connection = DriverManager.getConnection(url, userName, password);
+
+        Connection connection = DbUtils.getConnection();
         PreparedStatement statement = connection.prepareStatement(DELETE);
-        statement.setInt(1,book.getId());
+        statement.setInt(1, book.getId());
         statement.executeUpdate();
+
     }
 }

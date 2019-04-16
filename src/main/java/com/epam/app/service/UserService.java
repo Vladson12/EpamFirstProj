@@ -1,11 +1,9 @@
 package com.epam.app.service;
 
 import com.epam.app.dao.impl.DaoFactoryImpl;
-import com.epam.app.dao.impl.UserDaoImpl;
 import com.epam.app.model.User;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {

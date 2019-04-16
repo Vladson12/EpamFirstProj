@@ -1,6 +1,5 @@
 package com.epam.app.service;
 
-import com.epam.app.dao.*;
 import com.epam.app.dao.impl.DaoFactoryImpl;
 import com.epam.app.model.Book;
 
@@ -24,7 +23,7 @@ public class BookService {
         DaoFactoryImpl.getInstance().getBookDao().deleteBook(book);
     }
 
-    public Book getBook(DaoFactory factory, int bookId) throws SQLException {
+    public Book getBook(int bookId) throws SQLException {
         return DaoFactoryImpl.getInstance().getBookDao().getBook(bookId);
     }
 

@@ -7,7 +7,7 @@ import com.epam.app.dao.UserDao;
 
 public class DaoFactoryImpl implements DaoFactory {
 
-    private static final DaoFactoryImpl INSTANCE = new DaoFactoryImpl();
+    private static DaoFactoryImpl INSTANCE = new DaoFactoryImpl();
 
     final private BookDao bookDao;
     final private CardDao cardDao;
