@@ -89,7 +89,7 @@ public class UserDaoImpl implements UserDAO {
             statement.setInt(1, userId);
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
-                user = new User(rs.getString("name"), getRole(rs.getInt("role")), rs.getString("login"), rs.getString("password"));
+                user =new  User(rs.getInt("id"),rs.getString("name"), getRole(rs.getInt("role")),rs.getString("login"), rs.getString("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

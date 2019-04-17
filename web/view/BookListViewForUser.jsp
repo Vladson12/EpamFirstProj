@@ -10,13 +10,11 @@
             border-collapse: collapse;
             width: 100%;
         }
-
         td, th {
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
         }
-
         tr:nth-child(even) {
             background-color: #dddddd;
         }
@@ -30,9 +28,6 @@
         <th width="22%" style="text-align: center">Наименование</th>
         <th width="27%" style="text-align: center">Описание</th>
         <th width="10%" style="text-align: center">Автор</th>
-<%--        <th width="12%" style="text-align: center">ISBN</th>--%>
-<%--        <th width="3%" style="text-align: center">Год выпуска</th>--%>
-<%--        <th width="8%" style="text-align: center">Статус</th>--%>
         <th width="17%" style="text-align: center">Действия</th>
 
     </tr>
@@ -42,18 +37,18 @@
             <td><c:out value="${list.title}" /></td>
             <td><c:out value="${list.description}" /></td>
             <td><c:out value="${list.author}" /></td>
-<%--            <td style="text-align: center">${list.isbn}</td>--%>
-<%--            <td style="text-align: center">${list.printyear}</td>--%>
-<%--            <td style="text-align: center">--%>
-<%--&lt;%&ndash;                <c:if test="${list.readalready != true}">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <p>Не прочитана</p></c:if>&ndash;%&gt;--%>
-<%--&lt;%&ndash;                <c:if test="${list.readalready == true}">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                    <p>Прочитана</p></c:if>&ndash;%&gt;--%>
-<%--            </td>--%>
+                <%--            <td style="text-align: center">${list.isbn}</td>--%>
+                <%--            <td style="text-align: center">${list.printyear}</td>--%>
+                <%--            <td style="text-align: center">--%>
+                <%--                <c:if test="${list.readalready != true}">--%>
+                <%--                    <p>Не прочитана</p></c:if>--%>
+                <%--                <c:if test="${list.readalready == true}">--%>
+                <%--                    <p>Прочитана</p></c:if>--%>
+                <%--            </td>--%>
             <td style="text-align: center">
-<%--                <input style="font-size: 16px" type="button" value="Прочитать" onclick="location.href='/view/${list.id}'">--%>
-<%--                <input style="font-size: 16px" type="button" value="Удалить" onclick="location.href='/delete/${list.id}'">--%>
-<%--                <input style="font-size: 16px" type="button" value="Заменить" onclick="location.href='/edit/${list.id}'">--%>
+                <input style="font-size: 16px" type="button" value="Взять домой" onclick="location.href='/view/${list.id}'">
+                <input style="font-size: 16px" type="button" value="Взять в читальный зал" onclick="location.href='/delete/${list.id}'">
+                <input style="font-size: 16px" type="button" value="Заказать" onclick="location.href='/BookListView?id=${list.id}'">
             </td>
         </tr>
     </c:forEach>
@@ -66,16 +61,16 @@
             <input style="font-size: 16px; text-align: left" type="button" value="Предыдущая страница" onclick="location.href='/turnPage/previous'">
             <input style="font-size: 16px; text-align: left" type="button" value="Следующая страница" onclick="location.href='/turnPage/next'">
             <input style="font-size: 16px; text-align: right" type="button" value="Добавить новую книгу" onclick="location.href='/add'">
-<%--            <form:form action="/find" method="post" style="text-align: right">--%>
-<%--                <a>Поиск по </a>--%>
-<%--                <select style="font-size: 16px" name="column">--%>
-<%--                    <option value="title">наименованию</option>--%>
-<%--                    <option value="author">автору</option>--%>
-<%--                    <option value="year">году выпуска</option>--%>
-<%--                </select>--%>
-<%--                <input style="font-size: 16px" type="text" name="query">--%>
-<%--                <input style="font-size: 16px" type="submit" value="Найти">--%>
-<%--            </form:form>--%>
+            <%--            <form:form action="/find" method="post" style="text-align: right">--%>
+            <%--                <a>Поиск по </a>--%>
+            <%--                <select style="font-size: 16px" name="column">--%>
+            <%--                    <option value="title">наименованию</option>--%>
+            <%--                    <option value="author">автору</option>--%>
+            <%--                    <option value="year">году выпуска</option>--%>
+            <%--                </select>--%>
+            <%--                <input style="font-size: 16px" type="text" name="query">--%>
+            <%--                <input style="font-size: 16px" type="submit" value="Найти">--%>
+            <%--            </form:form>--%>
         </td>
     </tr>
 </table>

@@ -1,10 +1,8 @@
 package com.epam.app.service;
 
 import com.epam.app.DAO.impl.DaoFactoryImpl;
-import com.epam.app.DAO.impl.UserDaoImpl;
 import com.epam.app.model.User;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
