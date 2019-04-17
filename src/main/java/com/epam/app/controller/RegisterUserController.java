@@ -18,14 +18,14 @@ public class RegisterUserController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Copying all the input parameters in to local variables
-        String fullName = request.getParameter("name");
+        String name = request.getParameter("name");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 //        String userName = request.getParameter("username");
 
         User user = new User();
         //Using Java Beans - An easiest way to play with group of related data
-        user.setName(fullName);
+        user.setName(name);
         user.setLogin(login);
         user.setPassword(password);
         user.setRole(Role.READER);
