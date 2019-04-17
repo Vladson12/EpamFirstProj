@@ -8,7 +8,7 @@
 <script> 
 function validate() {
     // var fullname = document.form.fullname.value;
-    var name = document.form.username.value;
+    var name = document.form.name.value;
     var login = document.form.login.value;
     var password = document.form.password.value;
     var conpassword = document.form.conpassword.value;
@@ -40,13 +40,14 @@ function validate() {
 <center><h2>Create your LibraryApp account. It's free and only takes a minute. </h2></center>
 <form name="form" action="RegisterNewUser" method="post" onsubmit="return validate()">
 <table align="center">
- <tr>
- <td>Email</td>
- <td><input type="text" name="login"/></td>
- </tr>
+
  <tr>
  <td>Username</td>
  <td><input type="text" name="name"/></td>
+ </tr>
+ <tr>
+ <td>Email</td>
+ <td><input type="text" name="login"/></td>
  </tr>
  <tr>
  <td>Password</td>

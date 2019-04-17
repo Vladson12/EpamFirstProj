@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 public class UserService {
 
     public static boolean create(User user) {
-        for (User users:getAllUsers()) {
-            boolean isTheSameUser = users.getLogin().equals(user.getLogin());
+        for (String logins:getAllLogins()) {
+            boolean isTheSameUser = logins.equals(user.getLogin());
             if (isTheSameUser) return false;
         }
         return DaoFactoryImpl.getInstance().getUserDAO().addUser(user);
@@ -30,7 +30,7 @@ public class UserService {
         DaoFactoryImpl.getInstance().getUserDAO().updateUser(user);
     }
 
-    public List<String> getAllLogins() {
+    public static List<String> getAllLogins() {
         return getAllUsers().stream().map(i -> i.getLogin()).collect(Collectors.toList());
     }
 
