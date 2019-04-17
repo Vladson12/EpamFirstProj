@@ -11,18 +11,21 @@ import java.util.List;
  * Created by vladd on 15.04.2019
  */
 public class BookService {
-    public static void create(Book book) throws SQLException {
-        new BookDaoImpl().addBook(book);
+
+    public void create(Book book) {
+        DaoFactoryImpl.getInstance().getBookDAO().addBook(book);
     }
 
-    public Book get(int bookId) throws SQLException {
-        return DaoFactoryImpl.getInstance().getBookDAO().getBook(bookId);
+    public Book book(int id){
+        return DaoFactoryImpl.getInstance().getBookDAO().getBook(id);
     }
 
-    public static List<Book> getAll() throws SQLException {
+    public List<Book> getAllBooks(){
         return DaoFactoryImpl.getInstance().getBookDAO().getAllBooks();
     }
 
-
-
+    public void updateBook(Book book) {
+        DaoFactoryImpl.getInstance().getBookDAO().updateBook(book);
+    }
+    
 }

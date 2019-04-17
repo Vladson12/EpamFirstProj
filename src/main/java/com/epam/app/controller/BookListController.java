@@ -21,11 +21,8 @@ public class BookListController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<Book> allBooks = null;
-        try {
-            allBooks = BookService.getAll();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        allBooks = new BookService().getAllBooks();
+
         req.getSession().setAttribute("list", allBooks);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/BookListView.jsp");
         requestDispatcher.forward(req, resp);

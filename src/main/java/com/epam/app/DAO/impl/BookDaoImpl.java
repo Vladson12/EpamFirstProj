@@ -29,7 +29,7 @@ public class BookDaoImpl implements BookDAO {
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery("select * from book");){
             while (rs.next()){
-                array.add(new Book(Integer.parseInt(rs.getString("idbook")), rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description")));
+                array.add(new Book(rs.getInt("idbook"), rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
