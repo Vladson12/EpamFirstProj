@@ -39,28 +39,4 @@ public class User {
     public String getPassword() {
         return password;
     }
-//    public static class UserBuilder {
-//        private int id;
-//        private String name;
-//        private Role role;
-//        private String login;
-//        private String password;
-//
-//        public UserBuilder(int id, String name, Role role, String login, String password) {
-//            this.id = id;
-//            this.name = name;
-//            this.role = role;
-//            this.login = login;
-//            this.password = password;
-//        }
-//    }
-//
-//        private User(UserBuilder builder) {
-//            this.id = builder.id;
-//            this.name = builder.name;
-//            this.role = builder.role;
-//            this.login = builder.login;
-//            this.password = builder.password;
-//        }
-
 }
