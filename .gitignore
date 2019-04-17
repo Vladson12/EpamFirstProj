@@ -1,6 +1,7 @@
 .idea/
 out/
 classes/
+target/
 *.iml
 
 # Compiled class file
