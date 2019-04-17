@@ -1,5 +1,6 @@
 package com.epam.app.DAO.impl;
 
+import com.epam.app.model.enums.Role;
 import com.epam.app.util.ConnectionManager;
 import com.epam.app.DAO.UserDAO;
 import com.epam.app.model.User;
@@ -30,6 +31,8 @@ public class UserDaoImpl implements UserDAO {
         }
         return resultSet;
     }
+
+
 
     @Override
     public void addUser(User user){
@@ -83,7 +86,7 @@ public class UserDaoImpl implements UserDAO {
             statement.setInt(1,userId);
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
-                user =new  User(rs.getString("name"), getRole(rs.getInt("role")),rs.getString("login"), rs.getString("password"));
+                user =new  User(rs.getInt("id"),rs.getString("name"), getRole(rs.getInt("role")),rs.getString("login"), rs.getString("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
