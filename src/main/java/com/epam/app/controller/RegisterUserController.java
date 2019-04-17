@@ -37,7 +37,7 @@ public class RegisterUserController extends HttpServlet {
 
         if (isUserRegistered)   //On success, you can display a message to user on Home page
         {
-            request.getRequestDispatcher("/view/list.jsp").forward(request, response);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
         } else   //On Failure, display a meaningful message to the User.
         {
             request.setAttribute("errMessage", "This email already exists!");

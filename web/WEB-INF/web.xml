@@ -40,6 +40,17 @@
         <url-pattern>/BookListView</url-pattern>
     </servlet-mapping>
 
+    <!-- userlist servlet -->
+    <servlet>
+        <servlet-name>userlist</servlet-name>
+        <servlet-class>com.epam.app.controller.UserListController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>userlist</servlet-name>
+        <url-pattern>/GetUserList</url-pattern>
+    </servlet-mapping>
+
 
     <!-- register servlet -->
     <servlet>
