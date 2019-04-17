@@ -15,6 +15,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema library
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `library` DEFAULT CHARACTER SET utf8 ;
+
 USE `library` ;
 
 -- -----------------------------------------------------
@@ -98,30 +99,37 @@ insert into book (author,title,book_state_id,description) values  ('John', 'sfs'
 insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
 insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
 insert into book (author,title,book_state_id,description) values  ('John', 'sfs',1,'');
+
+CREATE TABLE `library`.`book_state` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `book_state_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+INSERT INTO `library`.`card_state`(`id`,`card_state_name`)VALUES(1,'ORDERED');
+INSERT INTO `library`.`card_state`(`id`,`card_state_name`)VALUES(2,'AT_HOME');
+INSERT INTO `library`.`card_state`(`id`,`card_state_name`)VALUES(3,'AT_HALL');
+INSERT INTO `library`.`card_state`(`id`,`card_state_name`)VALUES(4,'RETURNED');
+INSERT INTO `library`.`card_state`(`id`,`card_state_name`)VALUES(5,'OVERDUE');
+
+
 -- -----------------------------------------------------
 -- Table `library`.`card`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `library`.`card` (
-  `idhome_card` INT NOT NULL AUTO_INCREMENT,
-  `user` INT NOT NULL,
-  `book` INT NOT NULL,
-  `start_date` DATE NOT NULL,
-  `end_date` DATE NOT NULL,
-  `is_return` TINYINT(1) NOT NULL DEFAULT 0,
+CREATE TABLE `library`.`card` (
+  `idhome_card` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `book` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `card_state` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idhome_card`),
-  INDEX `idreader_idx` (`user` ASC),
-  INDEX `book_idx` (`book` ASC),
-  CONSTRAINT `reader`
-    FOREIGN KEY (`user`)
-    REFERENCES `library`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `book`
-    FOREIGN KEY (`book`)
-    REFERENCES `library`.`book` (`idbook`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  KEY `idreader_idx` (`user`),
+  KEY `book_idx` (`book`),
+  KEY `card_state_idx` (`card_state`),
+  CONSTRAINT `book` FOREIGN KEY (`book`) REFERENCES `library`.`book` (`idbook`) ON UPDATE CASCADE,
+  CONSTRAINT `card_state` FOREIGN KEY (`card_state`) REFERENCES `library`.`card_state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `user` FOREIGN KEY (`user`) REFERENCES `library`.`user` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -1,6 +1,8 @@
 package com.epam.app.DAO.impl;
 
 import com.epam.app.DAO.BookDAO;
+import com.epam.app.DAO.DaoFactory;
+import com.epam.app.model.enums.BookState;
 import com.epam.app.util.ConnectionManager;
 import com.epam.app.model.Book;
 
@@ -43,7 +45,7 @@ public class BookDaoImpl implements BookDAO {
             statement.setInt(1,bookId);
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
-                book = new Book(rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description") );
+                book = new Book(rs.getInt("idbook"),rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description") );
             }
         } catch (SQLException e) {
             e.printStackTrace();
