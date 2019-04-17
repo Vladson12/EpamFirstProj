@@ -1,24 +1,37 @@
 package com.epam.app.service;
 
+import com.epam.app.DAO.impl.DaoFactoryImpl;
 import com.epam.app.DAO.impl.UserDaoImpl;
 import com.epam.app.model.User;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserService {
-//    protected final Logger log = LoggerFactory.getLogger(getClass());
 
-
-    public void create(User user) throws SQLException, ClassNotFoundException {
-//        log.info("get {}");
-        new UserDaoImpl().addUser(user);
+    public static boolean create(User user) {
+        for (User users:getAllUsers()) {
+            boolean isTheSameUser = users.getLogin().equals(user.getLogin());
+            if (isTheSameUser) return false;
+        }
+        return DaoFactoryImpl.getInstance().getUserDAO().addUser(user);
     }
 
-    //get by roles,
-//    public ArrayList<String> getName(){
-//
-//        return null;
-//    }
+    public User get(int id) {
+        return DaoFactoryImpl.getInstance().getUserDAO().getUser(id);
+    }
 
+    public static List<User> getAllUsers() {
+        return DaoFactoryImpl.getInstance().getUserDAO().getAllUser();
+    }
+
+    public void updateUser(User user) {
+        DaoFactoryImpl.getInstance().getUserDAO().updateUser(user);
+    }
+
+    public List<String> getAllLogins() {
+        return getAllUsers().stream().map(i -> i.getLogin()).collect(Collectors.toList());
+    }
 
 }

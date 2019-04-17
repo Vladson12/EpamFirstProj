@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDAO {
     }
 
     @Override
-    public String addUser(User user) {
+    public boolean addUser(User user) {
         try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(insert)) {
             statement.setString(1, user.getName());
@@ -42,13 +42,13 @@ public class UserDaoImpl implements UserDAO {
             int i = statement.executeUpdate();
 
             if (i != 0)  //Just to ensure data has been inserted into the database
-                return "SUCCESS";
+                return true;
         } catch (
                 SQLException e) {
             e.printStackTrace();
         }
 
-        return "Oops.. Something went wrong there..!";  // On failure, send a message from here.
+        return false;
     }
 
     @Override

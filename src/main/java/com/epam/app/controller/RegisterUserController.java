@@ -4,6 +4,7 @@ import com.epam.app.DAO.UserDAO;
 import com.epam.app.DAO.impl.UserDaoImpl;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
+import com.epam.app.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,18 +31,16 @@ public class RegisterUserController extends HttpServlet {
         user.setPassword(password);
         user.setRole(Role.READER);
 
-        UserDAO registerDao = new UserDaoImpl();
 
         //The core Logic of the Registration application is present here. We are going to insert user data in to the database.
-        String userRegistered = registerDao.addUser(user);
+        boolean isUserRegistered = UserService.create(user);
 
-        if(userRegistered.equals("SUCCESS"))   //On success, you can display a message to user on Home page
+        if (isUserRegistered)   //On success, you can display a message to user on Home page
         {
             request.getRequestDispatcher("/view/list.jsp").forward(request, response);
-        }
-        else   //On Failure, display a meaningful message to the User.
+        } else   //On Failure, display a meaningful message to the User.
         {
-            request.setAttribute("errMessage", userRegistered);
+            request.setAttribute("errMessage", "This email already exists!");
             request.getRequestDispatcher("/view/register.jsp").forward(request, response);
         }
     }
