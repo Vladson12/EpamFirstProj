@@ -5,17 +5,29 @@ import com.epam.app.DAO.impl.DaoFactoryImpl;
 import com.epam.app.DAO.impl.UserDaoImpl;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor
+
 public class UserService {
 
-    public void create(User user) {
-        DaoFactoryImpl.getInstance().getUserDAO().addUser(user);
+
+    public UserService(String name, String login, String password) {
     }
 
-    public User get(int id){
+    public static boolean create(User user) {
+
+        for (String logins : getAllLogins()) {
+            boolean isTheSameUser = logins.equals(user.getLogin());
+            if (isTheSameUser) return false;
+        }
+        return DaoFactoryImpl.getInstance().getUserDAO().addUser(user);
+    }
+
+    public User get(int id) {
         return DaoFactoryImpl.getInstance().getUserDAO().getUser(id);
     }
 
@@ -23,7 +35,7 @@ public class UserService {
         return DaoFactoryImpl.getInstance().getUserDAO().getUserByLogin(login);
     }
 
-    public List<User> getAllUsers(){
+    public static List<User> getAllUsers() {
         return DaoFactoryImpl.getInstance().getUserDAO().getAllUser();
     }
 
@@ -31,8 +43,8 @@ public class UserService {
         DaoFactoryImpl.getInstance().getUserDAO().updateUser(user);
     }
 
-    public List<String> getAllLogins(){
-        return getAllUsers().stream().map(i->i.getLogin()).collect(Collectors.toList());
+    public static List<String> getAllLogins() {
+        return getAllUsers().stream().map(i -> i.getLogin()).collect(Collectors.toList());
     }
 
 }

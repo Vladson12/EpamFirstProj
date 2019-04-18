@@ -2,12 +2,11 @@ package com.epam.app.DAO;
 
 import com.epam.app.model.User;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDAO {
 
-    void addUser(User user);
+    boolean addUser(User user);
 
     void updateUser(User user);
 
@@ -17,5 +16,7 @@ public interface UserDAO {
 
     User getUserByLogin(String userLogin);
 
+
+    void deleteUser(int usedId);
 }
 

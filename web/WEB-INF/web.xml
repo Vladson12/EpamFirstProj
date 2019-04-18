@@ -4,6 +4,9 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <welcome-file-list>
+        <welcome-file>/view/register.jsp</welcome-file>
+    </welcome-file-list>
     <!-- add servlet -->
     <servlet>
         <servlet-name>getUserCard</servlet-name>
@@ -38,6 +41,26 @@
         <url-pattern>/cards</url-pattern>
     </servlet-mapping>
 
+    <!-- add servlet -->
+    <servlet>
+        <servlet-name>userList</servlet-name>
+        <servlet-class>com.epam.app.controller.UserListController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>userList</servlet-name>
+        <url-pattern>/GetUserList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>add</servlet-name>
+        <servlet-class>com.epam.app.controller.AddUserController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>add</servlet-name>
+        <url-pattern>/AddNewUser</url-pattern>
+    </servlet-mapping>
 
     <!-- list servlet -->
     <servlet>
@@ -59,6 +82,17 @@
     <servlet-mapping>
         <servlet-name>bookslist</servlet-name>
         <url-pattern>/BookListView</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>com.epam.app.controller.RegisterUserController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/RegisterNewUser</url-pattern>
     </servlet-mapping>
 
 

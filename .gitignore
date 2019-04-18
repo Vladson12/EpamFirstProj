@@ -1,7 +1,7 @@
 .idea/
-!.idea/artifacts
 out/
 classes/
+target/
 *.iml
 
 # Compiled class file

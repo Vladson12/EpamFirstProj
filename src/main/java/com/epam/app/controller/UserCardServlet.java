@@ -23,6 +23,7 @@ public class  UserCardServlet extends HttpServlet {
         if (id != null) {
             int idInt = Integer.valueOf(id);
             login = new CardService().get(idInt).getUser().getLogin();
+            req.setAttribute("login",login);
             if (button.equals("home")){
                 new CardService().udateCardState(new CardService().get(idInt), CardState.AT_HOME);
             }
