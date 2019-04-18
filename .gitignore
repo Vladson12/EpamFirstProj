@@ -2,7 +2,6 @@
 out/
 classes/
 target/
-*.iml
 
 # Compiled class file
 *.class
