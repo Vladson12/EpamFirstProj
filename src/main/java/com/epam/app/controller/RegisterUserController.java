@@ -4,7 +4,11 @@ import com.epam.app.DAO.UserDAO;
 import com.epam.app.DAO.impl.UserDaoImpl;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
+
+
 import com.epam.app.service.UserService;
+import org.apache.commons.validator.routines.EmailValidator;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,26 +22,38 @@ public class RegisterUserController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Copying all the input parameters in to local variables
         String name = request.getParameter("name");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        User user = new User();
-        user.setName(name);
-        user.setLogin(login);
-        user.setPassword(password);
-        user.setRole(Role.READER);
+        User user = new User(name, Role.READER, login, password);
 
 
-        boolean isUserRegistered = UserService.create(user);
+        EmailValidator emailValidator = EmailValidator.getInstance();
 
-        if (isUserRegistered)
-        {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-        } else
-        {
-            request.setAttribute("errMessage", "This email already exists!");
-            request.getRequestDispatcher("/view/register.jsp").forward(request, response);
+        if (emailValidator.isValid(login)) {
+            user.setLogin(login);
+            //The core Logic of the Registration application is present here. We are going to insert user data in to the database.
+            boolean isUserRegistered = UserService.create(user);
+
+            if (isUserRegistered)   //On success, you can display a message to user on Home page
+            {
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
+            } else   //On Failure, display a meaningful message to the User.
+            {
+                request.setAttribute("errMessage", "This email already exists!");
+            }
+        } else {
+            request.setAttribute("errMessage", "This email invalid");
         }
+        request.getRequestDispatcher("/view/register.jsp").forward(request, response);
+
+
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp);
     }
 }

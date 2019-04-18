@@ -28,4 +28,9 @@ public class Card {
         this.endDate = endDate;
         this.cardState = cardState;
     }
+
+    public String toStringDates(){
+        return  String.format("%s%s%s",startDate ," - ", endDate);
+
+    }
 }

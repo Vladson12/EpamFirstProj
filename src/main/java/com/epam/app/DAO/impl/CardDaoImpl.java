@@ -2,19 +2,14 @@ package com.epam.app.DAO.impl;
 
 import com.epam.app.DAO.CardDAO;
 import com.epam.app.model.enums.CardState;
-import com.epam.app.model.enums.Role;
 import com.epam.app.util.ConnectionManager;
 import com.epam.app.model.Book;
 import com.epam.app.model.Card;
 import com.epam.app.model.User;
 
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("ALL")
 public class CardDaoImpl implements CardDAO {
@@ -98,6 +93,23 @@ public class CardDaoImpl implements CardDAO {
         return arrayOfId;
     }
 
+    @Override
+    public List<Integer> getAllCards(User user) {
+        List<Integer> arrayOfIdCard= new ArrayList<>();
+        try(Connection connection = ConnectionManager.getConnection();
+            PreparedStatement statement = connection.prepareStatement(selectByUser);) {
+            statement.setInt(1,user.getId());
+            try(ResultSet rs = statement.executeQuery();){
+                while (rs.next()) {
+                    arrayOfIdCard.add(rs.getInt("idhome_card"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+//            log.info("");
+        }
+        return  arrayOfIdCard;
+    }
 
     @Override
     public void updateCardStatus(Card card, CardState cardState) {

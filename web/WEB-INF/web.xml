@@ -9,13 +9,57 @@
     </welcome-file-list>
     <!-- add servlet -->
     <servlet>
+        <servlet-name>getUserCard</servlet-name>
+        <servlet-class>com.epam.app.controller.EntryOfUserServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>getUserCard</servlet-name>
+        <url-pattern>/getUserCard</url-pattern>
+    </servlet-mapping>
+
+    <!-- entry user to take all his cards servlet -->
+    <servlet>
+        <servlet-name>entryUser</servlet-name>
+        <servlet-class>com.epam.app.controller.EntryOfUserServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>entryUser</servlet-name>
+        <url-pattern>/entryUser</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- user cards servlet -->
+    <servlet>
+        <servlet-name>cards</servlet-name>
+        <servlet-class>com.epam.app.controller.UserCardServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>cards</servlet-name>
+        <url-pattern>/cards</url-pattern>
+    </servlet-mapping>
+
+    <!-- add servlet -->
+    <servlet>
+        <servlet-name>userList</servlet-name>
+        <servlet-class>com.epam.app.controller.UserListController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>userList</servlet-name>
+        <url-pattern>/GetUserList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>add</servlet-name>
-        <servlet-class>com.epam.app.controller.AddServlet</servlet-class>
+        <servlet-class>com.epam.app.controller.AddUserController</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>add</servlet-name>
-        <url-pattern>/add</url-pattern>
+        <url-pattern>/AddNewUser</url-pattern>
     </servlet-mapping>
 
     <!-- list servlet -->
@@ -40,19 +84,7 @@
         <url-pattern>/BookListView</url-pattern>
     </servlet-mapping>
 
-    <!-- userlist servlet -->
-    <servlet>
-        <servlet-name>userlist</servlet-name>
-        <servlet-class>com.epam.app.controller.UserListController</servlet-class>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>userlist</servlet-name>
-        <url-pattern>/GetUserList</url-pattern>
-    </servlet-mapping>
-
-
-    <!-- register servlet -->
     <servlet>
         <servlet-name>register</servlet-name>
         <servlet-class>com.epam.app.controller.RegisterUserController</servlet-class>
@@ -62,5 +94,6 @@
         <servlet-name>register</servlet-name>
         <url-pattern>/RegisterNewUser</url-pattern>
     </servlet-mapping>
+
 
 </web-app>

@@ -13,5 +13,10 @@ public interface UserDAO {
     List<User> getAllUser();
 
     User getUser(int userId);
+
+    User getUserByLogin(String userLogin);
+
+
+    void deleteUser(int usedId);
 }
 
