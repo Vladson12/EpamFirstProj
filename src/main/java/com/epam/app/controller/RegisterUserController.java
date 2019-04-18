@@ -1,7 +1,5 @@
 package com.epam.app.controller;
 
-import com.epam.app.DAO.UserDAO;
-import com.epam.app.DAO.impl.UserDaoImpl;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
@@ -13,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class RegisterUserController extends HttpServlet {
-
-    public RegisterUserController() {
-    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Copying all the input parameters in to local variables
@@ -43,5 +38,10 @@ public class RegisterUserController extends HttpServlet {
             request.setAttribute("errMessage", "This email already exists!");
             request.getRequestDispatcher("/view/register.jsp").forward(request, response);
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp);
     }
 }

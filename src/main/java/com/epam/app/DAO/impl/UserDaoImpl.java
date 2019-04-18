@@ -18,6 +18,8 @@ public class UserDaoImpl implements UserDAO {
     private static String insert = "insert into user (name, role, login, password) values (?,?,?,?);";
     private static String update = "update user set name = ? , role =? , login = ? , password = ? where id = ?;";
     private static String select = "select * from user where id = ?";
+    private static String delete = "delete * from user where id = ?";
+
 
     private ResultSet getAll() {
         ResultSet resultSet = null;
@@ -96,5 +98,18 @@ public class UserDaoImpl implements UserDAO {
         }
         return user;
     }
+
+    @Override
+    public void deleteUser(int userId) {
+        try (Connection connection = ConnectionManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(delete)) {
+            statement.setInt(1, userId);
+            statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

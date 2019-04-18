@@ -10,12 +10,12 @@
     <!-- add servlet -->
     <servlet>
         <servlet-name>add</servlet-name>
-        <servlet-class>com.epam.app.controller.AddServlet</servlet-class>
+        <servlet-class>com.epam.app.controller.AddUserController</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>add</servlet-name>
-        <url-pattern>/add</url-pattern>
+        <url-pattern>/AddNewUser</url-pattern>
     </servlet-mapping>
 
     <!-- list servlet -->
