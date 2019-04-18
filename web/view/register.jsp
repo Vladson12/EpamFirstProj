@@ -41,7 +41,7 @@ function validate() {
  </tr>
  <tr>
  <td>Email</td>
- <td><input type="text" name="login"/></td>
+ <td><input type="email" name="login"/></td>
  </tr>
  <tr>
  <td>Password</td>

@@ -2,8 +2,11 @@ package com.epam.app.controller;
 
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
-import com.epam.app.service.EmailValidator;
+
+
 import com.epam.app.service.UserService;
+import org.apache.commons.validator.routines.EmailValidator;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,16 +26,13 @@ public class RegisterUserController extends HttpServlet {
         String name = request.getParameter("name");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-//        String userName = request.getParameter("username");
 
-        User user = new User();
-        //Using Java Beans - An easiest way to play with group of related data
-        user.setName(name);
-        user.setPassword(password);
-        user.setRole(Role.READER);
+        User user = new User(name, Role.READER, login, password);
 
-        EmailValidator emailValidator = new EmailValidator();
-        if (emailValidator.validateEmail(login)) {
+
+        EmailValidator emailValidator = EmailValidator.getInstance();
+
+        if (emailValidator.isValid(login)) {
             user.setLogin(login);
             //The core Logic of the Registration application is present here. We are going to insert user data in to the database.
             boolean isUserRegistered = UserService.create(user);
