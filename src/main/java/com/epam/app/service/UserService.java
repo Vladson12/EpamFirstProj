@@ -2,14 +2,20 @@ package com.epam.app.service;
 
 import com.epam.app.DAO.impl.DaoFactoryImpl;
 import com.epam.app.model.User;
+import com.epam.app.model.enums.Role;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserService {
 
+
+    public UserService(String name, String login, String password) {
+    }
+
     public static boolean create(User user) {
-        for (String logins:getAllLogins()) {
+
+        for (String logins : getAllLogins()) {
             boolean isTheSameUser = logins.equals(user.getLogin());
             if (isTheSameUser) return false;
         }
