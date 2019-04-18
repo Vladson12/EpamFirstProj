@@ -1,9 +1,8 @@
 package com.epam.app.controller;
 
-import com.epam.app.DAO.UserDAO;
-import com.epam.app.DAO.impl.UserDaoImpl;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
+import com.epam.app.service.EmailValidator;
 import com.epam.app.service.UserService;
 
 import javax.servlet.ServletException;
@@ -11,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+//import org.apache.commons.validator.routines.EmailValidator;
 
 public class RegisterUserController extends HttpServlet {
 
@@ -27,21 +28,27 @@ public class RegisterUserController extends HttpServlet {
         User user = new User();
         //Using Java Beans - An easiest way to play with group of related data
         user.setName(name);
-        user.setLogin(login);
         user.setPassword(password);
         user.setRole(Role.READER);
 
+        EmailValidator emailValidator = new EmailValidator();
+        if (emailValidator.validateEmail(login)) {
+            user.setLogin(login);
+            //The core Logic of the Registration application is present here. We are going to insert user data in to the database.
+            boolean isUserRegistered = UserService.create(user);
 
-        //The core Logic of the Registration application is present here. We are going to insert user data in to the database.
-        boolean isUserRegistered = UserService.create(user);
-
-        if (isUserRegistered)   //On success, you can display a message to user on Home page
-        {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-        } else   //On Failure, display a meaningful message to the User.
-        {
-            request.setAttribute("errMessage", "This email already exists!");
-            request.getRequestDispatcher("/view/register.jsp").forward(request, response);
+            if (isUserRegistered)   //On success, you can display a message to user on Home page
+            {
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
+            } else   //On Failure, display a meaningful message to the User.
+            {
+                request.setAttribute("errMessage", "This email already exists!");
+            }
+        } else {
+            request.setAttribute("errMessage", "This email invalid");
         }
+        request.getRequestDispatcher("/view/register.jsp").forward(request, response);
+
+
     }
 }

@@ -7,19 +7,13 @@
 <title>Register</title>
 <script> 
 function validate() {
-    // var fullname = document.form.fullname.value;
     var name = document.form.name.value;
     var login = document.form.login.value;
     var password = document.form.password.value;
     var conpassword = document.form.conpassword.value;
 
-    // if (fullname == null || fullname == "") {
-    //     alert("Full Name can't be blank");
-    //     return false;
-    // } else if (email == null || email == "") {
-    //     alert("Email can't be blank");
-    //     return false;
-// }
+ // add validation ....@mail.ru
+ //authorization
     if (name == null || name == "") {
         alert("Username can't be blank");
         return false;
