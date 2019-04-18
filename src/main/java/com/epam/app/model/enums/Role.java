@@ -5,13 +5,12 @@ public enum Role {
     LIBRARIAN,
     ADMINISTRATOR;
 
-    public static Role getRole(int roleId){
-        if (roleId==1)
+    public static Role getRole(int roleId) {
+        if (roleId == 1)
             return READER;
-        else if (roleId==2)
+        else if (roleId == 2)
             return LIBRARIAN;
         else
             return ADMINISTRATOR;
-
     }
 }

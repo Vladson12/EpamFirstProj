@@ -5,10 +5,10 @@ public enum BookState {
     ORDERED,
     ONHANDS;
 
-    public static BookState getBookState(int bookStateId){
-        if (bookStateId==1)
+    public static BookState getBookState(int bookStateId) {
+        if (bookStateId == 1)
             return FREE;
-        else if (bookStateId==2)
+        else if (bookStateId == 2)
             return ORDERED;
         else
             return ONHANDS;

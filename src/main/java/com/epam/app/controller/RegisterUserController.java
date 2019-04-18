@@ -18,27 +18,23 @@ public class RegisterUserController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //Copying all the input parameters in to local variables
         String name = request.getParameter("name");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-//        String userName = request.getParameter("username");
 
         User user = new User();
-        //Using Java Beans - An easiest way to play with group of related data
         user.setName(name);
         user.setLogin(login);
         user.setPassword(password);
         user.setRole(Role.READER);
 
 
-        //The core Logic of the Registration application is present here. We are going to insert user data in to the database.
         boolean isUserRegistered = UserService.create(user);
 
-        if (isUserRegistered)   //On success, you can display a message to user on Home page
+        if (isUserRegistered)
         {
             request.getRequestDispatcher("/index.jsp").forward(request, response);
-        } else   //On Failure, display a meaningful message to the User.
+        } else
         {
             request.setAttribute("errMessage", "This email already exists!");
             request.getRequestDispatcher("/view/register.jsp").forward(request, response);

@@ -1,8 +1,6 @@
 package com.epam.app.DAO.impl;
 
 import com.epam.app.DAO.BookDAO;
-import com.epam.app.DAO.DaoFactory;
-import com.epam.app.model.enums.BookState;
 import com.epam.app.util.ConnectionManager;
 import com.epam.app.model.Book;
 
@@ -27,8 +25,8 @@ public class BookDaoImpl implements BookDAO {
         List<Book> array = new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery("select * from book");){
-            while (rs.next()){
+             ResultSet rs = statement.executeQuery("select * from book");) {
+            while (rs.next()) {
                 array.add(new Book(rs.getInt("idbook"), rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description")));
             }
         } catch (SQLException e) {
@@ -38,14 +36,14 @@ public class BookDaoImpl implements BookDAO {
     }
 
     @Override
-    public Book getBook(int bookId)  {
+    public Book getBook(int bookId) {
         Book book = null;
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(select)){
-            statement.setInt(1,bookId);
+             PreparedStatement statement = connection.prepareStatement(select)) {
+            statement.setInt(1, bookId);
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
-                book = new Book(rs.getInt("idbook"),rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description") );
+                book = new Book(rs.getInt("idbook"), rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,10 +54,10 @@ public class BookDaoImpl implements BookDAO {
     @Override
     public void addBook(Book book) {
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(insert)){
+             PreparedStatement statement = connection.prepareStatement(insert)) {
             statement.setString(1, book.getAuthor());
             statement.setString(2, book.getTitle());
-            statement.setInt(3, book.getBookState().ordinal()+1);
+            statement.setInt(3, book.getBookState().ordinal() + 1);
             statement.setString(4, book.getDescription());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -70,12 +68,12 @@ public class BookDaoImpl implements BookDAO {
     @Override
     public void updateBook(Book book) {
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(update);){
+             PreparedStatement statement = connection.prepareStatement(update);) {
             statement.setString(1, book.getAuthor());
             statement.setString(2, book.getTitle());
-            statement.setInt(3, book.getBookState().ordinal()+1);
+            statement.setInt(3, book.getBookState().ordinal() + 1);
             statement.setString(4, book.getDescription());
-            statement.setInt(5,book.getId());
+            statement.setInt(5, book.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,8 +83,8 @@ public class BookDaoImpl implements BookDAO {
     @Override
     public void deleteBook(Book book) {
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(delete);){
-            statement.setInt(1,book.getId());
+             PreparedStatement statement = connection.prepareStatement(delete);) {
+            statement.setInt(1, book.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,7 +95,7 @@ public class BookDaoImpl implements BookDAO {
         ResultSet resultSet = null;
         try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery("select * from book");){
+             ResultSet rs = statement.executeQuery("select * from book");) {
             resultSet = rs;
         } catch (SQLException e) {
             e.printStackTrace();

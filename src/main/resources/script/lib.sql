@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS `library`.`role` (
                                               PRIMARY KEY (`idrole`))
   ENGINE = InnoDB;
 
-insert into role (idrole, role_name) values (1,'READER');
-insert into role (idrole, role_name) values (2,'LIBRARIAN');
-insert into role (idrole, role_name) values (3,'ADMINISTATOR');
+insert into role (role_name) values ('READER');
+insert into role (role_name) values ('LIBRARIAN');
+insert into role (role_name) values ('ADMINISTATOR');
 
 -- -----------------------------------------------------
 -- Table `library`.`user`
@@ -58,9 +58,9 @@ CREATE TABLE IF NOT EXISTS `library`.`book_state` (
                                                     PRIMARY KEY (`id`))
   ENGINE = InnoDB;
 
-insert into book_state (id, book_state_name) values (1,'FREE');
-insert into book_state (id, book_state_name) values (2,'ORDERED');
-insert into book_state (id, book_state_name) values (3,'ON_HANDS');
+insert into book_state (book_state_name) values ('FREE');
+insert into book_state (book_state_name) values ('ORDERED');
+insert into book_state (book_state_name) values ('ON_HANDS');
 -- -----------------------------------------------------
 -- Table `library`.`book`
 -- -----------------------------------------------------

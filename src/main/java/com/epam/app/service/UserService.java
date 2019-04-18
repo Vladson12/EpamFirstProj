@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class UserService {
 
     public static boolean create(User user) {
-        for (String logins:getAllLogins()) {
+        for (String logins : getAllLogins()) {
             boolean isTheSameUser = logins.equals(user.getLogin());
             if (isTheSameUser) return false;
         }
