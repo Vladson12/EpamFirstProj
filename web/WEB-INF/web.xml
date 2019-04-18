@@ -6,14 +6,38 @@
 
     <!-- add servlet -->
     <servlet>
-        <servlet-name>add</servlet-name>
-        <servlet-class>com.epam.app.controller.AddServlet</servlet-class>
+        <servlet-name>getUserCard</servlet-name>
+        <servlet-class>com.epam.app.controller.EntryOfUserServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>add</servlet-name>
-        <url-pattern>/add</url-pattern>
+        <servlet-name>getUserCard</servlet-name>
+        <url-pattern>/getUserCard</url-pattern>
     </servlet-mapping>
+
+    <!-- entry user to take all his cards servlet -->
+    <servlet>
+        <servlet-name>entryUser</servlet-name>
+        <servlet-class>com.epam.app.controller.EntryOfUserServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>entryUser</servlet-name>
+        <url-pattern>/entryUser</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- user cards servlet -->
+    <servlet>
+        <servlet-name>cards</servlet-name>
+        <servlet-class>com.epam.app.controller.UserCardServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>cards</servlet-name>
+        <url-pattern>/cards</url-pattern>
+    </servlet-mapping>
+
 
     <!-- list servlet -->
     <servlet>

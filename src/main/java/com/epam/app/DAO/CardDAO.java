@@ -18,5 +18,7 @@ public interface CardDAO {
 
     List<Integer> getAllUserId(Book book);
 
+    List<Integer> getAllCards(User user);
+
     void updateCardStatus (Card card, CardState cardState);
 }

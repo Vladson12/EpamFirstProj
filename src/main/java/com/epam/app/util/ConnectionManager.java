@@ -18,7 +18,7 @@ public class ConnectionManager {
                 throw new SQLException(e);
             }
             jdbcConnection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", "root", "root");
+                    "jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", "root", "");
         }
         return jdbcConnection;
     }

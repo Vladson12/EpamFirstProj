@@ -22,22 +22,23 @@
     </style>
 </head>
 <body>
-
+<h1> <c:out value="${login}" /></h1>
 <table>
     <tr style="font-size: 22px">
         <th width="1%" style="text-align: center">№</th>
-        <th width="22%" style="text-align: center">Наименование</th>
-        <th width="27%" style="text-align: center">Описание</th>
-        <th width="10%" style="text-align: center">Автор</th>
+        <th width="22%" style="text-align: center">Книга</th>
+        <th width="27%" style="text-align: center">Срок регистрации</th>
+        <th width="10%" style="text-align: center">Состояние</th>
         <th width="17%" style="text-align: center">Действия</th>
 
     </tr>
     <c:forEach var = "list" items = "${list}">
+        <jsp:useBean id="list" scope="page" type="com.epam.app.model.Card"/>
         <tr>
             <td style="text-align: center"><c:out value="${list.id}" /></td>
-            <td><c:out value="${list.title}" /></td>
-            <td><c:out value="${list.description}" /></td>
-            <td><c:out value="${list.author}" /></td>
+            <td><c:out value="${list.book.author}" /><br><c:out value="${list.book.title}" /></td>
+            <td><c:out value="${list.toStringDates()}" /></td>
+            <td><c:out value="${list.cardState}" /></td>
                 <%--            <td style="text-align: center">${list.isbn}</td>--%>
                 <%--            <td style="text-align: center">${list.printyear}</td>--%>
                 <%--            <td style="text-align: center">--%>
@@ -47,9 +48,8 @@
                 <%--                    <p>Прочитана</p></c:if>--%>
                 <%--            </td>--%>
             <td style="text-align: center">
-                <input style="font-size: 16px" type="button" value="Взять домой" onclick="location.href='/view/${list.id}'">
-                <input style="font-size: 16px" type="button" value="Взять в читальный зал" onclick="location.href='/delete/${list.id}'">
-                <input style="font-size: 16px" type="button" value="Заказать" onclick="location.href='/BookListView?id=${list.id}'">
+                <input style="font-size: 16px" type="button" value="Take home" onclick="location.href='/cards?id=${list.id}&button=home'">
+                <input style="font-size: 16px" type="button" value="Take reading hole" onclick="location.href='/delete/${list.id}'">
             </td>
         </tr>
     </c:forEach>
@@ -61,7 +61,7 @@
         <td>
             <input style="font-size: 16px; text-align: left" type="button" value="Предыдущая страница" onclick="location.href='/turnPage/previous'">
             <input style="font-size: 16px; text-align: left" type="button" value="Следующая страница" onclick="location.href='/turnPage/next'">
-            <input style="font-size: 16px; text-align: right" type="button" value="Добавить новую книгу" onclick="location.href='/add'">
+            <input style="font-size: 16px; text-align: right" type="button" value="Добавить новую книгу" onclick="location.href='/getUserCard'">
             <%--            <form:form action="/find" method="post" style="text-align: right">--%>
             <%--                <a>Поиск по </a>--%>
             <%--                <select style="font-size: 16px" name="column">--%>
@@ -76,3 +76,5 @@
     </tr>
 </table>
 </body>
+
+

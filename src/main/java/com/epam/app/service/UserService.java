@@ -19,6 +19,10 @@ public class UserService {
         return DaoFactoryImpl.getInstance().getUserDAO().getUser(id);
     }
 
+    public User getByLogin(String login){
+        return DaoFactoryImpl.getInstance().getUserDAO().getUserByLogin(login);
+    }
+
     public List<User> getAllUsers(){
         return DaoFactoryImpl.getInstance().getUserDAO().getAllUser();
     }
