@@ -1,4 +1,4 @@
-package com.epam.app.service;
+package com.epam.app.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

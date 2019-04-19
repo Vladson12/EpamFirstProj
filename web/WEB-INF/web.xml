@@ -95,5 +95,14 @@
         <url-pattern>/RegisterNewUser</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>authorization</servlet-name>
+        <servlet-class>com.epam.app.controller.AutorizationUserController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>authorization</servlet-name>
+        <url-pattern>/AuthorizationUser</url-pattern>
+    </servlet-mapping>
 
 </web-app>

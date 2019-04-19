@@ -1,14 +1,8 @@
 package com.epam.app.controller;
 
-import com.epam.app.DAO.UserDAO;
-import com.epam.app.DAO.impl.UserDaoImpl;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
-
-
 import com.epam.app.service.UserService;
-import org.apache.commons.validator.routines.EmailValidator;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,19 +23,13 @@ public class RegisterUserController extends HttpServlet {
 
         User user = new User(name, Role.READER, login, password);
 
-
-        EmailValidator emailValidator = EmailValidator.getInstance();
-
-        if (emailValidator.isValid(login)) {
-            user.setLogin(login);
-            //The core Logic of the Registration application is present here. We are going to insert user data in to the database.
-            boolean isUserRegistered = UserService.create(user);
-
-            if (isUserRegistered)   //On success, you can display a message to user on Home page
-            {
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
-            } else   //On Failure, display a meaningful message to the User.
-            {
+        boolean isValidLogin = UserService.isValidLogin(login);
+        boolean isTheSameLogin = UserService.isDuplicateLogin(user);
+        if (isValidLogin) {
+            if (!isTheSameLogin) {
+                UserService.create(user);
+                request.getRequestDispatcher("/view/authorization.jsp").forward(request, response);
+            } else {
                 request.setAttribute("errMessage", "This email already exists!");
             }
         } else {
