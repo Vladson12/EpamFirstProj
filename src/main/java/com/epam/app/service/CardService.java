@@ -1,5 +1,6 @@
 package com.epam.app.service;
 
+import com.epam.app.DAO.DaoFactory;
 import com.epam.app.DAO.impl.BookDaoImpl;
 import com.epam.app.DAO.impl.CardDaoImpl;
 import com.epam.app.DAO.impl.DaoFactoryImpl;
@@ -8,7 +9,13 @@ import com.epam.app.model.Book;
 import com.epam.app.model.Card;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.CardState;
+import com.epam.app.util.ConnectionManager;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,8 +46,12 @@ public class CardService {
                 .stream().map(i->new UserDaoImpl().getUser(i)).collect(Collectors.toList());
     }
 
-    public  void udateCardState(Card card, CardState cardState){
+    public  void updateCardState(Card card, CardState cardState){
         DaoFactoryImpl.getInstance().getCardDAO().updateCardStatus(card,cardState);
+    }
+
+    public void updateCardStatusAndDate(Card card, CardState cardState, LocalDate endDate) {
+        DaoFactoryImpl.getInstance().getCardDAO().updateCardStatusAndDate(card,cardState,endDate);
     }
 
 }

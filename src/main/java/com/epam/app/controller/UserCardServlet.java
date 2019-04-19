@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 public class  UserCardServlet extends HttpServlet {
@@ -20,12 +22,23 @@ public class  UserCardServlet extends HttpServlet {
         String id = req.getParameter("id");
         String button = req.getParameter("button");
         String login = (String) req.getAttribute("login");
+
+
         if (id != null) {
             int idInt = Integer.valueOf(id);
             login = new CardService().get(idInt).getUser().getLogin();
             req.setAttribute("login",login);
-            if (button.equals("home")){
-                new CardService().udateCardState(new CardService().get(idInt), CardState.AT_HOME);
+            if (button!=null) {
+                if (button.equals("home")){
+                    req.setAttribute("id", id);
+                    req.getRequestDispatcher("view/dataFormat.jsp").forward(req, resp);
+                } else if (button.equals("hall")) {
+                    new CardService().updateCardStatusAndDate(new CardService().get(idInt), CardState.AT_HALL,
+                            LocalDate.now(ZoneId.of("Asia/Tokyo")));
+                } else if (button.equals("return")) {
+                    new CardService().updateCardStatusAndDate(new CardService().get(idInt), CardState.RETURNED,
+                            LocalDate.now(ZoneId.of("Asia/Tokyo")));
+                }
             }
         }
         User currentUser = new UserService().getByLogin(login);

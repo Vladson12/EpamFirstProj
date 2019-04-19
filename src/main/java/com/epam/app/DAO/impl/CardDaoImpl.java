@@ -8,6 +8,7 @@ import com.epam.app.model.Card;
 import com.epam.app.model.User;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class CardDaoImpl implements CardDAO {
 
     private static String insert = "insert into card (user, book, start_date, end_date,card_state) values (?,?,?,?,?);";
     private static String update = "update card set card_state = ? where idhome_card = ?;";
+    private static String updateDate = "update card set card_state = ? , end_date=? where idhome_card = ?;";
     private static String selectByBook = "select * from card where book = ?";
     private static String selectByUser = "select * from card where user = ?";
     private static String select = "select * from card where idhome_card = ?";
@@ -122,6 +124,20 @@ public class CardDaoImpl implements CardDAO {
              PreparedStatement statement = connection.prepareStatement(update);){
             statement.setInt(1, cardState.ordinal()+1);
             statement.setInt(2, card.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+//            log.info("");
+        }
+    }
+
+    @Override
+    public void updateCardStatusAndDate(Card card, CardState cardState, LocalDate endDate) {
+        try (Connection connection = ConnectionManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(updateDate);){
+            statement.setInt(1, cardState.ordinal()+1);
+            statement.setDate(2, Date.valueOf(endDate));
+            statement.setInt(3, card.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
