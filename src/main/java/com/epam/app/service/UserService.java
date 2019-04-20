@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor
 public class UserService {
-    private static final Map<String, User> mapUsers = new HashMap<>();
 
     public static boolean create(User user) {
 
@@ -62,5 +61,14 @@ public class UserService {
             return false;
         }
         return user.getPassword().equals(password);
+    }
+
+    // Find a User by userName and password.
+    public static User findUser(String login, String password) {
+        User user = getByLogin(login);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
     }
 }

@@ -5,7 +5,7 @@
          version="3.1">
 
     <welcome-file-list>
-        <welcome-file>/view/register.jsp</welcome-file>
+        <welcome-file>/view/homePage.jsp</welcome-file>
     </welcome-file-list>
     <!-- add servlet -->
     <servlet>
@@ -92,17 +92,29 @@
 
     <servlet-mapping>
         <servlet-name>register</servlet-name>
-        <url-pattern>/RegisterNewUser</url-pattern>
+        <url-pattern>/registration</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>authorization</servlet-name>
-        <servlet-class>com.epam.app.controller.AutorizationUserController</servlet-class>
+        <servlet-class>com.epam.app.controller.AuthorizationUserController</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>authorization</servlet-name>
-        <url-pattern>/AuthorizationUser</url-pattern>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- home servlet -->
+    <servlet>
+        <servlet-name>homePage</servlet-name>
+        <servlet-class>com.epam.app.controller.HomePageController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>homePage</servlet-name>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
 
 </web-app>

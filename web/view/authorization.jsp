@@ -1,51 +1,59 @@
-<pre><%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-              pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Register</title>
-<script> 
-function validate() {
-    var login = document.form.login.value;
-    var password = document.form.password.value;
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link rel="stylesheet" href="../styles/w3.css">
+    <title>Register</title>
+    <script>
+        function validate() {
+            var login = document.form.login.value;
+            var password = document.form.password.value;
 
-     if (login == null || login == "") {
-        alert("Email can't be blank");
-        return false;
-    } else if (password.length < 6) {
-        alert("Password must be at least 6 characters long.");
-        return false;
-    }
-}
-</script> 
+            if (login == null || login == "") {
+                alert("Email can't be blank");
+                return false;
+            } else if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+        }
+    </script>
 </head>
-<body>
-<center><h2>Autorization</h2></center>
-<form name="form" action="AuthorizationUser" method="post" onsubmit="return validate()">
-<table align="center">
+<body class="w3-light-grey">
 
- <tr>
- <td>Email</td>
- <td><input type="email" name="login"/></td>
- </tr>
- <tr>
- <td>Password</td>
- <td><input type="password" name="password"/></td>
- </tr>
- <tr>
- <td><%=(request.getAttribute("errMessage") == null) ? ""
-         : request.getAttribute("errMessage")%></td>
- </tr>
- <tr>
- <td></td>
- <td>
-  <input type="submit" value="Log in"></input><input
-         type="reset" value="Reset"></input></td>
- </tr>
+<jsp:include page="_menu.jsp"></jsp:include>
 
-</table>
+<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
+    <h1>Library</h1>
+</div>
+
+<center><h2>Log In</h2></center>
+<form name="form" action="login" method="post" onsubmit="return validate()">
+    <table align="center">
+
+        <tr>
+            <td>Email</td>
+            <td><input type="email" name="login"/></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="password"/></td>
+        </tr>
+        <tr>
+            <td><%=(request.getAttribute("errMessage") == null) ? ""
+                    : request.getAttribute("errMessage")%>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Log in"></input><input
+                    type="reset" value="Reset"></input></td>
+        </tr>
+
+    </table>
 </form>
- 
+
 </body>
 </html>
