@@ -123,7 +123,7 @@
     </filter>
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
-        <url-pattern>/view/*</url-pattern>
+        <url-pattern>/filter</url-pattern>
     </filter-mapping>
 
 </web-app>
