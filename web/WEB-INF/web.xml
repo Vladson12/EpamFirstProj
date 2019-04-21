@@ -117,4 +117,13 @@
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>com.epam.app.filter.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/view/*</url-pattern>
+    </filter-mapping>
+
 </web-app>

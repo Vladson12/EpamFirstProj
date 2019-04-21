@@ -28,12 +28,12 @@
             <button class="w3-btn w3-hover-light-blue w3-round-large" onclick="location.href='/GetUserList'">Users
                 list
             </button>
-            <button class="w3-btn w3-hover-green w3-round-large" onclick="location.href='/AddNewUser'">Add user</button>
+
             <button class="w3-btn w3-hover-indigo w3-round-large" onclick="location.href='/BookListView'">Books list
             </button>
             <button class="w3-btn w3-hover-indigo w3-round-large" onclick="location.href='enterOfUser.jsp'">FR</button>
 
-            <button class="w3-btn w3-hover-aqua w3-round-large" onclick="location.href=''">Add book</button>
+
         </div>
     </div>
 
