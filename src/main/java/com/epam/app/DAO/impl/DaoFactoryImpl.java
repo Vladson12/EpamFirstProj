@@ -12,7 +12,7 @@ public class DaoFactoryImpl implements com.epam.app.DAO.DaoFactory {
     final private UserDAO userDAO;
 
     private DaoFactoryImpl() {
-        bookDAO =  new BookDaoImpl();
+        bookDAO = new BookDaoImpl();
         cardDAO = new CardDaoImpl();
         userDAO = new UserDaoImpl();
     }

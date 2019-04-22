@@ -1,5 +1,7 @@
 package com.epam.app.controller;
 
+import com.epam.app.DAO.UserDAO;
+import com.epam.app.DAO.impl.UserDaoImpl;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
 
@@ -14,9 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//import org.apache.commons.validator.routines.EmailValidator;
-
 public class RegisterUserController extends HttpServlet {
+
+    public RegisterUserController() {
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Copying all the input parameters in to local variables

@@ -24,20 +24,18 @@ public class CardDaoImpl implements CardDAO {
     private static String select = "select * from card where idhome_card = ?";
 
 
-
     @Override
     public void addCard(Card card) {
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(insert)){
+             PreparedStatement statement = connection.prepareStatement(insert)) {
             statement.setInt(1, card.getUser().getId());
             statement.setInt(2, card.getBook().getId());
             statement.setObject(3, card.getStartDate());
             statement.setObject(4, card.getEndDate());
-            statement.setInt(5, card.getCardState().ordinal()+1);
+            statement.setInt(5, card.getCardState().ordinal() + 1);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-//            log.info("");
         }
     }
 
@@ -45,57 +43,54 @@ public class CardDaoImpl implements CardDAO {
     public Card getCard(int id) {
         Card card = null;
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(select)){
-            statement.setInt(1,id);
+             PreparedStatement statement = connection.prepareStatement(select)) {
+            statement.setInt(1, id);
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
-                card = createCard(id,rs.getInt("user"),rs.getInt("book"),rs.getDate("start_date"),
-                        rs.getDate("end_date"),rs.getInt("card_state"));
+                card = createCard(id, rs.getInt("user"), rs.getInt("book"), rs.getDate("start_date"),
+                        rs.getDate("end_date"), rs.getInt("card_state"));
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return card;
     }
 
-    private Card createCard(int id, int user,int book,java.sql.Date start, java.sql.Date end,int state){
-        return new Card(id,DaoFactoryImpl.getInstance().getUserDAO().getUser(user),
-                DaoFactoryImpl.getInstance().getBookDAO().getBook(book),start.toLocalDate(),end.toLocalDate(),CardState.getCardState(state));
+    private Card createCard(int id, int user, int book, java.sql.Date start, java.sql.Date end, int state) {
+        return new Card(id, DaoFactoryImpl.getInstance().getUserDAO().getUser(user),
+                DaoFactoryImpl.getInstance().getBookDAO().getBook(book), start.toLocalDate(), end.toLocalDate(), CardState.getCardState(state));
     }
 
     @Override
-    public List<Integer> getAllBookId(User user){
-        List<Integer> arrayOfId= new ArrayList<>();
-        try(Connection connection = ConnectionManager.getConnection();
-            PreparedStatement statement = connection.prepareStatement(selectByUser);) {
-            statement.setInt(1,user.getId());
-            try(ResultSet rs = statement.executeQuery();){
+    public List<Integer> getAllBookId(User user) {
+        List<Integer> arrayOfId = new ArrayList<>();
+        try (Connection connection = ConnectionManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(selectByUser);) {
+            statement.setInt(1, user.getId());
+            try (ResultSet rs = statement.executeQuery();) {
                 while (rs.next()) {
                     arrayOfId.add(rs.getInt("book"));
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-//            log.info("");
         }
-        return  arrayOfId;
+        return arrayOfId;
     }
 
     @Override
     public List<Integer> getAllUserId(Book book) {
-        List<Integer> arrayOfId= new ArrayList<>();
-        try(Connection connection = ConnectionManager.getConnection();
-            PreparedStatement statement = connection.prepareStatement(selectByBook);) {
-            statement.setInt(1,book.getId());
-            try(ResultSet rs = statement.executeQuery();){
+        List<Integer> arrayOfId = new ArrayList<>();
+        try (Connection connection = ConnectionManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(selectByBook);) {
+            statement.setInt(1, book.getId());
+            try (ResultSet rs = statement.executeQuery();) {
                 while (rs.next()) {
                     arrayOfId.add(rs.getInt("user"));
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-//            log.info("");
         }
         return arrayOfId;
     }
@@ -121,13 +116,12 @@ public class CardDaoImpl implements CardDAO {
     @Override
     public void updateCardStatus(Card card, CardState cardState) {
         try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(update);){
-            statement.setInt(1, cardState.ordinal()+1);
+             PreparedStatement statement = connection.prepareStatement(update);) {
+            statement.setInt(1, cardState.ordinal() + 1);
             statement.setInt(2, card.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-//            log.info("");
         }
     }
 

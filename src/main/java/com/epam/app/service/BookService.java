@@ -1,10 +1,8 @@
 package com.epam.app.service;
 
-import com.epam.app.DAO.impl.BookDaoImpl;
 import com.epam.app.DAO.impl.DaoFactoryImpl;
 import com.epam.app.model.Book;
 
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -16,16 +14,16 @@ public class BookService {
         DaoFactoryImpl.getInstance().getBookDAO().addBook(book);
     }
 
-    public Book book(int id){
+    public static Book getBookById(int id) {
         return DaoFactoryImpl.getInstance().getBookDAO().getBook(id);
     }
 
-    public List<Book> getAllBooks(){
+    public static List<Book> getAllBooks() {
         return DaoFactoryImpl.getInstance().getBookDAO().getAllBooks();
     }
 
-    public void updateBook(Book book) {
+    public static void updateBook(Book book) {
         DaoFactoryImpl.getInstance().getBookDAO().updateBook(book);
     }
-    
+
 }

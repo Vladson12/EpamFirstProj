@@ -12,7 +12,6 @@ import java.util.List;
 import static com.epam.app.model.enums.Role.getRole;
 
 
-@SuppressWarnings("ALL")
 public class UserDaoImpl implements UserDAO {
 
     private static String insert = "insert into user (name, role, login, password) values (?,?,?,?);";
@@ -46,7 +45,7 @@ public class UserDaoImpl implements UserDAO {
             statement.setString(4, user.getPassword());
             int i = statement.executeUpdate();
 
-            if (i != 0)  //Just to ensure data has been inserted into the database
+            if (i != 0)
                 return true;
         } catch (
                 SQLException e) {
@@ -94,7 +93,7 @@ public class UserDaoImpl implements UserDAO {
             statement.setInt(1, userId);
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
-                user =new  User(rs.getInt("id"),rs.getString("name"), getRole(rs.getInt("role")),rs.getString("login"), rs.getString("password"));
+                user = new User(rs.getInt("id"), rs.getString("name"), getRole(rs.getInt("role")), rs.getString("login"), rs.getString("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
