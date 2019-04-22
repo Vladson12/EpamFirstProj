@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
-public class  UserCardServlet extends HttpServlet {
+public class UserCardServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,9 +27,9 @@ public class  UserCardServlet extends HttpServlet {
         if (id != null) {
             int idInt = Integer.valueOf(id);
             login = new CardService().get(idInt).getUser().getLogin();
-            req.setAttribute("login",login);
-            if (button!=null) {
-                if (button.equals("home")){
+            req.setAttribute("login", login);
+            if (button != null) {
+                if (button.equals("home")) {
                     req.setAttribute("id", id);
                     req.getRequestDispatcher("view/dataFormat.jsp").forward(req, resp);
                 } else if (button.equals("hall")) {
@@ -45,7 +45,6 @@ public class  UserCardServlet extends HttpServlet {
         List<Card> cardListForUser = new CardService().getAllCards(currentUser);
         req.setAttribute("list", cardListForUser);
         req.getRequestDispatcher("view/CardListView.jsp").forward(req, resp);
-
     }
 
     @Override

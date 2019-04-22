@@ -87,7 +87,7 @@ insert into `library`.`role` (idrole, role_name) values (3,'ADMINISTATOR');
 insert into `library`.`genre` (id, genre_name) values (1,'TEXTBOOK');
 insert into `library`.`genre` (id, genre_name) values (2,'NARRATIVE_NONFICTION');
 insert into `library`.`genre` (id, genre_name) values (3,'DRAMA');
-insert into `library`.`genre` (id, genre_name) values (4,'FANTASY');book
+insert into `library`.`genre` (id, genre_name) values (4,'FANTASY');
 insert into `library`.`genre` (id, genre_name) values (5,'CRIME_AND_DETECTIVE');
 insert into `library`.`genre` (id, genre_name) values (6,'SELF_HELP_BOOK');
 insert into `library`.`genre` (id, genre_name) values (7,'SCIENCE_FICTION');
