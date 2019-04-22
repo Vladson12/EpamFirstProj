@@ -17,7 +17,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,10 +25,6 @@ public class CardService {
     public void create(Card card) {
         DaoFactoryImpl.getInstance().getCardDAO().addCard(card);
         updateBookState(card,card.getCardState());
-    }
-
-    public static void main(String[] args) {
-        System.out.println(LocalDate.now(ZoneId.systemDefault()));
     }
 
     public  Card get(int id){
@@ -62,10 +57,10 @@ public class CardService {
         DaoFactoryImpl.getInstance().getCardDAO().updateCardStatusAndDate(card,cardState,endDate);
         updateBookState(card,cardState);
     }
-
+//
 //    public static void main(String[] args) {
-//        Card card = DaoFactoryImpl.getInstance().getCardDAO().getCard(14);
-//        new CardService().updateCardState(card,CardState.RETURNED);
+//        Card card = DaoFactoryImpl.getInstance().getCardDAO().getCard(3);
+//        new CardService().updateCardState(card,CardState.ORDERED);
 //    }
     private void updateBookState(Card card, CardState cardState){
         Book book = card.getBook();

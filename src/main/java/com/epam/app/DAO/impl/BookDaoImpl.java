@@ -3,6 +3,7 @@ package com.epam.app.DAO.impl;
 import com.epam.app.DAO.BookDAO;
 import com.epam.app.DAO.DaoFactory;
 import com.epam.app.model.enums.BookState;
+import com.epam.app.model.enums.Genre;
 import com.epam.app.util.ConnectionManager;
 import com.epam.app.model.Book;
 
@@ -12,13 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.epam.app.model.enums.BookState.getBookState;
+import static com.epam.app.model.enums.Genre.getGenre;
 
 @SuppressWarnings("ALL")
 
 public class BookDaoImpl implements BookDAO {
 
-    private static String insert = "insert into book (author, title, book_state_id, description) values (?,?,?,?);";
-    private static String update = "update book set author = ? , title =? , book_state_id = ? , description = ? where idbook = ?;";
+    private static String insert = "insert into book (author, title, description,year, genre) values (?,?,?,?,?);";
+    private static String update = "update book set author = ? , title =? , book_state_id = ? , description = ?, year=?, genre=? where idbook = ?;";
     private static String select = "select * from book where idbook = ?";
     private static String delete = "delete from book where idbook =?";
 
@@ -29,7 +31,8 @@ public class BookDaoImpl implements BookDAO {
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery("select * from book");){
             while (rs.next()){
-                array.add(new Book(rs.getInt("idbook"), rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description")));
+                array.add(new Book(rs.getInt("idbook"), rs.getString("author"), getBookState(rs.getInt("book_state_id")),
+                        rs.getString("title"), rs.getString("description"), rs.getInt("year"), getGenre(rs.getInt("genre"))));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,7 +48,8 @@ public class BookDaoImpl implements BookDAO {
             statement.setInt(1,bookId);
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
-                book = new Book(rs.getInt("idbook"),rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description") );
+                book = new Book(rs.getInt("idbook"),rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"),
+                        rs.getString("description"), rs.getInt("year"), getGenre(rs.getInt("genre")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -61,6 +65,8 @@ public class BookDaoImpl implements BookDAO {
             statement.setString(2, book.getTitle());
             statement.setInt(3, book.getBookState().ordinal()+1);
             statement.setString(4, book.getDescription());
+            statement.setInt(5, book.getYear());
+            statement.setInt(6, book.getGenre().ordinal()+1);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,7 +81,9 @@ public class BookDaoImpl implements BookDAO {
             statement.setString(2, book.getTitle());
             statement.setInt(3, book.getBookState().ordinal()+1);
             statement.setString(4, book.getDescription());
-            statement.setInt(5,book.getId());
+            statement.setInt(5,book.getYear());
+            statement.setInt(6,book.getGenre().ordinal()+1);
+            statement.setInt(7,book.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
