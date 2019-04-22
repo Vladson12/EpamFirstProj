@@ -41,6 +41,18 @@
         <url-pattern>/cards</url-pattern>
     </servlet-mapping>
 
+
+    <!-- user cards servlet -->
+    <servlet>
+        <servlet-name>dateChange</servlet-name>
+        <servlet-class>com.epam.app.controller.DateCardConroller</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>dateChange</servlet-name>
+        <url-pattern>/dateChange</url-pattern>
+    </servlet-mapping>
+
     <!-- add servlet -->
     <servlet>
         <servlet-name>userList</servlet-name>

@@ -10,28 +10,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static com.epam.app.DAO.impl.DaoFactoryImpl.*;
+
 @NoArgsConstructor
 public class UserService {
 
     public static boolean create(User user) {
 
+
         return DaoFactoryImpl.getInstance().getUserDAO().addUser(user);
     }
 
     public User get(int id) {
-        return DaoFactoryImpl.getInstance().getUserDAO().getUser(id);
+        return getInstance().getUserDAO().getUser(id);
     }
 
-    public static User getByLogin(String login) {
-        return DaoFactoryImpl.getInstance().getUserDAO().getUserByLogin(login);
+    public static User getByLogin(String login){
+        return getInstance().getUserDAO().getUserByLogin(login);
     }
 
     public static List<User> getAllUsers() {
-        return DaoFactoryImpl.getInstance().getUserDAO().getAllUser();
+        return getInstance().getUserDAO().getAllUser();
     }
 
     public void updateUser(User user) {
-        DaoFactoryImpl.getInstance().getUserDAO().updateUser(user);
+        getInstance().getUserDAO().updateUser(user);
     }
 
     public static List<String> getAllLogins() {
