@@ -1,17 +1,14 @@
 package com.epam.app.DAO.impl;
 
 import com.epam.app.DAO.BookDAO;
-import com.epam.app.util.ConnectionManager;
 import com.epam.app.model.Book;
-
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.epam.app.model.enums.BookState.getBookState;
-
-@SuppressWarnings("ALL")
+import static com.epam.app.util.ConnectionManager.*;
 
 public class BookDaoImpl implements BookDAO {
 
@@ -23,9 +20,9 @@ public class BookDaoImpl implements BookDAO {
     @Override
     public List<Book> getAllBooks() {
         List<Book> array = new ArrayList<>();
-        try (Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery("select * from book");) {
+             ResultSet rs = statement.executeQuery("select * from book")) {
             while (rs.next()) {
                 array.add(new Book(rs.getInt("idbook"), rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"), rs.getString("description")));
             }
@@ -38,7 +35,7 @@ public class BookDaoImpl implements BookDAO {
     @Override
     public Book getBook(int bookId) {
         Book book = null;
-        try (Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(select)) {
             statement.setInt(1, bookId);
             try (ResultSet rs = statement.executeQuery()) {
@@ -53,7 +50,7 @@ public class BookDaoImpl implements BookDAO {
 
     @Override
     public void addBook(Book book) {
-        try (Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(insert)) {
             statement.setString(1, book.getAuthor());
             statement.setString(2, book.getTitle());
@@ -67,8 +64,8 @@ public class BookDaoImpl implements BookDAO {
 
     @Override
     public void updateBook(Book book) {
-        try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(update);) {
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(update)) {
             statement.setString(1, book.getAuthor());
             statement.setString(2, book.getTitle());
             statement.setInt(3, book.getBookState().ordinal() + 1);
@@ -82,8 +79,8 @@ public class BookDaoImpl implements BookDAO {
 
     @Override
     public void deleteBook(Book book) {
-        try (Connection connection = ConnectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(delete);) {
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(delete)) {
             statement.setInt(1, book.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -93,9 +90,9 @@ public class BookDaoImpl implements BookDAO {
 
     private ResultSet getAll() throws SQLException {
         ResultSet resultSet = null;
-        try (Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery("select * from book");) {
+             ResultSet rs = statement.executeQuery("select * from book")) {
             resultSet = rs;
         } catch (SQLException e) {
             e.printStackTrace();
