@@ -8,6 +8,7 @@ import com.epam.app.DAO.impl.UserDaoImpl;
 import com.epam.app.model.Book;
 import com.epam.app.model.Card;
 import com.epam.app.model.User;
+import com.epam.app.model.enums.BookState;
 import com.epam.app.model.enums.CardState;
 import com.epam.app.util.ConnectionManager;
 
@@ -21,8 +22,9 @@ import java.util.stream.Collectors;
 
 public class CardService {
 
-    public  void create(Card card) {
+    public void create(Card card) {
         DaoFactoryImpl.getInstance().getCardDAO().addCard(card);
+        updateBookState(card,card.getCardState());
     }
 
     public  Card get(int id){
@@ -46,12 +48,30 @@ public class CardService {
                 .stream().map(i->new UserDaoImpl().getUser(i)).collect(Collectors.toList());
     }
 
-    public  void updateCardState(Card card, CardState cardState){
+    public  void updateCardState(Card card, CardState cardState) {
         DaoFactoryImpl.getInstance().getCardDAO().updateCardStatus(card,cardState);
+        updateBookState(card,cardState);
     }
 
     public void updateCardStatusAndDate(Card card, CardState cardState, LocalDate endDate) {
         DaoFactoryImpl.getInstance().getCardDAO().updateCardStatusAndDate(card,cardState,endDate);
+        updateBookState(card,cardState);
     }
+
+//    public static void main(String[] args) {
+//        Card card = DaoFactoryImpl.getInstance().getCardDAO().getCard(14);
+//        new CardService().updateCardState(card,CardState.RETURNED);
+//    }
+    private void updateBookState(Card card, CardState cardState){
+        Book book = card.getBook();
+        if (cardState.equals(CardState.ORDERED))
+            book.setBookState(BookState.ORDERED);
+        else if (cardState.equals(CardState.AT_HALL)||cardState.equals(CardState.AT_HOME))
+            book.setBookState(BookState.ONHANDS);
+        else if (cardState.equals(CardState.RETURNED))
+            book.setBookState(BookState.FREE);
+       DaoFactoryImpl.getInstance().getBookDAO().updateBook(book);
+    }
+
 
 }
