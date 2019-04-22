@@ -34,10 +34,10 @@ public class  UserCardServlet extends HttpServlet {
                     req.getRequestDispatcher("view/dataFormat.jsp").forward(req, resp);
                 } else if (button.equals("hall")) {
                     new CardService().updateCardStatusAndDate(new CardService().get(idInt), CardState.AT_HALL,
-                            LocalDate.now(ZoneId.of("Asia/Tokyo")));
+                            LocalDate.now(ZoneId.systemDefault()));
                 } else if (button.equals("return")) {
                     new CardService().updateCardStatusAndDate(new CardService().get(idInt), CardState.RETURNED,
-                            LocalDate.now(ZoneId.of("Asia/Tokyo")));
+                            LocalDate.now(ZoneId.systemDefault()));
                 }
             }
         }

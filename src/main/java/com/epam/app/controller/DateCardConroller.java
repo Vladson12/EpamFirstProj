@@ -22,7 +22,7 @@ public class DateCardConroller extends HttpServlet {
             req.setAttribute("login", login);
             req.setAttribute("id", id);
             LocalDate newDate = LocalDate.parse(date).plusDays(1);
-            if (LocalDate.now(ZoneId.of("Asia/Tokyo")).compareTo(newDate)>0){
+            if (LocalDate.now(ZoneId.systemDefault()).compareTo(newDate)>0){
                 req.getRequestDispatcher("view/dataFormat.jsp").forward(req, resp);
             }
             new CardService().updateCardStatusAndDate(new CardService().get(Integer.parseInt(id)),
