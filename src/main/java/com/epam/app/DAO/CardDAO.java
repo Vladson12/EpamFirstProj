@@ -6,6 +6,7 @@ import com.epam.app.model.User;
 import com.epam.app.model.enums.CardState;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface CardDAO {
@@ -21,4 +22,6 @@ public interface CardDAO {
     List<Integer> getAllCards(User user);
 
     void updateCardStatus (Card card, CardState cardState);
+
+    void updateCardStatusAndDate (Card card, CardState cardState, LocalDate endDate);
 }
