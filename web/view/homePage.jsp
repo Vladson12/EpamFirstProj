@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Konstantin
@@ -21,6 +22,10 @@
 </div>
 
 <h3>Home Page</h3>
+
+<c:if test="${empty loggedInUser}">
+    <p>You're not logged in!</p>
+</c:if>
 
 </body>
 </html>

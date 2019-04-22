@@ -29,10 +29,10 @@
 </a>
 
 &nbsp;
-<span style="color:red">[ ${user.name} ]</span>
+<span style="color:red">[ ${loggedInUser.name} ]</span>
 
 &nbsp;
-<span style="color:red">[ ${user.role} ]</span>
+<span style="color:red">[ ${loggedInUser.role} ]</span>
 
 </body>
 </html>

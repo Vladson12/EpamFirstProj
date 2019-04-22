@@ -123,7 +123,19 @@
     </filter>
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
-        <url-pattern>/filter</url-pattern>
+        <url-pattern>/view/*</url-pattern>
     </filter-mapping>
+
+    <!-- logout servlet -->
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>com.epam.app.controller.LogoutController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
