@@ -20,7 +20,6 @@ public class AppUtils {
         session.setAttribute("user", loginedUser);
     }
 
-
     // Получить информацию пользователя, сохраненную в Session.
     public static User getLoginedUser(HttpSession session) {
         User loginedUser = (User) session.getAttribute("user");

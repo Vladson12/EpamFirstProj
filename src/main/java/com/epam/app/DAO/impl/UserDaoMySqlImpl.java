@@ -12,7 +12,7 @@ import java.util.List;
 import static com.epam.app.model.enums.Role.getRole;
 
 
-public class UserDaoImpl implements UserDAO {
+public class UserDaoMySqlImpl implements UserDAO {
 
     private static String insert = "insert into user (name, role, login, password) values (?,?,?,?);";
     private static String update = "update user set name = ? , role =? , login = ? , password = ? where id = ?;";
@@ -71,7 +71,7 @@ public class UserDaoImpl implements UserDAO {
     }
 
     @Override
-    public List<User> getAllUser(){
+    public List<User> getAllUsers(){
         List<User> array= new ArrayList<>();
         try (Connection connection = ConnectionManager.getConnection();
              Statement statement = connection.createStatement();
@@ -108,8 +108,9 @@ public class UserDaoImpl implements UserDAO {
              PreparedStatement statement = connection.prepareStatement(selectByLogin)){
             statement.setString(1,userLogin);
             try (ResultSet rs = statement.executeQuery()) {
-                rs.next();
-                user =new  User(rs.getInt("id"),rs.getString("name"), getRole(rs.getInt("role")),rs.getString("login"), rs.getString("password"));
+                if (rs.next()) {
+                    user = new User(rs.getInt("id"), rs.getString("name"), getRole(rs.getInt("role")), rs.getString("login"), rs.getString("password"));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

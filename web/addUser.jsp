@@ -9,22 +9,15 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Add User</title>
+    <title>Add user</title>
     <link rel="stylesheet" href="styles/w3.css">
 
     <script>
         function validate() {
-            // var fullname = document.form.fullname.value;
+
             var name = document.form.name.value;
             var login = document.form.login.value;
 
-            // if (fullname == null || fullname == "") {
-            //     alert("Full Name can't be blank");
-            //     return false;
-            // } else if (email == null || email == "") {
-            //     alert("Email can't be blank");
-            //     return false;
-// }
             if (name == null || name == "") {
                 alert("Username can't be blank");
                 return false;
@@ -38,7 +31,7 @@
 
 <body>
 <center><h2>Create your LibraryApp account. It's free and only takes a minute. </h2></center>
-<form name="form" action="AddNewUser" method="post" onsubmit="return validate()">
+<form name="form" action="addUser" method="post" onsubmit="return validate()">
     <table align="center">
 
         <tr>
@@ -60,8 +53,8 @@
         <tr>
             <td></td>
             <td>
-                <input type="submit" value="Add"></input><input
-                    type="reset" value="Reset"></input></td>
+                <input type="submit" value="Add"/><input
+                    type="reset" value="Reset"/></td>
         </tr>
 
     </table>

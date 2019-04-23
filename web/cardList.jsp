@@ -23,7 +23,7 @@
 
     <script language="JavaScript" >
         function open_window() {
-            window.open("view/dataFormat.jsp" ,null,
+            window.open("view/dateFormat.jsp" ,null,
                 "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
         }
     </script>

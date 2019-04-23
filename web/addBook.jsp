@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add new user</title>
+    <title>Add book</title>
     <link rel="stylesheet" href="styles/w3.css">
 </head>
 
@@ -38,7 +38,7 @@
 </div>
 
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
-    <button class="w3-btn w3-round-large" onclick="location.href='../../../out/artifacts/EpamFirstProj_war_exploded'">Back to main</button>
+    <button class="w3-btn w3-round-large" onclick="location.href='/home'">Back</button>
 </div>
 </body>
 </html>

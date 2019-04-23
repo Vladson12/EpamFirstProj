@@ -2,11 +2,11 @@ package com.epam.app.DAO;
 
 public interface DaoFactory {
 
-    UserDAO getUserDAO();
+    UserDAO getUserDAO(String type);
 
-    CardDAO getCardDAO();
+    CardDAO getCardDAO(String type);
 
-    BookDAO getBookDAO();
+    BookDAO getBookDAO(String type);
 
 }
 

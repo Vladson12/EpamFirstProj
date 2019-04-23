@@ -17,33 +17,33 @@ public class RegisterUserController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //Copying all the input parameters in to local variables
+
         String name = request.getParameter("name");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
         User user = new User(name, Role.READER, login, password);
 
-        boolean isValidLogin = UserService.isValidLogin(login);
-        boolean isTheSameLogin = UserService.isDuplicateLogin(user);
+        boolean isValidLogin = UserService.isLoginValid(login);
+        boolean isTheSameLogin = UserService.isLoginDuplicated(user);
         if (isValidLogin) {
             if (!isTheSameLogin) {
                 UserService.create(user);
-                request.getRequestDispatcher("/view/authorization.jsp").forward(request, response);
+                request.getRequestDispatcher("/authorization.jsp").forward(request, response);
             } else {
                 request.setAttribute("errMessage", "This email already exists!");
             }
         } else {
             request.setAttribute("errMessage", "This email invalid");
         }
-        request.getRequestDispatcher("/view/register.jsp").forward(request, response);
+        request.getRequestDispatcher("/registration.jsp").forward(request, response);
 
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/register.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/registration.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

@@ -10,18 +10,18 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../styles/w3.css">
-    <title>Home Page</title>
+    <link rel="stylesheet" href="styles/w3.css">
+    <title>Welcome Page</title>
 </head>
 <body class="w3-light-grey">
 
-<jsp:include page="_menu.jsp"></jsp:include>
+<jsp:include page="menuBar.jsp"></jsp:include>
 
 <div class="w3-container w3-blue-grey w3-opacity w3-right-align">
     <h1>Library</h1>
 </div>
 
-<h3>Home Page</h3>
+<h3>Welcome Page</h3>
 
 <c:if test="${empty loggedInUser}">
     <p>You're not logged in!</p>

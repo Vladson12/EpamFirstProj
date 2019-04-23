@@ -5,6 +5,7 @@ import com.epam.app.model.enums.CardState;
 import com.epam.app.model.Book;
 import com.epam.app.model.Card;
 import com.epam.app.model.User;
+import com.epam.app.util.ConnectionManager;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ import static com.epam.app.DAO.impl.DaoFactoryImpl.*;
 import static com.epam.app.model.enums.CardState.*;
 import static com.epam.app.util.ConnectionManager.*;
 
-public class CardDaoImpl implements CardDAO {
+public class CardDaoMySqlImpl implements CardDAO {
 
 
     private static String insert = "insert into card (user, book, start_date, end_date,card_state) values (?,?,?,?,?);";
@@ -59,8 +60,8 @@ public class CardDaoImpl implements CardDAO {
     }
 
     private Card createCard(int id, int userId, int bookId, Date start, Date end, int state) {
-        User user = getInstance().getUserDAO().getUser(userId);
-        Book book = getInstance().getBookDAO().getBook(bookId);
+        User user = getInstance().getUserDAO("mysql").getUser(userId);
+        Book book = getInstance().getBookDAO("mysql").getBook(bookId);
         return new Card(id, user, book, start.toLocalDate(), end.toLocalDate(), getCardState(state));
     }
 

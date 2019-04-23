@@ -8,11 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Login enter</title>
 </head>
 <body>
 <center>
-    <form name="enterOfUser" action="/getUserCard" method="get">
+    <form name="loginEnter" action="/loginEnter" method="post">
         <table border="1" bgcolor="A9A9A9">
             <tr>
                 <th>Enter user login : </th>

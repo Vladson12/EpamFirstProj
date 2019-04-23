@@ -4,10 +4,8 @@ import com.epam.app.model.enums.CardState;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,8 +27,8 @@ public class Card {
         this.cardState = cardState;
     }
 
-    public String toStringDates(){
-        return  String.format("%s%s%s",startDate ," - ", endDate);
+    public String toStringDates() {
+        return String.format("%s%s%s", startDate, " - ", endDate);
 
     }
 }

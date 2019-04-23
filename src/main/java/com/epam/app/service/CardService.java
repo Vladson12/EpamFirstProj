@@ -1,9 +1,8 @@
 package com.epam.app.service;
 
-import com.epam.app.DAO.impl.BookDaoImpl;
-import com.epam.app.DAO.impl.CardDaoImpl;
-import com.epam.app.DAO.impl.DaoFactoryImpl;
-import com.epam.app.DAO.impl.UserDaoImpl;
+import com.epam.app.DAO.impl.BookDaoMySqlImpl;
+import com.epam.app.DAO.impl.CardDaoMySqlImpl;
+import com.epam.app.DAO.impl.UserDaoMySqlImpl;
 import com.epam.app.model.Book;
 import com.epam.app.model.Card;
 import com.epam.app.model.User;
@@ -14,56 +13,64 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.epam.app.DAO.impl.DaoFactoryImpl.getInstance;
+
 public class CardService {
 
     public void create(Card card) {
-        DaoFactoryImpl.getInstance().getCardDAO().addCard(card);
+        getInstance().getCardDAO("mysql").addCard(card);
         updateBookState(card, card.getCardState());
     }
 
     public Card get(int id) {
-        return DaoFactoryImpl.getInstance().getCardDAO().getCard(id);
+        return getInstance().getCardDAO("mysql").getCard(id);
     }
 
-    public List<Book> getAllBook(User user) {
-        return DaoFactoryImpl.getInstance().getCardDAO().getAllBookId(user)
-                .stream().map(i -> new BookDaoImpl().getBook(i)).collect(Collectors.toList());
+    public List<Book> getAllBooks(User user) {
+        return getInstance().getCardDAO("mysql").getAllBookId(user)
+                .stream().map(i -> new BookDaoMySqlImpl().getBook(i)).collect(Collectors.toList());
     }
 
     public List<Card> getAllCards(User user) {
-        return DaoFactoryImpl.getInstance().getCardDAO().getAllCards(user)
-                .stream().map(i -> new CardDaoImpl().getCard(i)).collect(Collectors.toList());
+        return getInstance().getCardDAO("mysql").getAllCards(user)
+                .stream().map(i -> new CardDaoMySqlImpl().getCard(i)).collect(Collectors.toList());
     }
 
-    public List<User> getAllUser(Book book) {
-        return DaoFactoryImpl.getInstance().getCardDAO().getAllUserId(book)
-                .stream().map(i -> new UserDaoImpl().getUser(i)).collect(Collectors.toList());
+    public List<User> getAllUsers(Book book) {
+        return getInstance().getCardDAO("mysql").getAllUserId(book)
+                .stream().map(i -> new UserDaoMySqlImpl().getUser(i)).collect(Collectors.toList());
     }
 
     public void updateCardState(Card card, CardState cardState) {
-        DaoFactoryImpl.getInstance().getCardDAO().updateCardStatus(card, cardState);
+        getInstance().getCardDAO("mysql").updateCardStatus(card, cardState);
         updateBookState(card, cardState);
     }
 
     public void updateCardStatusAndDate(Card card, CardState cardState, LocalDate endDate) {
-        DaoFactoryImpl.getInstance().getCardDAO().updateCardStatusAndDate(card, cardState, endDate);
+        getInstance().getCardDAO("mysql").updateCardStatusAndDate(card, cardState, endDate);
         updateBookState(card, cardState);
     }
 
-    //
-//    public static void main(String[] args) {
-//        Card card = DaoFactoryImpl.getInstance().getCardDAO().getCard(3);
-//        new CardService().updateCardState(card,CardState.ORDERED);
-//    }
     private void updateBookState(Card card, CardState cardState) {
         Book book = card.getBook();
-        if (cardState.equals(CardState.ORDERED))
-            book.setBookState(BookState.ORDERED);
-        else if (cardState.equals(CardState.AT_HALL) || cardState.equals(CardState.AT_HOME))
-            book.setBookState(BookState.ONHANDS);
-        else if (cardState.equals(CardState.RETURNED))
-            book.setBookState(BookState.FREE);
-        DaoFactoryImpl.getInstance().getBookDAO().updateBook(book);
+        BookState newState = BookState.FREE;
+
+        switch (cardState) {
+            case ORDERED:
+                newState = BookState.ORDERED;
+                break;
+            case AT_HOME:
+            case AT_HALL:
+                newState = BookState.ONHANDS;
+                break;
+            case RETURNED:
+                newState = BookState.FREE;
+                break;
+        }
+
+        book.setBookState(newState);
+
+        getInstance().getBookDAO("mysql").updateBook(book);
     }
 
 

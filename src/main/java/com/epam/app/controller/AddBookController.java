@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AddBookServlet extends HttpServlet {
+public class AddBookController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/addbook.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/addBook.jsp");
         requestDispatcher.forward(req, resp);
     }
 

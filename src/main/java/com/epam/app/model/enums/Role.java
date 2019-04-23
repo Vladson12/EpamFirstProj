@@ -6,11 +6,15 @@ public enum Role {
     ADMINISTRATOR;
 
     public static Role getRole(int roleId) {
-        if (roleId == 1)
-            return READER;
-        else if (roleId == 2)
-            return LIBRARIAN;
-        else
-            return ADMINISTRATOR;
+        switch (roleId) {
+            case 1:
+                return READER;
+            case 2:
+                return LIBRARIAN;
+            case 3:
+                return ADMINISTRATOR;
+            default:
+                throw new IllegalArgumentException("Argument must be in a range of 1 to 3");
+        }
     }
 }

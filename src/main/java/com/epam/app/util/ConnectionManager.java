@@ -19,7 +19,7 @@ public class ConnectionManager {
             }
             jdbcConnection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&use" +
-                            "LegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", "root", "");
+                            "LegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", "root", "root");
         }
         return jdbcConnection;
     }

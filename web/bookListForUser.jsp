@@ -43,7 +43,7 @@
 
             <td style="text-align: center">
                 <input style="font-size: 16px" ${list.bookState.name().equals("ORDERED") ? 'disabled=""' : ''}
-                       type="button" value="Order" onclick="location.href='/BookListView?id=${list.id}'">
+                       type="button" value="Order" onclick="location.href='/bookList?id=${list.id}'">
             </td>
         </tr>
     </c:forEach>
@@ -54,11 +54,11 @@
     <tr style="text-align: center">
         <td>
             <input style="font-size: 16px; text-align: left" type="button" value="Предыдущая страница"
-                   onclick="location.href='/BookListView?pageSide=previous'">
+                   onclick="location.href='/bookList?pageSide=previous'">
             <input style="font-size: 16px; text-align: left" type="button" value="Следующая страница"
-                   onclick="location.href='/BookListView?pageSide=next'">
+                   onclick="location.href='/bookList?pageSide=next'">
             <input style="font-size: 16px; text-align: right" type="button" value="Добавить новую книгу"
-                   onclick="location.href='/add'">
+                   onclick="location.href='/addBook'">
         </td>
     </tr>
 </table>

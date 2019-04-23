@@ -6,34 +6,39 @@ import com.epam.app.DAO.UserDAO;
 
 public class DaoFactoryImpl implements com.epam.app.DAO.DaoFactory {
 
-    static DaoFactoryImpl instance = null;
-    final private BookDAO bookDAO;
-    final private CardDAO cardDAO;
-    final private UserDAO userDAO;
+    private static final DaoFactoryImpl INSTANCE = new DaoFactoryImpl();
 
     private DaoFactoryImpl() {
-        bookDAO = new BookDaoImpl();
-        cardDAO = new CardDaoImpl();
-        userDAO = new UserDaoImpl();
     }
 
     public static DaoFactoryImpl getInstance() {
-        if (instance == null) instance = new DaoFactoryImpl();
-        return instance;
+        return INSTANCE;
     }
 
     @Override
-    public UserDAO getUserDAO() {
-        return userDAO;
+    public UserDAO getUserDAO(String type) {
+        if (type.equalsIgnoreCase("mysql")) {
+            return new UserDaoMySqlImpl();
+        } else {
+            throw new UnsupportedOperationException();
+        }
     }
 
     @Override
-    public CardDAO getCardDAO() {
-        return cardDAO;
+    public CardDAO getCardDAO(String type) {
+        if (type.equalsIgnoreCase("mysql")) {
+            return new CardDaoMySqlImpl();
+        } else {
+            throw new UnsupportedOperationException();
+        }
     }
 
     @Override
-    public BookDAO getBookDAO() {
-        return bookDAO;
+    public BookDAO getBookDAO(String type) {
+        if (type.equalsIgnoreCase("mysql")) {
+            return new BookDaoMySqlImpl();
+        } else {
+            throw  new UnsupportedOperationException();
+        }
     }
 }

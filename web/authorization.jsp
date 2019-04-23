@@ -3,29 +3,18 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <link rel="stylesheet" href="../styles/w3.css">
-    <title>Register</title>
-
+    <link rel="stylesheet" href="styles/w3.css">
+    <title>Authorization</title>
     <script>
         function validate() {
-            var name = document.form.name.value;
             var login = document.form.login.value;
             var password = document.form.password.value;
-            var conpassword = document.form.conpassword.value;
 
-            // add validation ....@mail.ru
-            //authorization
-            if (name == null || name == "") {
-                alert("Username can't be blank");
-                return false;
-            } else if (login == null || login == "") {
+            if (login == null || login == "") {
                 alert("Email can't be blank");
                 return false;
             } else if (password.length < 6) {
                 alert("Password must be at least 6 characters long.");
-                return false;
-            } else if (password != conpassword) {
-                alert("Confirm Password should match with the Password");
                 return false;
             }
         }
@@ -33,20 +22,16 @@
 </head>
 <body class="w3-light-grey">
 
-<jsp:include page="_menu.jsp"></jsp:include>
+<jsp:include page="menuBar.jsp"></jsp:include>
 
 <div class="w3-container w3-blue-grey w3-opacity w3-right-align">
     <h1>Library</h1>
 </div>
 
-<center><h2>Create your LibraryApp account. It's free and only takes a minute. </h2></center>
+<center><h2>Log In</h2></center>
 <form name="form" action="login" method="post" onsubmit="return validate()">
     <table align="center">
 
-        <tr>
-            <td>Username</td>
-            <td><input type="text" name="name"/></td>
-        </tr>
         <tr>
             <td>Email</td>
             <td><input type="email" name="login"/></td>
@@ -56,10 +41,6 @@
             <td><input type="password" name="password"/></td>
         </tr>
         <tr>
-            <td>Confirm Password</td>
-            <td><input type="password" name="conpassword"/></td>
-        </tr>
-        <tr>
             <td><%=(request.getAttribute("errMessage") == null) ? ""
                     : request.getAttribute("errMessage")%>
             </td>
@@ -67,7 +48,7 @@
         <tr>
             <td></td>
             <td>
-                <input type="submit" value="Register"></input><input
+                <input type="submit" value="Log in"></input><input
                     type="reset" value="Reset"></input></td>
         </tr>
 

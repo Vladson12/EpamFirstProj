@@ -2,16 +2,15 @@ package com.epam.app.DAO;
 
 import com.epam.app.model.Book;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface BookDAO {
 
-    List<Book> getAllBooks();
+    void addBook(Book book);
 
     Book getBook(int bookId);
 
-    void addBook(Book book);
+    List<Book> getAllBooks();
 
     void updateBook(Book book);
 

@@ -11,7 +11,7 @@ import static com.epam.app.model.enums.BookState.getBookState;
 import static com.epam.app.model.enums.Genre.getGenre;
 import static com.epam.app.util.ConnectionManager.*;
 
-public class BookDaoImpl implements BookDAO {
+public class BookDaoMySqlImpl implements BookDAO {
 
     private static String insert = "insert into book (author, title, book_state_id, description) values (?,?,?,?);";
     private static String update = "update book set author = ? , title =? , book_state_id = ? , description = ? where idbook = ?;";
