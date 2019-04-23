@@ -5,7 +5,7 @@ import com.epam.app.model.enums.CardState;
 import com.epam.app.model.Book;
 import com.epam.app.model.Card;
 import com.epam.app.model.User;
-import com.epam.app.util.ConnectionManager;
+import com.epam.app.util.db.DbUtils;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -14,7 +14,7 @@ import java.util.List;
 
 import static com.epam.app.DAO.impl.DaoFactoryImpl.*;
 import static com.epam.app.model.enums.CardState.*;
-import static com.epam.app.util.ConnectionManager.*;
+import static com.epam.app.util.db.DbUtils.*;
 
 public class CardDaoMySqlImpl implements CardDAO {
 
@@ -130,7 +130,7 @@ public class CardDaoMySqlImpl implements CardDAO {
 
     @Override
     public void updateCardStatusAndDate(Card card, CardState cardState, LocalDate endDate) {
-        try (Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = DbUtils.getConnection();
              PreparedStatement statement = connection.prepareStatement(updateDate);){
             statement.setInt(1, cardState.ordinal()+1);
             statement.setDate(2, Date.valueOf(endDate));

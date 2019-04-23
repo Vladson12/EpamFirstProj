@@ -9,7 +9,7 @@ import java.util.List;
 
 import static com.epam.app.model.enums.BookState.getBookState;
 import static com.epam.app.model.enums.Genre.getGenre;
-import static com.epam.app.util.ConnectionManager.*;
+import static com.epam.app.util.db.DbUtils.*;
 
 public class BookDaoMySqlImpl implements BookDAO {
 

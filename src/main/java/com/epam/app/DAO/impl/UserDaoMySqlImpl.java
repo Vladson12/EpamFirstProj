@@ -1,6 +1,6 @@
 package com.epam.app.DAO.impl;
 
-import com.epam.app.util.ConnectionManager;
+import com.epam.app.util.db.DbUtils;
 import com.epam.app.DAO.UserDAO;
 import com.epam.app.model.User;
 
@@ -23,7 +23,7 @@ public class UserDaoMySqlImpl implements UserDAO {
 
     private ResultSet getAll() {
         ResultSet resultSet =null;
-        try (Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = DbUtils.getConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery("select * from user");){
             resultSet = rs;
@@ -37,7 +37,7 @@ public class UserDaoMySqlImpl implements UserDAO {
 
     @Override
     public boolean addUser(User user) {
-        try (Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = DbUtils.getConnection();
              PreparedStatement statement = connection.prepareStatement(insert)) {
             statement.setString(1, user.getName());
             statement.setInt(2, user.getRole().ordinal() + 1);
@@ -57,7 +57,7 @@ public class UserDaoMySqlImpl implements UserDAO {
 
     @Override
     public void updateUser(User user) {
-        try (Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = DbUtils.getConnection();
              PreparedStatement statement = connection.prepareStatement(update);) {
             statement.setString(1, user.getName());
             statement.setInt(2, user.getRole().ordinal() + 1);
@@ -73,7 +73,7 @@ public class UserDaoMySqlImpl implements UserDAO {
     @Override
     public List<User> getAllUsers(){
         List<User> array= new ArrayList<>();
-        try (Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = DbUtils.getConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery("select * from user");){
             while (rs.next()){
@@ -88,7 +88,7 @@ public class UserDaoMySqlImpl implements UserDAO {
     @Override
     public User getUser(int userId) {
         User user = null;
-        try (Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = DbUtils.getConnection();
              PreparedStatement statement = connection.prepareStatement(select)) {
             statement.setInt(1, userId);
             try (ResultSet rs = statement.executeQuery()) {
@@ -104,7 +104,7 @@ public class UserDaoMySqlImpl implements UserDAO {
     @Override
     public User getUserByLogin(String userLogin) {
         User user = null;
-        try (Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = DbUtils.getConnection();
              PreparedStatement statement = connection.prepareStatement(selectByLogin)){
             statement.setString(1,userLogin);
             try (ResultSet rs = statement.executeQuery()) {
@@ -120,7 +120,7 @@ public class UserDaoMySqlImpl implements UserDAO {
 
     @Override
     public void deleteUser(int userId) {
-        try (Connection connection = ConnectionManager.getConnection();
+        try (Connection connection = DbUtils.getConnection();
              PreparedStatement statement = connection.prepareStatement(delete)) {
             statement.setInt(1, userId);
             statement.executeQuery();
