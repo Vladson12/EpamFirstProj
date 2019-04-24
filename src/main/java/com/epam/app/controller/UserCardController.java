@@ -7,6 +7,7 @@ import com.epam.app.service.CardService;
 import com.epam.app.service.UserService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
+@WebServlet("/cards")
 public class UserCardController extends HttpServlet {
 
     @Override
@@ -25,24 +27,24 @@ public class UserCardController extends HttpServlet {
 
         if (id != null) {
             int idInt = Integer.valueOf(id);
-            login = new CardService().get(idInt).getUser().getLogin();
+            login = CardService.get(idInt).getUser().getLogin();
             req.setAttribute("login", login);
             if (button != null) {
                 if (button.equals("home")) {
                     req.setAttribute("id", id);
                     req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
                 } else if (button.equals("hall")) {
-                    new CardService().updateCardStatusAndDate(new CardService().get(idInt), CardState.AT_HALL,
+                    CardService.updateCardStatusAndDate(new CardService().get(idInt), CardState.AT_HALL,
                             LocalDate.now(ZoneId.systemDefault()));
                 } else if (button.equals("return")) {
-                    new CardService().updateCardStatusAndDate(new CardService().get(idInt), CardState.RETURNED,
+                    CardService.updateCardStatusAndDate(new CardService().get(idInt), CardState.RETURNED,
                             LocalDate.now(ZoneId.systemDefault()));
                 }
             }
         }
         User currentUser = new UserService().getByLogin(login);
-        List<Card> cardListForUser = new CardService().getAllCards(currentUser);
-        req.setAttribute("list", cardListForUser);
+        List<Card> cardsForUser = CardService.getAllCards(currentUser);
+        req.setAttribute("list", cardsForUser);
         req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
     }
 

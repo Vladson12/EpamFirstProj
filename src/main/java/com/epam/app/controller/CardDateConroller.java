@@ -4,6 +4,7 @@ import com.epam.app.model.enums.CardState;
 import com.epam.app.service.CardService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +12,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
-public class DateCardConroller extends HttpServlet {
+@WebServlet("/cardDate")
+public class CardDateConroller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,7 +27,7 @@ public class DateCardConroller extends HttpServlet {
             if (LocalDate.now(ZoneId.systemDefault()).compareTo(newDate)>0){
                 req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
             }
-            new CardService().updateCardStatusAndDate(new CardService().get(Integer.parseInt(id)),
+            CardService.updateCardStatusAndDate(new CardService().get(Integer.parseInt(id)),
                     CardState.AT_HALL, newDate);
             req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
         }

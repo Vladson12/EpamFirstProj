@@ -5,6 +5,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.epam.app.DAO.impl.DaoFactoryImpl.getInstance;
 
@@ -44,11 +45,7 @@ public class UserService {
     }
 
     public static boolean isLoginDuplicated(User user) {
-        for (String logins : getAllLogins()) {
-            boolean isTheSameUser = logins.equals(user.getLogin());
-            if (isTheSameUser) return true;
-        }
-        return false;
+        return getAllLogins().stream().filter(l -> l.equals(user.getLogin())).findAny().isPresent();
     }
 
     public static boolean isUserAllowed(String login, String password) {

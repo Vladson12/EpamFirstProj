@@ -10,20 +10,18 @@ import java.util.List;
 import static com.epam.app.model.enums.BookState.getBookState;
 import static com.epam.app.model.enums.Genre.getGenre;
 import static com.epam.app.util.db.DbUtils.*;
+import static com.epam.app.util.db.mysql.BookQueryMySql.*;
+
+
 
 public class BookDaoMySqlImpl implements BookDAO {
-
-    private static String insert = "insert into book (author, title, book_state_id, description) values (?,?,?,?);";
-    private static String update = "update book set author = ? , title =? , book_state_id = ? , description = ? where idbook = ?;";
-    private static String select = "select * from book where idbook = ?";
-    private static String delete = "delete from book where idbook =?";
 
     @Override
     public List<Book> getAllBooks() {
         List<Book> array = new ArrayList<>();
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery("select * from book")) {
+             ResultSet rs = statement.executeQuery(selectAll)) {
             while (rs.next()){
                 array.add(new Book(rs.getInt("idbook"), rs.getString("author"), getBookState(rs.getInt("book_state_id")),
                         rs.getString("title"), rs.getString("description"), rs.getInt("year"), getGenre(rs.getInt("genre"))));
@@ -94,7 +92,7 @@ public class BookDaoMySqlImpl implements BookDAO {
         ResultSet resultSet = null;
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery("select * from book")) {
+             ResultSet rs = statement.executeQuery(selectAll)) {
             resultSet = rs;
         } catch (SQLException e) {
             e.printStackTrace();

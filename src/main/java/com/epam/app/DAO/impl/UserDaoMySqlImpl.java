@@ -10,30 +10,23 @@ import java.util.List;
 
 
 import static com.epam.app.model.enums.Role.getRole;
+import static com.epam.app.util.db.mysql.UserQueryMySql.*;
 
 
 public class UserDaoMySqlImpl implements UserDAO {
-
-    private static String insert = "insert into user (name, role, login, password) values (?,?,?,?);";
-    private static String update = "update user set name = ? , role =? , login = ? , password = ? where id = ?;";
-    private static String select = "select * from user where id = ?";
-    private static String selectByLogin = "select * from user where login = ?";
-    private static String delete = "delete * from user where id = ?";
-
 
     private ResultSet getAll() {
         ResultSet resultSet =null;
         try (Connection connection = DbUtils.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery("select * from user");){
+             ResultSet rs = statement.executeQuery(selectAll);){
             resultSet = rs;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return resultSet;
+
     }
-
-
 
     @Override
     public boolean addUser(User user) {
@@ -51,8 +44,8 @@ public class UserDaoMySqlImpl implements UserDAO {
                 SQLException e) {
             e.printStackTrace();
         }
-
         return false;
+
     }
 
     @Override
@@ -75,14 +68,18 @@ public class UserDaoMySqlImpl implements UserDAO {
         List<User> array= new ArrayList<>();
         try (Connection connection = DbUtils.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery("select * from user");){
+             ResultSet rs = statement.executeQuery(selectAll);){
             while (rs.next()){
-                array.add(new User(rs.getString("name"), getRole(rs.getInt("role")),rs.getString("login"), rs.getString("password")));
+                array.add(new User(rs.getString("name"),
+                        getRole(rs.getInt("role")),
+                        rs.getString("login"),
+                        rs.getString("password")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return array;
+
     }
 
     @Override
@@ -93,12 +90,17 @@ public class UserDaoMySqlImpl implements UserDAO {
             statement.setInt(1, userId);
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
-                user = new User(rs.getInt("id"), rs.getString("name"), getRole(rs.getInt("role")), rs.getString("login"), rs.getString("password"));
+                user = new User(rs.getInt("id"),
+                        rs.getString("name"),
+                        getRole(rs.getInt("role")),
+                        rs.getString("login"),
+                        rs.getString("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return user;
+
     }
 
     @Override
@@ -109,13 +111,18 @@ public class UserDaoMySqlImpl implements UserDAO {
             statement.setString(1,userLogin);
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
-                    user = new User(rs.getInt("id"), rs.getString("name"), getRole(rs.getInt("role")), rs.getString("login"), rs.getString("password"));
+                    user = new User(rs.getInt("id"),
+                            rs.getString("name"),
+                            getRole(rs.getInt("role")),
+                            rs.getString("login"),
+                            rs.getString("password"));
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return user;
+
     }
 
     @Override
@@ -128,7 +135,5 @@ public class UserDaoMySqlImpl implements UserDAO {
             e.printStackTrace();
         }
     }
-
-
 
 }

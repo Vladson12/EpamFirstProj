@@ -3,15 +3,17 @@ package com.epam.app.controller;
 import com.epam.app.service.UserService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+@WebServlet("/loginEnter")
 public class LoginEnterController extends HttpServlet {
 
-    String login;
+    private String login;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         req.getRequestDispatcher("/loginEnter.jsp").forward(req, resp);

@@ -15,17 +15,9 @@ import java.util.List;
 import static com.epam.app.DAO.impl.DaoFactoryImpl.*;
 import static com.epam.app.model.enums.CardState.*;
 import static com.epam.app.util.db.DbUtils.*;
+import static com.epam.app.util.db.mysql.CardQueryMySql.*;
 
 public class CardDaoMySqlImpl implements CardDAO {
-
-
-    private static String insert = "insert into card (user, book, start_date, end_date,card_state) values (?,?,?,?,?);";
-    private static String update = "update card set card_state = ? where idhome_card = ?;";
-    private static String updateDate = "update card set card_state = ? , end_date=? where idhome_card = ?;";
-    private static String selectByBook = "select * from card where book = ?";
-    private static String selectByUser = "select * from card where user = ?";
-    private static String select = "select * from card where idhome_card = ?";
-
 
     @Override
     public void addCard(Card card) {

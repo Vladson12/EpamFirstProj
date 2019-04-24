@@ -17,41 +17,41 @@ import static com.epam.app.DAO.impl.DaoFactoryImpl.getInstance;
 
 public class CardService {
 
-    public void create(Card card) {
+    public static void create(Card card) {
         getInstance().getCardDAO("mysql").addCard(card);
         updateBookState(card, card.getCardState());
     }
 
-    public Card get(int id) {
+    public static Card get(int id) {
         return getInstance().getCardDAO("mysql").getCard(id);
     }
 
-    public List<Book> getAllBooks(User user) {
+    public static List<Book> getAllBooks(User user) {
         return getInstance().getCardDAO("mysql").getAllBookId(user)
                 .stream().map(i -> new BookDaoMySqlImpl().getBook(i)).collect(Collectors.toList());
     }
 
-    public List<Card> getAllCards(User user) {
+    public static List<Card> getAllCards(User user) {
         return getInstance().getCardDAO("mysql").getAllCards(user)
                 .stream().map(i -> new CardDaoMySqlImpl().getCard(i)).collect(Collectors.toList());
     }
 
-    public List<User> getAllUsers(Book book) {
+    public static List<User> getAllUsers(Book book) {
         return getInstance().getCardDAO("mysql").getAllUserId(book)
                 .stream().map(i -> new UserDaoMySqlImpl().getUser(i)).collect(Collectors.toList());
     }
 
-    public void updateCardState(Card card, CardState cardState) {
+    public static void updateCardState(Card card, CardState cardState) {
         getInstance().getCardDAO("mysql").updateCardStatus(card, cardState);
         updateBookState(card, cardState);
     }
 
-    public void updateCardStatusAndDate(Card card, CardState cardState, LocalDate endDate) {
+    public static void updateCardStatusAndDate(Card card, CardState cardState, LocalDate endDate) {
         getInstance().getCardDAO("mysql").updateCardStatusAndDate(card, cardState, endDate);
         updateBookState(card, cardState);
     }
 
-    private void updateBookState(Card card, CardState cardState) {
+    private static void updateBookState(Card card, CardState cardState) {
         Book book = card.getBook();
         BookState newState = BookState.FREE;
 
@@ -66,6 +66,8 @@ public class CardService {
             case RETURNED:
                 newState = BookState.FREE;
                 break;
+            default:
+                throw new IllegalArgumentException("СardState parameter cannot take that value");
         }
 
         book.setBookState(newState);

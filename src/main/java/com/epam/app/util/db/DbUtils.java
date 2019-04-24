@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -15,37 +14,51 @@ import java.util.Properties;
  */
 public class DbUtils {
 
+
     private static final BasicDataSource DATA_SOURCE = new BasicDataSource();
+
+    private static final Properties properties = new Properties();
 
     static {
 
-        Properties property = new Properties();
+        DATA_SOURCE.setInitialSize(100);
+        DATA_SOURCE.setMinIdle(5);
+        DATA_SOURCE.setMaxIdle(10);
+        DATA_SOURCE.setMaxOpenPreparedStatements(100);
 
-        try (FileInputStream fis = new FileInputStream("D:\\IdeaProjects\\EpamFirstProj\\src\\main\\resources\\mysql.properties")) {
-            property.load(fis);
+    }
+
+    public static void setPropertiesFile(String dbPropsFile) {
+
+        try (FileInputStream is = new FileInputStream(dbPropsFile)) {
+            properties.load(is);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             System.err.println("Can't load properties!");
         }
 
+        setProperties();
+
+    }
+
+    private static void setProperties() {
+
         try {
-            Class.forName(property.getProperty("driver"));
-//            DATA_SOURCE.setDriver(DriverManager.getDriver((property.getProperty("driver"))));
-//        } catch (SQLException e) {
-//            e.printStackTrace();
+            Class.forName(properties.getProperty("driver"));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        DATA_SOURCE.setUrl(property.getProperty("url"));
-        DATA_SOURCE.setUsername(property.getProperty("user"));
-        DATA_SOURCE.setPassword(property.getProperty("password"));
-        DATA_SOURCE.setInitialSize(100);
-        DATA_SOURCE.setMinIdle(5);
-        DATA_SOURCE.setMaxIdle(10);
-        DATA_SOURCE.setMaxOpenPreparedStatements(100);
+
+        DATA_SOURCE.setUrl(properties.getProperty("url"));
+        DATA_SOURCE.setUsername(properties.getProperty("user"));
+        DATA_SOURCE.setPassword(properties.getProperty("password"));
+
     }
 
+    /**
+     * We should invoke this method only after setProperties() method.
+     */
     public static Connection getConnection() throws SQLException {
         return DATA_SOURCE.getConnection();
     }
