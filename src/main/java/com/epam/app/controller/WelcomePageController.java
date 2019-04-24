@@ -13,6 +13,11 @@ import java.io.IOException;
 @WebServlet("/")
 public class WelcomePageController extends HttpServlet {
 
+    static {
+
+
+    }
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DbUtils.setPropertiesFile(getServletContext().
                 getRealPath("resources\\mysql.properties"));

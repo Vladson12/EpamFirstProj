@@ -51,7 +51,7 @@
             <button class="w3-btn w3-hover-green w3-round-large" onclick="location.href='/addUser'">Add user</button>
             <button class="w3-btn w3-hover-indigo w3-round-large" onclick="location.href='/bookList'">Book list</button>
             <button class="w3-btn w3-hover-aqua w3-round-large" onclick="location.href='/addBook'">Add book</button>
-            <button class="w3-btn w3-hover-indigo w3-round-large" onclick="location.href='loginEnter'">FR</button>
+            <button class="w3-btn w3-hover-indigo w3-round-large" onclick="location.href='/loginEnter'">FR</button>
         </div>
     </div>
 </c:if>
