@@ -20,12 +20,6 @@ import java.io.IOException;
 public class AuthorizationUserController extends HttpServlet {
 
     @Override
-    public void init() throws ServletException {
-        DbUtils.setPropertiesFile(getServletContext().
-                getRealPath("WEB-INF\\classes\\resources\\mysql.properties"));
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
