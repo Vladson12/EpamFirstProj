@@ -31,6 +31,7 @@ public class WelcomePageController extends HttpServlet {
 
     private void dbConfig(String dbName) {
         String separator = FileSystems.getDefault().getSeparator();
+        System.out.println("Separator is '" + separator + "'");
         String db = dbName.toLowerCase();
 
 /*        String dbPropsPath = getServletContext().
@@ -41,6 +42,7 @@ public class WelcomePageController extends HttpServlet {
         String dbPropsPath = getServletContext().getRealPath(
                         "resources" + separator +
                         db + ".properties");
+        System.out.println("PATH" + dbPropsPath);
 
         Config.setDatabase(dbPropsPath);
         Config.setDaoFactory(new DaoFactorySupplier().apply(db));
