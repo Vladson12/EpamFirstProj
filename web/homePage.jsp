@@ -12,7 +12,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Library</title>
-    <link rel="stylesheet" href="styles/w3.css">
+    <link rel="stylesheet" href="resources/w3.css">
 </head>
 <body class="w3-light-grey">
 

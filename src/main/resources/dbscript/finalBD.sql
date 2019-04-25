@@ -155,9 +155,8 @@ CREATE TABLE `library`.`user` (
 insert into `library`.`user` (name, login, password) values ('John','john@epam.com','john123');
 insert into `library`.`user` (name, login, password) values ('Elizabeth','elizabeth@epam.com','elizabeth123');
 insert into `library`.`user` (name, login, password) values ('Tom','tom@epam.com','tom123');
-insert into `library`.`user` (name, login, password) values ('Nana','nana@epam.com','nana123');
-insert into `library`.`user` (name, login, password) values ('James','james@epam.com','james123');
 insert into `library`.`user` (name, role, login, password) values ('Nana',2,'nana@epam.com','nana123');
+insert into `library`.`user` (name, login, password) values ('James','james@epam.com','james123');
 
 
 

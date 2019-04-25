@@ -1,42 +1,44 @@
 package com.epam.app.service;
 
+import com.epam.app.DAO.UserDAO;
 import com.epam.app.model.User;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import static com.epam.app.DAO.impl.DaoFactoryImpl.getInstance;
+import static com.epam.app.DAO.impl.DaoFactoryMySqlImpl.getInstance;
 
 public class UserService {
 
+    public static final UserDAO USER_DAO = getInstance().getUserDAO();
+
     public static boolean create(User user) {
-        return getInstance().getUserDAO("mysql").addUser(user);
+        return USER_DAO.addUser(user);
     }
 
     public static User get(int id) {
-        return getInstance().getUserDAO("mysql").getUser(id);
+        return USER_DAO.getUser(id);
     }
 
     public static User getByLogin(String login) {
-        return getInstance().getUserDAO("mysql").getUserByLogin(login);
+        return USER_DAO.getUserByLogin(login);
     }
 
     public static List<User> getAllUsers() {
-        return getInstance().getUserDAO("mysql").getAllUsers();
+        return USER_DAO.getAllUsers();
     }
 
     public static List<String> getAllLogins() {
-        return getAllUsers().stream().map(i -> i.getLogin()).collect(Collectors.toList());
+        return getAllUsers().stream().map(User::getLogin).collect(Collectors.toList());
     }
 
     public static List<String> getAllPasswords() {
-        return getAllUsers().stream().map(i -> i.getPassword()).collect(Collectors.toList());
+        return getAllUsers().stream().map(User::getPassword).collect(Collectors.toList());
     }
 
     public static void updateUser(User user) {
-        getInstance().getUserDAO("mysql").updateUser(user);
+        USER_DAO.updateUser(user);
     }
 
     public static boolean isLoginValid(String login) {
@@ -45,7 +47,7 @@ public class UserService {
     }
 
     public static boolean isLoginDuplicated(User user) {
-        return getAllLogins().stream().filter(l -> l.equals(user.getLogin())).findAny().isPresent();
+        return getAllLogins().stream().anyMatch(l -> l.equals(user.getLogin()));
     }
 
     public static boolean isUserAllowed(String login, String password) {

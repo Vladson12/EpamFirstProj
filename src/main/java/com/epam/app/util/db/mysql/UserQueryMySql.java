@@ -5,12 +5,12 @@ package com.epam.app.util.db.mysql;
  */
 public class UserQueryMySql {
 
-    public static final String insert = "insert into user (name, role, login, password) values (?,?,?,?);";
-    public static final String select = "select * from user where id = ?;";
-    public static final String selectByLogin = "select * from user where login = ?;";
-    public static final String selectAll = "select * from user;";
-    public static String update = "update user set name = ? , role =? , login = ? , password = ? where id = ?;";
-    public static String delete = "delete * from user where id = ?;";
+    public static final String INSERT = "INSERT into user (name, role, login, password) values (?,?,?,?);";
+    public static final String SELECT = "SELECT * from user where id = ?;";
+    public static final String SELECT_BY_LOGIN = "SELECT * from user where login = ?;";
+    public static final String SELECT_ALL = "SELECT * from user;";
+    public static String UPDATE = "UPDATE user set name = ? , role =? , login = ? , password = ? where id = ?;";
+    public static String DELETE = "DELETE * from user where id = ?;";
 
     private UserQueryMySql() {
     }

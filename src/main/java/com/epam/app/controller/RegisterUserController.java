@@ -3,6 +3,7 @@ package com.epam.app.controller;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
+import com.epam.app.util.db.DbUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +16,10 @@ import java.io.IOException;
 @WebServlet("/registration")
 public class RegisterUserController extends HttpServlet {
 
-    public RegisterUserController() {
+    @Override
+    public void init() throws ServletException {
+        DbUtils.setPropertiesFile(getServletContext().
+                getRealPath("WEB-INF\\classes\\resources\\mysql.properties"));
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,7 +43,6 @@ public class RegisterUserController extends HttpServlet {
             request.setAttribute("errMessage", "This email invalid");
         }
         request.getRequestDispatcher("/registration.jsp").forward(request, response);
-
 
     }
 

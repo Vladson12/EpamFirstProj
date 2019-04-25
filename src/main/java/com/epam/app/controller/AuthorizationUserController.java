@@ -3,6 +3,7 @@ package com.epam.app.controller;
 
 import com.epam.app.model.User;
 import com.epam.app.service.UserService;
+import com.epam.app.util.db.DbUtils;
 import lombok.NoArgsConstructor;
 
 import javax.servlet.RequestDispatcher;
@@ -19,8 +20,15 @@ import java.io.IOException;
 public class AuthorizationUserController extends HttpServlet {
 
     @Override
+    public void init() throws ServletException {
+        DbUtils.setPropertiesFile(getServletContext().
+                getRealPath("WEB-INF\\classes\\resources\\mysql.properties"));
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession(true);
         String login = request.getParameter("login");
         String password = request.getParameter("password");

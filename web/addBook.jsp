@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Add book</title>
-    <link rel="stylesheet" href="styles/w3.css">
+    <link rel="stylesheet" href="resources/w3.css">
 </head>
 
 <body class="w3-light-grey">

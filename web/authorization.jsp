@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <link rel="stylesheet" href="styles/w3.css">
+    <link rel="stylesheet" href="resources/w3.css">
     <title>Authorization</title>
     <script>
         function validate() {

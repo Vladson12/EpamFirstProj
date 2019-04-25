@@ -22,7 +22,7 @@ public class LoginEnterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<String> logins = UserService.getAllLogins();
-            if (req.getParameter("insert") != null) {
+            if (req.getParameter("INSERT") != null) {
                 login = req.getParameter("login");
                 System.out.println("LOGIN=" + login);
                 if (logins.stream().anyMatch(login::equals)) {

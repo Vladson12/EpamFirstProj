@@ -52,7 +52,7 @@
                 <%--            </td>--%>
             <td style="text-align: center">
                     <%--                <input style="font-size: 16px" type="button" value="Прочитать" onclick="location.href='/view/${list.id}'">--%>
-                    <%--                <input style="font-size: 16px" type="button" value="Удалить" onclick="location.href='/delete/${list.id}'">--%>
+                    <%--                <input style="font-size: 16px" type="button" value="Удалить" onclick="location.href='/DELETE/${list.id}'">--%>
                     <%--                <input style="font-size: 16px" type="button" value="Заменить" onclick="location.href='/edit/${list.id}'">--%>
             </td>
         </tr>
@@ -68,11 +68,11 @@
             <input style="font-size: 16px; text-align: right" type="button" value="Добавить новую книгу" onclick="location.href='/add'">
             <%--            <form:form action="/find" method="post" style="text-align: right">--%>
             <%--                <a>Поиск по </a>--%>
-            <%--                <select style="font-size: 16px" name="column">--%>
+            <%--                <SELECT style="font-size: 16px" name="column">--%>
             <%--                    <option value="title">наименованию</option>--%>
             <%--                    <option value="author">автору</option>--%>
             <%--                    <option value="year">году выпуска</option>--%>
-            <%--                </select>--%>
+            <%--                </SELECT>--%>
             <%--                <input style="font-size: 16px" type="text" name="query">--%>
             <%--                <input style="font-size: 16px" type="submit" value="Найти">--%>
             <%--            </form:form>--%>

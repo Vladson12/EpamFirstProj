@@ -21,7 +21,7 @@ public class BookDaoMySqlImpl implements BookDAO {
         List<Book> array = new ArrayList<>();
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(selectAll)) {
+             ResultSet rs = statement.executeQuery(SELECT_All)) {
             while (rs.next()){
                 array.add(new Book(rs.getInt("idbook"), rs.getString("author"), getBookState(rs.getInt("book_state_id")),
                         rs.getString("title"), rs.getString("description"), rs.getInt("year"), getGenre(rs.getInt("genre"))));
@@ -36,7 +36,7 @@ public class BookDaoMySqlImpl implements BookDAO {
     public Book getBook(int bookId) {
         Book book = null;
         try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(select)) {
+             PreparedStatement statement = connection.prepareStatement(SELECT)) {
             statement.setInt(1, bookId);
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
@@ -51,7 +51,7 @@ public class BookDaoMySqlImpl implements BookDAO {
     @Override
     public void addBook(Book book) {
         try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(insert)) {
+             PreparedStatement statement = connection.prepareStatement(INSERT)) {
             statement.setString(1, book.getAuthor());
             statement.setString(2, book.getTitle());
             statement.setInt(3, book.getBookState().ordinal() + 1);
@@ -65,7 +65,7 @@ public class BookDaoMySqlImpl implements BookDAO {
     @Override
     public void updateBook(Book book) {
         try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(update)) {
+             PreparedStatement statement = connection.prepareStatement(UPDATE)) {
             statement.setString(1, book.getAuthor());
             statement.setString(2, book.getTitle());
             statement.setInt(3, book.getBookState().ordinal() + 1);
@@ -80,7 +80,7 @@ public class BookDaoMySqlImpl implements BookDAO {
     @Override
     public void deleteBook(Book book) {
         try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(delete)) {
+             PreparedStatement statement = connection.prepareStatement(DELETE)) {
             statement.setInt(1, book.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -92,7 +92,7 @@ public class BookDaoMySqlImpl implements BookDAO {
         ResultSet resultSet = null;
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(selectAll)) {
+             ResultSet rs = statement.executeQuery(SELECT_All)) {
             resultSet = rs;
         } catch (SQLException e) {
             e.printStackTrace();

@@ -8,6 +8,12 @@
         <welcome-file>welcomePage.jsp</welcome-file>
     </welcome-file-list>
 
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>jdbc/library-mysql-db</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
 
 
     <!--ALL COMMENTED SECTIONS BELOW ARE ALREADY ANNOTATED STRAIGHT IN CONTROLLER FILES-->
@@ -147,13 +153,13 @@
         <!--<url-pattern>/logout</url-pattern>-->
     <!--</servlet-mapping>-->
 
-    <filter>
-        <filter-name>loginFilter</filter-name>
-        <filter-class>com.epam.app.filter.SecurityFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>loginFilter</filter-name>
-        <url-pattern>/view/*</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>loginFilter</filter-name>-->
+        <!--<filter-class>com.epam.app.filter.SecurityFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>loginFilter</filter-name>-->
+        <!--<url-pattern>/view/*</url-pattern>-->
+    <!--</filter-mapping>-->
 
 </web-app>
