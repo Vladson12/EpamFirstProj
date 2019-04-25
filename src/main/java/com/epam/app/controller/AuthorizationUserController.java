@@ -3,7 +3,6 @@ package com.epam.app.controller;
 
 import com.epam.app.model.User;
 import com.epam.app.service.UserService;
-import com.epam.app.util.db.DbUtils;
 import lombok.NoArgsConstructor;
 
 import javax.servlet.RequestDispatcher;
@@ -18,10 +17,6 @@ import java.io.IOException;
 @NoArgsConstructor
 @WebServlet("/login")
 public class AuthorizationUserController extends HttpServlet {
-
-    @Override
-    public void init() throws ServletException {
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
