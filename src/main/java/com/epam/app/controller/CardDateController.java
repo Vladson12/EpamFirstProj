@@ -13,10 +13,15 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 @WebServlet("/cardDate")
-public class CardDateConroller extends HttpServlet {
+public class CardDateController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/dateFormat.jsp").forward(req,resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String date = req.getParameter("date");
         String id = req.getParameter("id");
         String login = req.getParameter("login");
@@ -27,20 +32,14 @@ public class CardDateConroller extends HttpServlet {
             if (LocalDate.now(ZoneId.systemDefault()).compareTo(newDate)>0){
                 req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
             }
-            CardService.updateCardStatusAndDate(new CardService().get(Integer.parseInt(id)),
+            CardService.updateCardStatusAndDate(CardService.get(Integer.parseInt(id)),
                     CardState.AT_HALL, newDate);
-            req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
+            req.getRequestDispatcher("/cards").forward(req, resp);
         }
         req.setAttribute("login", login);
         req.setAttribute("id", id);
         req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
 
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(req.getAttribute("data"));
-        super.doPost(req, resp);
     }
 }

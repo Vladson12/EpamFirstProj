@@ -2,7 +2,6 @@ package com.epam.app.controller;
 
 import com.epam.app.DAO.impl.DaoFactorySupplier;
 import com.epam.app.config.Config;
-import com.epam.app.util.db.DbUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 
@@ -44,15 +42,8 @@ public class WelcomePageController extends HttpServlet {
                         "resources" + separator +
                         db + ".properties");
 
-        System.out.println(dbPropsPath);
-//        try {
-//            String path = new File(".").getCanonicalPath();
-//            System.out.println(path);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-      //  Config.setDatabase(dbPropsPath);
-       // Config.setDaoFactory(new DaoFactorySupplier().apply(db));
+        Config.setDatabase(dbPropsPath);
+        Config.setDaoFactory(new DaoFactorySupplier().apply(db));
 
     }
 }

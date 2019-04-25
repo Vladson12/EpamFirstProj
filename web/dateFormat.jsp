@@ -21,7 +21,7 @@
 <body>
 
 <center>  Select new date ${login}  </center>
-<form name="form" action="/dateChange" method="get">
+<form name="form" action="/cardDate" method="post">
 <input type="hidden" name="login" value="${login}" />
 <input type="hidden" name="id" value="${id}" />
     <table align="center">

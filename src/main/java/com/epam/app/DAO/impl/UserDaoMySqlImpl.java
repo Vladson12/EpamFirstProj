@@ -4,8 +4,6 @@ import com.epam.app.util.db.DbUtils;
 import com.epam.app.DAO.UserDAO;
 import com.epam.app.model.User;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

@@ -7,6 +7,9 @@ import com.epam.app.DAO.UserDAO;
 public class DaoFactoryMySqlImpl implements com.epam.app.DAO.DaoFactory {
 
     private static final DaoFactoryMySqlImpl INSTANCE = new DaoFactoryMySqlImpl();
+    private static final UserDAO USER_DAO = new UserDaoMySqlImpl();
+    private static final BookDAO BOOK_DAO = new BookDaoMySqlImpl();
+    private static final CardDAO CARD_DAO = new CardDaoMySqlImpl();
 
     private DaoFactoryMySqlImpl() {
     }
@@ -18,18 +21,17 @@ public class DaoFactoryMySqlImpl implements com.epam.app.DAO.DaoFactory {
 
     @Override
     public UserDAO getUserDAO() {
-
-            return new UserDaoMySqlImpl();
-
+            return USER_DAO;
     }
 
     @Override
     public CardDAO getCardDAO() {
-            return new CardDaoMySqlImpl();
+
+        return CARD_DAO;
     }
 
     @Override
     public BookDAO getBookDAO() {
-            return new BookDaoMySqlImpl();
+        return BOOK_DAO;
     }
 }

@@ -130,7 +130,6 @@ public class CardDaoMySqlImpl implements CardDAO {
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-//            log.info("");
         }
     }
 }
