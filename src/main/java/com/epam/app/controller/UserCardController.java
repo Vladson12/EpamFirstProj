@@ -20,6 +20,8 @@ import java.util.List;
 @WebServlet("/cards")
 public class UserCardController extends HttpServlet {
 
+    private Boolean isLibrarian;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -30,7 +32,8 @@ public class UserCardController extends HttpServlet {
         String id = req.getParameter("id");
         String button = req.getParameter("button");
         String login = (String) req.getAttribute("login");
-
+        isLibrarian = (Boolean) req.getAttribute("librarian");
+        System.out.println(isLibrarian);
         if (id != null) {
             int idInt = Integer.valueOf(id);
             login = CardService.get(idInt).getUser().getLogin();
@@ -49,10 +52,10 @@ public class UserCardController extends HttpServlet {
             }
         }
 
-
         User currentUser = UserService.getByLogin(login);
         List<Card> cardsForUser = CardService.getAllCards(currentUser);
         req.setAttribute("list", cardsForUser);
+        req.setAttribute("librarian", isLibrarian);
         req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
     }
 }

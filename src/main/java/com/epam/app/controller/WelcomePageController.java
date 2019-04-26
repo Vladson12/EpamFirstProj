@@ -19,11 +19,26 @@ public class WelcomePageController extends HttpServlet {
     @Override
     public void init() throws ServletException {
 
-        dbConfig("mysql");
-
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        dbConfig("mysql");
+
+
+
+
+//        String db = "mysql";
+//        String separator = FileSystems.getDefault().getSeparator();
+//        String dbPropsPath = getServletContext().getRealPath(
+//                "resources" + separator +
+//                        db + ".properties");
+//        System.out.println("PATH" + dbPropsPath);
+//
+//        Config.setDatabase(dbPropsPath);
+//        Config.setDaoFactory(new DaoFactorySupplier().apply(db));
+
+
+//        System.out.println("WE ARE HERE!");
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/welcomePage.jsp");
         requestDispatcher.forward(req, resp);

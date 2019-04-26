@@ -43,13 +43,12 @@
 
             <td style="text-align: center">
                 <input style="font-size: 16px" ${list.bookState.name().equals("ORDERED") ? 'disabled=""' : ''}
-                       type="button" value="Order" onclick="location.href='/bookList?id=${list.id}'">
+                       type="button" value="Order" onclick="location.href='/bookList?login=${login}&id=${list.id}'">
             </td>
         </tr>
     </c:forEach>
 </table>
 <hr/>
-
 <table width="100%">
     <tr style="text-align: center">
         <td>

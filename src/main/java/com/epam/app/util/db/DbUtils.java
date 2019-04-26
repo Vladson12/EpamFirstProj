@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -38,6 +39,10 @@ public class DbUtils {
             System.err.println("Can't load properties!");
         }
 
+        System.out.println("PROPS DRIVER: " + properties.getProperty("driver"));
+        System.out.println("PROPS URL: " + properties.getProperty("url"));
+        System.out.println("PROPS USER: " + properties.getProperty("user"));
+        System.out.println("PROPS PASSWORD: " + properties.getProperty("password"));
         setProperties();
 
     }
@@ -60,6 +65,9 @@ public class DbUtils {
      * We should invoke this method only after setProperties() method.
      */
     public static Connection getConnection() throws SQLException {
-        return DATA_SOURCE.getConnection();
+//        return DATA_SOURCE.getConnection();
+        return DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&use" +
+                        "LegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", "root", "");
     }
 }

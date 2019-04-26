@@ -30,6 +30,9 @@
 
 </head>
 <body>
+<c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
+    <p>You're LIBRARIAN.</p>
+</c:if>
 <h1> <c:out value="${login}" /></h1>
 <table>
     <tr style="font-size: 22px">
@@ -49,35 +52,50 @@
             <td><c:out value="${list.startDate}" /></td>
             <td><c:out value="${list.endDate}" /></td>
             <td><c:out value="${list.cardState}" /></td>
-            <td style="text-align: center">
-                <%if (list.getCardState().equals(CardState.ORDERED)) {%>
-                <input style = "font-size: 16px" type = "button" value = "Take home"
-                        onclick = "location.href = '/cards?id=${list.id}&button=home'" >
-                <input style = "font-size: 16px" type = "button" value = "Take reading hole"
-                        onclick = "location.href='/cards?id=${list.id}&button=hall'" >
-                <%} else if(list.getCardState().equals(CardState.AT_HALL) ||
-                        list.getCardState().equals(CardState.AT_HOME) ||
-                    list.getCardState().equals(CardState.OVERDUE)) {%>
-                <input style = "font-size: 16px" type = "button" value = "Return"
-                       onclick = "location.href = '/cards?id=${list.id}&button=return'" >
-                <%}%>
-            </td>
+
+            <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
+                <td style="text-align: center">
+                    <%if (list.getCardState().equals(CardState.ORDERED)) {%>
+                    <input style = "font-size: 16px" type = "button" value = "Take home"
+                            onclick = "location.href = '/cards?id=${list.id}&button=home'" >
+                    <input style = "font-size: 16px" type = "button" value = "Take reading hole"
+                            onclick = "location.href='/cards?id=${list.id}&button=hall'" >
+                    <%} else if(list.getCardState().equals(CardState.AT_HALL) ||
+                            list.getCardState().equals(CardState.AT_HOME) ||
+                        list.getCardState().equals(CardState.OVERDUE)) {%>
+                    <input style = "font-size: 16px" type = "button" value = "Return"
+                           onclick = "location.href = '/cards?id=${list.id}&button=return'" >
+                    <%}%>
+                </td>
+            </c:if>
+
+            <c:if test="${sessionScope.loggedInUser.role eq 'READER'}">
+                <td style="text-align: center">
+                    <%if (list.getCardState().equals(CardState.ORDERED)) {%>
+                    <input style = "font-size: 16px" type = "button" value = "reset"
+                           onclick = "location.href = '/myCard?login=${login}&id=${list.id}&button=reset'" >
+                    <%}%>
+                </td>
+            </c:if>
+
         </tr>
     </c:forEach>
 </table>
 <hr/>
 
+<div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
+    <button class="w3-btn w3-round-large" onclick="location.href='/home'">Back</button>
+</div>
+<%--<table width="100%">--%>
+<%--    <tr style="text-align: center">--%>
+<%--        <td>--%>
+<%--            <input style="font-size: 16px; text-align: left" type="button" value="Предыдущая страница" onclick="location.href='/turnPage/previous'">--%>
+<%--            <input style="font-size: 16px; text-align: left" type="button" value="Следующая страница" onclick="location.href='/turnPage/next'">--%>
+<%--            <input style="font-size: 16px; text-align: right" type="button" value="Добавить новую книгу" onclick="location.href='/getUserCard'">--%>
 
-<table width="100%">
-    <tr style="text-align: center">
-        <td>
-            <input style="font-size: 16px; text-align: left" type="button" value="Предыдущая страница" onclick="location.href='/turnPage/previous'">
-            <input style="font-size: 16px; text-align: left" type="button" value="Следующая страница" onclick="location.href='/turnPage/next'">
-            <input style="font-size: 16px; text-align: right" type="button" value="Добавить новую книгу" onclick="location.href='/getUserCard'">
-
-        </td>
-    </tr>
-</table>
+<%--        </td>--%>
+<%--    </tr>--%>
+<%--</table>--%>
 </body>
 
 
