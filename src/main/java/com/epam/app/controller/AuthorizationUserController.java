@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static com.epam.app.util.password.Password.hash;
+
 @NoArgsConstructor
 @WebServlet("/login")
 public class AuthorizationUserController extends HttpServlet {
@@ -26,6 +28,7 @@ public class AuthorizationUserController extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
+        String hashed = hash(password);
         User userAccount = UserService.findUser(login, password);
 
         if (UserService.isUserAllowed(login, password)) {

@@ -30,7 +30,10 @@
 </head>
 
 <body>
-<center><h2>Create your LibraryApp account. It's free and only takes a minute. </h2></center>
+
+<jsp:include page="menuBar.jsp"></jsp:include>
+
+<center><h2>Add user</h2></center>
 <form name="form" action="addUser" method="post" onsubmit="return validate()">
     <table align="center">
 

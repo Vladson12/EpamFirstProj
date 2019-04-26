@@ -11,6 +11,9 @@
     <title>Login enter</title>
 </head>
 <body>
+
+<jsp:include page="menuBar.jsp"></jsp:include>
+
 <center>
     <form name="loginEnter" action="loginEnter" method="post">
         <table border="1" bgcolor="A9A9A9">

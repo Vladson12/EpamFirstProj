@@ -20,6 +20,8 @@
 
 <body>
 
+<jsp:include page="menuBar.jsp"></jsp:include>
+
 <center>  Select new date ${login}  </center>
 <form name="form" action="/cardDate" method="post">
 <input type="hidden" name="login" value="${login}" />

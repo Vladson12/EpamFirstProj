@@ -13,14 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.epam.app.util.password.Password.hash;
+
 @WebServlet("/registration")
 public class RegisterUserController extends HttpServlet {
-
-    @Override
-    public void init() throws ServletException {
-        DbUtils.setPropertiesFile(getServletContext().
-                getRealPath("WEB-INF\\classes\\resources\\mysql.properties"));
-    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -28,7 +24,7 @@ public class RegisterUserController extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        User user = new User(name, Role.READER, login, password);
+        User user = new User(name, Role.READER, login, hash(password));
 
         boolean isValidLogin = UserService.isLoginValid(login);
         boolean isTheSameLogin = UserService.isLoginDuplicated(user);
