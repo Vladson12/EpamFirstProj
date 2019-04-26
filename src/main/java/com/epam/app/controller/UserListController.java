@@ -23,7 +23,7 @@ public class UserListController extends HttpServlet {
 
         List<User> allUsers = UserService.getAllUsers();
 
-        req.getSession().setAttribute("userlist", allUsers);
+        req.getSession().setAttribute("users", allUsers);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/userList.jsp");
         requestDispatcher.forward(req, resp);
     }

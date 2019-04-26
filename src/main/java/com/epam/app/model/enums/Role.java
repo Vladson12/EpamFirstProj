@@ -17,4 +17,18 @@ public enum Role {
                 throw new IllegalArgumentException("Argument must be in a range of 1 to 3");
         }
     }
+
+    public static Role getRole(String role) {
+        switch (role) {
+            case "READER":
+                return READER;
+            case "LIBRARIAN":
+                return LIBRARIAN;
+            case "ADMINISTRATOR":
+                return ADMINISTRATOR;
+            default:
+                throw new IllegalArgumentException("Argument must be in a range of 1 to 3");
+        }
+    }
+
 }

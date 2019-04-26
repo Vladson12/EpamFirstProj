@@ -8,10 +8,11 @@ import java.io.IOException;
 
 
 public class SecurityFilter implements Filter {
-
+    private String pathToBeIgnored;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        System.out.println("Filter worked");
     }
 
     @Override
@@ -19,13 +20,19 @@ public class SecurityFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
+        String path = request.getRequestURI();
 
-        if (session == null || session.getAttribute("loggedInUser") == null) {
+
+        if (!((path.equals("/") || path.equals("/registration")) || (path.equals("/logout") || path.equals("/login")))
+                && (session == null || session.getAttribute("loggedInUser") == null)) {
             response.sendRedirect(request.getContextPath() + "/login");
         } else {
             chain.doFilter(request, response);
         }
     }
+//        if (!(requestURL.equals("http://localhost:8080/") || requestURL.equals("http://localhost:8080/login"))
+//                && (session == null || session.getAttribute("loggedInUser") == null)) {
+//        String requestURL = ((HttpServletRequest) req).getRequestURL().toString();
 //    @Override
 //    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 //        HttpServletRequest request = (HttpServletRequest) req;
@@ -40,9 +47,9 @@ public class SecurityFilter implements Filter {
 //        }
 //    }
 
-        @Override
-        public void destroy () {
-            // If you have assigned any expensive resources as field of
-            // this Filter class, then you could clean/close them here.
-        }
+    @Override
+    public void destroy() {
+        // If you have assigned any expensive resources as field of
+        // this Filter class, then you could clean/close them here.
     }
+}

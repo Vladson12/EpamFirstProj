@@ -1,18 +1,35 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: Konstantin
-  Date: 2019-04-12
-  Time: 12:54
-  To change this template use File | Settings | File Templates.
+ Created by IntelliJ IDEA.
+ User: Konstantin
+ Date: 2019-04-12
+ Time: 12:54
+ To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add book</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Add user</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <script>
+        function validate() {
+
+            var name = document.form.name.value;
+            var login = document.form.login.value;
+
+            if (name == null || name == "") {
+                alert("Username can't be blank");
+                return false;
+            } else if (login == null || login == "") {
+                alert("Email can't be blank");
+                return false;
+            }
+        }
+    </script>
 </head>
 
-<body class="w3-light-grey">
+<body>
 
 <jsp:include page="menuBar.jsp"></jsp:include>
 
@@ -20,28 +37,47 @@
     <h1>Library</h1>
 </div>
 
-<div class="w3-container w3-padding">
-    <div class="w3-card-4">
-        <div class="w3-container w3-center w3-green">
-            <h2>Add book</h2>
-        </div>
-        <form method="post" class="w3-selection w3-light-grey w3-padding">
-            <label>Title:
-                <input type="text" name="name" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 30%"><br />
-            </label>
-            <label>Author:
-                <input type="password" name="pass" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 30%"><br />
-            </label>
-            <label>isbn:
-                <input type="number" name="pass" class="w3-input w3-animate-input w3-border w3-round-large" style="width: 30%"><br />
-            </label>
-            <button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">Add</button>
-        </form>
-    </div>
-</div>
+<center><h2>Add user</h2></center>
+<form name="form" action="addUser" method="post" onsubmit="return validate()">
+    <table align="center">
 
-<div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
-    <button class="w3-btn w3-round-large" onclick="location.href='/home'">Back</button>
-</div>
+        <tr>
+            <td>Username</td>
+            <td><input type="text" name="name"/></td>
+        </tr>
+
+        <c:if test="${sessionScope.loggedInUser.role eq 'ADMIN'}">
+            <tr>
+                <form>
+                    <select name = "role">
+                        <option value = "READER">Reader</option>
+                        <option value = "LIBRARIAN" selected>Librarian</option>
+                        <option value = "ADMINISTRATOR">Administrator</option>
+                    </select>
+                </form>
+            </tr>
+        </c:if>
+
+        <tr>
+            <td>Email</td>
+            <td><input type="text" name="login"/></td>
+        </tr>
+
+        <tr>
+            <td><%=(request.getAttribute("errMessage") == null) ? ""
+                    : request.getAttribute("errMessage")%>
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Add"/><input
+                    type="reset" value="Reset"/></td>
+        </tr>
+
+    </table>
+</form>
+
 </body>
 </html>
