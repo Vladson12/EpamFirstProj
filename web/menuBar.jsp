@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Konstantin
@@ -20,13 +21,16 @@
     Registration
 </a>
 ||
-<a href="${pageContext.request.contextPath}/login">
-    Login
-</a>
-||
-<a href="${pageContext.request.contextPath}/logout">
-    Logout
-</a>
+<c:if test="${empty loggedInUser}">
+    <a href="${pageContext.request.contextPath}/login">
+        Login
+    </a>
+</c:if>
+<c:if test="${not empty loggedInUser}">
+    <a href="${pageContext.request.contextPath}/logout">
+        Logout
+    </a>
+</c:if>
 
 &nbsp;
 <span style="color:red">[ ${loggedInUser.name} ]</span>
