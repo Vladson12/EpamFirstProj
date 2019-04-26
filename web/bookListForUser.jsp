@@ -24,13 +24,15 @@
 </head>
 <body>
 
+<jsp:include page="menuBar.jsp"></jsp:include>
+
 <table>
     <tr style="font-size: 22px">
         <th width="1%" style="text-align: center">№</th>
-        <th width="22%" style="text-align: center">Наименование</th>
-        <th width="27%" style="text-align: center">Описание</th>
-        <th width="10%" style="text-align: center">Автор</th>
-        <th width="17%" style="text-align: center">Действия</th>
+        <th width="22%" style="text-align: center">Title</th>
+        <th width="27%" style="text-align: center">Description</th>
+        <th width="10%" style="text-align: center">Author</th>
+        <th width="17%" style="text-align: center">Actions</th>
 
     </tr>
     <c:forEach var="list" items="${list}">
@@ -53,12 +55,14 @@
 <table width="100%">
     <tr style="text-align: center">
         <td>
-            <input style="font-size: 16px; text-align: left" type="button" value="Предыдущая страница"
+            <input style="font-size: 16px; text-align: left" type="button" value="Previous page"
                    onclick="location.href='/bookList?pageSide=previous'">
-            <input style="font-size: 16px; text-align: left" type="button" value="Следующая страница"
+            <input style="font-size: 16px; text-align: left" type="button" value="Next page"
                    onclick="location.href='/bookList?pageSide=next'">
-            <input style="font-size: 16px; text-align: right" type="button" value="Добавить новую книгу"
-                   onclick="location.href='/addBook'">
+            <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
+                <input style="font-size: 16px; text-align: right" type="button" value="Add book"
+                       onclick="location.href='/addBook'">
+            </c:if>
         </td>
     </tr>
 </table>

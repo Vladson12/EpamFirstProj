@@ -28,9 +28,6 @@
 
 <c:if test="${sessionScope.loggedInUser.role eq 'READER'}">
     <p>You're READER.</p>
-</c:if>
-
-<c:if test="${sessionScope.loggedInUser.role eq 'READER'}">
     <div class="w3-container w3-center">
         <div class="w3-bar w3-padding-large w3-padding-24">
 
@@ -42,9 +39,6 @@
 
 <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
     <p>You're LIBRARIAN.</p>
-</c:if>
-
-<c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
     <div class="w3-container w3-center">
         <div class="w3-bar w3-padding-large w3-padding-24">
             <button class="w3-btn w3-hover-light-blue w3-round-large" onclick="location.href='/userList'">User list</button>

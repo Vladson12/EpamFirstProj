@@ -30,6 +30,9 @@
 
 </head>
 <body>
+
+<jsp:include page="menuBar.jsp"></jsp:include>
+
 <h1> <c:out value="${login}" /></h1>
 <table>
     <tr style="font-size: 22px">

@@ -24,6 +24,8 @@
 </head>
 <body>
 
+<jsp:include page="menuBar.jsp"></jsp:include>
+
 <table>
     <tr style="font-size: 22px">
         <th width="1%" style="text-align: center">№</th>

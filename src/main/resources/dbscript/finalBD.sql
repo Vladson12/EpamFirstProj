@@ -152,13 +152,11 @@ CREATE TABLE `library`.`user` (
   CONSTRAINT `role` FOREIGN KEY (`role`) REFERENCES `role` (`idrole`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-insert into `library`.`user` (name, login, password) values ('John','john@epam.com','john123');
-insert into `library`.`user` (name, login, password) values ('Elizabeth','elizabeth@epam.com','elizabeth123');
-insert into `library`.`user` (name, login, password) values ('Tom','tom@epam.com','tom123');
-insert into `library`.`user` (name, role, login, password) values ('Nana',2,'nana@epam.com','nana123');
-insert into `library`.`user` (name, login, password) values ('James','james@epam.com','james123');
-
-
+insert into `library`.`user` (name, login, password) values ('John','john@epam.com','$2a$10$XaK/MWIqlRUyl.DqFK3yUuCNO7wJFpNqDu1kCmnC33k9CTQ9LVrfi');
+insert into `library`.`user` (name, login, password) values ('Elizabeth','elizabeth@epam.com','$2a$10$Fo09xDgjzrF9ER5NZiT6i.xd8EBTOfM4RhSFUPiiz56HGpUX/wXPO');
+insert into `library`.`user` (name, login, password) values ('Tom','tom@epam.com','$2a$10$Z8PfPc619nYZsg54jO81RuKH9EyzNPphyOWnIh4bt0YirarB31WRm');
+insert into `library`.`user` (name, role, login, password) values ('Nana',2,'nana@epam.com','$2a$10$LprKcSg5wY82oBKnD7QrSOo0dE44QGVUJ86UWqKsV3jre2.p4llPa');
+insert into `library`.`user` (name, login, password) values ('James','james@epam.com','$2a$10$Hp7pdrZMkZxAg/SPM7BcM.k0C0jE58Z9I0l12CWu./Zrvb5qAz.R.');
 
 
 CREATE TABLE `library`.`card` (
