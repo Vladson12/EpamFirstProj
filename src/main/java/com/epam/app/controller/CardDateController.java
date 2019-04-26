@@ -33,7 +33,7 @@ public class CardDateController extends HttpServlet {
                 req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
             }
             CardService.updateCardStatusAndDate(CardService.get(Integer.parseInt(id)),
-                    CardState.AT_HALL, newDate);
+                    CardState.AT_HOME, newDate);
             req.getRequestDispatcher("/cards").forward(req, resp);
         }
         req.setAttribute("login", login);

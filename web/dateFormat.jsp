@@ -9,9 +9,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Register</title>
-    <script language="JavaScript" >
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Register</title>
+    <script language="JavaScript">
         function back() {
             window.close();
         }
@@ -22,13 +23,17 @@
 
 <jsp:include page="menuBar.jsp"></jsp:include>
 
-<center>  Select new date ${login}  </center>
+<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
+    <h1>Library</h1>
+</div>
+
+<center> Select new date ${login}  </center>
 <form name="form" action="/cardDate" method="post">
-<input type="hidden" name="login" value="${login}" />
-<input type="hidden" name="id" value="${id}" />
+    <input type="hidden" name="login" value="${login}"/>
+    <input type="hidden" name="id" value="${id}"/>
     <table align="center">
-            <td>End Date</td>
-            <td><input type="date" name="date"/></td>
+        <td>End Date</td>
+        <td><input type="date" name="date"/></td>
         </tr>
         <tr>
             <td></td>

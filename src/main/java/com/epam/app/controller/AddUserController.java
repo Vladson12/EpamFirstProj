@@ -22,7 +22,7 @@ public class AddUserController extends HttpServlet {
 
     private static String name;
     private static String login;
-    private static Role role;
+    private static String role;
     private static String password;
 
     @Override
@@ -30,10 +30,10 @@ public class AddUserController extends HttpServlet {
 
         name = request.getParameter("name");
         login = request.getParameter("login");
-        role = Role.READER;
+        role = request.getParameter("role");
         password = Password.generate();
 
-        User user = new User(name, role, login, hash(password));
+        User user = new User(name, Role.getRole(role), login, hash(password));
 
         boolean isUserRegistered = UserService.create(user);
 

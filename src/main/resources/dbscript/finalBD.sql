@@ -158,6 +158,7 @@ insert into `library`.`user` (name, login, password) values ('Elizabeth','elizab
 insert into `library`.`user` (name, login, password) values ('Tom','tom@epam.com','$2a$10$Z8PfPc619nYZsg54jO81RuKH9EyzNPphyOWnIh4bt0YirarB31WRm');
 insert into `library`.`user` (name, role, login, password) values ('Nana',2,'nana@epam.com','$2a$10$LprKcSg5wY82oBKnD7QrSOo0dE44QGVUJ86UWqKsV3jre2.p4llPa');
 insert into `library`.`user` (name, login, password) values ('James','james@epam.com','$2a$10$Hp7pdrZMkZxAg/SPM7BcM.k0C0jE58Z9I0l12CWu./Zrvb5qAz.R.');
+insert into `library`.`user` (name, role, login, password) values ('Bob',3,'bob@epam.com','$2a$10$sgmPj6YgXKzpR8gjVcQBUupAWbjp0iFZawKfk1gISkYO71dU6Wkgm');
 
 
 CREATE TABLE `library`.`card` (
@@ -176,9 +177,9 @@ CREATE TABLE `library`.`card` (
   CONSTRAINT `reader` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-insert into `library`.`card` (user, book, start_date, end_date, card_state) values (5,56,'2017-01-11','2019-07-10',3);
-insert into `library`.`card` (user, book, start_date, end_date, card_state) values (7,54,'2014-03-11','2018-01-03',2);
-insert into `library`.`card` (user, book, start_date, end_date, card_state) values (5,61,'2018-04-12','2019-11-15',1);
+insert into `library`.`card` (user, book, start_date, end_date, card_state) values (5,129,'2017-01-11','2019-07-10',3);
+insert into `library`.`card` (user, book, start_date, end_date, card_state) values (7,139,'2014-03-11','2018-01-03',2);
+insert into `library`.`card` (user, book, start_date, end_date, card_state) values (5,150,'2018-04-12','2019-11-15',1);
 
 
 
