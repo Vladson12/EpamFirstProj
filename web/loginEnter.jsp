@@ -9,8 +9,16 @@
 <html>
 <head>
     <title>Login enter</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
+
+<jsp:include page="menuBar.jsp"></jsp:include>
+
+<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
+    <h1>Library</h1>
+</div>
+
 <center>
     <form name="loginEnter" action="loginEnter" method="post">
         <table border="1" bgcolor="A9A9A9">

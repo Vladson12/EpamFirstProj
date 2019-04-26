@@ -13,6 +13,9 @@
 </head>
 
 <body class="w3-light-grey">
+
+<jsp:include page="menuBar.jsp"></jsp:include>
+
 <div class="w3-container w3-blue-grey w3-opacity w3-right-align">
     <h1>Library</h1>
 </div>

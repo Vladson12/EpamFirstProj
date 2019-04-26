@@ -3,7 +3,6 @@ package com.epam.app.controller;
 
 import com.epam.app.model.User;
 import com.epam.app.service.UserService;
-import com.epam.app.util.db.DbUtils;
 import lombok.NoArgsConstructor;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+import static com.epam.app.util.password.Password.hash;
 
 @NoArgsConstructor
 @WebServlet("/login")
@@ -27,6 +28,7 @@ public class AuthorizationUserController extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
+        String hashed = hash(password);
         User userAccount = UserService.findUser(login, password);
 
         if (UserService.isUserAllowed(login, password)) {

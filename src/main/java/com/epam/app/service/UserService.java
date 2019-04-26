@@ -2,12 +2,14 @@ package com.epam.app.service;
 
 import com.epam.app.DAO.UserDAO;
 import com.epam.app.model.User;
+import com.epam.app.util.password.Password;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.epam.app.DAO.impl.DaoFactoryMySqlImpl.getInstance;
+import static com.epam.app.util.password.Password.hash;
 
 public class UserService {
 
@@ -55,13 +57,13 @@ public class UserService {
         if (user == null) {
             return false;
         }
-        return user.getPassword().equals(password);
+        return Password.matches(password, user.getPassword());
     }
 
     //Find user by userName and password.
     public static User findUser(String login, String password) {
         User user = getByLogin(login);
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && Password.matches(password, user.getPassword())) {
             return user;
         }
         return null;

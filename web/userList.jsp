@@ -3,7 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-<head><title>User List</title>
+<head>
+    <title>User List</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <style>
         table {
             font-family: arial, sans-serif;
@@ -23,6 +26,12 @@
     </style>
 </head>
 <body>
+
+<jsp:include page="menuBar.jsp"></jsp:include>
+
+<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
+    <h1>Library</h1>
+</div>
 
 <table>
     <tr style="font-size: 22px">

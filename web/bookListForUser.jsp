@@ -3,7 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-<head><title>Книжная полка</title>
+<head>
+    <title>Книжная полка</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <style>
         table {
             font-family: arial, sans-serif;
@@ -24,13 +27,19 @@
 </head>
 <body>
 
+<jsp:include page="menuBar.jsp"></jsp:include>
+
+<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
+    <h1>Library</h1>
+</div>
+
 <table>
     <tr style="font-size: 22px">
         <th width="1%" style="text-align: center">№</th>
-        <th width="22%" style="text-align: center">Наименование</th>
-        <th width="27%" style="text-align: center">Описание</th>
-        <th width="10%" style="text-align: center">Автор</th>
-        <th width="17%" style="text-align: center">Действия</th>
+        <th width="22%" style="text-align: center">Title</th>
+        <th width="27%" style="text-align: center">Description</th>
+        <th width="10%" style="text-align: center">Author</th>
+        <th width="17%" style="text-align: center">Actions</th>
 
     </tr>
     <c:forEach var="list" items="${list}">
@@ -43,22 +52,23 @@
 
             <td style="text-align: center">
                 <input style="font-size: 16px" ${list.bookState.name().equals("ORDERED") ? 'disabled=""' : ''}
-                       type="button" value="Order" onclick="location.href='/bookList?id=${list.id}'">
+                       type="button" value="Order" onclick="location.href='/bookList?login=${login}&id=${list.id}'">
             </td>
         </tr>
     </c:forEach>
 </table>
 <hr/>
-
 <table width="100%">
     <tr style="text-align: center">
         <td>
-            <input style="font-size: 16px; text-align: left" type="button" value="Предыдущая страница"
+            <input style="font-size: 16px; text-align: left" type="button" value="Previous page"
                    onclick="location.href='/bookList?pageSide=previous'">
-            <input style="font-size: 16px; text-align: left" type="button" value="Следующая страница"
+            <input style="font-size: 16px; text-align: left" type="button" value="Next page"
                    onclick="location.href='/bookList?pageSide=next'">
-            <input style="font-size: 16px; text-align: right" type="button" value="Добавить новую книгу"
-                   onclick="location.href='/addBook'">
+            <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
+                <input style="font-size: 16px; text-align: right" type="button" value="Add book"
+                       onclick="location.href='/addBook'">
+            </c:if>
         </td>
     </tr>
 </table>

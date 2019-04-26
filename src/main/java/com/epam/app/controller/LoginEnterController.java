@@ -14,6 +14,7 @@ import java.util.List;
 public class LoginEnterController extends HttpServlet {
 
     private String login;
+    private Boolean isLibrarian;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         req.getRequestDispatcher("/loginEnter.jsp").forward(req, resp);
@@ -22,16 +23,14 @@ public class LoginEnterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<String> logins = UserService.getAllLogins();
-            if (req.getParameter("insert") != null) {
-                login = req.getParameter("login");
-                if (logins.stream().anyMatch(login::equals)) {
-                    req.setAttribute("login", login);
-//                System.out.println(req.getAttribute("login"));
-                    req.getRequestDispatcher("/cards").forward(req, resp);
-//                req.getRequestDispatcher("/cards/login=" + login).forward(req, resp);
-                } else {
-                    req.getRequestDispatcher("/loginEnter.jsp").forward(req, resp);
-                }
+        if (req.getParameter("insert") != null) {
+            login = req.getParameter("login");
+            if (logins.stream().anyMatch(login::equals)) {
+                req.setAttribute("login", login);
+                req.getRequestDispatcher("/cards").forward(req, resp);
+            } else {
+                req.getRequestDispatcher("/loginEnter.jsp").forward(req, resp);
+            }
         }
     }
 }

@@ -22,39 +22,33 @@
     <h1>Library</h1>
 </div>
 
-<c:if test="${not empty loggedInUser}">
-    <p>You're still logged in.</p>
-</c:if>
+
 
 <c:if test="${sessionScope.loggedInUser.role eq 'READER'}">
-    <p>You're READER.</p>
-</c:if>
 
-<c:if test="${sessionScope.loggedInUser.role eq 'READER'}">
     <div class="w3-container w3-center">
         <div class="w3-bar w3-padding-large w3-padding-24">
 
-            <button class="w3-btn w3-hover-indigo w3-round-large" onclick="location.href='/bookList'">Book list</button>
+            <button class="w3-btn w3-hover-indigo w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'">Book list</button>
+            <button class="w3-btn w3-hover-indigo w3-round-large" onclick="location.href='/myCard?login=${loggedInUser.login}'">My cards</button>
 
         </div>
     </div>
 </c:if>
 
 <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
-    <p>You're LIBRARIAN.</p>
-</c:if>
 
-<c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
     <div class="w3-container w3-center">
         <div class="w3-bar w3-padding-large w3-padding-24">
             <button class="w3-btn w3-hover-light-blue w3-round-large" onclick="location.href='/userList'">User list</button>
             <button class="w3-btn w3-hover-green w3-round-large" onclick="location.href='/addUser'">Add user</button>
-            <button class="w3-btn w3-hover-indigo w3-round-large" onclick="location.href='/bookList'">Book list</button>
+            <button class="w3-btn w3-hover-indigo w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'">Book list</button>
             <button class="w3-btn w3-hover-aqua w3-round-large" onclick="location.href='/addBook'">Add book</button>
-            <button class="w3-btn w3-hover-indigo w3-round-large" onclick="location.href='/loginEnter'">FR</button>
+            <button class="w3-btn w3-hover-indigo w3-round-large" onclick="location.href='/loginEnter'">User cards</button>
         </div>
     </div>
 </c:if>
+
 
 </body>
 </html>

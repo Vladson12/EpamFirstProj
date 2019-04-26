@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.epam.app.util.password.Password.hash;
+
 @WebServlet("/addUser")
 public class AddUserController extends HttpServlet {
 
@@ -31,12 +33,12 @@ public class AddUserController extends HttpServlet {
         role = Role.READER;
         password = Password.generate();
 
-        User user = new User(name, role, login, password);
+        User user = new User(name, role, login, hash(password));
 
         boolean isUserRegistered = UserService.create(user);
 
         if (!isUserRegistered) {
-            request.setAttribute("errMessage", "This email already exists!");
+            request.setAttribute("errMessage", "User with this email already exists!");
             request.getRequestDispatcher("/addUser.jsp").forward(request, response);
         } else {
             try {
