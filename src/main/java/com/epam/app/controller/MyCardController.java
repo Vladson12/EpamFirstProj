@@ -37,7 +37,7 @@ public class MyCardController extends HttpServlet {
             int idInt = Integer.valueOf(idCard);
             if (button != null) {
                 CardService.updateCardStatusAndDate(CardService.get(idInt), CardState.RETURNED,
-                        LocalDate.now(ZoneId.systemDefault()));
+                            LocalDate.now(ZoneId.systemDefault()));
                 cards = CardService.getAllCards(UserService.getByLogin(login));
             }
         }

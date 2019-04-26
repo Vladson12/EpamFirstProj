@@ -3,23 +3,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Books</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+<head><title>Books</title>
     <style>
+        table.stat td, tr, th {
+            height:9%;
+        }
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
             width: 100%;
         }
-
         td, th {
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
         }
-
         tr:nth-child(even) {
             background-color: #dddddd;
         }
@@ -27,55 +25,53 @@
 </head>
 <body>
 
-<jsp:include page="menuBar.jsp"></jsp:include>
+<table class="stat">
+    <tr>
+        <th>
+            <input style="font-size: 16px; text-align: right" type="button" value="Back"
+                   onclick="location.href='/home'">
 
-<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
-    <h1>Library</h1>
-</div>
-
-<table>
+        </th>
+    </tr>
     <tr style="font-size: 22px">
-        <th width="1%" style="text-align: center">№</th>
-        <th width="22%" style="text-align: center">Title</th>
-        <th width="27%" style="text-align: center">Description</th>
-        <th width="10%" style="text-align: center">Author</th>
-        <th width="17%" style="text-align: center">Actions</th>
-
+        <th width="2%" style="text-align: center">№</th>
+        <th width="15%" style="text-align: center">Name</th>
+        <th width="15%" style="text-align: center">Author</th>
+        <th width="15%" style="text-align: center">Genre</th>
+        <th width="31%" style="text-align: center">Description</th>
+        <th width="7%" style="text-align: center">Year</th>
+        <th width="15%" style="text-align: center">Actions</th>
     </tr>
     <c:forEach var="list" items="${list}">
         <tr>
             <td style="text-align: center"><c:out value="${list.id}"/></td>
             <td><c:out value="${list.title}"/></td>
-            <td><c:out value="${list.description}"/></td>
             <td><c:out value="${list.author}"/></td>
+            <td><c:out value="${list.genre}"/></td>
+            <td><c:out value="${list.description}"/></td>
+            <td><c:out value="${list.year}"/></td>
             <jsp:useBean id="list" scope="page" type="com.epam.app.model.Book"/>
 
-            <td style="text-align: center">
+                <td style="text-align: center">
                 <input style="font-size: 16px" ${list.bookState.name().equals("ORDERED") ? 'disabled=""' : ''}
                        type="button" value="Order" onclick="location.href='/bookList?login=${login}&id=${list.id}'">
-            </td>
+            <c:if test="${(sessionScope.loggedInUser.role eq 'LIBRARIAN') || (sessionScope.loggedInUser.role eq 'ADMINISTRATOR')}">
+                    <input style="font-size: 16px" type="button" value="Edit" onclick="location.href='/editBook?id=${list.id}'">
+                </td>
+            </c:if>
+
         </tr>
     </c:forEach>
 </table>
 <hr/>
-<table width="100%">
-    <tr style="text-align: center">
-        <td>
-            <input style="font-size: 16px; text-align: left" type="button" value="Previous page"
-                   onclick="location.href='/bookList?pageSide=previous'">
-            <input style="font-size: 16px; text-align: left" type="button" value="Next page"
-                   onclick="location.href='/bookList?pageSide=next'">
-            <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
-                <input style="font-size: 16px; text-align: right" type="button" value="Add book"
-                       onclick="location.href='/addBook'">
-            </c:if>
-        </td>
-    </tr>
-</table>
 
-<div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
-    <button class="w3-btn w3-round-large" onclick="location.href='..'">Back</button>
-</div>
-
+<tr style="text-align: center">
+    <td>
+        <input style="font-size: 16px; text-align: left" type="button" value="Previous page"
+               onclick="location.href='/bookList?pageSide=previous'">
+        <input style="font-size: 16px; text-align: left" type="button" value="Next page"
+               onclick="location.href='/bookList?pageSide=next'">
+    </td>
+</tr>
 </body>
 </html>
