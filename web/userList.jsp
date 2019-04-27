@@ -29,10 +29,6 @@
 
 <jsp:include page="menuBar.jsp"></jsp:include>
 
-<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
-    <h1>Library</h1>
-</div>
-
 <table>
     <tr style="font-size: 22px">
 

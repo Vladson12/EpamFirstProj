@@ -34,10 +34,6 @@
 
 <jsp:include page="menuBar.jsp"></jsp:include>
 
-<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
-    <h1>Library</h1>
-</div>
-
 <center><h2>Add user</h2></center>
 <form name="form" action="addUser" method="post" onsubmit="return validate()">
     <table align="center">
@@ -53,29 +49,32 @@
             <td><input type="text" name="login"/></td>
         </tr>
 
-        <c:if test="${sessionScope.loggedInUser.role eq 'ADMINISTRATOR'}">
-            <tr>
-                <td>Role</td>
-                <td><select name="role">
-                    <option value="READER" selected>Reader</option>
-                    <option value="LIBRARIAN">Librarian</option>
-                    <option value="ADMINISTRATOR">Administrator</option>
-                </select>
-                </td>
-            </tr>
-        </c:if>
+        <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
+        <c:choose>
+            <c:when test="${userRole eq 'ADMINISTRATOR'}">
+                <tr>
+                    <td>Role</td>
+                    <td>
+                        <select name="role">
+                            <option value="READER" selected>Reader</option>
+                            <option value="LIBRARIAN">Librarian</option>
+                            <option value="ADMINISTRATOR">Administrator</option>
+                        </select>
+                    </td>
+                </tr>
+            </c:when>
+            <c:otherwise>
+                <tr>
+                    <td>Role</td>
+                    <td>
+                        <select name="role">
+                            <option value="READER" selected>Reader</option>
+                        </select>
+                    </td>
 
-        <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
-            <tr>
-                <td>Role</td>
-                <td><select name="role">
-                    <option value="READER" selected>Reader</option>
-
-                </select>
-                </td>
-
-            </tr>
-        </c:if>
+                </tr>
+            </c:otherwise>
+        </c:choose>
 
         <tr>
             <td><%=(request.getAttribute("errMessage") == null) ? ""

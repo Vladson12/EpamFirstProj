@@ -24,10 +24,6 @@
 
 <jsp:include page="menuBar.jsp"></jsp:include>
 
-<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
-    <h1>Library</h1>
-</div>
-
 <center><h2>Sign in to Library</h2></center>
 <form name="form" action="login" method="post" onsubmit="return validate()">
     <table align="center">

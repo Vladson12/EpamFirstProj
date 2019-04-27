@@ -27,6 +27,8 @@
 </head>
 <body>
 
+<jsp:include page="menuBar.jsp"></jsp:include>
+
 <table class="stat">
     <tr>
         <th>
@@ -54,13 +56,16 @@
             <td><c:out value="${list.year}"/></td>
             <jsp:useBean id="list" scope="page" type="com.epam.app.model.Book"/>
 
-                <td style="text-align: center">
+
+            <td style="text-align: center">
                 <input style="font-size: 16px" ${list.bookState.name().equals("ORDERED") ? 'disabled=""' : ''}
                        type="button" value="Order" onclick="location.href='/bookList?login=${login}&id=${list.id}'">
-            <c:if test="${(sessionScope.loggedInUser.role eq 'LIBRARIAN') || (sessionScope.loggedInUser.role eq 'ADMINISTRATOR')}">
+                <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
+                <c:if test="${userRole ne 'LIBRARIAN'}">
                     <input style="font-size: 16px" type="button" value="Edit" onclick="location.href='/editBook?id=${list.id}'">
-                </td>
-            </c:if>
+                </c:if>
+            </td>
+
 
         </tr>
     </c:forEach>

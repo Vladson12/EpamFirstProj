@@ -36,10 +36,6 @@
 
 <jsp:include page="menuBar.jsp"></jsp:include>
 
-<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
-    <h1>Library</h1>
-</div>
-
 <h1> <c:out value="${login}" /></h1>
 <table>
     <tr style="font-size: 22px">
@@ -60,30 +56,33 @@
             <td><c:out value="${list.endDate}" /></td>
             <td><c:out value="${list.cardState}" /></td>
 
-            <c:if test="${(sessionScope.loggedInUser.role eq 'LIBRARIAN') || (sessionScope.loggedInUser.role eq 'ADMINISTRATOR')}">
-                <td style="text-align: center">
-                    <%if (list.getCardState().equals(CardState.ORDERED)) {%>
-                    <input style = "font-size: 16px" type = "button" value = "Take home"
-                            onclick = "location.href = '/cards?id=${list.id}&button=home'" >
-                    <input style = "font-size: 16px" type = "button" value = "Take reading hall"
-                            onclick = "location.href='/cards?id=${list.id}&button=hall'" >
-                    <%} else if(list.getCardState().equals(CardState.AT_HALL) ||
-                            list.getCardState().equals(CardState.AT_HOME) ||
-                        list.getCardState().equals(CardState.OVERDUE)) {%>
-                    <input style = "font-size: 16px" type = "button" value = "Return"
-                           onclick = "location.href = '/cards?id=${list.id}&button=return'" >
-                    <%}%>
-                </td>
-            </c:if>
+            <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
+            <c:choose>
+                <c:when test="${(userRole eq 'LIBRARIAN') || (userRole eq 'ADMINISTRATOR')}">
+                    <td style="text-align: center">
+                        <%if (list.getCardState().equals(CardState.ORDERED)) {%>
+                        <input style = "font-size: 16px" type = "button" value = "Take home"
+                                onclick = "location.href = '/cards?id=${list.id}&button=home'" >
+                        <input style = "font-size: 16px" type = "button" value = "Take reading hall"
+                                onclick = "location.href='/cards?id=${list.id}&button=hall'" >
+                        <%} else if(list.getCardState().equals(CardState.AT_HALL) ||
+                                list.getCardState().equals(CardState.AT_HOME) ||
+                            list.getCardState().equals(CardState.OVERDUE)) {%>
+                        <input style = "font-size: 16px" type = "button" value = "Return"
+                               onclick = "location.href = '/cards?id=${list.id}&button=return'" >
+                        <%}%>
+                    </td>
+                </c:when>
 
-            <c:if test="${sessionScope.loggedInUser.role eq 'READER'}">
-                <td style="text-align: center">
-                    <%if (list.getCardState().equals(CardState.ORDERED)) {%>
-                    <input style = "font-size: 16px" type = "button" value = "reset"
-                           onclick = "location.href = '/myCard?login=${login}&id=${list.id}&button=reset'" >
-                    <%}%>
-                </td>
-            </c:if>
+                <c:otherwise>
+                    <td style="text-align: center">
+                        <%if (list.getCardState().equals(CardState.ORDERED)) {%>
+                        <input style = "font-size: 16px" type = "button" value = "reset"
+                               onclick = "location.href = '/myCard?login=${login}&id=${list.id}&button=reset'" >
+                        <%}%>
+                    </td>
+                </c:otherwise>
+            </c:choose>
 
         </tr>
     </c:forEach>
