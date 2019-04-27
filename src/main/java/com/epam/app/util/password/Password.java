@@ -1,14 +1,10 @@
 package com.epam.app.util.password;
 
-/**
- * Created by vladd on 22.04.2019
- */
 import org.passay.CharacterData;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.PasswordGenerator;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 
 public class Password {
     private static final PasswordGenerator gen = new PasswordGenerator();
@@ -29,7 +25,6 @@ public class Password {
     }
 
     public static String hash(String password) {
-
         return PASSWORD_ENCODER.encode(password);
     }
 

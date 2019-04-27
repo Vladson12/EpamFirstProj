@@ -21,7 +21,7 @@
         <h1>Library</h1>
     </div>
 
-    <div class="w3-bar w3-dark-gray w3-opacity-min w3-left-align" >
+    <div class="w3-bar w3-dark-gray w3-large w3-opacity-min w3-left-align" >
         <c:set var="loggedIn" value="${not empty loggedInUser}"/>
 
         <c:choose>
