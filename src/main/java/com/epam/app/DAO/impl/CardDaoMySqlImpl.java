@@ -1,10 +1,10 @@
 package com.epam.app.DAO.impl;
 
 import com.epam.app.DAO.CardDAO;
-import com.epam.app.model.enums.CardState;
-import com.epam.app.model.Book;
 import com.epam.app.model.Card;
 import com.epam.app.model.User;
+import com.epam.app.model.enums.CardState;
+import com.epam.app.model.Book;
 import com.epam.app.util.db.DbUtils;
 
 import java.sql.*;

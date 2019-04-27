@@ -28,12 +28,12 @@
     <h1>Library</h1>
 </div>
 
-<center><h2>Log In</h2></center>
+<center><h2>Sign in to Library</h2></center>
 <form name="form" action="login" method="post" onsubmit="return validate()">
     <table align="center">
 
         <tr>
-            <td>Email</td>
+            <td>Email address</td>
             <td><input type="email" name="login"/></td>
         </tr>
         <tr>

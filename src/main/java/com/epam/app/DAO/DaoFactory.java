@@ -7,6 +7,4 @@ public interface DaoFactory {
     CardDAO getCardDAO();
 
     BookDAO getBookDAO();
-
 }
-

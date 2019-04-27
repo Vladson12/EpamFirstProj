@@ -1,8 +1,8 @@
 package com.epam.app.DAO.impl;
 
+import com.epam.app.model.User;
 import com.epam.app.util.db.DbUtils;
 import com.epam.app.DAO.UserDAO;
-import com.epam.app.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;

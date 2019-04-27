@@ -25,9 +25,7 @@ public class DaoFactoryMySqlImpl implements com.epam.app.DAO.DaoFactory {
     }
 
     @Override
-    public CardDAO getCardDAO() {
-
-        return CARD_DAO;
+    public CardDAO getCardDAO() { return CARD_DAO;
     }
 
     @Override
