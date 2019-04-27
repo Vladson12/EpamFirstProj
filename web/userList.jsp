@@ -33,9 +33,19 @@
     <h1>Library</h1>
 </div>
 
+<center>
+    <form name="findUserCards" action="findUserCards" method="post">
+            <tr>
+                <th>Enter user login to find Cards: </th>
+                <td><input type="text" name="login" value=""></td>
+                <td><input type="submit" name="insert" value="Insert"></td>
+            </tr>
+    </form>
+</center>
+
 <div class="w3-container w3-center">
     <div class="w3-bar  w3-round-large w3-left w3-padding-large ">
-        <button class="w3-btn w3-hover-blue-grey w3-round-large" onclick="location.href='/addUser'">Add user</button>
+        <button class="w3-btn w3-hover-blue-grey w3-round-large" onclick="location.href='/addUser'">+ Add new user</button>
     </div>
 </div>
 

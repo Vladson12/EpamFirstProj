@@ -79,7 +79,7 @@
     <!--&lt;!&ndash; loginEnter to enter login to search all cards of user &ndash;&gt;-->
     <!--<servlet>-->
         <!--<servlet-name>loginEnter</servlet-name>-->
-        <!--<servlet-class>com.epam.app.controller.LoginEnterController</servlet-class>-->
+        <!--<servlet-class>com.epam.app.controller.FindUserCardsControllerler</servlet-class>-->
     <!--</servlet>-->
 
     <!--<servlet-mapping>-->

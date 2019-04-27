@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/loginEnter")
-public class LoginEnterController extends HttpServlet {
+@WebServlet("/findUserCards")
+public class FindUserCardsController extends HttpServlet {
 
     private String login;
     private Boolean isLibrarian;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        req.getRequestDispatcher("/loginEnter.jsp").forward(req, resp);
+        req.getRequestDispatcher("/findUserCards.jsp").forward(req, resp);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class LoginEnterController extends HttpServlet {
                 req.setAttribute("login", login);
                 req.getRequestDispatcher("/cards").forward(req, resp);
             } else {
-                req.getRequestDispatcher("/loginEnter.jsp").forward(req, resp);
+                req.getRequestDispatcher("/findUserCards.jsp").forward(req, resp);
             }
         }
     }

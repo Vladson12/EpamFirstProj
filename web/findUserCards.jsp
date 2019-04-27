@@ -20,7 +20,7 @@
 </div>
 
 <center>
-    <form name="loginEnter" action="loginEnter" method="post">
+    <form name="findUserCards" action="findUserCards" method="post">
         <table border="1" bgcolor="A9A9A9">
             <tr>
                 <th>Enter user login : </th>
