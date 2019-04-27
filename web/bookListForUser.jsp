@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-<head><title>Книжная полка</title>
+<head><title>Books</title>
     <style>
         table.stat td, tr, th {
             height:9%;
@@ -28,30 +28,34 @@
 <table class="stat">
     <tr>
         <th>
-            <input style="font-size: 16px; text-align: right" type="button" value="Вернуться назад"
+            <input style="font-size: 16px; text-align: right" type="button" value="Back"
                    onclick="location.href='/home'">
 
         </th>
     </tr>
     <tr style="font-size: 22px">
-        <th width="1%" style="text-align: center">№</th>
-        <th width="22%" style="text-align: center">Наименование</th>
-        <th width="27%" style="text-align: center">Описание</th>
-        <th width="10%" style="text-align: center">Автор</th>
-        <th width="17%" style="text-align: center">Действия</th>
+        <th width="2%" style="text-align: center">№</th>
+        <th width="15%" style="text-align: center">Name</th>
+        <th width="15%" style="text-align: center">Author</th>
+        <th width="15%" style="text-align: center">Genre</th>
+        <th width="31%" style="text-align: center">Description</th>
+        <th width="7%" style="text-align: center">Year</th>
+        <th width="15%" style="text-align: center">Actions</th>
     </tr>
     <c:forEach var="list" items="${list}">
         <tr>
             <td style="text-align: center"><c:out value="${list.id}"/></td>
             <td><c:out value="${list.title}"/></td>
-            <td><c:out value="${list.description}"/></td>
             <td><c:out value="${list.author}"/></td>
+            <td><c:out value="${list.genre}"/></td>
+            <td><c:out value="${list.description}"/></td>
+            <td><c:out value="${list.year}"/></td>
             <jsp:useBean id="list" scope="page" type="com.epam.app.model.Book"/>
 
                 <td style="text-align: center">
                 <input style="font-size: 16px" ${list.bookState.name().equals("ORDERED") ? 'disabled=""' : ''}
                        type="button" value="Order" onclick="location.href='/bookList?login=${login}&id=${list.id}'">
-            <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
+            <c:if test="${(sessionScope.loggedInUser.role eq 'LIBRARIAN') || (sessionScope.loggedInUser.role eq 'ADMINISTRATOR')}">
                     <input style="font-size: 16px" type="button" value="Edit" onclick="location.href='/editBook?id=${list.id}'">
                 </td>
             </c:if>
@@ -63,9 +67,9 @@
 
 <tr style="text-align: center">
     <td>
-        <input style="font-size: 16px; text-align: left" type="button" value="Предыдущая страница"
+        <input style="font-size: 16px; text-align: left" type="button" value="Previous page"
                onclick="location.href='/bookList?pageSide=previous'">
-        <input style="font-size: 16px; text-align: left" type="button" value="Следующая страница"
+        <input style="font-size: 16px; text-align: left" type="button" value="Next page"
                onclick="location.href='/bookList?pageSide=next'">
     </td>
 </tr>

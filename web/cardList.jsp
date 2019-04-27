@@ -44,11 +44,11 @@
 <table>
     <tr style="font-size: 22px">
         <th width="1%" style="text-align: center">№</th>
-        <th width="22%" style="text-align: center">Книга</th>
+        <th width="22%" style="text-align: center">Book</th>
         <th width="27%" style="text-align: center">From</th>
         <th width="27%" style="text-align: center">To</th>
-        <th width="10%" style="text-align: center">Состояние</th>
-        <th width="17%" style="text-align: center">Действия</th>
+        <th width="10%" style="text-align: center">State</th>
+        <th width="17%" style="text-align: center">Actions</th>
 
     </tr>
     <c:forEach var = "list" items = "${list}">
@@ -60,7 +60,7 @@
             <td><c:out value="${list.endDate}" /></td>
             <td><c:out value="${list.cardState}" /></td>
 
-            <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
+            <c:if test="${(sessionScope.loggedInUser.role eq 'LIBRARIAN') || (sessionScope.loggedInUser.role eq 'ADMINISTRATOR')}">
                 <td style="text-align: center">
                     <%if (list.getCardState().equals(CardState.ORDERED)) {%>
                     <input style = "font-size: 16px" type = "button" value = "Take home"

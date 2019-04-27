@@ -54,24 +54,25 @@
         </tr>
 
         <c:if test="${sessionScope.loggedInUser.role eq 'ADMINISTRATOR'}">
-            <tr align="center">
-
-                <select name="role">
-                    <option value="READER">Reader</option>
-                    <option value="LIBRARIAN" selected>Librarian</option>
+            <tr>
+                <td>Role</td>
+                <td><select name="role">
+                    <option value="READER" selected>Reader</option>
+                    <option value="LIBRARIAN">Librarian</option>
                     <option value="ADMINISTRATOR">Administrator</option>
                 </select>
-
+                </td>
             </tr>
         </c:if>
 
         <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">
-            <tr align="center">
-
-                <select name="role">
+            <tr>
+                <td>Role</td>
+                <td><select name="role">
                     <option value="READER" selected>Reader</option>
 
                 </select>
+                </td>
 
             </tr>
         </c:if>
@@ -91,6 +92,10 @@
 
     </table>
 </form>
+
+<div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
+    <button class="w3-btn w3-round-large" onclick="location.href='..'">Back</button>
+</div>
 
 </body>
 </html>
