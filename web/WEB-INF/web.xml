@@ -45,7 +45,7 @@
     <!--&lt;!&ndash;addUser servlet&ndash;&gt;-->
     <!--<servlet>-->
         <!--<servlet-name>addUser</servlet-name>-->
-        <!--<servlet-class>com.epam.app.controller.AddUserController</servlet-class>-->
+        <!--<servlet-class>com.epam.app.controller.UserAddController</servlet-class>-->
     <!--</servlet>-->
 
     <!--<servlet-mapping>-->
@@ -112,7 +112,7 @@
     <!-- userList servlet -->
     <!--<servlet>-->
         <!--<servlet-name>userList</servlet-name>-->
-        <!--<servlet-class>com.epam.app.controller.UserListController</servlet-class>-->
+        <!--<servlet-class>com.epam.app.controller.UserControllerrvlet-class>-->
     <!--</servlet>-->
 
     <!--<servlet-mapping>-->

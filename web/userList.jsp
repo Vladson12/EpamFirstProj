@@ -33,23 +33,55 @@
     <h1>Library</h1>
 </div>
 
+<div class="w3-container w3-center">
+    <div class="w3-bar  w3-round-large w3-left w3-padding-large ">
+        <button class="w3-btn w3-hover-blue-grey w3-round-large" onclick="location.href='/addUser'">Add user</button>
+    </div>
+</div>
+
 <table>
     <tr style="font-size: 22px">
 
-        <th width="22%" style="text-align: center">Name</th>
-        <th width="27%" style="text-align: center">Login</th>
-        <th width="27%" style="text-align: center">Role</th>
+        <th width="25%" style="text-align: center">Name</th>
+        <th width="25%" style="text-align: center">Login</th>
+        <th width="25%" style="text-align: center">Role</th>
+        <th width="25%" style="text-align: center">Actions</th>
 
     </tr>
-    <c:forEach var="users" items="${users}">
-        <tr>
-            <td><c:out value="${users.name}"/></td>
-            <td><c:out value="${users.login}"/></td>
-            <td><c:out value="${users.role}"/></td>
+    <c:forEach var="user" items="${users}">
+        <jsp:useBean id="user" scope="page" type="com.epam.app.model.User"/>
+        <c:if test="${(sessionScope.loggedInUser.role eq 'LIBRARIAN') && (user.role eq 'READER')}">
+            <tr>
+                <td><c:out value="${user.name}"/></td>
+                <td><c:out value="${user.login}"/></td>
+                <td><c:out value="${user.role}"/></td>
 
-            <jsp:useBean id="users" scope="page" type="com.epam.app.model.User"/>
+                <td style="text-align: center">
+                    <form action="/users?login=${user.login}&button=edit" method="post">
+                        <input style="font-size: 16px" type="submit" value="Edit">
+                    </form>
+                    <form action="/users?login=${user.login}&button=delete" method="post">
+                        <input style="font-size: 16px" type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+        </c:if>
+        <c:if test="${sessionScope.loggedInUser.role eq 'ADMINISTRATOR'}">
+            <tr>
+                <td><c:out value="${user.name}"/></td>
+                <td><c:out value="${user.login}"/></td>
+                <td><c:out value="${user.role}"/></td>
 
-        </tr>
+                <td style="text-align: center">
+                    <form action="/users?login=${user.login}&button=edit" method="post">
+                        <input style="font-size: 16px" type="submit" value="Edit">
+                    </form>
+                    <form action="/users?login=${user.login}&button=delete" method="post">
+                        <input style="font-size: 16px" type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+        </c:if>
     </c:forEach>
 </table>
 <hr/>
@@ -60,10 +92,10 @@
                    onclick="location.href='/users?pageSide=previous'">
             <input style="font-size: 16px; text-align: left" type="button" value="Next page"
                    onclick="location.href='/users?pageSide=next'">
-<%--            <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">--%>
-<%--                <input style="font-size: 16px; text-align: right" type="button" value="Add book"--%>
-<%--                       onclick="location.href='/addBook'">--%>
-<%--            </c:if>--%>
+            <%--            <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">--%>
+            <%--                <input style="font-size: 16px; text-align: right" type="button" value="Add book"--%>
+            <%--                       onclick="location.href='/addBook'">--%>
+            <%--            </c:if>--%>
         </td>
     </tr>
 </table>

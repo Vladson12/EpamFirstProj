@@ -46,8 +46,8 @@ CREATE TABLE `library`.`book` (
   PRIMARY KEY (`idbook`),
   KEY `book_state_idx` (`book_state_id`),
   KEY `genre_idx` (`genre`),
-  CONSTRAINT `book_state` FOREIGN KEY (`book_state_id`) REFERENCES `book_state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `genre` FOREIGN KEY (`genre`) REFERENCES `genre` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `book_state` FOREIGN KEY (`book_state_id`) REFERENCES `book_state` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `genre` FOREIGN KEY (`genre`) REFERENCES `genre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
 
 INSERT INTO `library`.`book` (year, genre, title, description, author) VALUES (2004, 1, 'Информатика: базовый курс', 'Вводный курс информатики', 'Акулов О.А.');
@@ -137,7 +137,7 @@ CREATE TABLE `library`.`role` (
 
 insert into `library`.`role` (idrole, role_name) values (1,'READER');
 insert into `library`.`role` (idrole, role_name) values (2,'LIBRARIAN');
-insert into `library`.`role` (idrole, role_name) values (3,'ADMINISTATOR');
+insert into `library`.`role` (idrole, role_name) values (3,'ADMINISTRATOR');
 
 
 
@@ -150,7 +150,7 @@ CREATE TABLE `library`.`user` (
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `role_idx` (`role`),
-  CONSTRAINT `role` FOREIGN KEY (`role`) REFERENCES `role` (`idrole`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `role` FOREIGN KEY (`role`) REFERENCES `role` (`idrole`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 insert into `library`.`user` (name, login, password) values ('John','john@epam.com','$2a$10$XaK/MWIqlRUyl.DqFK3yUuCNO7wJFpNqDu1kCmnC33k9CTQ9LVrfi');
@@ -172,9 +172,9 @@ CREATE TABLE `library`.`card` (
   KEY `idreader_idx` (`user`),
   KEY `book_idx` (`book`),
   KEY `card_state_idx` (`card_state`),
-  CONSTRAINT `book` FOREIGN KEY (`book`) REFERENCES `book` (`idbook`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `card_state` FOREIGN KEY (`card_state`) REFERENCES `card_state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `reader` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `book` FOREIGN KEY (`book`) REFERENCES `book` (`idbook`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `card_state` FOREIGN KEY (`card_state`) REFERENCES `card_state` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `reader` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 insert into `library`.`card` (user, book, start_date, end_date, card_state) values (5,129,'2017-01-11','2019-07-10',3);

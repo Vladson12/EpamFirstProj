@@ -56,7 +56,7 @@ public class UserDaoMySqlImpl implements UserDAO {
             statement.setInt(2, user.getRole().ordinal() + 1);
             statement.setString(3, user.getLogin());
             statement.setString(4, user.getPassword());
-            statement.setInt(4, user.getId());
+            statement.setInt(5, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -130,7 +130,7 @@ public class UserDaoMySqlImpl implements UserDAO {
         try (Connection connection = DbUtils.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE)) {
             statement.setInt(1, userId);
-            statement.executeQuery();
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

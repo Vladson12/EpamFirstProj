@@ -1,6 +1,7 @@
 package com.epam.app.service;
 
 import com.epam.app.DAO.UserDAO;
+import com.epam.app.model.Card;
 import com.epam.app.model.User;
 import com.epam.app.util.password.Password;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -41,6 +42,10 @@ public class UserService {
 
     public static void updateUser(User user) {
         USER_DAO.updateUser(user);
+    }
+
+    public static void deleteUser(User user) {
+        USER_DAO.deleteUser(user.getId());
     }
 
     public static boolean isLoginValid(String login) {

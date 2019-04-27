@@ -18,7 +18,7 @@ import java.io.IOException;
 import static com.epam.app.util.password.Password.hash;
 
 @WebServlet("/addUser")
-public class AddUserController extends HttpServlet {
+public class UserAddController extends HttpServlet {
 
     private static String name;
     private static String login;
@@ -39,7 +39,7 @@ public class AddUserController extends HttpServlet {
 
         if (!isUserRegistered) {
             request.setAttribute("errMessage", "User with this email already exists!");
-            request.getRequestDispatcher("/addUser.jsp").forward(request, response);
+            request.getRequestDispatcher("/userAdd.jsp").forward(request, response);
         } else {
             try {
                 String subject = "Library: new Account details";
@@ -58,7 +58,7 @@ public class AddUserController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/addUser.jsp").forward(req, resp);
+        req.getRequestDispatcher("/userAdd.jsp").forward(req, resp);
     }
 
 }
