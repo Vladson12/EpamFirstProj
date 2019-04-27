@@ -61,13 +61,7 @@ public class DbUtils {
 
     }
 
-    /**
-     * We should invoke this method only after setProperties() method.
-     */
     public static Connection getConnection() throws SQLException {
-//        return DATA_SOURCE.getConnection();
-        return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&use" +
-                        "LegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", "root", "");
+        return DATA_SOURCE.getConnection();
     }
 }

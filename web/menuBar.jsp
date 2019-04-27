@@ -5,18 +5,23 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        .w3-bar-item {
+        body {
+            font-family: Consolas;
+        }
+
+        a.w3-bar-item {
             text-decoration: none;
         }
+
     </style>
 </head>
 
 <body>
-    <div class="w3-container w3-blue-grey w3-opacity-min w3-right-align">
+    <div class="w3-container w3-black w3-opacity-min w3-text-white w3-right-align">
         <h1>Library</h1>
     </div>
 
-    <div class="w3-bar w3-black w3-opacity-min w3-left-align" >
+    <div class="w3-bar w3-dark-gray w3-opacity-min w3-left-align" >
         <c:set var="loggedIn" value="${not empty loggedInUser}"/>
 
         <c:choose>
