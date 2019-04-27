@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 @WebServlet("/users")
@@ -22,44 +23,45 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("get");
         if(req.getParameter("update")!=null) {
-            System.out.println("1");
             updateUser(req, resp);
         }
         if(req.getParameter("delete")!=null) {
-            System.out.println("2");
             deleteUser(req, resp);
         }
-        allUsers = UserService.getAllUsers();
+        if(req.getParameter("insert")!=null) {
+            String login = req.getParameter("login");
+            allUsers= Collections.singletonList(UserService.getByLogin(login));
+        } else {
+            allUsers = UserService.getAllUsers();
+        }
         req.getSession().setAttribute("users", allUsers);
         req.getRequestDispatcher("/userList.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("post");
         userLogin = req.getParameter("login");
         button = req.getParameter("button");
         if(button.equals("edit")){
             doPut(req,resp);
         }else if(button.equals("delete")) {
             doDelete(req,resp);
+        }else if(button.equals("findCards")) {
+            req.setAttribute("login", userLogin);
+            req.getRequestDispatcher("/cards").forward(req, resp);
         }
         resp.sendRedirect("/users");
-
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("put");
         req.getSession().setAttribute("user",UserService.getByLogin(userLogin));
         req.getRequestDispatcher("/userUpdate.jsp").forward(req, resp);
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("delete");
         req.getSession().setAttribute("user",UserService.getByLogin(userLogin));
         req.getRequestDispatcher("/userDelete.jsp").forward(req, resp);
     }
@@ -76,7 +78,6 @@ public class UserController extends HttpServlet {
     }
 
     private void deleteUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(userLogin);
         User deletedUser = UserService.getByLogin(userLogin);
         UserService.deleteUser(deletedUser);
     }
