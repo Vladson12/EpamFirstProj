@@ -7,6 +7,7 @@
     <groupId>com.mycompany</groupId>
     <artifactId>EpamFirstProj</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
 
     <build>

@@ -5,7 +5,8 @@ import com.epam.app.model.Book;
 
 import java.util.List;
 
-import static com.epam.app.DAO.impl.DaoFactoryMySqlImpl.getInstance;
+import static com.epam.app.DAO.impl.ActualDaoFactory.getInstance;
+
 
 /**
  * Created by vladd on 15.04.2019

@@ -33,10 +33,6 @@
 
 <jsp:include page="menuBar.jsp"></jsp:include>
 
-<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
-    <h1>Library</h1>
-</div>
-
 <center><h2>Add user</h2></center>
 <form name="form" action="addUser" method="post" onsubmit="return validate()">
     <table align="center">
@@ -46,7 +42,9 @@
             <td><input type="text" name="name"/></td>
         </tr>
 
-        <c:if test="${sessionScope.loggedInUser.role eq 'ADMIN'}">
+
+
+        <c:if test="${sessionScope.loggedInUser.role eq 'ADMINISTRATOR'}">
             <tr>
                 <form>
                     <select name = "role">

@@ -1,9 +1,9 @@
 package com.epam.app.controller;
 
+import com.epam.app.config.Config;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
-import com.epam.app.util.db.DbUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +17,11 @@ import static com.epam.app.util.password.Password.hash;
 
 @WebServlet("/registration")
 public class RegisterUserController extends HttpServlet {
+
+    @Override
+    public void init() throws ServletException {
+        Config.set(this.getServletContext(), "mysql");
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

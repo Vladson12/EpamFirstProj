@@ -1,43 +1,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Konstantin
-  Date: 2019-04-16
-  Time: 01:28
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .w3-bar-item {
+            text-decoration: none;
+        }
+    </style>
 </head>
+
 <body>
+    <div class="w3-container w3-blue-grey w3-opacity-min w3-right-align">
+        <h1>Library</h1>
+    </div>
 
-<a href="${pageContext.request.contextPath}/home">
-    Home Page
-</a>
-||
-<a href="${pageContext.request.contextPath}/registration">
-    Registration
-</a>
-||
-<c:if test="${empty loggedInUser}">
-    <a href="${pageContext.request.contextPath}/login">
-        Login
-    </a>
-</c:if>
-<c:if test="${not empty loggedInUser}">
-    <a href="${pageContext.request.contextPath}/logout">
-        Logout
-    </a>
-</c:if>
+    <div class="w3-bar w3-black w3-opacity-min w3-left-align" >
+        <c:set var="loggedIn" value="${not empty loggedInUser}"/>
 
-&nbsp;
-<span style="color:red">[ ${loggedInUser.name} ]</span>
+        <c:choose>
+            <c:when test="${loggedIn}">
+                <a href="${pageContext.request.contextPath}/home" class="w3-bar-item w3-left">Home</a>
+                <a href="${pageContext.request.contextPath}/logout" class="w3-bar-item w3-right">Sign out</a>
+            </c:when>
+            <c:otherwise>
+                <a href="${pageContext.request.contextPath}/" class="w3-bar-item w3-left">Home</a>
+                <a href="${pageContext.request.contextPath}/login" class="w3-bar-item w3-right">Sign in</a>
+                <a href="${pageContext.request.contextPath}/registration" class="w3-bar-item w3-right">Register</a>
 
-&nbsp;
-<span style="color:red">[ ${loggedInUser.role} ]</span>
-
+            </c:otherwise>
+        </c:choose>
+    </div>
 </body>
 </html>
+

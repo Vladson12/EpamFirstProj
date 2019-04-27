@@ -6,9 +6,8 @@
 </head>
 
 <body class="w3-light-grey">
-<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
-    <h1>Library</h1>
-</div>
+
+<jsp:include page="menuBar.jsp"></jsp:include>
 
 <div class="w3-container w3-padding">
     <div class="w3-card-4">

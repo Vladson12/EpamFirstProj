@@ -102,10 +102,10 @@
                    onclick="location.href='/users?pageSide=previous'">
             <input style="font-size: 16px; text-align: left" type="button" value="Next page"
                    onclick="location.href='/users?pageSide=next'">
-            <%--            <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">--%>
-            <%--                <input style="font-size: 16px; text-align: right" type="button" value="Add book"--%>
-            <%--                       onclick="location.href='/addBook'">--%>
-            <%--            </c:if>--%>
+<%--            <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">--%>
+<%--                <input style="font-size: 16px; text-align: right" type="button" value="Add book"--%>
+<%--                       onclick="location.href='/addBook'">--%>
+<%--            </c:if>--%>
         </td>
     </tr>
 </table>

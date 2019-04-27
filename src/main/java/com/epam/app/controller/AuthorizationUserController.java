@@ -1,6 +1,7 @@
 
 package com.epam.app.controller;
 
+import com.epam.app.config.Config;
 import com.epam.app.model.User;
 import com.epam.app.service.UserService;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,11 @@ import static com.epam.app.util.password.Password.hash;
 @NoArgsConstructor
 @WebServlet("/login")
 public class AuthorizationUserController extends HttpServlet {
+
+    @Override
+    public void init() throws ServletException {
+        Config.set(this.getServletContext(), "mysql");
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

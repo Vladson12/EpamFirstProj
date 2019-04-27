@@ -3,7 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-<head><title>Books</title>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Books</title>
     <style>
         table.stat td, tr, th {
             height:9%;
@@ -24,6 +26,8 @@
     </style>
 </head>
 <body>
+
+<jsp:include page="menuBar.jsp"></jsp:include>
 
 <table class="stat">
     <tr>
@@ -52,13 +56,16 @@
             <td><c:out value="${list.year}"/></td>
             <jsp:useBean id="list" scope="page" type="com.epam.app.model.Book"/>
 
-                <td style="text-align: center">
+
+            <td style="text-align: center">
                 <input style="font-size: 16px" ${list.bookState.name().equals("ORDERED") ? 'disabled=""' : ''}
                        type="button" value="Order" onclick="location.href='/bookList?login=${login}&id=${list.id}'">
-            <c:if test="${(sessionScope.loggedInUser.role eq 'LIBRARIAN') || (sessionScope.loggedInUser.role eq 'ADMINISTRATOR')}">
+                <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
+                <c:if test="${userRole ne 'LIBRARIAN'}">
                     <input style="font-size: 16px" type="button" value="Edit" onclick="location.href='/editBook?id=${list.id}'">
-                </td>
-            </c:if>
+                </c:if>
+            </td>
+
 
         </tr>
     </c:forEach>
