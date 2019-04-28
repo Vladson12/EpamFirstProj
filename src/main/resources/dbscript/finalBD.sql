@@ -158,12 +158,9 @@ CREATE TABLE `library`.`user` (
   CONSTRAINT `role` FOREIGN KEY (`role`) REFERENCES `role` (`idrole`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-insert into `library`.`user` (name, login, password) values ('John','john@epam.com','$2a$10$XaK/MWIqlRUyl.DqFK3yUuCNO7wJFpNqDu1kCmnC33k9CTQ9LVrfi');
-insert into `library`.`user` (name, login, password) values ('Elizabeth','elizabeth@epam.com','$2a$10$Fo09xDgjzrF9ER5NZiT6i.xd8EBTOfM4RhSFUPiiz56HGpUX/wXPO');
-insert into `library`.`user` (name, login, password) values ('Tom','tom@epam.com','$2a$10$Z8PfPc619nYZsg54jO81RuKH9EyzNPphyOWnIh4bt0YirarB31WRm');
-insert into `library`.`user` (name, role, login, password) values ('Nana',2,'nana@epam.com','$2a$10$LprKcSg5wY82oBKnD7QrSOo0dE44QGVUJ86UWqKsV3jre2.p4llPa');
-insert into `library`.`user` (name, login, password) values ('James','james@epam.com','$2a$10$Hp7pdrZMkZxAg/SPM7BcM.k0C0jE58Z9I0l12CWu./Zrvb5qAz.R.');
-insert into `library`.`user` (name, role, login, password) values ('Bob',3,'bob@epam.com','$2a$10$sgmPj6YgXKzpR8gjVcQBUupAWbjp0iFZawKfk1gISkYO71dU6Wkgm');
+insert into `library`.`user` (name, login, password) values ('John','john@epam.com','$2a$10$RaCFqaKUBc0ilR6mhKWs6OIw6Amkks3U5Qzjj7eCcLEXT1sNiIxQi');
+insert into `library`.`user` (name, role, login, password) values ('Nana',2,'nana@epam.com','$2a$10$6BY5Nljxj7WWSIiOYf1xUeC9lY1M1mGDrs2ATk28RYDGah93VB19a');
+insert into `library`.`user` (name, role, login, password) values ('Bob',3,'bob@epam.com','$2a$10$VO0nzvQZ9WSETkt1AOLFyu5DtK./hnM.1PsEcw9MAKHNVTjZcPs.i');
 
 
 CREATE TABLE `library`.`card` (
