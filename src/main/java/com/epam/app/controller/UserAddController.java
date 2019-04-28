@@ -35,6 +35,7 @@ public class UserAddController extends HttpServlet {
 
         User user = new User(name, Role.getRole(role), login, hash(password));
 
+
         boolean isUserRegistered = UserService.create(user);
 
         if (!isUserRegistered) {

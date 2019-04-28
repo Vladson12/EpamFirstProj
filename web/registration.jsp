@@ -4,7 +4,16 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Library : Registration</title>
+    <title>Library: Registration</title>
+    <style>
+        body {
+            font-family: Consolas;
+        }
+        div.signupform {
+            width: 40%;
+            margin-left: 30%;
+        }
+    </style>
     <script>
         function validate() {
             var name = document.form.name.value;
@@ -30,44 +39,34 @@
         }
     </script>
 </head>
-<body class="w3-light-grey">
+<body>
 
 <jsp:include page="menuBar.jsp"></jsp:include>
 
-<center><h2>Create your Library account. It's free and only takes a minute. </h2></center>
-<form name="form" action="registration" method="post" onsubmit="return validate()">
-    <table align="center">
-
-        <tr>
-            <td>Username</td>
-            <td><input type="text" name="name"/></td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td><input type="email" name="login"/></td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" name="password"/></td>
-        </tr>
-        <tr>
-            <td>Confirm Password</td>
-            <td><input type="password" name="conpassword"/></td>
-        </tr>
-        <tr>
-            <td><%=(request.getAttribute("errMessage") == null) ? ""
-                    : request.getAttribute("errMessage")%>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Register"></input><input
-                    type="reset" value="Reset"></input></td>
-        </tr>
-
-    </table>
-</form>
+<div class="signupform">
+    <div class="w3-container w3-light-gray w3-padding w3-margin">
+        <h2 class="w3-text w3-center">Sign up</h2>
+        <p><%=(request.getAttribute("errMessage") == null) ? ""
+                : request.getAttribute("errMessage")%></p>
+        <form name="form" action="registration" method="post" onsubmit="return validate()">
+            <label>Username:
+                <input type="email" placeholder="Enter username" name="name" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+            </label>
+            <label>Email:
+                <input type="email" placeholder="Enter Email" name="login" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+            </label>
+            <label>Password:
+                <input type="password" placeholder="Enter password" name="password" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+            </label>
+            <label>Confirm password:
+                <input type="password" placeholder="Enter password" name="conpassword" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+            </label>
+            <div class="w3-bar w3-center">
+                <button type="submit" class="w3-btn w3-green w3-round-large w3-right">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
     <button class="w3-btn w3-round-large" onclick="location.href='..'">Back</button>

@@ -52,8 +52,8 @@ public class UserService {
         return emailValidator.isValid(login);
     }
 
-    public static boolean isLoginDuplicated(User user) {
-        return getAllLogins().stream().anyMatch(l -> l.equals(user.getLogin()));
+    public static boolean isLoginDuplicated(String login) {
+        return getAllLogins().stream().anyMatch(l -> l.equals(login));
     }
 
     public static boolean isUserAllowed(String login, String password) {

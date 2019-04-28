@@ -3,10 +3,14 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Personal Cabinet: Profile</title>
+    <title>Personal Cabinet: Settings</title>
     <style>
         body {
             font-family: Consolas;
+        }
+        div.setform {
+            width: 40%;
+            margin-left: 30%;
         }
     </style>
     <script>
@@ -29,29 +33,30 @@
     </script>
 </head>
 
-<body class="w3-light-grey">
+<body>
 
 <jsp:include page="menuBar.jsp"></jsp:include>
 
+<div class="setform">
+    <div class="w3-container w3-padding">
+        <h3>Change password</h3>
+            <p><%=(request.getAttribute("errMessage") == null) ? ""
+                    : request.getAttribute("errMessage")%></p>
 
-<div class="w3-container w3-padding">
-    <h3>Change password</h3>
-        <p><%=(request.getAttribute("errMessage") == null) ? ""
-                : request.getAttribute("errMessage")%></p>
-
-    <c:set var="user" value="${sessionScope.loggedInUser}"></c:set>
-    <form name="form" method="post" class="w3-selection w3-light-grey w3-padding" action="settings?id=${user.id}" onsubmit="return validate()">
-        <label>Old password:
-            <input type="password" name="oldPass" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
-        </label>
-        <label>New password:
-            <input type="password" name="newPass" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
-        </label>
-        <label>Confirm new password:
-            <input type="password" name="confirmNewPass" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
-        </label>
-        <button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">Save</button>
-    </form>
+        <c:set var="user" value="${sessionScope.loggedInUser}"></c:set>
+        <form name="form" method="post" class="w3-selection w3-light-gray w3-padding" action="settings?id=${user.id}" onsubmit="return validate()">
+            <label>Old password:
+                <input type="password" name="oldPass" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+            </label>
+            <label>New password:
+                <input type="password" name="newPass" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+            </label>
+            <label>Confirm new password:
+                <input type="password" name="confirmNewPass" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+            </label>
+            <button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">Save</button>
+        </form>
+    </div>
 </div>
 
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">

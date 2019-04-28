@@ -14,16 +14,20 @@
         body {
             font-family: Consolas;
         }
+        div.profform {
+            width: 40%;
+            margin-left: 30%;
+        }
     </style>
 </head>
 <body>
 
 <jsp:include page="menuBar.jsp"></jsp:include>
 
-<div class="w3-container w3-padding">
-    <h3>Profile</h3>
-
-        <form method="post" class="w3-selection w3-light-grey w3-padding" action="profile?=${sessionScope.loggedInUser.id}">
+<div class="profform">
+    <div class="w3-container w3-padding">
+        <h3>Profile</h3>
+        <form method="post" class="w3-selection w3-light-gray w3-padding" action="profile?=${sessionScope.loggedInUser.id}">
             <input  value="${user.id}" type="hidden" name="id" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
             <label>Name:
                 <input value="${user.name}" type="text" name="name" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
@@ -57,7 +61,7 @@
             </label>
             <button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">Save</button>
         </form>
-
+    </div>
 </div>
 
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
