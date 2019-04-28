@@ -26,15 +26,16 @@
     </style>
 </head>
 <body>
-
 <jsp:include page="menuBar.jsp"></jsp:include>
-
 <table class="stat">
     <tr>
         <th>
             <input style="font-size: 16px; text-align: right" type="button" value="Back"
                    onclick="location.href='/home'">
-
+        </th>
+        <th>
+            <input style="font-size: 16px; text-align: right" type="button" value="Add new book"
+                   onclick="location.href='/saveBook?id=0'">
         </th>
     </tr>
     <tr style="font-size: 22px">
@@ -55,23 +56,18 @@
             <td><c:out value="${list.description}"/></td>
             <td><c:out value="${list.year}"/></td>
             <jsp:useBean id="list" scope="page" type="com.epam.app.model.Book"/>
-
-
             <td style="text-align: center">
                 <input style="font-size: 16px" ${list.bookState.name().equals("ORDERED") ? 'disabled=""' : ''}
                        type="button" value="Order" onclick="location.href='/bookList?login=${login}&id=${list.id}'">
                 <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
                 <c:if test="${userRole ne 'READER'}">
-                    <input style="font-size: 16px" type="button" value="Edit" onclick="location.href='/editBook?id=${list.id}'">
+                    <input style="font-size: 16px" type="button" value="Edit" onclick="location.href='/saveBook?id=${list.id}'">
                 </c:if>
             </td>
-
-
         </tr>
     </c:forEach>
 </table>
 <hr/>
-
 <tr style="text-align: center">
     <td>
         <input style="font-size: 16px; text-align: left" type="button" value="Previous page"

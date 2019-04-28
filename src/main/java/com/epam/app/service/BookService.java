@@ -7,20 +7,16 @@ import java.util.List;
 
 import static com.epam.app.DAO.impl.ActualDaoFactory.getInstance;
 
-
-/**
- * Created by vladd on 15.04.2019
- */
 public class BookService {
 
     public static final BookDAO BOOK_DAO = getInstance().getBookDAO();
 
-    public static void create(Book book) {
+    public static void addBook(Book book) {
         BOOK_DAO.addBook(book);
     }
 
     public static Book getBookById(int id) {
-        return BOOK_DAO.getBook(id);
+        return BOOK_DAO.getBookById(id);
     }
 
     public static List<Book> getAllBooks() {

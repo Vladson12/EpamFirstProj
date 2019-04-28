@@ -14,27 +14,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
-@WebServlet("/editBook")
-public class EditBookController extends HttpServlet {
+@WebServlet("/saveBook")
+public class SaveBookController extends HttpServlet {
     private static PageManager pageManager = new PageManager<Book>();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Book book = BookService.getBookById(Integer.parseInt(req.getParameter("id")));
         req.getSession().setAttribute("book", book);
-        req.getRequestDispatcher("/editBook.jsp").forward(req, resp);
+        req.getRequestDispatcher("/saveBook.jsp").forward(req, resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Genre genre = Genre.valueOf(req.getParameter("genre"));
-        int id = Integer.parseInt(req.getParameter("id"));
-        Book book =  BookService.getBookById(id);
+        Integer id = Integer.parseInt(req.getParameter("id"));
+        Book book = new Book();
 
+        book.setId(id);
         book.setAuthor(req.getParameter("author"));
         book.setTitle(req.getParameter("title"));
         book.setDescription(req.getParameter("description"));
         book.setYear(Integer.parseInt(req.getParameter("year")));
-        book.setGenre(genre);
+        book.setGenre(Genre.valueOf(req.getParameter("genre")));
 
         BookService.updateBook(book);
         req.getSession().setAttribute("list", pageManager.sublist(BookService.getAllBooks()

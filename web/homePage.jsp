@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-Created by IntelliJ IDEA.
-User: Konstantin
-Date: 2019-04-13
-Time: 14:03
-To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -44,7 +37,6 @@ To change this template use File | Settings | File Templates.
                     <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/users'">User list</button>
                     <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/addUser'">Add user</button>
                     <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'">Book list</button>
-                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/addBook'">Add book</button>
                     <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/loginEnter'">User cards</button>
                     <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/cabinet?id=${loggedInUser.id}'">Cabinet</button>
                 </c:otherwise>
@@ -54,6 +46,3 @@ To change this template use File | Settings | File Templates.
 
 </body>
 </html>
-
-Ещё
-

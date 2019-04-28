@@ -8,7 +8,7 @@ public interface BookDAO {
 
     void addBook(Book book);
 
-    Book getBook(int bookId);
+    Book getBookById(Integer bookId);
 
     List<Book> getAllBooks();
 
