@@ -22,20 +22,20 @@ public class EditBookController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Book book = BookService.getBookById(Integer.parseInt(req.getParameter("id")));
         req.getSession().setAttribute("book", book);
-        System.out.println(book);
         req.getRequestDispatcher("/editBook.jsp").forward(req, resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Genre genre = Genre.valueOf(req.getParameter("genre"));
-        System.out.println(req.getParameter("id"));
         int id = Integer.parseInt(req.getParameter("id"));
         Book book =  BookService.getBookById(id);
+
         book.setAuthor(req.getParameter("author"));
         book.setTitle(req.getParameter("title"));
         book.setDescription(req.getParameter("description"));
         book.setYear(Integer.parseInt(req.getParameter("year")));
         book.setGenre(genre);
+
         BookService.updateBook(book);
         req.getSession().setAttribute("list", pageManager.sublist(BookService.getAllBooks()
                 .stream().filter(o->o.getBookState().equals(BookState.FREE)).collect(Collectors.toList())));

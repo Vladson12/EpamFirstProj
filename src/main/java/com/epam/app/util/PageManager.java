@@ -57,14 +57,11 @@ public class PageManager<T> {
 
     public void nextPage() {
         if (currentPage < pagesCount) {
-            System.out.println("next");
-
             currentPage++;
         }
     }
 
     public void previousPage() {
-        System.out.println("previous");
         if (currentPage > 1) {
             currentPage--;
         }
