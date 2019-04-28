@@ -14,7 +14,6 @@ import java.util.List;
 public class FindUserCardsController extends HttpServlet {
 
     private String login;
-    private Boolean isLibrarian;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         req.getRequestDispatcher("/findUserCards.jsp").forward(req, resp);

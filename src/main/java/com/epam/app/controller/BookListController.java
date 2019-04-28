@@ -34,7 +34,6 @@ public class BookListController extends HttpServlet {
         String side;
 
         login = req.getParameter("login");
-        System.out.println(login);
 
         if ((identify = req.getParameter("id")) != null) {
             int id = Integer.parseInt(identify);
@@ -46,10 +45,7 @@ public class BookListController extends HttpServlet {
             CardService.create(card);
         }
         if ((side = req.getParameter("pageSide")) != null) {
-            System.out.println("inside if");
             if ("previous".equals(side)) {
-                System.out.println("double inside if");
-
                 pageManager.previousPage();
             } else pageManager.nextPage();
         }
