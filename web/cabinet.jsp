@@ -1,0 +1,89 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: vladd
+  Date: 27.04.2019
+  Time: 19:44
+  To change this template use File | Settings | File Templates.
+--%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Personal Cabinet</title>
+</head>
+
+<body class="w3-light-grey">
+
+    <jsp:include page="menuBar.jsp"></jsp:include>
+
+    <h1>Personal Cabinet</h1>
+    <h3>Profile</h3>
+
+    <div class="w3-container w3-padding">
+        <div class="w3-card-4">
+            <div class="w3-container w3-center w3-green">
+            </div>
+            <form method="post" class="w3-selection w3-light-grey w3-padding" action="cabinet">
+                <jsp:useBean id="user" scope="session" type="com.epam.app.model.User"/>
+                <input  value="${user.id}" type="hidden" name="id" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+                <label>Name:
+                    <input value="${user.name}" type="text" name="name" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+                </label>
+                <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
+                <label>Role:
+                    <select name="role" ${(userRole ne 'ADMINISTRATOR' ? 'disabled' : ''}>
+                        <option value="READER" ${userRole eq 'READER' ? 'selected' : ''}>Reader</option>
+                        <option value="LIBRARIAN" ${userRole eq 'LIBRARIAN' ? 'selected' : ''}>Librarian</option>
+                        <option value="ADMINISTRATOR" ${userRole eq 'ADMINISTRATOR' ? 'selected' : ''}>Administrator</option>
+                    </select>
+                </label>
+                <label>Email:
+                    <input value="${user.login}" type="text" name="login" disabled class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+                </label>
+                <button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">Save</button>
+            </form>
+        </div>
+    </div>
+
+
+    <%--<h1> <c:out value="${user}" /></h1>--%>
+    <%--<div class="form-block">--%>
+        <%--<h3>Profile</h3>--%>
+        <%--<table class="anket-table">--%>
+            <%--<tr>--%>
+                <%--<td class="name">Name</td>--%>
+                <%--<td>--%>
+                    <%--<span class="input-box disabled-input">--%>
+                        <%--<span><input type="text" name="name" tabindex="1" value="Name"/></span>--%>
+                    <%--</span>--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td class="email">Email</td>--%>
+                <%--<td>--%>
+                    <%--<span class="input-box"><span><input type="text" name="login" tabindex="2" value="Name@mail.ru" disabled="disabled"/></span></span></td>--%>
+            <%--</tr>--%>
+        <%--</table>--%>
+    <%--</div>--%>
+
+    <%--<div class="w3-container w3-center w3-hover-opacity-off">--%>
+        <%--<h1>Personal cabinet</h1>--%>
+        <%--<tr>--%>
+            <%--<td>Username</td>--%>
+            <%--<td><input type="text" name="name" readonly /></td>--%>
+        <%--</tr>--%>
+        <%--<tr>--%>
+            <%--<td>Email</td>--%>
+            <%--<td><input type="email" name="login"/></td>--%>
+        <%--</tr>--%>
+        <%--<tr>--%>
+            <%--<td>Password</td>--%>
+            <%--<td><input type="password" name="password"/></td>--%>
+        <%--</tr>--%>
+        <%--<button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/myCard'">My cards</button>--%>
+    <%--</div>--%>
+
+</body>
+</html>

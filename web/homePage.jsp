@@ -30,28 +30,23 @@ To change this template use File | Settings | File Templates.
 
 <body class="w3-light-grey">
 
-<jsp:include page="menuBar.jsp"></jsp:include>
-
-<c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
+    <jsp:include page="menuBar.jsp"></jsp:include>
+    <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
 
     <div class="w3-container w3-center w3-hover-opacity-off">
-
         <div class="w3-bar w3-padding-large w3-padding-24">
             <c:choose>
                 <c:when test="${userRole eq 'READER'}">
-
-                        <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'">Book list</button>
-                        <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/myCard?login=${loggedInUser.login}'">My cards</button>
-
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'">Book list</button>
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/myCard?login=${loggedInUser.login}'">My cards</button>
                 </c:when>
                 <c:otherwise>
-
-                        <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/users'">User list</button>
-                        <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/addUser'">Add user</button>
-                        <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'">Book list</button>
-                        <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/addBook'">Add book</button>
-                        <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/loginEnter'">User cards</button>
-
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/users'">User list</button>
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/addUser'">Add user</button>
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'">Book list</button>
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/addBook'">Add book</button>
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/loginEnter'">User cards</button>
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/cabinet?id=${loggedInUser.id}'">Cabinet</button>
                 </c:otherwise>
             </c:choose>
         </div>

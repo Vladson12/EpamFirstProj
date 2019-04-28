@@ -61,7 +61,7 @@
                 <input style="font-size: 16px" ${list.bookState.name().equals("ORDERED") ? 'disabled=""' : ''}
                        type="button" value="Order" onclick="location.href='/bookList?login=${login}&id=${list.id}'">
                 <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
-                <c:if test="${userRole ne 'LIBRARIAN'}">
+                <c:if test="${userRole ne 'READER'}">
                     <input style="font-size: 16px" type="button" value="Edit" onclick="location.href='/editBook?id=${list.id}'">
                 </c:if>
             </td>
