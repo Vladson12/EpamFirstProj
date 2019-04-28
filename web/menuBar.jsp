@@ -13,7 +13,6 @@
         a.w3-bar-item {
             text-decoration: none;
         }
-
     </style>
 </head>
 

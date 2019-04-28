@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Library</title>
+    <title>Library : Home</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
         body {
@@ -31,7 +31,9 @@
             <c:choose>
                 <c:when test="${userRole eq 'READER'}">
                     <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'">Book list</button>
-                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/myCard?login=${loggedInUser.login}'">My cards</button>
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/cabinet/usercards?login=${loggedInUser.login}'">My cards</button>
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/cabinet?id=${loggedInUser.id}'">Cabinet</button>
+
                 </c:when>
                 <c:otherwise>
                     <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/users'">User list</button>

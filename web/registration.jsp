@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Registration</title>
+    <title>Library : Registration</title>
     <script>
         function validate() {
             var name = document.form.name.value;

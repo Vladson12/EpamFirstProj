@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Add user</title>
+    <title>Library: Add user</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script>
         function validate() {

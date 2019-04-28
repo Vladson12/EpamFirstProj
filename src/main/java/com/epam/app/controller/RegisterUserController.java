@@ -41,7 +41,7 @@ public class RegisterUserController extends HttpServlet {
                 request.setAttribute("errMessage", "This email already exists!");
             }
         } else {
-            request.setAttribute("errMessage", "This email invalid");
+            request.setAttribute("errMessage", "This Email is invalid");
         }
         request.getRequestDispatcher("/registration.jsp").forward(request, response);
 

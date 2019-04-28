@@ -12,78 +12,64 @@
 <head>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Personal Cabinet</title>
+    <style>
+        body {
+            font-family: Consolas;
+        }
+
+        button.w3-btn {
+            color: black;
+            size: legal;
+            font-size: xx-large;
+            background-color: #A9A9A9;
+        }
+    </style>
 </head>
 
 <body class="w3-light-grey">
 
-    <jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBar.jsp"></jsp:include>
 
+
+<div class="w3-container w3-center w3-hover-opacity-off">
     <h1>Personal Cabinet</h1>
-    <h3>Profile</h3>
-
-    <div class="w3-container w3-padding">
-        <div class="w3-card-4">
-            <div class="w3-container w3-center w3-green">
-            </div>
-            <form method="post" class="w3-selection w3-light-grey w3-padding" action="cabinet">
-                <jsp:useBean id="user" scope="session" type="com.epam.app.model.User"/>
-                <input  value="${user.id}" type="hidden" name="id" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
-                <label>Name:
-                    <input value="${user.name}" type="text" name="name" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
-                </label>
-                <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
-                <label>Role:
-                    <select name="role" ${(userRole ne 'ADMINISTRATOR' ? 'disabled' : ''}>
-                        <option value="READER" ${userRole eq 'READER' ? 'selected' : ''}>Reader</option>
-                        <option value="LIBRARIAN" ${userRole eq 'LIBRARIAN' ? 'selected' : ''}>Librarian</option>
-                        <option value="ADMINISTRATOR" ${userRole eq 'ADMINISTRATOR' ? 'selected' : ''}>Administrator</option>
-                    </select>
-                </label>
-                <label>Email:
-                    <input value="${user.login}" type="text" name="login" disabled class="w3-input w3-animate-input w3-border w3-round-large"><br/>
-                </label>
-                <button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">Save</button>
-            </form>
-        </div>
+    <div class="w3-bar w3-padding-large w3-padding-24">
+        <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/cabinet/profile?id=${sessionScope.loggedInUser.id}'">Profile</button>
+        <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/cabinet/settings?id=${sessionScope.loggedInUser.id}'">Settings</button>
+        <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/cabinet/usercards?login=${sessionScope.loggedInUser.login}'">My cards</button>
     </div>
+</div>
 
 
-    <%--<h1> <c:out value="${user}" /></h1>--%>
-    <%--<div class="form-block">--%>
-        <%--<h3>Profile</h3>--%>
-        <%--<table class="anket-table">--%>
-            <%--<tr>--%>
-                <%--<td class="name">Name</td>--%>
-                <%--<td>--%>
-                    <%--<span class="input-box disabled-input">--%>
-                        <%--<span><input type="text" name="name" tabindex="1" value="Name"/></span>--%>
-                    <%--</span>--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td class="email">Email</td>--%>
-                <%--<td>--%>
-                    <%--<span class="input-box"><span><input type="text" name="login" tabindex="2" value="Name@mail.ru" disabled="disabled"/></span></span></td>--%>
-            <%--</tr>--%>
-        <%--</table>--%>
+
+
+    <%--<jsp:include page="cabinetMenu.jsp"></jsp:include>--%>
+
+
+    <%--<div class="w3-container w3-padding">--%>
+        <%--<div class="w3-card-4">--%>
+            <%--<div class="w3-container w3-center w3-green">--%>
+            <%--</div>--%>
+            <%--<form method="post" class="w3-selection w3-light-grey w3-padding" action="cabinet">--%>
+                <%--&lt;%&ndash;<jsp:useBean id="user" scope="session" type="com.epam.app.model.User"/>&ndash;%&gt;--%>
+                <%--<input  value="${sessionScope.loggedInUser.id}" type="hidden" name="id" class="w3-input w3-animate-input w3-border w3-round-large"><br/>--%>
+                <%--<label>Name:--%>
+                    <%--<input value="${sessionScope.loggedInUser.name}" type="text" name="name" class="w3-input w3-animate-input w3-border w3-round-large"><br/>--%>
+                <%--</label>--%>
+                <%--<c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>--%>
+                <%--<label>Role:--%>
+                    <%--<select name="role" ${(userRole ne 'ADMINISTRATOR') ? 'disabled' : ''}>--%>
+                        <%--<option value="READER" ${userRole eq 'READER' ? 'selected' : ''}>Reader</option>--%>
+                        <%--<option value="LIBRARIAN" ${userRole eq 'LIBRARIAN' ? 'selected' : ''}>Librarian</option>--%>
+                        <%--<option value="ADMINISTRATOR" ${userRole eq 'ADMINISTRATOR' ? 'selected' : ''}>Administrator</option>--%>
+                    <%--</select>--%>
+                <%--</label>--%>
+                <%--<label>Email:--%>
+                    <%--<input value="${sessionScope.loggedInUser.login}" type="text" name="login" disabled class="w3-input w3-animate-input w3-border w3-round-large"><br/>--%>
+                <%--</label>--%>
+                <%--<button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">Save</button>--%>
+            <%--</form>--%>
+        <%--</div>--%>
     <%--</div>--%>
-
-    <%--<div class="w3-container w3-center w3-hover-opacity-off">--%>
-        <%--<h1>Personal cabinet</h1>--%>
-        <%--<tr>--%>
-            <%--<td>Username</td>--%>
-            <%--<td><input type="text" name="name" readonly /></td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<td>Email</td>--%>
-            <%--<td><input type="email" name="login"/></td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<td>Password</td>--%>
-            <%--<td><input type="password" name="password"/></td>--%>
-        <%--</tr>--%>
-        <%--<button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/myCard'">My cards</button>--%>
-    <%--</div>--%>
-
 </body>
 </html>
