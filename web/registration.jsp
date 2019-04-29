@@ -50,7 +50,7 @@
                 : request.getAttribute("errMessage")%></p>
         <form name="form" action="registration" method="post" onsubmit="return validate()">
             <label>Username:
-                <input type="email" placeholder="Enter username" name="name" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+                <input type="text" placeholder="Enter username" name="name" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
             </label>
             <label>Email:
                 <input type="email" placeholder="Enter Email" name="login" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
