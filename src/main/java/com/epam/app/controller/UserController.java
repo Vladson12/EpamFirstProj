@@ -62,7 +62,7 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().setAttribute("user",UserService.getByLogin(userLogin));
+        req.getSession().setAttribute("user", UserService.getByLogin(userLogin));
         req.getRequestDispatcher("/userUpdate.jsp").forward(req, resp);
     }
 
@@ -74,6 +74,7 @@ public class UserController extends HttpServlet {
 
     private void updateUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User updatedUser = UserService.getByLogin(userLogin);
+
         updatedUser.setName(req.getParameter("name"));
         updatedUser.setLogin(req.getParameter("login"));
         String role = req.getParameter("role");

@@ -25,7 +25,7 @@
             <label>Login:
                 <input value="${user.login}" type="text" name="login" class="w3-input w3-animate-input w3-border w3-round-large" ><br />
             </label>
-            <c:if test="${sessionScope.loggedInUser.role eq 'ADMINISTRATOR'}">
+            <c:if test="${(sessionScope.loggedInUser.role eq 'ADMINISTRATOR') && (sessionScope.loggedInUser.role ne user.role)}">
                 <label>Genre: ${user.role}
                     <select name = "role">
                         <option value = "READER" selected>READER</option>
