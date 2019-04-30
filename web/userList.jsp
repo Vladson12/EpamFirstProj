@@ -90,6 +90,7 @@
                     <td style="text-align: center">
                         <form action="/users?login=${user.login}&button=findCards" method="post">
                             <input style="font-size: 16px" type="submit" value="Card List">
+                        </form>
                         <form action="/users?login=${user.login}&button=edit" method="post">
                             <input style="font-size: 16px" type="submit" value="Edit">
                         </form>
