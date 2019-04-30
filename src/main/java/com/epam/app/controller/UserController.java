@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/users")
 public class UserController extends HttpServlet {
@@ -31,7 +33,16 @@ public class UserController extends HttpServlet {
         }
         if(req.getParameter("insert")!=null) {
             String login = req.getParameter("login");
-            allUsers= Collections.singletonList(UserService.getByLogin(login));
+            List<String> allLogins = UserService.getAllLogins();
+            allLogins = allLogins.stream().filter(o->o.contains(login)).collect(Collectors.toList());
+            if (allLogins==null){
+                allUsers= new ArrayList<>();
+                System.out.println(1);
+            } else{
+                allUsers = allLogins.stream().map(UserService::getByLogin).collect(Collectors.toList());
+                System.out.println(login);
+                System.out.println(allLogins);
+            }
         } else {
             allUsers = UserService.getAllUsers();
         }
