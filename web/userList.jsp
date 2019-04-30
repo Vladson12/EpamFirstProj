@@ -75,9 +75,9 @@
                             <form action="/users?login=${user.login}&button=edit" method="post">
                                 <input style="font-size: 16px" type="submit" value="Edit">
                             </form>
-                            <form action="/users?login=${user.login}&button=delete" method="post">
-                                <input style="font-size: 16px" type="submit" value="Delete">
-                            </form>
+<%--                            <form action="/users?login=${user.login}&button=delete" method="post">--%>
+<%--                                <input style="font-size: 16px" type="submit" value="Delete">--%>
+<%--                            </form>--%>
                         </td>
                     </tr>
                 </c:if>
@@ -94,9 +94,9 @@
                         <form action="/users?login=${user.login}&button=edit" method="post">
                             <input style="font-size: 16px" type="submit" value="Edit">
                         </form>
-                        <form action="/users?login=${user.login}&button=delete" method="post">
-                            <input style="font-size: 16px" type="submit" value="Delete">
-                        </form>
+<%--                        <form action="/users?login=${user.login}&button=delete" method="post">--%>
+<%--                            <input style="font-size: 16px" type="submit" value="Delete">--%>
+<%--                        </form>--%>
                     </td>
                 </tr>
             </c:otherwise>
