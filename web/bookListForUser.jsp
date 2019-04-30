@@ -27,6 +27,17 @@
 </head>
 <body>
 <jsp:include page="menuBar.jsp"></jsp:include>
+
+<center>
+    <form action="/bookList?show=" method="get">
+        <tr>
+            <th>Enter author name to find book:</th>
+            <td><input type="text" name="author" value=""></td>
+            <td><input type="submit" name="insert" value="Insert"></td>
+        </tr>
+    </form>
+</center>
+
 <table class="stat">
     <tr>
         <th>
@@ -47,6 +58,7 @@
         <th width="7%" style="text-align: center">Year</th>
         <th width="15%" style="text-align: center">Actions</th>
     </tr>
+
     <c:forEach var="list" items="${list}">
         <tr>
             <td style="text-align: center"><c:out value="${list.id}"/></td>
