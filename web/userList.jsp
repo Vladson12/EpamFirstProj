@@ -74,9 +74,9 @@
                             <form action="/users?login=${user.login}&button=edit" method="post">
                                 <input style="font-size: 16px" type="submit" value="Edit">
                             </form>
-                            <form action="/users?login=${user.login}&button=delete" method="post">
-                                <input style="font-size: 16px" type="submit" value="Delete">
-                            </form>
+<%--                            <form action="/users?login=${user.login}&button=delete" method="post">--%>
+<%--                                <input style="font-size: 16px" type="submit" value="Delete">--%>
+<%--                            </form>--%>
                         </td>
                     </tr>
                 </c:if>
@@ -88,12 +88,14 @@
                     <td><c:out value="${user.role}"/></td>
 
                     <td style="text-align: center">
+                        <form action="/users?login=${user.login}&button=findCards" method="post">
+                            <input style="font-size: 16px" type="submit" value="Card List">
                         <form action="/users?login=${user.login}&button=edit" method="post">
                             <input style="font-size: 16px" type="submit" value="Edit">
                         </form>
-                        <form action="/users?login=${user.login}&button=delete" method="post">
-                            <input style="font-size: 16px" type="submit" value="Delete">
-                        </form>
+<%--                        <form action="/users?login=${user.login}&button=delete" method="post">--%>
+<%--                            <input style="font-size: 16px" type="submit" value="Delete">--%>
+<%--                        </form>--%>
                     </td>
                 </tr>
             </c:otherwise>
@@ -118,7 +120,7 @@
 </table>
 
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
-    <button class="w3-btn w3-round-large" onclick="location.href='/home'">Back</button>
+    <button class="w3-btn w3-round-large" onclick="location.href='/users'">To user list</button>
 </div>
 
 </body>
