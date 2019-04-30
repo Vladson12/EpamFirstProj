@@ -26,14 +26,14 @@
 
         <c:choose>
             <c:when test="${loggedIn}">
-                <a href="${pageContext.request.contextPath}/home" class="w3-bar-item w3-left">Home</a>
-                <a href="${pageContext.request.contextPath}/logout" class="w3-bar-item w3-right">Sign out</a>
+                <a href="${pageContext.request.contextPath}/home" class="w3-bar-item w3-left w3-hover-blue">Home</a>
+                <a href="${pageContext.request.contextPath}/logout" class="w3-bar-item w3-left w3-hover-blue">Sign out</a>
+                <a href="${pageContext.request.contextPath}/cabinet" class="w3-bar-item w3-right w3-hover-blue">${loggedInUser.name}: ${loggedInUser.role}</a>
             </c:when>
             <c:otherwise>
-                <a href="${pageContext.request.contextPath}/" class="w3-bar-item w3-left">Home</a>
-                <a href="${pageContext.request.contextPath}/login" class="w3-bar-item w3-right">Sign in</a>
-                <a href="${pageContext.request.contextPath}/registration" class="w3-bar-item w3-right">Register</a>
-
+                <a href="${pageContext.request.contextPath}/" class="w3-bar-item w3-hover-blue">Home</a>
+                <a href="${pageContext.request.contextPath}/login" class="w3-bar-item w3-hover-blue">Sign in</a>
+                <a href="${pageContext.request.contextPath}/registration" class="w3-bar-item w3-hover-blue">Sign up</a>
             </c:otherwise>
         </c:choose>
     </div>

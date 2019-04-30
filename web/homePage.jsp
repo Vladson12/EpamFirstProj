@@ -31,16 +31,11 @@
             <c:choose>
                 <c:when test="${userRole eq 'READER'}">
                     <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'">Book list</button>
-                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/cabinet/usercards?login=${loggedInUser.login}'">My cards</button>
-                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/cabinet?id=${loggedInUser.id}'">Cabinet</button>
-
                 </c:when>
                 <c:otherwise>
                     <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/users'">User list</button>
                     <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/addUser'">Add user</button>
                     <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'">Book list</button>
-                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/findUserCards'">User cards</button>
-                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/cabinet?id=${loggedInUser.id}'">Cabinet</button>
                 </c:otherwise>
             </c:choose>
         </div>
