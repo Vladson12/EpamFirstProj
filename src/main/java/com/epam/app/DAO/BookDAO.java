@@ -10,6 +10,8 @@ public interface BookDAO {
 
     Book getBookById(Integer bookId);
 
+    Book getBookByAuthor(String author);
+
     List<Book> getAllBooks();
 
     void updateBook(Book book);

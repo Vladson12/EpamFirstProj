@@ -19,6 +19,10 @@ public class BookService {
         return BOOK_DAO.getBookById(id);
     }
 
+    public static Book getBookByAuthor(String author) {
+        return BOOK_DAO.getBookByAuthor(author);
+    }
+
     public static List<Book> getAllBooks() {
         return BOOK_DAO.getAllBooks();
     }
