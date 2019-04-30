@@ -10,17 +10,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Book {
-    private int id;
+    private Integer id;
     private String author;
-    private BookState bookState;
+    private BookState bookState = BookState.FREE;
     private String title;
     private String description;
     private int year;
     private Genre genre;
 
+
+
     public Book(String author, String title, String description, int year, Genre genre) {
         this.author = author;
-        this.bookState = BookState.FREE;
         this.title = title;
         this.description = description;
         this.year = year;

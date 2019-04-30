@@ -8,9 +8,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Properties;
 
-/**
- * Created by vladd on 22.04.2019
- */
 public class Mail {
     public static Session getSession() {
 

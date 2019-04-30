@@ -29,19 +29,18 @@ public class RegisterUserController extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        User user = new User(name, Role.READER, login, hash(password));
-
         boolean isValidLogin = UserService.isLoginValid(login);
-        boolean isTheSameLogin = UserService.isLoginDuplicated(user);
+        boolean isTheSameLogin = UserService.isLoginDuplicated(login);
         if (isValidLogin) {
             if (!isTheSameLogin) {
+                User user = new User(name, Role.READER, login, hash(password));
                 UserService.create(user);
                 request.getRequestDispatcher("/authorization.jsp").forward(request, response);
             } else {
                 request.setAttribute("errMessage", "This email already exists!");
             }
         } else {
-            request.setAttribute("errMessage", "This email invalid");
+            request.setAttribute("errMessage", "This Email is invalid");
         }
         request.getRequestDispatcher("/registration.jsp").forward(request, response);
 

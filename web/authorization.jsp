@@ -4,7 +4,16 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Authorization</title>
+    <title>Library: Authorization</title>
+    <style>
+        body {
+            font-family: Consolas;
+        }
+        div.signinform {
+            width: 40%;
+            margin-left: 30%;
+        }
+    </style>
     <script>
         function validate() {
             var login = document.form.login.value;
@@ -20,36 +29,29 @@
         }
     </script>
 </head>
-<body class="w3-light-grey">
+<body>
 
 <jsp:include page="menuBar.jsp"></jsp:include>
 
-<center><h2>Sign in to Library</h2></center>
-<form name="form" action="login" method="post" onsubmit="return validate()">
-    <table align="center">
-
-        <tr>
-            <td>Email address</td>
-            <td><input type="email" name="login"/></td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" name="password"/></td>
-        </tr>
-        <tr>
-            <td><%=(request.getAttribute("errMessage") == null) ? ""
-                    : request.getAttribute("errMessage")%>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Log in"></input><input
-                    type="reset" value="Reset"></input></td>
-        </tr>
-
-    </table>
-</form>
+<div class="signinform">
+    <div class="w3-container w3-light-gray w3-padding w3-margin">
+        <h2 class="w3-text w3-center">Log in</h2>
+        <p><%=(request.getAttribute("errMessage") == null) ? ""
+                : request.getAttribute("errMessage")%></p>
+        <form name="form" action="login" method="post" onsubmit="return validate()">
+            <label>Email:
+                <input type="email" name="login" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+            </label>
+            <label>Password:
+                <input type="password" name="password" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+            </label>
+            <div class="w3-bar w3-center">
+                <button type="submit" class="w3-btn w3-green w3-round-large w3-right">Log in</button>
+                <a href="${pageContext.request.contextPath}/passwordRecovery" class="w3-bar-item w3-left">Forgot password?</a>
+            </div>
+        </form>
+    </div>
+</div>
 
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
     <button class="w3-btn w3-round-large" onclick="location.href='..'">Back</button>

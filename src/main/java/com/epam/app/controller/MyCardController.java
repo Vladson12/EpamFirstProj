@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
-@WebServlet("/myCard")
+@WebServlet("/cabinet/usercards")
 public class MyCardController extends HttpServlet {
 
     String login;

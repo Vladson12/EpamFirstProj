@@ -53,7 +53,7 @@ public class CardDaoMySqlImpl implements CardDAO {
 
     private Card createCard(int id, int userId, int bookId, Date start, Date end, int state) {
         User user = getInstance().getUserDAO().getUser(userId);
-        Book book = getInstance().getBookDAO().getBook(bookId);
+        Book book = getInstance().getBookDAO().getBookById(bookId);
         return new Card(id, user, book, start.toLocalDate(), end.toLocalDate(), getCardState(state));
     }
 

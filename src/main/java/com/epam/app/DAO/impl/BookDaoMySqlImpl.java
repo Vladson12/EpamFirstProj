@@ -2,6 +2,7 @@ package com.epam.app.DAO.impl;
 
 import com.epam.app.DAO.BookDAO;
 import com.epam.app.model.Book;
+import com.epam.app.model.enums.Genre;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -33,8 +34,13 @@ public class BookDaoMySqlImpl implements BookDAO {
     }
 
     @Override
-    public Book getBook(int bookId) {
+    public Book getBookById(Integer bookId) {
         Book book = null;
+        if (bookId == 0) {
+            book = new Book("", "", "", 2019, Genre.DRAMA);
+            book.setId(0);
+            return book;
+        }
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(SELECT)) {
             statement.setInt(1, bookId);
@@ -56,6 +62,9 @@ public class BookDaoMySqlImpl implements BookDAO {
             statement.setString(2, book.getTitle());
             statement.setInt(3, book.getBookState().ordinal() + 1);
             statement.setString(4, book.getDescription());
+            statement.setInt(5, book.getYear());
+            statement.setInt(6, book.getGenre().ordinal() + 1);
+
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,16 +73,22 @@ public class BookDaoMySqlImpl implements BookDAO {
 
     @Override
     public void updateBook(Book book) {
-        try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE)) {
-            statement.setString(1, book.getAuthor());
-            statement.setString(2, book.getTitle());
-            statement.setInt(3, book.getBookState().ordinal() + 1);
-            statement.setString(4, book.getDescription());
-            statement.setInt(5, book.getId());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (book.getId() == 0) {
+            addBook(book);
+        } else {
+            try (Connection connection = getConnection();
+                 PreparedStatement statement = connection.prepareStatement(UPDATE)) {
+                statement.setString(1, book.getAuthor());
+                statement.setString(2, book.getTitle());
+                statement.setInt(3, book.getBookState().ordinal() + 1);
+                statement.setString(4, book.getDescription());
+                statement.setInt(5, book.getYear());
+                statement.setInt(6, book.getGenre().ordinal() + 1);
+                statement.setInt(7, book.getId());
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 

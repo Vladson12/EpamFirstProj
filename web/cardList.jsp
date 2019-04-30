@@ -5,9 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Книжная полка</title>
+    <title>Library: Cards</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
     <style>
         table {
             font-family: arial, sans-serif;

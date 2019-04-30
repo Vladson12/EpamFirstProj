@@ -46,7 +46,6 @@ public class UserCardController extends HttpServlet {
                 }
             }
         }
-
         User currentUser = UserService.getByLogin(login);
         List<Card> cardsForUser = CardService.getAllCards(currentUser);
         req.setAttribute("list", cardsForUser);

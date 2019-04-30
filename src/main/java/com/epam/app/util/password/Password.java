@@ -1,14 +1,10 @@
 package com.epam.app.util.password;
 
-/**
- * Created by vladd on 22.04.2019
- */
+import org.mindrot.jbcrypt.BCrypt;
 import org.passay.CharacterData;
 import org.passay.CharacterRule;
 import org.passay.EnglishCharacterData;
 import org.passay.PasswordGenerator;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 
 public class Password {
     private static final PasswordGenerator gen = new PasswordGenerator();
@@ -17,7 +13,7 @@ public class Password {
     private static final CharacterRule AlphabeticalRule = new CharacterRule(alphabeticals);
     private static final CharacterRule NumericRule = new CharacterRule(numerics);
 
-    private static final BCryptPasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+//    private static final BCryptPasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
     static {
         AlphabeticalRule.setNumberOfCharacters(3);
@@ -29,12 +25,11 @@ public class Password {
     }
 
     public static String hash(String password) {
-
-        return PASSWORD_ENCODER.encode(password);
+        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public static boolean matches(String rawPassword, String encodedPassword) {
-        return PASSWORD_ENCODER.matches(rawPassword, encodedPassword);
+        return BCrypt.checkpw(rawPassword, encodedPassword);
     }
 
 }
