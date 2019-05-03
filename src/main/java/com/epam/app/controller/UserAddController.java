@@ -35,26 +35,33 @@ public class UserAddController extends HttpServlet {
 
         User user = new User(name, Role.getRole(role), login, hash(password));
 
+        boolean isValidLogin = UserService.isLoginValid(login);
+        boolean isTheSameLogin = UserService.isLoginDuplicated(login);
 
-        boolean isUserRegistered = UserService.create(user);
-
-        if (!isUserRegistered) {
-            request.setAttribute("errMessage", "User with this email already exists!");
-            request.getRequestDispatcher("/userAdd.jsp").forward(request, response);
-        } else {
-            try {
-                String subject = "Library: new Account details";
-                String body = "You was successfully added to the library base.\n" +
-                        "Email: " + login +
-                        "\nPassword: " + password +
-                        "\nYou can change it in your Personal Cabinet." +
-                        "\nRegards, Library administration";
-                Mail.send(login, subject, body);
-            } catch (MessagingException e) {
-                e.printStackTrace();
+        if (isValidLogin) {
+            if (isTheSameLogin) {
+                request.setAttribute("errMessage", "User with this email already exists!");
+                request.getRequestDispatcher("/userAdd.jsp").forward(request, response);
+            } else {
+                try {
+                    UserService.create(user);
+                    String subject = "Library: new Account details";
+                    String body = "You was successfully added to the library base.\n" +
+                            "Email: " + login +
+                            "\nPassword: " + password +
+                            "\nYou can change it in your Personal Cabinet." +
+                            "\nRegards, Library administration";
+                    Mail.send(login, subject, body);
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                }
+                request.getRequestDispatcher("/homePage.jsp").forward(request, response);
             }
-            request.getRequestDispatcher("/homePage.jsp").forward(request, response);
+        } else {
+            request.setAttribute("errMessage", "This Email is invalid");
         }
+        request.getRequestDispatcher("/userAdd.jsp").forward(request, response);
+
     }
 
     @Override

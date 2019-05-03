@@ -28,33 +28,31 @@
     <div class="w3-container w3-padding">
         <h3>Profile</h3>
         <form method="post" class="w3-selection w3-light-gray w3-padding" action="profile?=${sessionScope.loggedInUser.id}">
+            <jsp:useBean id="user" scope="session" type="com.epam.app.model.User"/>
             <input  value="${user.id}" type="hidden" name="id" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
             <label>Name:
                 <input value="${user.name}" type="text" name="name" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
             </label>
-            <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
             <label>Role:
-            <div class="w3-container">
+                <c:set var="userRole" value="${sessionScope.loggedInUser.role}"></c:set>
                 <c:choose>
-                    <c:when test="${userRole eq 'ADMINISTRATOR'}">
-                        <select class="w3-round-large" name="role">
-                            <option value="READER" ${user.role eq 'READER' ? 'selected' : ''}>Reader</option>
-                            <option value="LIBRARIAN" ${user.role eq 'LIBRARIAN' ? 'selected' : ''}>Librarian</option>
-                            <option value="ADMINISTRATOR" ${user.role eq 'ADMINISTRATOR' ? 'selected' : ''}>Administrator</option>
-                        </select>
-                    </c:when>
-                    <c:when test="${userRole eq 'LIBRARIAN'}">
-                        <select class="w3-round-large" name="role">
-                            <option value="LIBRARIAN" selected}>Librarian</option>
-                        </select>
+                    <c:when test="${(userRole eq 'ADMINISTRATOR') && (sessionScope.loggedInUser.id ne user.id)}">
+                        <%--<label>Role:--%>
+                        <div class="w3-container">
+                            <select class="w3-round-large" name="role">
+                                <option value="READER" ${user.role eq 'READER' ? 'selected' : ''}>Reader</option>
+                                <option value="LIBRARIAN" ${user.role eq 'LIBRARIAN' ? 'selected' : ''}>Librarian</option>
+                                <option value="ADMINISTRATOR" ${user.role eq 'ADMINISTRATOR' ? 'selected' : ''}>Administrator</option>
+                            </select>
+                        </div>
+                        <%--</label>--%>
                     </c:when>
                     <c:otherwise>
-                        <select class="w3-round-large" name="role"}>
-                            <option value="READER" selected}>Reader</option>
-                        </select>
+                        <%--<label>Role: --%>
+                        <input value="${user.role}" type="text" name="name" disabled class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+                        <%--</label>--%>
                     </c:otherwise>
                 </c:choose>
-            </div>
             </label>
             <label>Email:
                 <input value="${user.login}" type="text" name="login" disabled class="w3-input w3-animate-input w3-border w3-round-large"><br/>
