@@ -180,11 +180,11 @@
     </filter-mapping>
 
     <!-- log4j-config-location -->
-    <display-name>Log4jWebDemo1</display-name>
+    <display-name>Log4jWeb</display-name>
 
     <context-param>
         <param-name>log4j-config-location</param-name>
-        <param-value>log4j.properties</param-value>
+        <param-value>WEB-INF/log4j.properties</param-value>
     </context-param>
 
 
