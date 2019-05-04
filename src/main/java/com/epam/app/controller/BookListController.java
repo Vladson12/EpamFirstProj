@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +35,7 @@ public class BookListController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String identify;
         String side;
-
+        booksList = pageManager.sublist(BookService.getAllBooks());
         login = req.getParameter("login");
 
         if ((identify = req.getParameter("id")) != null) {
@@ -48,7 +47,6 @@ public class BookListController extends HttpServlet {
                     LocalDate.now(ZoneId.systemDefault()).plusDays((long) 7), CardState.ORDERED);
             CardService.create(card);
         }
-        booksList = pageManager.sublist(BookService.getAllBooks());
         if ((side = req.getParameter("pageSide")) != null) {
             if ("previous".equals(side)) {
                 pageManager.previousPage();
@@ -56,7 +54,18 @@ public class BookListController extends HttpServlet {
         }
         if (req.getParameter("insert") != null) {
             String author = req.getParameter("author");
-            booksList = Collections.singletonList(BookService.getBookByAuthor(author));
+            String genre = req.getParameter("genre");
+            if (genre != "" && author != "") {
+                // do filter by author and genre
+                booksList = Collections.singletonList(BookService.getBookByAuthor(author)).
+                        stream().filter(o -> o.getGenre().toString().equals(genre)).collect(Collectors.toList());
+            } else if (genre != "" && author == "") {
+                booksList = BookService.getAllBooks().stream().filter(o -> o.getGenre().toString().equals(genre)).collect(Collectors.toList());
+            } else if (genre == "" && author != "") {
+                booksList = Collections.singletonList(BookService.getBookByAuthor(author));
+            } else {
+
+            }
         }
 
         req.getSession().setAttribute("list", booksList
@@ -66,13 +75,6 @@ public class BookListController extends HttpServlet {
         req.getSession().setAttribute("login", login);
         req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
 
-
-
-
-//        else {
-//            booksList = BookService.getAllBooks();
-//            System.out.println("It doesn't work");
-//        }
     }
 
 }
