@@ -2,7 +2,6 @@
 package com.epam.app.controller;
 
 import com.epam.app.config.Config;
-import com.epam.app.listeners.TestLog4jServlet;
 import com.epam.app.model.User;
 import com.epam.app.service.UserService;
 import lombok.NoArgsConstructor;
