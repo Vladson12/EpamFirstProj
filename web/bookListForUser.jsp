@@ -8,18 +8,21 @@
     <title>Books</title>
     <style>
         table.stat td, tr, th {
-            height:9%;
+            height: 9%;
         }
+
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
             width: 100%;
         }
+
         td, th {
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
         }
+
         tr:nth-child(even) {
             background-color: #dddddd;
         }
@@ -33,8 +36,24 @@
         <tr>
             <th>Enter author name to find book:</th>
             <td><input type="text" name="author" value=""></td>
-            <td><input type="submit" name="insert" value="Insert"></td>
         </tr>
+
+        <tr>
+            <td> and/or choose book genre</td>
+            <td>
+                <select name="genre">
+                    <option value="" selected>-</option>
+                    <option value="TEXTBOOK">TEXTBOOK</option>
+                    <option value="NARRATIVE_NONFICTION">NARRATIVE_NONFICTION</option>
+                    <option value="DRAMA">DRAMA</option>
+                    <option value="FANTASY">FANTASY</option>
+                    <option value="CRIME_AND_DETECTIVE">CRIME_AND_DETECTIVE</option>
+                    <option value="SELF_HELP_BOOK">SELF_HELP_BOOK</option>
+                    <option value="SCIENCE_FICTION">SCIENCE_FICTION</option>
+                </select>
+            </td>
+        </tr>
+        <td><input type="submit" name="insert" value="Insert"></td>
     </form>
 </center>
 
@@ -73,7 +92,8 @@
                        type="button" value="Order" onclick="location.href='/bookList?login=${login}&id=${list.id}'">
                 <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
                 <c:if test="${userRole ne 'READER'}">
-                    <input style="font-size: 16px" type="button" value="Edit" onclick="location.href='/saveBook?id=${list.id}'">
+                    <input style="font-size: 16px" type="button" value="Edit"
+                           onclick="location.href='/saveBook?id=${list.id}'">
                 </c:if>
             </td>
         </tr>
