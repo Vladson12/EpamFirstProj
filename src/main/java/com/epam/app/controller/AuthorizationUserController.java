@@ -45,13 +45,13 @@ public class AuthorizationUserController extends HttpServlet {
             if (userAccount != null) {
                 session.setAttribute("loggedInUser", userAccount);
                 request.getRequestDispatcher("/homePage.jsp").forward(request, response);
-                log.info("I am fine.");
+                log.info("User " + userAccount.getLogin() + " logged in.");
             }
         } else {
             String errMessage = "Incorrect Username or password!";
             request.setAttribute("errMessage", errMessage);
             request.getRequestDispatcher("/authorization.jsp").forward(request, response);
-            log.error("I am programming.");
+            log.info("Unsuccessful attempt to login by " + login);
         }
     }
 
