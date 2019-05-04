@@ -2,9 +2,11 @@
 package com.epam.app.controller;
 
 import com.epam.app.config.Config;
+import com.epam.app.listeners.TestLog4jServlet;
 import com.epam.app.model.User;
 import com.epam.app.service.UserService;
 import lombok.NoArgsConstructor;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +22,8 @@ import static com.epam.app.util.password.Password.hash;
 @NoArgsConstructor
 @WebServlet("/login")
 public class AuthorizationUserController extends HttpServlet {
+
+    static final Logger log = Logger.getLogger(AuthorizationUserController.class);
 
     @Override
     public void init() throws ServletException {
@@ -41,11 +45,13 @@ public class AuthorizationUserController extends HttpServlet {
             if (userAccount != null) {
                 session.setAttribute("loggedInUser", userAccount);
                 request.getRequestDispatcher("/homePage.jsp").forward(request, response);
+                log.info("I am fine.");
             }
         } else {
             String errMessage = "Incorrect Username or password!";
             request.setAttribute("errMessage", errMessage);
             request.getRequestDispatcher("/authorization.jsp").forward(request, response);
+            log.error("I am programming.");
         }
     }
 

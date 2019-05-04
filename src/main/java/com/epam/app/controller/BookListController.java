@@ -60,7 +60,8 @@ public class BookListController extends HttpServlet {
                 booksList = Collections.singletonList(BookService.getBookByAuthor(author)).
                         stream().filter(o -> o.getGenre().toString().equals(genre)).collect(Collectors.toList());
             } else if (genre != "" && author == "") {
-                booksList = BookService.getAllBooks().stream().filter(o -> o.getGenre().toString().equals(genre)).collect(Collectors.toList());
+                booksList = BookService.getAllBooks().
+                        stream().filter(o -> o.getGenre().toString().equals(genre)).collect(Collectors.toList());
             } else if (genre == "" && author != "") {
                 booksList = Collections.singletonList(BookService.getBookByAuthor(author));
             } else {
