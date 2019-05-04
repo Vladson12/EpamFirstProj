@@ -1,21 +1,23 @@
 package com.epam.app.filter;
 
+import org.apache.log4j.Logger;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 @WebFilter("/AuthenticationFilter")
 public class AuthenticationFilter implements Filter {
+
+    static final Logger log = Logger.getLogger(AuthenticationFilter.class);
 
     private String pathToBeIgnored;
     private String pathToBeIgnored2;
     private String pathToBeIgnored3;
     private String pathToBeIgnored4;
-    private List<String> init;
     private ServletContext context;
 
     public void init(FilterConfig fConfig) throws ServletException {
@@ -23,8 +25,7 @@ public class AuthenticationFilter implements Filter {
         pathToBeIgnored2 = fConfig.getInitParameter("pathToBeIgnored2");
         pathToBeIgnored3 = fConfig.getInitParameter("pathToBeIgnored3");
         pathToBeIgnored4 = fConfig.getInitParameter("pathToBeIgnored4");
-        this.context = fConfig.getServletContext();
-        this.context.log("AuthenticationFilter initialized");
+        log.info("AuthenticationFilter initialized");
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -33,7 +34,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
 
         String uri = req.getRequestURI();
-        this.context.log("Requested Resource::" + uri);
+        log.info("Requested Resource::" + uri);
 
         HttpSession session = req.getSession(false);
 
@@ -47,8 +48,8 @@ public class AuthenticationFilter implements Filter {
         if ((session == null || session.getAttribute("loggedInUser") == null) &&
                 !(uri.equals(pathToBeIgnored) || (uri.equals(pathToBeIgnored2))) &&
                 !(uri.equals(pathToBeIgnored3) || (uri.equals(pathToBeIgnored4)))) {
-            this.context.log("Unauthorized access request");
             res.sendRedirect(req.getContextPath() + "/login");
+            log.info("Unauthorized access request");
         } else {
             chain.doFilter(request, response);
         }
