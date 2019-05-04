@@ -20,13 +20,13 @@ import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @WebServlet("/bookList")
 public class BookListController extends HttpServlet {
 
     private static PageManager pageManager;
-    String login;
-    List<Book> booksList;
+    private List<Book> booksList;
 
     static {
         pageManager = new PageManager<Book>();
@@ -35,8 +35,8 @@ public class BookListController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String identify;
         String side;
+        String login = req.getParameter("login");
         booksList = pageManager.sublist(BookService.getAllBooks());
-        login = req.getParameter("login");
 
         if ((identify = req.getParameter("id")) != null) {
             int id = Integer.parseInt(identify);
@@ -55,15 +55,19 @@ public class BookListController extends HttpServlet {
         if (req.getParameter("insert") != null) {
             String author = req.getParameter("author");
             String genre = req.getParameter("genre");
-            if (genre != "" && author != "") {
+
+            boolean isAuthorEmpty = author.equals("");
+            boolean isGenreEmpty = genre.equals("");
+            if (!isGenreEmpty && !isAuthorEmpty) {
                 // do filter by author and genre
-                booksList = Collections.singletonList(BookService.getBookByAuthor(author)).
-                        stream().filter(o -> o.getGenre().toString().equals(genre)).collect(Collectors.toList());
-            } else if (genre != "" && author == "") {
+                booksList = BookService.getAllBooks().stream().filter(o -> o.getAuthor().equals(author))
+                        .filter(o->o.getGenre().toString().equals(genre)).collect(Collectors.toList());
+            } else if (!isGenreEmpty && isAuthorEmpty) {
                 booksList = BookService.getAllBooks().
                         stream().filter(o -> o.getGenre().toString().equals(genre)).collect(Collectors.toList());
-            } else if (genre == "" && author != "") {
-                booksList = Collections.singletonList(BookService.getBookByAuthor(author));
+            } else if (isGenreEmpty && !isAuthorEmpty) {
+                booksList = BookService.getAllBooks().
+                        stream().filter(o -> o.getAuthor().equals(author)).collect(Collectors.toList());
             } else {
 
             }
@@ -73,7 +77,6 @@ public class BookListController extends HttpServlet {
                 .stream().filter(o -> o.getBookState().equals(BookState.FREE)).collect(Collectors.toList()));
         req.getSession().setAttribute("page", new PageManager.Page(0));
         req.getSession().setAttribute("pages", pageManager.getPages());
-        req.getSession().setAttribute("login", login);
         req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
 
     }
