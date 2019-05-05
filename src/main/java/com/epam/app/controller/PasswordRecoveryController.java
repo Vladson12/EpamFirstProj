@@ -3,6 +3,7 @@ package com.epam.app.controller;
 import com.epam.app.service.UserService;
 import com.epam.app.util.mail.Mail;
 import com.epam.app.util.password.Password;
+import org.apache.log4j.Logger;
 
 import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
@@ -18,6 +19,8 @@ import java.io.IOException;
  */
 @WebServlet("/passwordRecovery")
 public class PasswordRecoveryController extends HttpServlet {
+    static final Logger log = Logger.getLogger(PasswordRecoveryController.class);
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,9 +34,11 @@ public class PasswordRecoveryController extends HttpServlet {
         if (!isLoginValid) {
             request.setAttribute("errMessage", "This is not valid email address!");
             request.getRequestDispatcher("/recovery.jsp").forward(request, response);
+            log.info("Failed to send a mail " + login + ". The invalid email address!");
         } else if (!isUserRegistered) {
             request.setAttribute("errMessage", "There is no user with this email!");
             request.getRequestDispatcher("/recovery.jsp").forward(request, response);
+            log.info("Failed to send a mail " + login + ". User with this login is not exists");
         } else {
             try {
                 String subject = "Library: Password Recovery";
@@ -44,10 +49,10 @@ public class PasswordRecoveryController extends HttpServlet {
                         "\nRegards, Library administration";
                 Mail.send(login, subject, body);
             } catch (MessagingException e) {
-                e.printStackTrace();
+                log.error("Exceptions happen!", e);
             }
             request.getRequestDispatcher("/welcomePage.jsp").forward(request, response);
-
+            log.info("Mail with password success sent to " + login);
         }
     }
 

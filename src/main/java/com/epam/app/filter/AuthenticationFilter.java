@@ -1,5 +1,6 @@
 package com.epam.app.filter;
 
+import com.epam.app.model.User;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -18,7 +19,6 @@ public class AuthenticationFilter implements Filter {
     private String pathToBeIgnored2;
     private String pathToBeIgnored3;
     private String pathToBeIgnored4;
-    private ServletContext context;
 
     public void init(FilterConfig fConfig) throws ServletException {
         pathToBeIgnored = fConfig.getInitParameter("pathToBeIgnored");
@@ -34,18 +34,11 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
 
         String uri = req.getRequestURI();
-        log.info("Requested Resource::" + uri);
 
         HttpSession session = req.getSession(false);
+        User user = (User) session.getAttribute("loggedInUser");
 
-//        if ((session == null || session.getAttribute("loggedInUser") == null) &&
-//                !(uri.equals("/") || (uri.equals("/login"))) &&
-//                !(uri.equals("/registration") || (uri.equals("/logout"))) &&
-//                !(uri.equals("/passwordRecovery"))) {
-//            this.context.log("Unauthorized access request");
-//            res.sendRedirect(req.getContextPath() + "/login");
-
-        if ((session == null || session.getAttribute("loggedInUser") == null) &&
+        if ((session == null || user == null) &&
                 !(uri.equals(pathToBeIgnored) || (uri.equals(pathToBeIgnored2))) &&
                 !(uri.equals(pathToBeIgnored3) || (uri.equals(pathToBeIgnored4)))) {
             res.sendRedirect(req.getContextPath() + "/login");
