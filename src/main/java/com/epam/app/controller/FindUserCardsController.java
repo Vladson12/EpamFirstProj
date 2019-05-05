@@ -1,6 +1,7 @@
 package com.epam.app.controller;
 
 import com.epam.app.service.UserService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,8 @@ import java.util.List;
 
 @WebServlet("/findUserCards")
 public class FindUserCardsController extends HttpServlet {
+
+    static final Logger log = Logger.getLogger(FindUserCardsController.class);
 
     private String login;
 
@@ -27,8 +30,10 @@ public class FindUserCardsController extends HttpServlet {
             if (logins.stream().anyMatch(login::equals)) {
                 req.setAttribute("login", login);
                 req.getRequestDispatcher("/cards").forward(req, resp);
+                log.info("Requested cards of user " + login);
             } else {
                 req.getRequestDispatcher("/findUserCards.jsp").forward(req, resp);
+                log.info("Filed to get cards user " + login);
             }
         }
     }

@@ -4,6 +4,7 @@ import com.epam.app.config.Config;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +18,8 @@ import static com.epam.app.util.password.Password.hash;
 
 @WebServlet("/registration")
 public class RegisterUserController extends HttpServlet {
+
+    static final Logger log = Logger.getLogger(RegisterUserController.class);
 
     @Override
     public void init() throws ServletException {
@@ -38,12 +41,14 @@ public class RegisterUserController extends HttpServlet {
                 request.getRequestDispatcher("/authorization.jsp").forward(request, response);
             } else {
                 request.setAttribute("errMessage", "This email already exists!");
+                log.info("Failed to register " + login + ". User with this login is already exists");
             }
         } else {
             request.setAttribute("errMessage", "This Email is invalid");
+            log.info("Failed to register " + login + ". Email is invalid");
         }
         request.getRequestDispatcher("/registration.jsp").forward(request, response);
-
+        log.info("Successful registration by " + login);
     }
 
     @Override

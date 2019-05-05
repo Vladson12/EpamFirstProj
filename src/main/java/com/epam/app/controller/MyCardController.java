@@ -4,6 +4,7 @@ import com.epam.app.model.Card;
 import com.epam.app.model.enums.CardState;
 import com.epam.app.service.CardService;
 import com.epam.app.service.UserService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,8 @@ import java.util.List;
 
 @WebServlet("/cabinet/usercards")
 public class MyCardController extends HttpServlet {
+
+    static final Logger log = Logger.getLogger(MyCardController.class);
 
     String login;
     List<Card> cards;
@@ -43,5 +46,6 @@ public class MyCardController extends HttpServlet {
         req.setAttribute("login", login);
         req.setAttribute("list", cards);
         req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
+        log.info("Successful request all cards of user " + login);
     }
 }

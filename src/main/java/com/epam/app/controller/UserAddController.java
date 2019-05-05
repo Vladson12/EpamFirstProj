@@ -6,6 +6,7 @@ import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
 import com.epam.app.util.mail.Mail;
 import com.epam.app.util.password.Password;
+import org.apache.log4j.Logger;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -13,12 +14,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static com.epam.app.util.password.Password.hash;
 
 @WebServlet("/addUser")
 public class UserAddController extends HttpServlet {
+
+    static final Logger log = Logger.getLogger(UserAddController.class);
 
     private static String name;
     private static String login;
@@ -34,6 +38,8 @@ public class UserAddController extends HttpServlet {
         password = Password.generate();
 
         User user = new User(name, Role.getRole(role), login, hash(password));
+        HttpSession session = request.getSession(true);
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
 
         boolean isValidLogin = UserService.isLoginValid(login);
         boolean isTheSameLogin = UserService.isLoginDuplicated(login);
@@ -42,6 +48,8 @@ public class UserAddController extends HttpServlet {
             if (isTheSameLogin) {
                 request.setAttribute("errMessage", "User with this email already exists!");
                 request.getRequestDispatcher("/userAdd.jsp").forward(request, response);
+                log.info("Failed to register new user by " + loggedInUser.getRole() + " " +
+                        loggedInUser.getLogin()+ ". User with this email already exists");
             } else {
                 try {
                     UserService.create(user);
@@ -53,14 +61,19 @@ public class UserAddController extends HttpServlet {
                             "\nRegards, Library administration";
                     Mail.send(login, subject, body);
                 } catch (MessagingException e) {
-                    e.printStackTrace();
+                    log.error("Exceptions happen!", e);
                 }
                 request.getRequestDispatcher("/homePage.jsp").forward(request, response);
+                log.info("User " + user.getLogin() + " registered by " + loggedInUser.getRole() + " "
+                        + loggedInUser.getLogin() + " and mail has sent");
             }
         } else {
             request.setAttribute("errMessage", "This Email is invalid");
+            log.info("Failed to register new user by " + loggedInUser.getRole() + " " +
+                    loggedInUser.getLogin()+ ". Email is invalid");
         }
         request.getRequestDispatcher("/userAdd.jsp").forward(request, response);
+
 
     }
 
