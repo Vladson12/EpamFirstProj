@@ -17,13 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @WebServlet("/bookList")
 public class BookListController extends HttpServlet {
 
     private static PageManager pageManager;
-    String login;
+    private List<Book> booksList;
 
     static {
         pageManager = new PageManager<Book>();
@@ -32,16 +35,16 @@ public class BookListController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String identify;
         String side;
-
-        login = req.getParameter("login");
+        String login = req.getParameter("login");
+        booksList = pageManager.sublist(BookService.getAllBooks());
 
         if ((identify = req.getParameter("id")) != null) {
             int id = Integer.parseInt(identify);
             Book book = BookService.getBookById(id);
             book.setBookState(BookState.ORDERED);
             BookService.updateBook(book);
-            Card card = new Card(UserService.getByLogin(login),book, LocalDate.now(ZoneId.systemDefault()),
-                    LocalDate.now(ZoneId.systemDefault()).plusDays((long)7), CardState.ORDERED);
+            Card card = new Card(UserService.getByLogin(login), book, LocalDate.now(ZoneId.systemDefault()),
+                    LocalDate.now(ZoneId.systemDefault()).plusDays((long) 7), CardState.ORDERED);
             CardService.create(card);
         }
         if ((side = req.getParameter("pageSide")) != null) {
@@ -49,11 +52,31 @@ public class BookListController extends HttpServlet {
                 pageManager.previousPage();
             } else pageManager.nextPage();
         }
-        req.getSession().setAttribute("list", pageManager.sublist(BookService.getAllBooks()
-                .stream().filter(o->o.getBookState().equals(BookState.FREE)).collect(Collectors.toList())));
+        if (req.getParameter("insert") != null) {
+            String author = req.getParameter("author");
+            String genre = req.getParameter("genre");
+
+            boolean isAuthorEmpty = author.equals("");
+            boolean isGenreEmpty = genre.equals("");
+            if (!isGenreEmpty && !isAuthorEmpty) {
+                // do filter by author and genre
+                booksList = BookService.getAllBooks().stream().filter(o -> o.getAuthor().equals(author))
+                        .filter(o->o.getGenre().toString().equals(genre)).collect(Collectors.toList());
+            } else if (!isGenreEmpty && isAuthorEmpty) {
+                booksList = BookService.getAllBooks().
+                        stream().filter(o -> o.getGenre().toString().equals(genre)).collect(Collectors.toList());
+            } else if (isGenreEmpty && !isAuthorEmpty) {
+                booksList = BookService.getAllBooks().
+                        stream().filter(o -> o.getAuthor().equals(author)).collect(Collectors.toList());
+            } else {
+
+            }
+        }
+
+        req.getSession().setAttribute("list", booksList
+                .stream().filter(o -> o.getBookState().equals(BookState.FREE)).collect(Collectors.toList()));
         req.getSession().setAttribute("page", new PageManager.Page(0));
         req.getSession().setAttribute("pages", pageManager.getPages());
-        req.getSession().setAttribute("login", login);
         req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
 
     }

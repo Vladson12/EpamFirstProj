@@ -153,13 +153,39 @@
         <!--<url-pattern>/logout</url-pattern>-->
     <!--</servlet-mapping>-->
 
-    <!--<filter>-->
-        <!--<filter-name>loginFilter</filter-name>-->
-        <!--<filter-class>com.epam.app.filter.SecurityFilter</filter-class>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>loginFilter</filter-name>-->
-        <!--<url-pattern>/view/*</url-pattern>-->
-    <!--</filter-mapping>-->
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.epam.app.filter.AuthenticationFilter</filter-class>
+        <init-param>
+            <param-name>pathToBeIgnored</param-name>
+            <param-value>/</param-value>
+        </init-param>
+        <init-param>
+            <param-name>pathToBeIgnored2</param-name>
+            <param-value>/login</param-value>
+        </init-param>
+        <init-param>
+            <param-name>pathToBeIgnored3</param-name>
+            <param-value>/registration</param-value>
+        </init-param>
+        <init-param>
+            <param-name>pathToBeIgnored4</param-name>
+            <param-value>/passwordRecovery</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- log4j-config-location -->
+    <display-name>Log4jWeb</display-name>
+
+    <context-param>
+        <param-name>log4j-config-location</param-name>
+        <param-value>WEB-INF/log4j.properties</param-value>
+    </context-param>
+
 
 </web-app>

@@ -10,9 +10,8 @@ import java.util.List;
 
 import static com.epam.app.model.enums.BookState.getBookState;
 import static com.epam.app.model.enums.Genre.getGenre;
-import static com.epam.app.util.db.DbUtils.*;
+import static com.epam.app.util.db.DbUtils.getConnection;
 import static com.epam.app.util.db.mysql.BookQueryMySql.*;
-
 
 
 public class BookDaoMySqlImpl implements BookDAO {
@@ -23,7 +22,7 @@ public class BookDaoMySqlImpl implements BookDAO {
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(SELECT_All)) {
-            while (rs.next()){
+            while (rs.next()) {
                 array.add(new Book(rs.getInt("idbook"), rs.getString("author"), getBookState(rs.getInt("book_state_id")),
                         rs.getString("title"), rs.getString("description"), rs.getInt("year"), getGenre(rs.getInt("genre"))));
             }
@@ -46,13 +45,15 @@ public class BookDaoMySqlImpl implements BookDAO {
             statement.setInt(1, bookId);
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
-                book = new Book(rs.getInt("idbook"),rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"),
-                        rs.getString("description"), rs.getInt("year"), getGenre(rs.getInt("genre"))); }
+                book = new Book(rs.getInt("idbook"), rs.getString("author"), getBookState(rs.getInt("book_state_id")), rs.getString("title"),
+                        rs.getString("description"), rs.getInt("year"), getGenre(rs.getInt("genre")));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return book;
     }
+
 
     @Override
     public void addBook(Book book) {
@@ -69,6 +70,31 @@ public class BookDaoMySqlImpl implements BookDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Book getBookByAuthor(String author) {
+        Book book = null;
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_BY_AUTHOR)) {
+            statement.setString(1, author);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    book = new Book(
+                            rs.getInt("idbook"),
+                            rs.getString("author"),
+                            getBookState(rs.getInt("book_state_id")),
+                            rs.getString("title"),
+                            rs.getString("description"),
+                            rs.getInt("year"),
+                            getGenre(rs.getInt("genre")));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return book;
+
     }
 
     @Override
