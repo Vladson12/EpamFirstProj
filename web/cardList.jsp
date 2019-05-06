@@ -36,12 +36,12 @@
 <jsp:include page="menuBar.jsp"></jsp:include>
 
 <h1> <c:out value="${login}" /></h1>
-<table>
+<table id="userCard">
     <tr style="font-size: 22px">
         <th width="1%" style="text-align: center">№</th>
-        <th width="22%" style="text-align: center">Book</th>
-        <th width="27%" style="text-align: center">From</th>
-        <th width="27%" style="text-align: center">To</th>
+        <th width="22%" onclick="sortTable(1)" onmouseover="this.style.cursor='pointer'" style="text-align: center">Book</th>
+        <th width="27%" onclick="sortTable(2)" onmouseover="this.style.cursor='pointer'" style="text-align: center">From</th>
+        <th width="27%" onclick="sortTable(3)" onmouseover="this.style.cursor='pointer'" style="text-align: center">To</th>
         <th width="10%" style="text-align: center">State</th>
         <th width="17%" style="text-align: center">Actions</th>
 
@@ -87,7 +87,46 @@
     </c:forEach>
 </table>
 <hr/>
-
+<script>
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("userCard");
+        switching = true;
+        dir = "asc";
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                xi=x.innerHTML.toLowerCase().replace(/-/g, '');
+                yi=y.innerHTML.toLowerCase().replace(/-/g, '');
+                if (dir == "asc") {
+                    if (xi > yi) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (xi < yi) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount++;
+            } else {
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+</script>
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
     <button class="w3-btn w3-round-large" onclick="location.href='/home'">Back</button>
 </div>
