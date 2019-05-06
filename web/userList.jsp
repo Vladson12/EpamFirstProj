@@ -45,24 +45,29 @@
     </div>
 </div>
 
-<table>
+
+<table id="userTable">
     <tr style="font-size: 22px">
 
-        <th width="25%" style="text-align: center">Name</th>
-        <th width="25%" style="text-align: center">Login</th>
-        <th width="25%" style="text-align: center">Role</th>
+        <th onclick="sortTable(0)" width="25%" onmouseover="this.style.cursor='pointer'" style="text-align: center">
+            Name
+        </th>
+        <th onclick="sortTable(1)" width="25%" onmouseover="this.style.cursor='pointer'" style="text-align: center">
+            Login
+        </th>
+        <th onclick="sortTable(2)" width="25%" onmouseover="this.style.cursor='pointer'" style="text-align: center">
+            Role
+        </th>
         <th width="25%" style="text-align: center">Actions</th>
 
     </tr>
     <c:forEach var="user" items="${users}">
         <jsp:useBean id="user" scope="page" type="com.epam.app.model.User"/>
-
         <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
+        <c:set var="userLogin" value="${sessionScope.loggedInUser.login}"/>
         <c:choose>
-            <c:when test="${userRole eq 'LIBRARIAN'}">
-                <c:if test="${user.role eq 'READER'}">
+            <c:when test="${((userRole eq 'LIBRARIAN') && (user.role eq 'READER')) || ((userRole eq 'ADMINISTRATOR')&&(!userLogin.equals(user.login)))}">
                     <tr>
-                            <%--                    <c:set var="login" value="${user.login}"/>--%>
                         <td><c:out value="${user.name}"/></td>
                         <td><c:out value="${user.login}"/></td>
                         <td><c:out value="${user.role}"/></td>
@@ -74,34 +79,13 @@
                             <form action="/users?login=${user.login}&button=edit" method="post">
                                 <input style="font-size: 16px" type="submit" value="Edit">
                             </form>
-<%--                            <form action="/users?login=${user.login}&button=delete" method="post">--%>
-<%--                                <input style="font-size: 16px" type="submit" value="Delete">--%>
-<%--                            </form>--%>
+                                <%--                            <form action="/users?login=${user.login}&button=delete" method="post">--%>
+                                <%--                                <input style="font-size: 16px" type="submit" value="Delete">--%>
+                                <%--                            </form>--%>
                         </td>
                     </tr>
-                </c:if>
             </c:when>
-            <c:otherwise>
-                <tr>
-                    <td><c:out value="${user.name}"/></td>
-                    <td><c:out value="${user.login}"/></td>
-                    <td><c:out value="${user.role}"/></td>
-
-                    <td style="text-align: center">
-                        <form action="/users?login=${user.login}&button=findCards" method="post">
-                            <input style="font-size: 16px" type="submit" value="Card List">
-                        </form>
-                        <form action="/users?login=${user.login}&button=edit" method="post">
-                            <input style="font-size: 16px" type="submit" value="Edit">
-                        </form>
-<%--                        <form action="/users?login=${user.login}&button=delete" method="post">--%>
-<%--                            <input style="font-size: 16px" type="submit" value="Delete">--%>
-<%--                        </form>--%>
-                    </td>
-                </tr>
-            </c:otherwise>
         </c:choose>
-
     </c:forEach>
 </table>
 <hr/>
@@ -112,17 +96,49 @@
                    onclick="location.href='/users?pageSide=previous'">
             <input style="font-size: 16px; text-align: left" type="button" value="Next page"
                    onclick="location.href='/users?pageSide=next'">
-            <%--            <c:if test="${sessionScope.loggedInUser.role eq 'LIBRARIAN'}">--%>
-            <%--                <input style="font-size: 16px; text-align: right" type="button" value="Add book"--%>
-            <%--                       onclick="location.href='/addBook'">--%>
-            <%--            </c:if>--%>
         </td>
     </tr>
 </table>
-
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
     <button class="w3-btn w3-round-large" onclick="location.href='/users'">To user list</button>
 </div>
-
+<script>
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("userTable");
+        switching = true;
+        dir = "asc";
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount++;
+            } else {
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+</script>
 </body>
 </html>

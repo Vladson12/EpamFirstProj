@@ -19,6 +19,10 @@ import java.util.List;
 @WebServlet("/cards")
 public class UserCardController extends HttpServlet {
 
+    private String id;
+    private String button;
+    private String login;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -26,9 +30,18 @@ public class UserCardController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("id");
-        String button = req.getParameter("button");
-        String login = (String) req.getAttribute("login");
+        id = req.getParameter("id");
+        button = req.getParameter("button");
+        login = (String) req.getAttribute("login");
+        doPut(req,resp);
+        User currentUser = UserService.getByLogin(login);
+        List<Card> cardsForUser = CardService.getAllCards(currentUser);
+        req.setAttribute("list", cardsForUser);
+        req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (id != null) {
             int idInt = Integer.valueOf(id);
             login = CardService.get(idInt).getUser().getLogin();
@@ -46,9 +59,7 @@ public class UserCardController extends HttpServlet {
                 }
             }
         }
-        User currentUser = UserService.getByLogin(login);
-        List<Card> cardsForUser = CardService.getAllCards(currentUser);
-        req.setAttribute("list", cardsForUser);
-        req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
     }
-}
+
+
+    }
