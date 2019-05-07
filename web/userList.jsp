@@ -66,7 +66,8 @@
         <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
         <c:set var="userLogin" value="${sessionScope.loggedInUser.login}"/>
         <c:choose>
-            <c:when test="${((userRole eq 'LIBRARIAN') && (user.role eq 'READER')) || ((userRole eq 'ADMINISTRATOR')&&(!userLogin.equals(user.login)))}">
+            <c:when test="${((userRole eq 'LIBRARIAN') && (user.role eq 'READER'))
+                || ((userRole eq 'ADMINISTRATOR')&&(!userLogin.equals(user.login)))}">
                     <tr>
                         <td><c:out value="${user.name}"/></td>
                         <td><c:out value="${user.login}"/></td>
@@ -102,10 +103,10 @@
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
     <button class="w3-btn w3-round-large" onclick="location.href='/users'">To user list</button>
 </div>
-<script>
+<script type="text/javascript">
+    table = document.getElementById("userTable");
     function sortTable(n) {
-        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.getElementById("userTable");
+        var rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
         switching = true;
         dir = "asc";
         while (switching) {

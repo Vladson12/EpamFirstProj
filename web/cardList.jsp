@@ -61,12 +61,12 @@
                     <td style="text-align: center">
                         <%if (list.getCardState().equals(CardState.ORDERED)) {%>
                         <input style = "font-size: 16px" type = "button" value = "Take home"
-                                onclick = "location.href = '/cards?id=${list.id}&button=home'" >
+                               onclick = "location.href = '/cards?id=${list.id}&button=home'" >
                         <input style = "font-size: 16px" type = "button" value = "Take reading hall"
-                                onclick = "location.href='/cards?id=${list.id}&button=hall'" >
+                               onclick = "location.href='/cards?id=${list.id}&button=hall'" >
                         <%} else if(list.getCardState().equals(CardState.AT_HALL) ||
                                 list.getCardState().equals(CardState.AT_HOME) ||
-                            list.getCardState().equals(CardState.OVERDUE)) {%>
+                                list.getCardState().equals(CardState.OVERDUE)) {%>
                         <input style = "font-size: 16px" type = "button" value = "Return"
                                onclick = "location.href = '/cards?id=${list.id}&button=return'" >
                         <%}%>
@@ -141,5 +141,3 @@
 <%--    </tr>--%>
 <%--</table>--%>
 </body>
-
-
