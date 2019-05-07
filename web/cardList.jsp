@@ -42,7 +42,7 @@
         <th width="22%" onclick="sortTable(1)" onmouseover="this.style.cursor='pointer'" style="text-align: center">Book</th>
         <th width="27%" onclick="sortTable(2)" onmouseover="this.style.cursor='pointer'" style="text-align: center">From</th>
         <th width="27%" onclick="sortTable(3)" onmouseover="this.style.cursor='pointer'" style="text-align: center">To</th>
-        <th width="10%" style="text-align: center">State</th>
+        <th width="10%" onclick="sortTable(4)" onmouseover="this.style.cursor='pointer'" style="text-align: center">State</th>
         <th width="17%" style="text-align: center">Actions</th>
 
     </tr>
@@ -62,15 +62,18 @@
                 && !(userLogin.equals(list.user.login)))}">
                     <td style="text-align: center">
                         <%if (list.getCardState().equals(CardState.ORDERED)) {%>
-                        <input style = "font-size: 16px" type = "button" value = "Take home"
-                               onclick = "location.href = '/cards?id=${list.id}&button=home'" >
-                        <input style = "font-size: 16px" type = "button" value = "Take reading hall"
-                               onclick = "location.href='/cards?id=${list.id}&button=hall'" >
+                        <form action="/cards?id=${list.id}&button=home" method="post">
+                            <input style="font-size: 16px" type="submit" value="Take home">
+                        </form>
+                        <form action="/cards?id=${list.id}&button=hall" method="post">
+                            <input style="font-size: 16px" type="submit" value="Take reading hall">
+                        </form>
                         <%} else if(list.getCardState().equals(CardState.AT_HALL) ||
                                 list.getCardState().equals(CardState.AT_HOME) ||
                                 list.getCardState().equals(CardState.OVERDUE)) {%>
-                        <input style = "font-size: 16px" type = "button" value = "Return"
-                               onclick = "location.href = '/cards?id=${list.id}&button=return'" >
+                        <form action="/cards?id=${list.id}&button=return" method="post">
+                            <input style="font-size: 16px" type="submit" value="Return">
+                        </form>
                         <%}%>
                     </td>
                 </c:when>
@@ -78,8 +81,9 @@
                 <c:otherwise>
                     <td style="text-align: center">
                         <%if (list.getCardState().equals(CardState.ORDERED)) {%>
-                        <input style = "font-size: 16px" type = "button" value = "reset"
-                               onclick = "location.href = '/cabinet/usercards?login=${login}&id=${list.id}&button=reset'" >
+                        <form action="/cabinet/usercards?login=${login}&id=${list.id}&button=reset" method="post">
+                            <input style="font-size: 16px" type="submit" value="reset">
+                        </form>
                         <%}%>
                     </td>
                 </c:otherwise>

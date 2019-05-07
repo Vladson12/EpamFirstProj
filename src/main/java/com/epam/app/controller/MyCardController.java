@@ -14,38 +14,54 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.epam.app.model.enums.CardState.getPriority;
 
 @WebServlet("/cabinet/usercards")
 public class MyCardController extends HttpServlet {
 
     static final Logger log = Logger.getLogger(MyCardController.class);
-
-    String login;
-    List<Card> cards;
+    private String login;
+    private List<Card> cards;
+    private String id;
+    private String button;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         login = req.getParameter("login");
-        cards = CardService.getAllCards(UserService.getByLogin(login));
-        doPost(req, resp);
+        cards = updateCards();
+        req.getSession().setAttribute("login", login);
+        req.getSession().setAttribute("list", cards);
+        req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String idCard = req.getParameter("id");
-        String button = req.getParameter("button");
-        if (idCard != null) {
-            int idInt = Integer.valueOf(idCard);
-            if (button != null) {
-                CardService.updateCardStatusAndDate(CardService.get(idInt), CardState.RETURNED,
-                        LocalDate.now(ZoneId.systemDefault()));
-                cards = CardService.getAllCards(UserService.getByLogin(login));
-            }
+        id = req.getParameter("id");
+        button = req.getParameter("button");
+        if (id != null) {
+            doPut(req,resp);
         }
-        req.setAttribute("login", login);
-        req.setAttribute("list", cards);
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idInt = Integer.valueOf(id);
+        if (button != null) {
+            CardService.updateCardStatusAndDate(CardService.get(idInt), CardState.RETURNED,
+                    LocalDate.now(ZoneId.systemDefault()));
+            cards = updateCards();
+        }
+        req.getSession().setAttribute("login", login);
+        req.getSession().setAttribute("list", cards);
         req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
-        log.info("Successful request all cards of user " + login);
+    }
+
+    private List<Card> updateCards(){
+        return CardService.getAllCards(UserService.getByLogin(login)).stream()
+                .sorted(Comparator.comparingInt(o -> getPriority(o.getCardState()))).collect(Collectors.toList());
     }
 }

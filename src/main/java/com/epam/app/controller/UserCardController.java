@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.epam.app.model.enums.CardState.getPriority;
 
 @WebServlet("/cards")
 public class UserCardController extends HttpServlet {
@@ -22,10 +26,14 @@ public class UserCardController extends HttpServlet {
     private String id;
     private String button;
     private String login;
+    private List<Card> cardsForUser;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        login = (String) req.getAttribute("login");
+        List<Card> cardsForUser = updateCards(UserService.getByLogin(login));
+        req.setAttribute("list", cardsForUser);
+        req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
     }
 
     @Override
@@ -33,33 +41,35 @@ public class UserCardController extends HttpServlet {
         id = req.getParameter("id");
         button = req.getParameter("button");
         login = (String) req.getAttribute("login");
-        doPut(req,resp);
-        User currentUser = UserService.getByLogin(login);
-        List<Card> cardsForUser = CardService.getAllCards(currentUser);
+        if (id != null) {
+            doPut(req,resp);
+        }
+        List<Card> cardsForUser = updateCards(UserService.getByLogin(login));
         req.setAttribute("list", cardsForUser);
         req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (id != null) {
-            int idInt = Integer.valueOf(id);
-            login = CardService.get(idInt).getUser().getLogin();
-            req.setAttribute("login", login);
-            if (button != null) {
-                if (button.equals("home")) {
-                    req.setAttribute("id", id);
-                    req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
-                } else if (button.equals("hall")) {
-                    CardService.updateCardStatusAndDate(CardService.get(idInt), CardState.AT_HALL,
-                            LocalDate.now(ZoneId.systemDefault()));
-                } else if (button.equals("return")) {
-                    CardService.updateCardStatusAndDate(CardService.get(idInt), CardState.RETURNED,
-                            LocalDate.now(ZoneId.systemDefault()));
-                }
+        int idInt = Integer.valueOf(id);
+        login = CardService.get(idInt).getUser().getLogin();
+        req.setAttribute("login", login);
+        if (button != null) {
+            if (button.equals("home")) {
+                req.setAttribute("id", id);
+                req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
+            } else if (button.equals("hall")) {
+                CardService.updateCardStatusAndDate(CardService.get(idInt), CardState.AT_HALL,
+                        LocalDate.now(ZoneId.systemDefault()));
+            } else if (button.equals("return")) {
+                CardService.updateCardStatusAndDate(CardService.get(idInt), CardState.RETURNED,
+                        LocalDate.now(ZoneId.systemDefault()));
             }
         }
     }
 
-
+    private List<Card> updateCards(User user){
+        return CardService.getAllCards(user).stream()
+                .sorted(Comparator.comparingInt(o -> getPriority(o.getCardState()))).collect(Collectors.toList());
     }
+}
