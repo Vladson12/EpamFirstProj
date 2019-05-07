@@ -9,12 +9,18 @@
     <style>
         body {
             font-family: Consolas;
-            background-image:  url("https://s2.best-wallpaper.net/wallpaper/1920x1080/1611/Library-interior-photography_1920x1080.jpg");
+            background-image: url("https://s2.best-wallpaper.net/wallpaper/1920x1080/1611/Library-interior-photography_1920x1080.jpg");
         }
     </style>
 </head>
 
 <body class="w3-light-grey">
-    <jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBar.jsp"></jsp:include>
+<center>
+    <div class="w3-container w3-red w3-opacity-min w3-text-white w3-center-align">
+        <h1>Ooooops...Something went wrong! :(</h1>
+    </div>
+</center>
+
 </body>
 </html>
