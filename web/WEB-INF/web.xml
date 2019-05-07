@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <welcome-file-list>
-        <welcome-file>welcomePage.jsp</welcome-file>
-    </welcome-file-list>
+<!--    <welcome-file-list>-->
+<!--        <welcome-file>welcomePage.jsp</welcome-file>-->
+<!--    </welcome-file-list>-->
 
     <!--<resource-ref>-->
         <!--<description>DB Connection</description>-->
@@ -157,19 +157,19 @@
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>com.epam.app.filter.AuthenticationFilter</filter-class>
         <init-param>
-            <param-name>pathToBeIgnored</param-name>
+            <param-name>root</param-name>
             <param-value>/</param-value>
         </init-param>
         <init-param>
-            <param-name>pathToBeIgnored2</param-name>
+            <param-name>login</param-name>
             <param-value>/login</param-value>
         </init-param>
         <init-param>
-            <param-name>pathToBeIgnored3</param-name>
+            <param-name>registration</param-name>
             <param-value>/registration</param-value>
         </init-param>
         <init-param>
-            <param-name>pathToBeIgnored4</param-name>
+            <param-name>passwordRecovery</param-name>
             <param-value>/passwordRecovery</param-value>
         </init-param>
     </filter>
@@ -184,8 +184,20 @@
 
     <context-param>
         <param-name>log4j-config-location</param-name>
-        <param-value>WEB-INF/log4j.properties</param-value>
+        <param-value>WEB-INF/classes/log4j.properties</param-value>
     </context-param>
 
+    <filter>
+        <filter-name>PersonalFilter</filter-name>
+        <filter-class>com.epam.app.filter.PersonalFilter</filter-class>
+    </filter>
 
+    <filter-mapping>
+        <filter-name>PersonalFilter</filter-name>
+        <url-pattern>/addUser</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>PersonalFilter</filter-name>
+        <url-pattern>/users</url-pattern>
+    </filter-mapping>
 </web-app>
