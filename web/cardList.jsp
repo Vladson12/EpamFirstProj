@@ -56,8 +56,10 @@
             <td><c:out value="${list.cardState}" /></td>
 
             <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
+            <c:set var="userLogin" value="${sessionScope.loggedInUser.login}"/>
             <c:choose>
-                <c:when test="${(userRole eq 'LIBRARIAN') || (userRole eq 'ADMINISTRATOR')}">
+                <c:when test="${(((userRole eq 'LIBRARIAN')  || (userRole eq 'ADMINISTRATOR'))
+                && !(userLogin.equals(list.user.login)))}">
                     <td style="text-align: center">
                         <%if (list.getCardState().equals(CardState.ORDERED)) {%>
                         <input style = "font-size: 16px" type = "button" value = "Take home"
@@ -77,7 +79,7 @@
                     <td style="text-align: center">
                         <%if (list.getCardState().equals(CardState.ORDERED)) {%>
                         <input style = "font-size: 16px" type = "button" value = "reset"
-                               onclick = "location.href = '/myCard?login=${login}&id=${list.id}&button=reset'" >
+                               onclick = "location.href = '/cabinet/usercards?login=${login}&id=${list.id}&button=reset'" >
                         <%}%>
                     </td>
                 </c:otherwise>
