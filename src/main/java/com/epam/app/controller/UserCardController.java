@@ -5,6 +5,7 @@ import com.epam.app.model.User;
 import com.epam.app.model.enums.CardState;
 import com.epam.app.service.CardService;
 import com.epam.app.service.UserService;
+import com.epam.app.util.PageManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,16 +24,30 @@ import static com.epam.app.model.enums.CardState.getPriority;
 @WebServlet("/cards")
 public class UserCardController extends HttpServlet {
 
+    private static PageManager pageManager;
     private String id;
     private String button;
     private String login;
     private List<Card> cardsForUser;
 
+    static {
+        pageManager = new PageManager<Card>();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String side;
+        if ((side = req.getParameter("pageSide")) != null) {
+            req.setAttribute("login",login);
+            if ("previous".equals(side)) {
+                pageManager.previousPage();
+            } else {
+                pageManager.nextPage();
+            }
+        }
         login = (String) req.getAttribute("login");
-        List<Card> cardsForUser = updateCards(UserService.getByLogin(login));
-        req.setAttribute("list", cardsForUser);
+        List<Card> cardsForUser = CardService.updateCardsOfUser(login);
+        req.setAttribute("list", pageManager.sublist(cardsForUser));
         req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
     }
 
@@ -44,8 +59,8 @@ public class UserCardController extends HttpServlet {
         if (id != null) {
             doPut(req,resp);
         }
-        List<Card> cardsForUser = updateCards(UserService.getByLogin(login));
-        req.setAttribute("list", cardsForUser);
+        List<Card> cardsForUser = CardService.updateCardsOfUser(login);
+        req.setAttribute("list", pageManager.sublist(cardsForUser));
         req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
     }
 
@@ -68,8 +83,4 @@ public class UserCardController extends HttpServlet {
         }
     }
 
-    private List<Card> updateCards(User user){
-        return CardService.getAllCards(user).stream()
-                .sorted(Comparator.comparingInt(o -> getPriority(o.getCardState()))).collect(Collectors.toList());
-    }
 }

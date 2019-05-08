@@ -76,6 +76,7 @@
                         </form>
                         <%}%>
                     </td>
+                    <c:set var="flag" value="1"/>
                 </c:when>
 
                 <c:otherwise>
@@ -86,6 +87,7 @@
                         </form>
                         <%}%>
                     </td>
+                    <c:set var="flag" value="2"/>
                 </c:otherwise>
             </c:choose>
 
@@ -98,28 +100,24 @@
 </div>
 <table width="100%">
     <tr style="text-align: center">
-        <jsp:useBean id="list" type="com.epam.app.model.Card"/>
-        <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
-        <c:set var="userLogin" value="${sessionScope.loggedInUser.login}"/>
         <c:choose>
-            <c:when test="${(((userRole eq 'LIBRARIAN')  || (userRole eq 'ADMINISTRATOR'))
-                && !(userLogin.equals(list.user.login)))}">
+            <c:when test="${(flag eq 1)}">
                 <td>
                     <input style="font-size: 16px; text-align: left" type="button" value="Previous page"
-                           onclick="location.href='/cards?pageSide=previous'">
+                           onclick="location.href='/cards?login=${login}&pageSide=previous'">
                     <input style="font-size: 16px; text-align: left" type="button" value="Next page"
-                           onclick="location.href='/cards?pageSide=next'">
+                           onclick="location.href='/cards?login=${login}&pageSide=next'">
                 </td>
             </c:when>
 
-            <c:otherwise>
+            <c:when test="${(flag eq 2)}">
                 <td>
                     <input style="font-size: 16px; text-align: left" type="button" value="Previous page"
-                           onclick="location.href='/cabinet/usercard?pageSide=previous'">
+                           onclick="location.href='/cabinet/usercards?login=${login}&pageSide=previous'">
                     <input style="font-size: 16px; text-align: left" type="button" value="Next page"
-                           onclick="location.href='/cabinet/usercard?pageSide=next'">
+                           onclick="location.href='/cabinet/usercards?login=${login}&pageSide=next'">
                 </td>
-            </c:otherwise>
+            </c:when>
         </c:choose>
 
     </tr>
