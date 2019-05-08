@@ -49,13 +49,13 @@
 <table id="userTable">
     <tr style="font-size: 22px">
 
-        <th onclick="sortTable(0)" width="25%" onmouseover="this.style.cursor='pointer'" style="text-align: center">
+        <th id="nameUL"  width="25%" onmouseover="this.style.cursor='pointer'" style="text-align: center">
             Name
         </th>
-        <th onclick="sortTable(1)" width="25%" onmouseover="this.style.cursor='pointer'" style="text-align: center">
+        <th id="loginUL"  width="25%" onmouseover="this.style.cursor='pointer'" style="text-align: center">
             Login
         </th>
-        <th onclick="sortTable(2)" width="25%" onmouseover="this.style.cursor='pointer'" style="text-align: center">
+        <th id="roleUL" width="25%" onmouseover="this.style.cursor='pointer'" style="text-align: center">
             Role
         </th>
         <th width="25%" style="text-align: center">Actions</th>
@@ -103,43 +103,6 @@
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
     <button class="w3-btn w3-round-large" onclick="location.href='/users'">To user list</button>
 </div>
-<script type="text/javascript">
-    table = document.getElementById("userTable");
-    function sortTable(n) {
-        var rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        switching = true;
-        dir = "asc";
-        while (switching) {
-            switching = false;
-            rows = table.rows;
-            for (i = 1; i < (rows.length - 1); i++) {
-                shouldSwitch = false;
-                x = rows[i].getElementsByTagName("TD")[n];
-                y = rows[i + 1].getElementsByTagName("TD")[n];
-                if (dir == "asc") {
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                } else if (dir == "desc") {
-                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-            }
-            if (shouldSwitch) {
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-                switchcount++;
-            } else {
-                if (switchcount == 0 && dir == "asc") {
-                    dir = "desc";
-                    switching = true;
-                }
-            }
-        }
-    }
-</script>
+<script type="text/javascript" src="cabinet/sorting.js"></script>
 </body>
 </html>
