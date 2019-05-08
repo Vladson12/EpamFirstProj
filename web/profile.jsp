@@ -27,7 +27,7 @@
 <div class="profform">
     <div class="w3-container w3-padding">
         <h3>Profile</h3>
-        <form method="post" class="w3-selection w3-light-gray w3-padding" action="profile?=${sessionScope.loggedInUser.id}">
+        <form method="post" class="w3-selection w3-light-gray w3-padding" action="profile?id=${sessionScope.loggedInUser.id}">
             <jsp:useBean id="user" scope="session" type="com.epam.app.model.User"/>
             <input  value="${user.id}" type="hidden" name="id" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
             <label>Name:
