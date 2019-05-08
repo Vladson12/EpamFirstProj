@@ -1,5 +1,6 @@
 package com.epam.app.filter;
 
+import lombok.extern.log4j.Log4j;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
@@ -12,15 +13,15 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+@Log4j
 @WebFilter("/AuthenticationFilter")
 public class AuthenticationFilter implements Filter {
 
-    static final Logger log = Logger.getLogger(AuthenticationFilter.class);
+//    static final Logger log = Logger.getLogger(AuthenticationFilter.class);
     private final static Map<String, String> initValues = new HashMap<>();
 
     public void init(FilterConfig fConfig) throws ServletException {
         log.info("AuthenticationFilter initialized");
-
         Enumeration<String> initParameterNames = fConfig.getInitParameterNames();
         while (initParameterNames.hasMoreElements()) {
             String paramName = initParameterNames.nextElement();
@@ -43,7 +44,6 @@ public class AuthenticationFilter implements Filter {
             chain.doFilter(request, response);
         }
     }
-
 
 
     public void destroy() {

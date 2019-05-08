@@ -74,7 +74,6 @@ public class UserController extends HttpServlet {
 
     private void updateUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User updatedUser = UserService.getByLogin(userLogin);
-
         updatedUser.setName(req.getParameter("name"));
         updatedUser.setLogin(req.getParameter("login"));
         String role = req.getParameter("role");
