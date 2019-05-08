@@ -1,9 +1,10 @@
 package com.epam.app.controller;
 
+import com.epam.app.model.Book;
 import com.epam.app.model.Card;
 import com.epam.app.model.enums.CardState;
 import com.epam.app.service.CardService;
-import com.epam.app.service.UserService;
+import com.epam.app.util.PageManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -14,27 +15,36 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static com.epam.app.model.enums.CardState.getPriority;
 
 @WebServlet("/cabinet/usercards")
 public class MyCardController extends HttpServlet {
 
     static final Logger log = Logger.getLogger(MyCardController.class);
+    private static PageManager pageManager;
     private String login;
     private List<Card> cards;
     private String id;
     private String button;
 
+    static {
+        pageManager = new PageManager<Card>();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String side;
+        if ((side = req.getParameter("pageSide")) != null) {
+            if ("previous".equals(side)) {
+                pageManager.previousPage();
+            } else {
+                pageManager.nextPage();
+            }
+        }
         login = req.getParameter("login");
-        cards = updateCards();
+        cards = CardService.updateCardsOfUser(login);
         req.getSession().setAttribute("login", login);
-        req.getSession().setAttribute("list", cards);
+        req.getSession().setAttribute("list", pageManager.sublist(cards));
         req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
     }
 
@@ -49,19 +59,15 @@ public class MyCardController extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int idInt = Integer.valueOf(id);
         if (button != null) {
-            CardService.updateCardStatusAndDate(CardService.get(idInt), CardState.RETURNED,
+            CardService.updateCardStatusAndDate(CardService.get(Integer.valueOf(id)), CardState.RETURNED,
                     LocalDate.now(ZoneId.systemDefault()));
-            cards = updateCards();
+            cards = CardService.updateCardsOfUser(login);
         }
         req.getSession().setAttribute("login", login);
-        req.getSession().setAttribute("list", cards);
+        req.getSession().setAttribute("list", pageManager.sublist(cards));
         req.getRequestDispatcher("/cardList.jsp").forward(req, resp);
     }
 
-    private List<Card> updateCards(){
-        return CardService.getAllCards(UserService.getByLogin(login)).stream()
-                .sorted(Comparator.comparingInt(o -> getPriority(o.getCardState()))).collect(Collectors.toList());
-    }
+
 }

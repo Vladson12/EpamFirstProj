@@ -96,14 +96,32 @@
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
     <button class="w3-btn w3-round-large" onclick="location.href='/home'">Back</button>
 </div>
-<%--<table width="100%">--%>
-<%--    <tr style="text-align: center">--%>
-<%--        <td>--%>
-<%--            <input style="font-size: 16px; text-align: left" type="button" value="Предыдущая страница" onclick="location.href='/turnPage/previous'">--%>
-<%--            <input style="font-size: 16px; text-align: left" type="button" value="Следующая страница" onclick="location.href='/turnPage/next'">--%>
-<%--            <input style="font-size: 16px; text-align: right" type="button" value="Добавить новую книгу" onclick="location.href='/getUserCard'">--%>
+<table width="100%">
+    <tr style="text-align: center">
+        <jsp:useBean id="list" type="com.epam.app.model.Card"/>
+        <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
+        <c:set var="userLogin" value="${sessionScope.loggedInUser.login}"/>
+        <c:choose>
+            <c:when test="${(((userRole eq 'LIBRARIAN')  || (userRole eq 'ADMINISTRATOR'))
+                && !(userLogin.equals(list.user.login)))}">
+                <td>
+                    <input style="font-size: 16px; text-align: left" type="button" value="Previous page"
+                           onclick="location.href='/cards?pageSide=previous'">
+                    <input style="font-size: 16px; text-align: left" type="button" value="Next page"
+                           onclick="location.href='/cards?pageSide=next'">
+                </td>
+            </c:when>
 
-<%--        </td>--%>
-<%--    </tr>--%>
-<%--</table>--%>
+            <c:otherwise>
+                <td>
+                    <input style="font-size: 16px; text-align: left" type="button" value="Previous page"
+                           onclick="location.href='/cabinet/usercard?pageSide=previous'">
+                    <input style="font-size: 16px; text-align: left" type="button" value="Next page"
+                           onclick="location.href='/cabinet/usercard?pageSide=next'">
+                </td>
+            </c:otherwise>
+        </c:choose>
+
+    </tr>
+</table>
 </body>
