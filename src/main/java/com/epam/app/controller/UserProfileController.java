@@ -31,7 +31,6 @@ public class UserProfileController extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         User profileUpdatedUser = UserService.get(id);
         profileUpdatedUser.setName(req.getParameter("name"));
-        profileUpdatedUser.setRole(Role.getRole(req.getParameter("role")));
         UserService.updateUser(profileUpdatedUser);
         req.getSession().setAttribute("loggedInUser", profileUpdatedUser);
         resp.sendRedirect("/cabinet/profile?id=" + id);
