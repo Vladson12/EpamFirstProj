@@ -5,27 +5,21 @@
 <html style="background-color: #000000;">
     <head>
         <title>Library: Users</title>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
 
     <body style="background-color: rgba(255,255,255,0);">
         <div><jsp:include page="menuBar.jsp"></jsp:include></div>
         <div style="background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);height: 650px;background-repeat: round;background-size: cover;">
-            <center>
                 <form action="/users?show=" method="get">
-                    <tr>
-                        <th>Enter user login to find user:</th>
-                        <td><input type="text" name="login" value=""></td>
-                        <td><input type="submit" name="insert" value="Insert"></td>
-                    </tr>
+                    <table>
+                        <tr>
+                            <th>Enter user login to find user:</th>
+                            <td><input type="text" name="login" value=""></td>
+                            <td><input type="submit" name="insert" value="Insert"></td>
+                        </tr>
+                    </table>
                 </form>
-            </center>
-            <div class="w3-container w3-center">
-                <div class="w3-bar  w3-round-large w3-left w3-padding-large ">
-                    <button class="w3-btn w3-hover-blue-grey w3-round-large" onclick="location.href='/addUser'">+ Add new user
-                    </button>
-                </div>
-            </div>
+                    <button onclick="location.href='/addUser'">+ Add new user </button>
             <table id="userTable">
                 <tr style="font-size: 22px">
                     <th id="nameUL"  width="25%" onmouseover="this.style.cursor='pointer'" style="text-align: center">
@@ -74,9 +68,7 @@
                     </td>
                 </tr>
             </table>
-            <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
                 <button class="w3-btn w3-round-large" onclick="location.href='/users'">To user list</button>
-            </div>
             <script type="text/javascript" src="cabinet/sorting.js"></script>
         </div>
         <div><jsp:include page="footer.jsp"></jsp:include></div>

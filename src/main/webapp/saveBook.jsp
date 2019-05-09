@@ -1,29 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html style="background-color: #000000;">
     <head>
         <title>Save book</title>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
 
     <body style="background-color: rgba(255,255,255,0);">
         <div><jsp:include page="menuBar.jsp"></jsp:include></div>
         <div style="background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);height: 650px;background-repeat: round;background-size: cover;">
-            <div class="w3-container w3-padding">
-                <div class="w3-card-4">
-                    <div class="w3-container w3-center w3-green">
                         <h2>Save book</h2>
-                    </div>
-                    <form method="post" class="w3-selection w3-light-grey w3-padding" action="saveBook">
+                    <form method="post" action="saveBook">
                         <jsp:useBean id="book" scope="session" type="com.epam.app.model.Book"/>
-                        <input value="${book.id}" type="hidden" name="id" class="w3-input w3-animate-input w3-border w3-round-large" ><br />
+                        <input value="${book.id}" type="hidden" name="id"><br />
                         <label>Title:
-                            <input value="${book.title}" type="text" name="title" class="w3-input w3-animate-input w3-border w3-round-large" ><br />
+                            <input value="${book.title}" type="text" name="title"><br />
                         </label>
                         <label>Author:
-                            <input value="${book.author}" type="text" name="author" class="w3-input w3-animate-input w3-border w3-round-large" ><br />
+                            <input value="${book.author}" type="text" name="author"><br />
                         </label>
                         <label>Description:
-                            <input value="${book.description}" type="text" name="description" class="w3-input w3-animate-input w3-border w3-round-large" ><br />
+                            <input value="${book.description}" type="text" name="description"><br />
                         </label>
                         <label>Genre: ${book.genre}
                             <select name = "genre">
@@ -37,15 +34,11 @@
                             </select>
                         </label>
                         <label>Year:
-                            <input value="${book.year}" type="text" name="year" class="w3-input w3-animate-input w3-border w3-round-large" ><br />
+                            <input value="${book.year}" type="text" name="year"><br />
                         </label>
-                        <button type="submit" class="w3-btn w3-green w3-round-large w3-margin-bottom">Save</button>
+                        <button type="submit">Save</button>
                     </form>
-                </div>
-            </div>
-            <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
                 <button class="w3-btn w3-round-large" onclick="location.href='/home'">Back</button>
-            </div>
         </div>
         <div><jsp:include page="footer.jsp"></jsp:include></div>
     </body>

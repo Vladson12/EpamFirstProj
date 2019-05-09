@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html style="background-color: #000000;">
     <head>
@@ -11,9 +12,10 @@
             <form action="/bookList?show=" method="get">
                 <tr>
                     <th>Enter author name to find book:</th>
-                    <td><input type="text" name="author" value=""></td>
+                    <td>
+                        <input type="text" name="author" value="">
+                    </td>
                 </tr>
-
                 <tr>
                     <td> and/or choose book genre</td>
                     <td>
@@ -29,7 +31,9 @@
                         </select>
                     </td>
                 </tr>
-                <td><input type="submit" name="insert" value="Insert"></td>
+                <td>
+                    <input type="submit" name="insert" value="Insert">
+                </td>
             </form>
         <tr>
             <th>
