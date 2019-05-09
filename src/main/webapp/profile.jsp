@@ -22,7 +22,7 @@
 </head>
 <body>
 
-<jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBarOld.jsp"></jsp:include>
 
 <div class="profform">
     <div class="w3-container w3-padding">

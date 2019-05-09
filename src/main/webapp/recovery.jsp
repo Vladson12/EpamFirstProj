@@ -28,7 +28,7 @@
 </head>
 <body class="w3-light-grey">
 
-<jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBarOld.jsp"></jsp:include>
 
 <div class="recform">
     <div class="w3-container w3-padding w3-margin">

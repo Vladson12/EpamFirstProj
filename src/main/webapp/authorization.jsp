@@ -30,8 +30,8 @@
     </script>
 </head>
 <body>
+<div><jsp:include page="WEB-INF/indexOld.jsp"></jsp:include></div>
 
-<jsp:include page="menuBar.jsp"></jsp:include>
 
 <div class="signinform">
     <div class="w3-container w3-light-gray w3-padding w3-margin">
@@ -56,6 +56,7 @@
 <div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
     <button class="w3-btn w3-round-large" onclick="location.href='..'">Back</button>
 </div>
+<div><jsp:include page="WEB-INF/indexOld.jsp"></jsp:include></div>
 
 </body>
 </html>

@@ -31,7 +31,7 @@
 
 <body>
 
-<jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBarOld.jsp"></jsp:include>
 
 <center><h2>Add user</h2></center>
 <form name="form" action="addUser" method="post" onsubmit="return validate()">

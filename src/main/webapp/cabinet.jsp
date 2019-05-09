@@ -28,7 +28,7 @@
 
 <body class="w3-light-grey">
 
-<jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBarOld.jsp"></jsp:include>
 
 
 <div class="w3-container w3-center w3-hover-opacity-off">

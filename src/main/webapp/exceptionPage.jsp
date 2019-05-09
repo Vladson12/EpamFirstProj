@@ -15,7 +15,7 @@
 </head>
 
 <body class="w3-light-grey">
-<jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBarOld.jsp"></jsp:include>
 <center>
     <div class="w3-container w3-red w3-opacity-min w3-text-white w3-center-align">
         <h1>Ooooops...Something went wrong! :(</h1>

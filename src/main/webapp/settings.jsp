@@ -35,7 +35,7 @@
 
 <body>
 
-<jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBarOld.jsp"></jsp:include>
 
 <div class="setform">
     <div class="w3-container w3-padding">

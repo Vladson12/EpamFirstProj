@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBarOld.jsp"></jsp:include>
 
 <center>
     <form name="findUserCards" action="findUserCards" method="post">

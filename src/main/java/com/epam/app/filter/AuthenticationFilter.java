@@ -36,12 +36,11 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         String uri = req.getRequestURI();
         HttpSession session = req.getSession();
-
-        if ((session == null || session.getAttribute("loggedInUser") == null) &&
-                !(initValues.values().stream().anyMatch(s -> s.equals(uri)))) {
-            res.sendRedirect(req.getContextPath() + "/login");
-        } else {
+        if ((uri.contains("assets") || !((session == null || session.getAttribute("loggedInUser") == null) &&
+                !(initValues.values().stream().anyMatch(s -> s.equals(uri)))))) {
             chain.doFilter(request, response);
+        } else {
+            res.sendRedirect(req.getContextPath() + "/login");
         }
     }
 

@@ -33,7 +33,7 @@
 </head>
 <body>
 
-<jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBarOld.jsp"></jsp:include>
 
 <h1> <c:out value="${login}" /></h1>
 <table id="userCard">

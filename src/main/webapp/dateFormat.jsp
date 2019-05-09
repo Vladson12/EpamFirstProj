@@ -21,7 +21,7 @@
 
 <body>
 
-<jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBarOld.jsp"></jsp:include>
 
 <center> Select new date ${login}  </center>
 <form name="form" action="/cardDate" method="post">

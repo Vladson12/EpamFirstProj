@@ -29,7 +29,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="WEB-INF/indexOld.jsp"></jsp:include>
 
 <center>
     <form action="/bookList?show=" method="get">

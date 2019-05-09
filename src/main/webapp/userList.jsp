@@ -26,7 +26,7 @@
 </head>
 <body>
 
-<jsp:include page="menuBar.jsp"></jsp:include>
+<jsp:include page="menuBarOld.jsp"></jsp:include>
 
 <center>
     <form action="/users?show=" method="get">

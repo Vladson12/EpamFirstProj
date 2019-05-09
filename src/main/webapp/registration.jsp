@@ -1,19 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html style="background-color: #000000;">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Library: Registration</title>
-    <style>
-        body {
-            font-family: Consolas;
-        }
-        div.signupform {
-            width: 40%;
-            margin-left: 30%;
-        }
-    </style>
     <script>
         function validate() {
             var name = document.form.name.value;
@@ -39,12 +29,12 @@
         }
     </script>
 </head>
-<body>
+<body style="background-color: rgba(255,255,255,0);">
 
-<jsp:include page="menuBar.jsp"></jsp:include>
-
-<div class="signupform">
-    <div class="w3-container w3-light-gray w3-padding w3-margin">
+<div><jsp:include page="menuBar.jsp"></jsp:include></div>
+<div style="background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);height: 650px;background-repeat: round;background-size: cover;">
+<div>
+    <div>
         <h2 class="w3-text w3-center">Sign up</h2>
         <p><%=(request.getAttribute("errMessage") == null) ? ""
                 : request.getAttribute("errMessage")%></p>
@@ -68,9 +58,11 @@
     </div>
 </div>
 
-<div class="w3-container w3-grey w3-opacity w3-right-align w3-padding">
-    <button class="w3-btn w3-round-large" onclick="location.href='..'">Back</button>
+<div>
+    <button onclick="location.href='..'">Back</button>
 </div>
+</div>
+<div><jsp:include page="footer.jsp"></jsp:include></div>
 
 </body>
 </html>
