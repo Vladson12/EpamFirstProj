@@ -19,7 +19,6 @@ import java.util.List;
 @WebServlet("/cabinet/usercards")
 public class MyCardController extends HttpServlet {
 
-    static final Logger log = Logger.getLogger(MyCardController.class);
     private static PageManager pageManager;
     private String login;
     private List<Card> cards;

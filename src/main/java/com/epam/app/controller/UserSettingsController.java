@@ -1,7 +1,6 @@
 package com.epam.app.controller;
 
 import com.epam.app.model.User;
-import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
 import com.epam.app.util.password.Password;
 

@@ -69,7 +69,7 @@
                 </tr>
             </table>
                 <button class="w3-btn w3-round-large" onclick="location.href='/users'">To user list</button>
-            <script type="text/javascript" src="cabinet/sorting.js"></script>
+            <script type="text/javascript" src="assets/js/sorting.js"></script>
         </div>
         <div><jsp:include page="footer.jsp"></jsp:include></div>
     </body>

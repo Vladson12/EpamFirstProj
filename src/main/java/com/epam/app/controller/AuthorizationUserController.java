@@ -43,7 +43,7 @@ public class AuthorizationUserController extends HttpServlet {
             if (userAccount != null) {
                 session.setAttribute("loggedInUser", userAccount);
                 session.setAttribute("login", userAccount.getLogin());
-                request.getRequestDispatcher("/homePage.jsp").forward(request, response);
+                request.getRequestDispatcher("/").forward(request, response);
                 log.info("User " + userAccount.getLogin() + " logged in.");
             }
         } else {

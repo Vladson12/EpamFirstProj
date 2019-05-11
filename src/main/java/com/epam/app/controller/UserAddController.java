@@ -62,7 +62,7 @@ public class UserAddController extends HttpServlet {
                 } catch (MessagingException e) {
                     log.error("Exceptions happen!", e);
                 }
-                request.getRequestDispatcher("/homePage.jsp").forward(request, response);
+                request.getRequestDispatcher("/").forward(request, response);
                 log.info("User " + user.getLogin() + " registered by " + loggedInUser.getRole() + " "
                         + loggedInUser.getLogin() + " and mail has sent");
             }
