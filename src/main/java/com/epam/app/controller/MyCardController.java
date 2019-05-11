@@ -1,6 +1,5 @@
 package com.epam.app.controller;
 
-import com.epam.app.model.Book;
 import com.epam.app.model.Card;
 import com.epam.app.model.enums.CardState;
 import com.epam.app.service.CardService;
@@ -20,7 +19,6 @@ import java.util.List;
 @WebServlet("/cabinet/usercards")
 public class MyCardController extends HttpServlet {
 
-    static final Logger log = Logger.getLogger(MyCardController.class);
     private static PageManager pageManager;
     private String login;
     private List<Card> cards;

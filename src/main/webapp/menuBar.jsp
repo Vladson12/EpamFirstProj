@@ -22,6 +22,7 @@
 
     <body>
         <c:set var="loggedIn" value="${not empty loggedInUser}"/>
+        <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
 
         <div style="color: rgb(0,0,0);filter: contrast(100%);height: 80px;">
             <nav class="navbar navbar-light navbar-expand-md text-white navbar-fixed-top navigation-clean-button" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="400" style="background-color: rgb(60,61,65);filter: contrast(156%);">
@@ -32,6 +33,39 @@
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link text-white" href="${pageContext.request.contextPath}/">Home</a>
                             </li>
+                            <c:choose>
+                                <c:when test="${userRole eq 'READER'}">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link text-white" href="/bookList?login=${loggedInUser.login}'">Book list</a>
+                                    </li>
+                                </c:when>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${userRole eq 'ADMINISTRATOR'}">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link text-white" href="/bookList?login=${loggedInUser.login}'">Book list</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link text-white" href="/users">User list</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link text-white" href="/addUser">Add user</a>
+                                    </li>
+                                </c:when>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${userRole eq 'LIBRARIAN'}">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link text-white" href="/bookList?login=${loggedInUser.login}'">Book list</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link text-white" href="/users">User list</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link text-white" href="/addUser">Add user</a>
+                                    </li>
+                                </c:when>
+                            </c:choose>
                         </ul>
                         <p class="ml-auto navbar-text actions">
                             <c:choose>

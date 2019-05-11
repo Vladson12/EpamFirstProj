@@ -63,7 +63,6 @@ public class UserController extends HttpServlet {
             req.setAttribute("login", userLogin);
             req.getRequestDispatcher("/cards").forward(req, resp);
         }
-//        resp.sendRedirect("/users");
     }
 
     @Override

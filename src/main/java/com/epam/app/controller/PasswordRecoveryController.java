@@ -49,7 +49,7 @@ public class PasswordRecoveryController extends HttpServlet {
                 log.error("Exceptions happen!", e);
                 request.getRequestDispatcher("/exceptionPage.jsp").forward(request, response);
             }
-            request.getRequestDispatcher("/welcomePage.jsp").forward(request, response);
+            request.getRequestDispatcher("/").forward(request, response);
             log.info("Mail with password success sent to " + login);
         }
     }

@@ -1,7 +1,6 @@
 package com.epam.app.controller;
 
 import com.epam.app.model.User;
-import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
 
 import javax.servlet.ServletException;
@@ -11,11 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.epam.app.util.password.Password.hash;
 
-/**
- * Created by vladd on 28.04.2019
- */
 @WebServlet("/cabinet/profile")
 public class UserProfileController extends HttpServlet {
     @Override
@@ -27,7 +22,7 @@ public class UserProfileController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         User profileUpdatedUser = UserService.get(id);
         profileUpdatedUser.setName(req.getParameter("name"));

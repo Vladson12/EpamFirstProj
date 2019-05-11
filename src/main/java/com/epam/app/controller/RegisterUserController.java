@@ -22,7 +22,7 @@ public class RegisterUserController extends HttpServlet {
     static final Logger log = Logger.getLogger(RegisterUserController.class);
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         Config.set(this.getServletContext(), "mysql");
     }
 
