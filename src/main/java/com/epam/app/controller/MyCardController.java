@@ -1,6 +1,5 @@
 package com.epam.app.controller;
 
-import com.epam.app.model.Book;
 import com.epam.app.model.Card;
 import com.epam.app.model.enums.CardState;
 import com.epam.app.service.CardService;

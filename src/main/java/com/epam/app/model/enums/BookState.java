@@ -16,6 +16,7 @@ public enum BookState {
                 return ONHANDS;
             default:
                 throw new  IllegalArgumentException("Argument must be in a range of 1 to 3");
+
         }
 
     }

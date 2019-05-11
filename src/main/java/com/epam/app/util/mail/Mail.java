@@ -1,10 +1,8 @@
 package com.epam.app.util.mail;
 
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Properties;
 
@@ -37,7 +35,7 @@ public class Mail {
         return Session.getInstance(props, auth);
     }
 
-    public static void send(String toEmail, String subject, String body) throws AddressException, MessagingException, UnsupportedEncodingException {
+    public static void send(String toEmail, String subject, String body) throws MessagingException {
 
         MimeMessage msg = new MimeMessage(getSession());
 

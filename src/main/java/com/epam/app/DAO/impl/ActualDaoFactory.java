@@ -6,9 +6,6 @@ import com.epam.app.DAO.DaoFactory;
 import com.epam.app.DAO.UserDAO;
 import com.epam.app.config.Config;
 
-/**
- * Created by vladd on 27.04.2019
- */
 public class ActualDaoFactory implements DaoFactory {
 
     public static final DaoFactory factory = Config.getFactory();

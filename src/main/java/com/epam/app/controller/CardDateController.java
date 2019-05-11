@@ -2,6 +2,7 @@ package com.epam.app.controller;
 
 import com.epam.app.model.enums.CardState;
 import com.epam.app.service.CardService;
+import lombok.extern.log4j.Log4j;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -13,10 +14,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
+@Log4j
 @WebServlet("/cardDate")
 public class CardDateController extends HttpServlet {
-
-    static final Logger log = Logger.getLogger(CardDateController.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,12 +39,10 @@ public class CardDateController extends HttpServlet {
                     CardState.AT_HOME, newDate);
             req.getRequestDispatcher("/cards").forward(req, resp);
             log.info("User " + login + "Card status has been update");
-
         }
         req.setAttribute("login", login);
         req.setAttribute("id", id);
         req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
-
 
     }
 }

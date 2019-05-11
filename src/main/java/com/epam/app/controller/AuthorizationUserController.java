@@ -5,7 +5,7 @@ import com.epam.app.config.Config;
 import com.epam.app.model.User;
 import com.epam.app.service.UserService;
 import lombok.NoArgsConstructor;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,14 +18,13 @@ import java.io.IOException;
 
 import static com.epam.app.util.password.Password.hash;
 
+@Log4j
 @NoArgsConstructor
 @WebServlet("/login")
 public class AuthorizationUserController extends HttpServlet {
 
-    static final Logger log = Logger.getLogger(AuthorizationUserController.class);
-
     @Override
-    public void init() throws ServletException {
+    public void init() {
         Config.set(this.getServletContext(), "mysql");
     }
 
@@ -51,7 +50,7 @@ public class AuthorizationUserController extends HttpServlet {
             String errMessage = "Incorrect Username or password!";
             request.setAttribute("errMessage", errMessage);
             request.getRequestDispatcher("/authorization.jsp").forward(request, response);
-            log.info("Unsuccessful attempt to login by " + login);
+            log.error("Unsuccessful attempt to login by " + login);
         }
     }
 

@@ -20,7 +20,6 @@ public class BookListController extends HttpServlet {
     private List<Book> booksList;
     private String login;
     private String id;
-    private String side;
 
     static {
         pageManager = new PageManager<Book>();

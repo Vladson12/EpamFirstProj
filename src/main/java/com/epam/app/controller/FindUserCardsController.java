@@ -1,6 +1,7 @@
 package com.epam.app.controller;
 
 import com.epam.app.service.UserService;
+import lombok.extern.log4j.Log4j;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -11,10 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+@Log4j
 @WebServlet("/findUserCards")
 public class FindUserCardsController extends HttpServlet {
-
-    static final Logger log = Logger.getLogger(FindUserCardsController.class);
 
     private String login;
 

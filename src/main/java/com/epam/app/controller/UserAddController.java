@@ -6,7 +6,7 @@ import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
 import com.epam.app.util.mail.Mail;
 import com.epam.app.util.password.Password;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -19,10 +19,9 @@ import java.io.IOException;
 
 import static com.epam.app.util.password.Password.hash;
 
+@Log4j
 @WebServlet("/addUser")
 public class UserAddController extends HttpServlet {
-
-    static final Logger log = Logger.getLogger(UserAddController.class);
 
     private static String name;
     private static String login;
@@ -49,7 +48,7 @@ public class UserAddController extends HttpServlet {
                 request.setAttribute("errMessage", "User with this email already exists!");
                 request.getRequestDispatcher("/userAdd.jsp").forward(request, response);
                 log.info("Failed to register new user by " + loggedInUser.getRole() + " " +
-                        loggedInUser.getLogin()+ ". User with this email already exists");
+                        loggedInUser.getLogin() + ". User with this email already exists");
             } else {
                 try {
                     UserService.create(user);
@@ -69,12 +68,10 @@ public class UserAddController extends HttpServlet {
             }
         } else {
             request.setAttribute("errMessage", "This Email is invalid");
-            log.info("Failed to register new user by " + loggedInUser.getRole() + " " +
-                    loggedInUser.getLogin()+ ". Email is invalid");
+            log.error("Failed to register new user by " + loggedInUser.getRole() + " " +
+                    loggedInUser.getLogin() + ". Email is invalid");
         }
         request.getRequestDispatcher("/userAdd.jsp").forward(request, response);
-
-
     }
 
     @Override

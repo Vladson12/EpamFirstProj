@@ -14,9 +14,6 @@ import java.io.IOException;
 
 import static com.epam.app.util.password.Password.hash;
 
-/**
- * Created by vladd on 28.04.2019
- */
 @WebServlet("/cabinet/settings")
 public class UserSettingsController extends HttpServlet {
     @Override

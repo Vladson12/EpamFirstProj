@@ -1,10 +1,8 @@
 package com.epam.app.controller;
 
 import com.epam.app.model.Card;
-import com.epam.app.model.User;
 import com.epam.app.model.enums.CardState;
 import com.epam.app.service.CardService;
-import com.epam.app.service.UserService;
 import com.epam.app.util.PageManager;
 
 import javax.servlet.ServletException;
@@ -15,11 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static com.epam.app.model.enums.CardState.getPriority;
 
 @WebServlet("/cards")
 public class UserCardController extends HttpServlet {
@@ -28,7 +22,6 @@ public class UserCardController extends HttpServlet {
     private String id;
     private String button;
     private String login;
-    private List<Card> cardsForUser;
 
     static {
         pageManager = new PageManager<Card>();
@@ -38,7 +31,7 @@ public class UserCardController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String side;
         if ((side = req.getParameter("pageSide")) != null) {
-            req.setAttribute("login",login);
+            req.setAttribute("login", login);
             if ("previous".equals(side)) {
                 pageManager.previousPage();
             } else {
@@ -57,7 +50,7 @@ public class UserCardController extends HttpServlet {
         button = req.getParameter("button");
         login = (String) req.getAttribute("login");
         if (id != null) {
-            doPut(req,resp);
+            doPut(req, resp);
         }
         List<Card> cardsForUser = CardService.updateCardsOfUser(login);
         req.setAttribute("list", pageManager.sublist(cardsForUser));
