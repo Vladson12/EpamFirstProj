@@ -1,7 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
-<!DOCTYPE html>
-<html style="background-color: #000000;">
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="internationalization.messages"/>
+
+<html lang="${language}" style="background-color: #000000;">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Library: Registration</title>
@@ -38,26 +43,24 @@
                     <div class="row">
                         <div class="col-md-12 align-self-center">
 
-                        <h2>Sign up</h2>
+                        <h2><fmt:message key="registration_page.signup"/></h2>
                         <p><%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%></p>
                         <form name="form" action="registration" method="post" onsubmit="return validate()">
-                            <label>Username:</label><br/>
-                            <label><input type="text" placeholder="Enter username" name="name"></label><br/>
-                            <label>Email:</label><br/>
-                            <label><input type="email" placeholder="Enter Email" name="login"></label><br/>
-                            <label>Password:</label><br/>
-                            <label><input type="password" placeholder="Enter password" name="password"></label><br/>
-                            <label>Confirm password:</label><br/>
-                            <label><input type="password" placeholder="Enter password" name="conpassword"></label><br/>
-                            <label><button type="submit">Create</button></label><br/>
+                            <label>fmt:message key="registration_page.username"/>:</label><br/>
+                            <label><input type="text" placeholder="<fmt:message key="registration_page.username_ph"/>" name="name"></label><br/>
+                            <label><fmt:message key="registration_page.email"/>:</label><br/>
+                            <label><input type="email" placeholder="<fmt:message key="registration_page.email_ph"/>" name="login"></label><br/>
+                            <label><fmt:message key="registration_page.password"/>:</label><br/>
+                            <label><input type="password" placeholder="<fmt:message key="registration_page.password_ph"/>" name="password"></label><br/>
+                            <label><fmt:message key="registration_page.confirm"/>:</label><br/>
+                            <label><input type="password" placeholder="<fmt:message key="registration_page.confirm_ph"/>" name="conpassword"></label><br/>
+                            <label><button type="submit"><fmt:message key="registration_page.create_bn"/></button></label><br/>
                         </form>
                             <label><button onclick="location.href='..'">Back</button></label><br/>
                         </div>
                     </div>
                  </div>
             </div>
-
-
         </div>
         <div style="height: 20vh"> <jsp:include page="footer.jsp"></jsp:include></div>
     </body>

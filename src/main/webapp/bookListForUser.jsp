@@ -29,14 +29,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 align-self-center">
+
+
+
+
+
                             <form action="/bookList?show=" method="get">
-                                <label>
-                                    Enter author name to find book:
-                                    <input type="text" name="author" value="">
-                                </label>
-                                <label>
-                                    and/or choose book genre
-                                    <select name="genre">
+                                <label>Enter author name to find book:</label>
+                                <label><input type="text" name="author" value=""></label>
+                                <label>and/or choose book genre</label>
+                                    <label><select name="genre">
                                         <option value="" selected>-</option>
                                         <option value="TEXTBOOK">TEXTBOOK</option>
                                         <option value="NARRATIVE_NONFICTION">NARRATIVE_NONFICTION</option>
@@ -45,9 +47,8 @@
                                         <option value="CRIME_AND_DETECTIVE">CRIME_AND_DETECTIVE</option>
                                         <option value="SELF_HELP_BOOK">SELF_HELP_BOOK</option>
                                         <option value="SCIENCE_FICTION">SCIENCE_FICTION</option>
-                                    </select>
-                                </label>
-                                <input type="submit" name="insert" value="Insert">
+                                    </select></label>
+                                <label><input type="submit" name="insert" value="Insert"></label>
                             </form>
                         </div>
                     </div>
@@ -55,7 +56,7 @@
             </div>
 
             <div>
-                <table class="table table-bordered table-hover table-sm" style="font-size: 1vw; max-width: 1200px; margin:0 auto;">
+                <table id="bookList" class="table table-bordered table-hover table-sm" style="font-size: 1vw; max-width: 1200px; margin:0 auto;">
                     <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.81);">
                     <tr style="text-align: center">
                         <th                                                         class="col-lg-1" style="width: 5vh;">No.</th>
