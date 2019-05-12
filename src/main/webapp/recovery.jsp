@@ -1,9 +1,14 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
-<!DOCTYPE html>
-<html style="background-color: #000000;">
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="internationalization.messages"/>
+
+<html lang="${language}" style="background-color: #000000;">
     <head>
-        <title>Library: Password recovery</title>
+        <title><fmt:message key="recovery_page.title"/></title>
         <script>
             function validate() {
                 var login = document.form.login.value;
@@ -19,13 +24,13 @@
     <body style="background-color: rgba(255,255,255,0);">
         <div><jsp:include page="menuBar.jsp"></jsp:include></div>
         <div style="background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);height: 650px;background-repeat: round;background-size: cover;">
-                    <h2>Reset your password</h2>
+                    <h2><fmt:message key="recovery_page.recovery"/></h2>
                     <p><%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%></p>
                     <form name="form" action="passwordRecovery" method="post" onsubmit="return validate()">
-                        <label>Email:
-                            <input type="email" name="login"><br/>
+                        <label><fmt:message key="recovery_page.email"/>:
+                            <input type="email" placeholder="<fmt:message key="recovery_page.email_ph"/>" name="login"><br/>
                         </label>
-                        <button type="submit">Send password reset email</button>
+                        <button type="submit"><fmt:message key="recovery_page.signin_bn"/></button>
                     </form>
                 <button onclick="location.href='..'">Back</button>
         </div>

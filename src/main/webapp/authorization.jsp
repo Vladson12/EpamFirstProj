@@ -1,10 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
-<!DOCTYPE html>
-<html style="background-color: #000000;">
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="internationalization.messages"/>
+
+<html lang="${language}" style="background-color: #000000;">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Library: Authorization</title>
+        <title><fmt:message key="authorization_page.title"/></title>
         <script>
             function validate() {
                 var login = document.form.login.value;
@@ -30,15 +35,15 @@
                     <div class="row">
                         <div class="col-md-12 align-self-center">
 
-                            <h2>Log in</h2>
+                            <h2><fmt:message key="authorization_page.signin"/></h2>
                             <p><%=(request.getAttribute("errMessage") == null) ? "": request.getAttribute("errMessage")%></p>
                             <form name="form" action="login" method="post" onsubmit="return validate()">
-                                <label>Email:</label><br/>
-                                <label><input type="email" name="login"></label><br/>
-                                <label>Password:</label><br/>
-                                <label><input type="password" name="password"></label><br/>
-                                <label><button type="submit">Log in</button></label><br/>
-                                <label><a href="${pageContext.request.contextPath}/passwordRecovery">Forgot password?</a></label>
+                                <label><fmt:message key="authorization_page.email"/>:</label><br/>
+                                <label><input type="email" placeholder="<fmt:message key="authorization_page.email_ph"/>" name="login"></label><br/>
+                                <label><fmt:message key="authorization_page.password"/>:</label><br/>
+                                <label><input type="password" placeholder="<fmt:message key="authorization_page.password_ph"/>" name="password"></label><br/>
+                                <label><button type="submit"><fmt:message key="authorization_page.signin_bn"/></button></label><br/>
+                                <label><a href="${pageContext.request.contextPath}/passwordRecovery"><fmt:message key="authorization_page.password_recovery"/></a></label>
                             </form>
                             <button onclick="location.href='..'">Back</button>
                         </div>

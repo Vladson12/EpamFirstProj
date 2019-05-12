@@ -1,10 +1,14 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
-<!DOCTYPE html>
-<html style="background-color: #000000;">
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="internationalization.messages"/>
+
+<html lang="${language}" style="background-color: #000000;">
     <head>
-        <title>Personal Cabinet: Settings</title>
+        <title><fmt:message key="changepass_page.title"/></title>
         <script>
             function validate() {
                 var oldPassword = document.form.oldPass.value;
@@ -28,22 +32,22 @@
     <body style="background-color: rgba(255,255,255,0);">
         <div><jsp:include page="menuBar.jsp"></jsp:include></div>
         <div style="background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);height: 650px;background-repeat: round;background-size: cover;">
-                    <h3>Change password</h3>
+                    <h3><fmt:message key="changepass_page.header"/></h3>
                         <p>
                             <%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%>
                         </p>
                     <c:set var="user" value="${sessionScope.loggedInUser}"></c:set>
                     <form name="form" method="post" action="settings?id=${user.id}" onsubmit="return validate()">
-                        <label>Old password:
-                            <input type="password" name="oldPass"><br/>
+                        <label><fmt:message key="changepass_page.oldpass"/>:
+                            <input type="password" placeholder="<fmt:message key="changepass_page.oldpass_ph"/>" name="oldPass"><br/>
                         </label>
-                        <label>New password:
-                            <input type="password" name="newPass"><br/>
+                        <label><fmt:message key="changepass_page.newpass"/>:
+                            <input type="password" placeholder="<fmt:message key="changepass_page.newpass_ph"/>" name="newPass"><br/>
                         </label>
-                        <label>Confirm new password:
-                            <input type="password" name="confirmNewPass"><br/>
+                        <label><fmt:message key="changepass_page.confnewpass"/>:
+                            <input type="password" placeholder="<fmt:message key="changepass_page.confnewpass_ph"/>" name="confirmNewPass"><br/>
                         </label>
-                        <button type="submit">Save</button>
+                        <button type="submit"><fmt:message key="changepass_page.savechanges_bn"/></button>
                     </form>
                 <button onclick="location.href='..'">Back</button>
         </div>
