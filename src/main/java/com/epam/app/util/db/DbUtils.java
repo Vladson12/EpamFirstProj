@@ -1,5 +1,6 @@
 package com.epam.app.util.db;
 
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.io.FileInputStream;
@@ -9,6 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
+@Log4j
 public class DbUtils {
 
     private static final BasicDataSource DATA_SOURCE = new BasicDataSource();
@@ -26,15 +28,11 @@ public class DbUtils {
         try (FileInputStream is = new FileInputStream(dbPropsFile)) {
             properties.load(is);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            log.error("Can't load properties! File not found! " + e);
         } catch (IOException e) {
             System.err.println("Can't load properties!");
+            log.error("Can't load properties! " + e);
         }
-
-        System.out.println("PROPS DRIVER: " + properties.getProperty("driver"));
-        System.out.println("PROPS URL: " + properties.getProperty("url"));
-        System.out.println("PROPS USER: " + properties.getProperty("user"));
-        System.out.println("PROPS PASSWORD: " + properties.getProperty("password"));
         setProperties();
     }
 
@@ -42,7 +40,7 @@ public class DbUtils {
         try {
             Class.forName(properties.getProperty("driver"));
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            log.error("Failed set properties! " + e);
         }
 
         DATA_SOURCE.setUrl(properties.getProperty("url"));

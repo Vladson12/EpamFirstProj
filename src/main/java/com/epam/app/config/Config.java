@@ -7,10 +7,6 @@ import com.epam.app.util.db.DbUtils;
 import javax.servlet.ServletContext;
 import java.nio.file.FileSystems;
 
-/**
- * Created by vladd on 25.04.2019
- */
-
 public class Config {
 
     private static DaoFactory factory;

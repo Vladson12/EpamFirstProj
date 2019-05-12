@@ -37,14 +37,14 @@ public class BookListController extends HttpServlet {
         booksList = BookService.updateBookList(pageManager);
         login = req.getParameter("login");
         if (req.getParameter("insert") != null) {
-            String author = req.getParameter("author");
+            String context = req.getParameter("context");
             String genre = req.getParameter("genre");
-            if (!genre.isEmpty() && !author.isEmpty()) {
-                booksList = BookService.getByContextAndGenre(author, genre);
+            if (!genre.isEmpty() && !context.isEmpty()) {
+                booksList = BookService.getByContextAndGenre(context, genre);
             } else if (!genre.isEmpty()) {
                 booksList = BookService.getByGenre(genre);
-            } else if (!author.isEmpty()) {
-                booksList = BookService.getByContext(author);
+            } else if (!context.isEmpty()) {
+                booksList = BookService.getByContext(context);
             }
         }
         req.getSession().setAttribute("list", booksList);

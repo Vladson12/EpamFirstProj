@@ -4,7 +4,7 @@ import com.epam.app.config.Config;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,14 +16,17 @@ import java.io.IOException;
 
 import static com.epam.app.util.password.Password.hash;
 
+@Log4j
 @WebServlet("/registration")
 public class RegisterUserController extends HttpServlet {
 
-    static final Logger log = Logger.getLogger(RegisterUserController.class);
-
     @Override
     public void init() {
-        Config.set(this.getServletContext(), "mysql");
+        try {
+            Config.set(this.getServletContext(), "mysql");
+        } catch (RuntimeException e) {
+            log.error("Failed data base configuration!§ ", e);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

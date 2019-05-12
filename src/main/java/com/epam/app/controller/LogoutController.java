@@ -1,6 +1,7 @@
 package com.epam.app.controller;
 
 import com.epam.app.model.User;
+import lombok.extern.log4j.Log4j;
 import org.apache.log4j.Logger;
 
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+@Log4j
 @WebServlet("/logout")
 public class LogoutController extends HttpServlet {
-
-    static final Logger log = Logger.getLogger(LogoutController.class);
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();

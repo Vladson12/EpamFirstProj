@@ -6,6 +6,7 @@ import com.epam.app.model.User;
 import com.epam.app.model.enums.CardState;
 import com.epam.app.model.Book;
 import com.epam.app.util.db.DbUtils;
+import lombok.extern.log4j.Log4j;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ import static com.epam.app.model.enums.CardState.*;
 import static com.epam.app.util.db.DbUtils.*;
 import static com.epam.app.util.db.mysql.CardQueryMySql.*;
 
+@Log4j
 public class CardDaoMySqlImpl implements CardDAO {
 
     @Override
@@ -30,7 +32,7 @@ public class CardDaoMySqlImpl implements CardDAO {
             statement.setInt(5, card.getCardState().ordinal() + 1);
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed add card " + e);
         }
     }
 
@@ -46,7 +48,7 @@ public class CardDaoMySqlImpl implements CardDAO {
                         rs.getDate("end_date"), rs.getInt("card_state"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed get card " + e);
         }
         return card;
     }
@@ -69,7 +71,7 @@ public class CardDaoMySqlImpl implements CardDAO {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed get all book ID " + e);
         }
         return IdBookList;
     }
@@ -86,7 +88,7 @@ public class CardDaoMySqlImpl implements CardDAO {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed get all user ID " + e);
         }
         return userIdList;
     }
@@ -103,7 +105,7 @@ public class CardDaoMySqlImpl implements CardDAO {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed get all cards " + e);
         }
         return  arrayOfIdCard;
     }
@@ -116,7 +118,7 @@ public class CardDaoMySqlImpl implements CardDAO {
             statement.setInt(2, card.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed update card status " + e);
         }
     }
 
@@ -129,7 +131,7 @@ public class CardDaoMySqlImpl implements CardDAO {
             statement.setInt(3, card.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed update card status and date " + e);
         }
     }
 }

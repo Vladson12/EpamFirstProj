@@ -37,7 +37,7 @@ public class PageManager<T> {
     }
 
     public List<Page> getPages() {
-        List<Page> pages = new ArrayList<Page>();
+        List<Page> pages = new ArrayList<>();
         if (currentPage - pagesScrollBarSize / 2 <= 0) {
             for (int i = 1; i <= pagesScrollBarSize && i <= pagesCount; i++) {
                 pages.add(new Page(i));

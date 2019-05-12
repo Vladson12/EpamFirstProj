@@ -3,6 +3,7 @@ package com.epam.app.DAO.impl;
 import com.epam.app.DAO.BookDAO;
 import com.epam.app.model.Book;
 import com.epam.app.model.enums.Genre;
+import lombok.extern.log4j.Log4j;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import static com.epam.app.model.enums.Genre.getGenre;
 import static com.epam.app.util.db.DbUtils.getConnection;
 import static com.epam.app.util.db.mysql.BookQueryMySql.*;
 
-
+@Log4j
 public class BookDaoMySqlImpl implements BookDAO {
 
     @Override
@@ -27,7 +28,7 @@ public class BookDaoMySqlImpl implements BookDAO {
                         rs.getString("title"), rs.getString("description"), rs.getInt("year"), getGenre(rs.getInt("genre"))));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed get all books " + e);
         }
         return array;
     }
@@ -49,7 +50,7 @@ public class BookDaoMySqlImpl implements BookDAO {
                         rs.getString("description"), rs.getInt("year"), getGenre(rs.getInt("genre")));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed get book by ID " + e);
         }
         return book;
     }
@@ -67,7 +68,7 @@ public class BookDaoMySqlImpl implements BookDAO {
             statement.setInt(6, book.getGenre().ordinal() + 1);
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed add book " + e);
         }
     }
 
@@ -90,7 +91,7 @@ public class BookDaoMySqlImpl implements BookDAO {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed get book by author " + e);
         }
         return book;
 
@@ -112,7 +113,7 @@ public class BookDaoMySqlImpl implements BookDAO {
                 statement.setInt(7, book.getId());
                 statement.executeUpdate();
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.error("Failed update book " + e);
             }
         }
     }
@@ -124,7 +125,7 @@ public class BookDaoMySqlImpl implements BookDAO {
             statement.setInt(1, book.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed delete book " + e);
         }
     }
 
@@ -135,7 +136,7 @@ public class BookDaoMySqlImpl implements BookDAO {
              ResultSet rs = statement.executeQuery(SELECT_All)) {
             resultSet = rs;
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Failed get all " + e);
         }
         return resultSet;
     }

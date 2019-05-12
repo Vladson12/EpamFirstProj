@@ -15,7 +15,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
-
 @WebServlet("/cards")
 public class UserCardController extends HttpServlet {
 
@@ -32,7 +31,7 @@ public class UserCardController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String side;
         if ((side = req.getParameter("pageSide")) != null) {
-            req.setAttribute("login",login);
+            req.setAttribute("login", login);
             if ("previous".equals(side)) {
                 pageManager.previousPage();
             } else {
@@ -51,7 +50,7 @@ public class UserCardController extends HttpServlet {
         button = req.getParameter("button");
         login = (String) req.getAttribute("login");
         if (id != null) {
-            doPut(req,resp);
+            doPut(req, resp);
         }
         List<Card> cardsForUser = CardService.updateCardsOfUser(login);
         req.setAttribute("list", pageManager.sublist(cardsForUser));

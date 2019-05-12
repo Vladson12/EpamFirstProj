@@ -46,7 +46,7 @@ public class PasswordRecoveryController extends HttpServlet {
                         "\nRegards, Library administration";
                 Mail.send(login, subject, body);
             } catch (MessagingException e) {
-                log.error("Exceptions happen!", e);
+                log.error("Exceptions happen! Mail hasn't been sent ", e);
                 request.getRequestDispatcher("/exceptionPage.jsp").forward(request, response);
             }
             request.getRequestDispatcher("/").forward(request, response);
