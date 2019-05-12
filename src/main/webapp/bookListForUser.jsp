@@ -35,7 +35,7 @@
                 <div class="col-md-12 align-self-center">
                     <form action="/bookList?show=" method="get">
                         <label><fmt:message key="book_search.by_name_and_author"/></label>
-                        <label><input type="text" name="author" value=""></label>
+                        <label><input type="text" name="context" value=""></label>
                         <label><fmt:message key="book_search.by_genre"/></label>
                         <label><select name="genre">
                             <option value="" selected>-</option>
