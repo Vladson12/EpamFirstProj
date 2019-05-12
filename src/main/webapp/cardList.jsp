@@ -9,7 +9,6 @@
 
 <html lang="${language}" style="background-color: #000000;">
 <head>
-    <<<<<<< Updated upstream
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Library: Cards</title>
@@ -27,9 +26,7 @@
     <link rel="stylesheet" href="assets/css/Toggle-Switch-1-1.css">
     <link rel="stylesheet" href="assets/css/Toggle-Switch-1.css">
     <link rel="stylesheet" href="assets/css/Toggle-Switch.css">
-    =======
     <title><fmt:message key="cardlist_page.title"/></title>
-    >>>>>>> Stashed changes
 
     <script language="JavaScript" >
         function open_window() {
@@ -40,28 +37,6 @@
 </head>
 
 <body style="background-color: rgba(255,255,255,0);">
-<<<<<<< Updated upstream
-<div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
-<div style="height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-
-    <h1> <c:out value="${login}" /></h1>
-
-
-    <div>
-        <table id="userCard" class="table table-bordered table-hover table-sm" style="font-size: 1vw; max-width: 1200px; margin:0 auto;">
-            <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.81);">
-            <tr style="text-align: center">
-                <th                                                           class="col-lg-1">№</th>
-                <th id="bookCL"     onmouseover="this.style.cursor='pointer'" class="col-lg-2">Book</th>
-                <th id="fromCL"     onmouseover="this.style.cursor='pointer'" class="col-lg-2">From</th>
-                <th id="toCL"       onmouseover="this.style.cursor='pointer'" class="col-lg-2">To</th>
-                <th id="stateCL"    onmouseover="this.style.cursor='pointer'" class="col-lg-2">State</th>
-                <th                                                           class="col-lg-2">Actions</th>
-            </tr>
-            </thead>
-            <tbody style="background-color: #ffffff;">
-            <c:forEach var = "list" items = "${list}">
-            =======
             <div><jsp:include page="menuBar.jsp"></jsp:include></div>
             <div style="background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);height: 650px;background-repeat: round;background-size: cover;">
                     <%--<h1> <c:out value="${login}" /></h1>--%>
@@ -75,7 +50,6 @@
                         <th width="17%" style="text-align: center"><fmt:message key="cardlist_page.table_actions"/></th>
                     </tr>
                     <c:forEach var = "list" items = "${list}">
-                    >>>>>>> Stashed changes
                     <jsp:useBean id="list" scope="page" type="com.epam.app.model.Card"/>
                     <tr style="padding: auto">
                         <td style="text-align: center"><c:out value="${list.id}" /></td>
@@ -126,7 +100,7 @@
             </div>
 
             </tr>
-            </c:forEach>
+
         </table>
         <script type="text/javascript" src="../cabinet/sorting.js"></script>
         <button onclick="location.href='/home'"><fmt:message key="back.bn"/></button>
