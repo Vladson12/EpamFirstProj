@@ -29,11 +29,6 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 align-self-center">
-
-
-
-
-
                             <form action="/bookList?show=" method="get">
                                 <label>Enter author name to find book:</label>
                                 <label><input type="text" name="author" value=""></label>
@@ -54,7 +49,6 @@
                     </div>
                 </div>
             </div>
-
             <div>
                 <table id="bookList" class="table table-bordered table-hover table-sm" style="font-size: 1vw; max-width: 1200px; margin:0 auto;">
                     <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.81);">
@@ -117,16 +111,14 @@
                     </div>
                 </div>
             </div>
-
-
-            <script type="text/javascript" src="assets/js/sorting.js"></script>
+            <script src="assets/js/sorting.js"></script>
             <script src="assets/js/jquery.min.js"></script>
             <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-            <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+            <script src="assets/js/jquery.dataTables.min.js"></script>
+            <script src="assets/js/dataTables.bootstrap.min.js"></script>
             <script src="assets/js/-Bootswatch-Theme-Switcher-BS4-.js"></script>
             <script src="assets/js/bs-animation.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+            <script src="assets/js/aos-2.1.1.js"></script>
             <script src="assets/js/Table-With-Search.js"></script>
         </div>
         <div style="height: 20vh;"><jsp:include page="footer.jsp"></jsp:include></div>
