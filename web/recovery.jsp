@@ -1,14 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: vladd
-  Date: 29.04.2019
-  Time: 0:49
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="internationalization.messages"/>
+
+<html lang="${language}">
 <head>
-    <title>Library: Password recovery</title>
+    <title><fmt:message key="recovery_page.title"/></title>
     <style>
         div.recform {
             width: 40%;
@@ -32,14 +32,14 @@
 
 <div class="recform">
     <div class="w3-container w3-padding w3-margin">
-        <h2>Reset your password</h2>
+        <h2><fmt:message key="recovery_page.recovery"/></h2>
         <p><%=(request.getAttribute("errMessage") == null) ? ""
                 : request.getAttribute("errMessage")%></p>
         <form name="form" action="passwordRecovery" method="post" onsubmit="return validate()">
-            <label>Email:
-                <input type="email" name="login" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
+            <label><fmt:message key="recovery_page.email"/>:
+                <input type="email" name="login" placeholder="<fmt:message key="recovery_page.email_ph"/>" class="w3-input w3-animate-input w3-border w3-round-large"><br/>
             </label>
-            <button type="submit" class="w3-btn w3-green w3-round-large w3-right">Send password reset email</button>
+            <button type="submit" class="w3-btn w3-green w3-round-large w3-right"><fmt:message key="recovery_page.signin_bn"/></button>
         </form>
     </div>
 </div>

@@ -1,9 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="internationalization.messages"/>
+
+<html lang="${language}">
 <head>
     <meta charset="UTF-8">
-    <title>Library : Home</title>
+    <title><fmt:message key="home_page.title"/></title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
         body {
@@ -30,12 +36,12 @@
         <div class="w3-bar w3-padding-large w3-padding-24">
             <c:choose>
                 <c:when test="${userRole eq 'READER'}">
-                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'">Book list</button>
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'"><fmt:message key="home_page.booklist_bn"/></button>
                 </c:when>
                 <c:otherwise>
-                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/users'">User list</button>
-                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/addUser'">Add user</button>
-                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'">Book list</button>
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/users'"><fmt:message key="home_page.userlist_bn"/></button>
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/addUser'"><fmt:message key="home_page.adduser_bn"/></button>
+                    <button class="w3-btn w3-opacity-min w3-round-large" onclick="location.href='/bookList?login=${loggedInUser.login}'"><fmt:message key="home_page.booklist_bn"/></button>
                 </c:otherwise>
             </c:choose>
         </div>
