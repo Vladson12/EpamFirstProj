@@ -19,26 +19,23 @@
 <body style="background-color: rgba(255,255,255,0);">
 <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
 <div style="height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-    Select new date ${login}
-    <form name="form" action="/cardDate" method="post">
-        <input type="hidden" name="login" value="${login}"/>
-        <input type="hidden" name="id" value="${id}"/>
-        <table align="center">
-            <td><fmt:message key="card_date.end_date"/></td>
-            <td>
-                <input type="date" name="date"/>
-            </td>
-            </tr>
-            <tr>
-                <td>
+    <div style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 500px; margin:0 auto;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 align-self-center">
+                    <label>Select new date ${login}</label>
+                    <form name="form" action="/cardDate" method="post">
+                        <label><input type="hidden" name="login" value="${login}"/></label>
+                        <label><input type="hidden" name="id" value="${id}"/></label>
+                        <fmt:message key="card_date.end_date"/>
+                        <label><input type="date" name="date"/></label>
+                        <label><input type="submit" name="update" value="Update"></label>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                </td>
-                <td>
-                    <input type="submit" name="update" value="Update">
-                </td>
-            </tr>
-        </table>
-    </form>
 </div>
 <div style="height: 20vh;"><jsp:include page="footer.jsp"></jsp:include></div>
 </body>

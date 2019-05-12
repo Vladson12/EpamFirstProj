@@ -17,7 +17,7 @@ import static com.epam.app.util.password.Password.hash;
 public class UserSettingsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/settings.jsp").forward(req, resp);
+        req.getRequestDispatcher("/changePassword.jsp").forward(req, resp);
     }
 
     @Override
@@ -28,13 +28,13 @@ public class UserSettingsController extends HttpServlet {
         if (!Password.matches(oldPassword, passwordUpdatedUser.getPassword())) {
             System.out.println("DONT MATCH!");
             req.setAttribute("errMessage", "Incorrect enter of old password");
-            req.getRequestDispatcher("/settings.jsp").forward(req, resp);
+            req.getRequestDispatcher("/changePassword.jsp").forward(req, resp);
             return;
         }
         String newPassword = req.getParameter("newPass");
         passwordUpdatedUser.setPassword(hash(newPassword));
         UserService.updateUser(passwordUpdatedUser);
         req.getSession().setAttribute("loggedInUser", passwordUpdatedUser);
-        resp.sendRedirect("/cabinet/settings?id=" + id);
+        resp.sendRedirect("/cabinet/changePassword?id=" + id);
     }
 }

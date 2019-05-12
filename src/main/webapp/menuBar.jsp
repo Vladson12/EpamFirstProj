@@ -92,7 +92,6 @@
                                                 <fmt:message key="role.reader"/>
                                             </c:if>
                                 </a>
-
                             </c:when>
                             <c:otherwise>
                                 <a class="btn btn-light text-white action-button" role="button" href="${pageContext.request.contextPath}/login"><fmt:message key="menu_bar.signin"/></a>
