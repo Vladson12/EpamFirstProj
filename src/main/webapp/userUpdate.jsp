@@ -7,6 +7,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>Edit user</title>
+        <script>
+            function isSuccess() {
+                alert("The user successfully added");
+                return true;
+            }
+        </script>
     </head>
 
     <body style="background-color: rgba(255,255,255,0);">
@@ -18,9 +24,8 @@
                     <div class="row">
                         <div class="col-md-12 align-self-center">
 
-
                             <h2>Edit user</h2>
-                            <form action="/users">
+                            <form action="/users" onsubmit="return isSuccess()">
                                 <jsp:useBean id="user" scope="session" type="com.epam.app.model.User"/>
                                 <label><input value="" type="hidden" name="update" ></label><br/>
                                 <label>Name:</label><br/>

@@ -29,7 +29,8 @@
                 } else if (password != conpassword) {
                     alert("Confirm Password should match with the Password");
                     return false;
-                }
+                } else alert("The user successfully registered");
+                return true;
             }
         </script>
     </head>

@@ -18,7 +18,9 @@
                 } else if (login == null || login == "") {
                     alert("Email can't be blank");
                     return false;
-                }
+                } else
+                    alert("The user successfully added");
+                return true;
             }
         </script>
     </head>
