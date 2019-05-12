@@ -1,8 +1,12 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
-<!DOCTYPE html>
-<html>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="internationalization.messages"/>
+
+<html lang="${language}">
 
 <head>
     <meta charset="utf-8">
@@ -56,12 +60,23 @@
                         </ul>
                     </div>
                     <div class="col-md-3 col-xl-2 social-networks">
-                        <div></div><a class="facebook" href="#"><i class="fa fa-facebook"></i></a><a class="twitter" href="#"><i class="fa fa-twitter"></i></a><a class="google" href="#"><i class="fa fa-google-plus"></i></a><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
-                        <select
-                            class="border rounded custom-select custom-select-sm" required="">
-                            <option value="English">English</option>
-                            <option value="Russian" selected="">Russian</option>
-                            </select>
+                        <%--<div></div><a class="facebook" href="#"><i class="fa fa-facebook"></i></a><a class="twitter" href="#"><i class="fa fa-twitter"></i></a><a class="google" href="#"><i class="fa fa-google-plus"></i></a><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>--%>
+                        <%--<select--%>
+                            <%--class="border rounded custom-select custom-select-sm" required="">--%>
+                            <%--<option value="English">English</option>--%>
+                            <%--<option value="Russian" selected="">Russian</option>--%>
+                            <%--</select>--%>
+                            <form>
+                                <c:forEach items="${param}" var="parameter">
+                                    <c:if test="${parameter.key ne 'language'}">
+                                        <input type="hidden" name="${parameter.key}" value="${parameter.value}">
+                                    </c:if>
+                                </c:forEach>
+                                <select id="language" name="language"  onchange="submit()">
+                                    <option value="en" ${language == 'en' ? 'selected' : ''}><fmt:message key="menu_bar.lang_en"/></option>
+                                    <option value="ru" ${language == 'ru' ? 'selected' : ''}><fmt:message key="menu_bar.lang_ru"/></option>
+                                </select>
+                            </form>
                     </div>
                 </div>
             </div>
