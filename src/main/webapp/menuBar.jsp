@@ -10,7 +10,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>LibrarySite</title>
         <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="assets/fonts/googleapis.com.roboto.css">
@@ -64,6 +63,7 @@
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link text-white" href="${pageContext.request.contextPath}/"><fmt:message key="menu_bar.home"/></a>
                             </li>
+                            <c:if test="${not empty loggedInUser}">
                             <c:choose>
                                 <c:when test="${userRole eq 'READER'}">
                                     <li class="nav-item" role="presentation">
@@ -82,6 +82,7 @@
                                     </li>
                                 </c:otherwise>
                             </c:choose>
+                            </c:if>
                         </ul>
                         <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center">
                             <li class="dropdown border-white d-xl-flex align-items-xl-start">
@@ -100,13 +101,13 @@
                                 <a class="btn btn-light text-white action-button" role="button" href="${pageContext.request.contextPath}/cabinet">
                                         ${loggedInUser.name}:
                                             <c:if test="${loggedInUser.role eq 'ADMINISTRATOR'}">
-                                                <fmt:message key="menu_bar.admin"/>
+                                                <fmt:message key="role.admin"/>
                                             </c:if>
                                             <c:if test="${loggedInUser.role eq 'LIBRARIAN'}">
-                                                <fmt:message key="menu_bar.librarian"/>
+                                                <fmt:message key="role.librarian"/>
                                             </c:if>
                                             <c:if test="${loggedInUser.role eq 'READER'}">
-                                                <fmt:message key="menu_bar.reader"/>
+                                                <fmt:message key="role.reader"/>
                                             </c:if>
                                 </a>
 
