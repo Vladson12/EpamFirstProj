@@ -25,28 +25,24 @@
 
     <body style="background-color: rgba(255,255,255,0);">
         <div style="height: 10vh"><jsp:include page="menuBar.jsp"></jsp:include></div>
-        <div style="height: 70vh;background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);height: 650px;background-repeat: round;background-size: cover;">
+        <div class="align-middle" style="height: 70vh;background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);background-repeat: round;background-size: cover;">
 
-            <div id="change-me" style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 1200px; margin:0 auto;">
+            <div style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 1200px; margin:0 auto;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12 align-self-center">
-
-
+                        <div class="col">
                             <form action="/users?show=" method="get">
                                 <label>Enter user login to find user:</label>
                                 <label><input type="text" name="login" value=""></label>
-                                <label><input type="submit" name="insert" value="Insert"></label>
+                                <label><input type="submit" name="insert" value="Search"></label>
                             </form>
-                            <label><button onclick="location.href='/addUser'">+ Add new user </button></label>
-
+                        </div>
+                        <div class="col">
+                            <label><button onclick="location.href='/addUser'">+ Add new user</button></label>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
             <div>
                 <table id="userTable" class="table table-bordered table-hover table-sm" style="font-size: 1vw; max-width: 1200px; margin:0 auto;">
                     <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.81);">
@@ -70,12 +66,20 @@
                                 <td><c:out value="${user.login}"/></td>
                                 <td><c:out value="${user.role}"/></td>
                                 <td style="text-align: center">
-                                    <form action="/users?login=${user.login}&button=findCards" method="post">
-                                        <input style="font-size: 16px" type="submit" value="Card List">
-                                    </form>
-                                    <form action="/users?login=${user.login}&button=edit" method="post">
-                                        <input style="font-size: 16px" type="submit" value="Edit">
-                                    </form>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <form action="/users?login=${user.login}&button=findCards" method="post">
+                                                    <input type="submit" value="Card List">
+                                                </form>
+                                            </div>
+                                            <div class="col">
+                                                <form action="/users?login=${user.login}&button=edit" method="post">
+                                                    <input type="submit" value="Edit">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             </c:when>
