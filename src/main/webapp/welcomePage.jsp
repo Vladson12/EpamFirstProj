@@ -7,14 +7,14 @@
 <fmt:setBundle basename="internationalization.messages"/>
 
 <html lang="${language}" style="background-color: #000000;">
-    <head>
-        <meta charset="UTF-8">
-        <title><fmt:message key="welcome_page.title"/></title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title><fmt:message key="welcome_page.title"/></title>
+</head>
 
-    <body style="background-color: rgba(255,255,255,0);">
-        <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
-        <div style="height: 70vh; background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;"></div>
-        <div style="height: 20vh;"><jsp:include page="footer.jsp"></jsp:include></div>
-    </body>
+<body style="background-color: rgba(255,255,255,0);">
+<div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
+<div style="height: 70vh; background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;"></div>
+<div style="height: 20vh;"><jsp:include page="footer.jsp"></jsp:include></div>
+</body>
 </html>
