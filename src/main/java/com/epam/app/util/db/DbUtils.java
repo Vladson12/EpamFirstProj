@@ -33,6 +33,11 @@ public class DbUtils {
             System.err.println("Can't load properties!");
             log.error("Can't load properties! " + e);
         }
+
+        System.out.println("PROPS DRIVER: " + properties.getProperty("driver"));
+        System.out.println("PROPS URL: " + properties.getProperty("url"));
+        System.out.println("PROPS USER: " + properties.getProperty("user"));
+        System.out.println("PROPS PASSWORD: " + properties.getProperty("password"));
         setProperties();
     }
 
@@ -40,7 +45,7 @@ public class DbUtils {
         try {
             Class.forName(properties.getProperty("driver"));
         } catch (ClassNotFoundException e) {
-            log.error("Failed set properties! File not found! " + e);
+            log.error("Failed set properties! " + e);
         }
 
         DATA_SOURCE.setUrl(properties.getProperty("url"));
