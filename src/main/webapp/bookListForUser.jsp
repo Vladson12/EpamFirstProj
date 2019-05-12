@@ -36,7 +36,7 @@
 
                             <form action="/bookList?show=" method="get">
                                 <label>Enter author name to find book:</label>
-                                <label><input type="text" name="author" value=""></label>
+                                <label><input type="text" name="context" value=""></label>
                                 <label>and/or choose book genre</label>
                                     <label><select name="genre">
                                         <option value="" selected>-</option>
