@@ -47,7 +47,7 @@
                         <h2><fmt:message key="registration_page.signup"/></h2>
                         <p><%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%></p>
                         <form name="form" action="registration" method="post" onsubmit="return validate()">
-                            <label>fmt:message key="registration_page.username"/>:</label><br/>
+                            <label><fmt:message key="registration_page.username"/>:</label><br/>
                             <label><input type="text" placeholder="<fmt:message key="registration_page.username_ph"/>" name="name"></label><br/>
                             <label><fmt:message key="registration_page.email"/>:</label><br/>
                             <label><input type="email" placeholder="<fmt:message key="registration_page.email_ph"/>" name="login"></label><br/>

@@ -5,7 +5,29 @@
 <head>
     <title>Save book</title>
     <script>
-        function isSuccess() {
+        function validate() {
+            var title = document.form.title.value;
+            var author = document.form.author.value;
+            var description = document.form.description.value;
+            var genre = document.form.genre.value;
+            var year = document.form.year.value;
+
+            if (title == null || title == "") {
+                alert("Title can't be blank");
+                return false;
+            } else if (author == null || author == "") {
+                alert("Author can't be blank");
+                return false;
+            } else if (description == null || description == "") {
+                alert("Description can't be blank");
+                return false;
+            } else if (genre == null || genre == "") {
+                alert("Genre can't be blank");
+                return false;
+            } else if (year == null || year == "") {
+                alert("Year can't be blank");
+                return false;
+            }
             alert("The book successfully added");
             return true;
         }
@@ -26,11 +48,11 @@
 
                     <h2>Save book</h2>
 
-                    <form method="post" action="saveBook" onsubmit="return isSuccess()">
+                    <form method="post" action="saveBook" onsubmit="return validate()">
                         <jsp:useBean id="book" scope="session" type="com.epam.app.model.Book"/>
                         <input value="${book.id}" type="hidden" name="id"><br/>
                         <label>Title:</label><br/>
-                        <label>input value="${book.title}" type="text" name="title"></label><br/>
+                        <label><input value="${book.title}" type="text" name="title"></label><br/>
                         <label>Author:</label><br/>
                         <label><input value="${book.author}" type="text" name="author"></label><br/>
                         <label>Description:</label><br/>
