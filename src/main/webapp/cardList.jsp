@@ -11,7 +11,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Library: Cards</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
@@ -37,18 +36,23 @@
 </head>
 
 <body style="background-color: rgba(255,255,255,0);">
-            <div><jsp:include page="menuBar.jsp"></jsp:include></div>
-            <div style="background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);height: 650px;background-repeat: round;background-size: cover;">
-                    <%--<h1> <c:out value="${login}" /></h1>--%>
-                <table id="userCard">
-                    <tr style="font-size: 22px">
-                        <th width="1%" style="text-align: center"></th>
-                        <th width="22%" id="bookCL" onmouseover="this.style.cursor='pointer'" style="text-align: center"><fmt:message key="cardlist_page.table_book"/></th>
-                        <th width="27%" id="fromCL" onmouseover="this.style.cursor='pointer'" style="text-align: center"><fmt:message key="cardlist_page.table_from"/></th>
-                        <th width="27%" id="toCL" onmouseover="this.style.cursor='pointer'" style="text-align: center"><fmt:message key="cardlist_page.table_to"/></th>
-                        <th width="10%" id="stateCL" onmouseover="this.style.cursor='pointer'" style="text-align: center"><fmt:message key="cardlist_page.table_state"/></th>
-                        <th width="17%" style="text-align: center"><fmt:message key="cardlist_page.table_actions"/></th>
-                    </tr>
+<div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
+<div style="height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
+
+                <h1> <c:out value="${login}" /></h1>
+    <div>
+        <table id="userCard" class="table table-bordered table-hover table-sm" style="font-size: 1vw; max-width: 1200px; margin:0 auto;">
+            <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.81);">
+            <tr style="text-align: center">
+                <th                                                           class="col-lg-1">№</th>
+                <th id="bookCL"     onmouseover="this.style.cursor='pointer'" class="col-lg-2"><fmt:message key="cardlist_page.table_book"/></th>
+                <th id="fromCL"     onmouseover="this.style.cursor='pointer'" class="col-lg-2"><fmt:message key="cardlist_page.table_from"/></th>
+                <th id="toCL"       onmouseover="this.style.cursor='pointer'" class="col-lg-2"><fmt:message key="cardlist_page.table_to"/></th>
+                <th id="stateCL"    onmouseover="this.style.cursor='pointer'" class="col-lg-2"><fmt:message key="cardlist_page.table_state"/></th>
+                <th                                                           class="col-lg-2"><fmt:message key="cardlist_page.table_actions"/></th>
+            </tr>
+            </thead>
+            <tbody style="background-color: #ffffff;">
                     <c:forEach var = "list" items = "${list}">
                     <jsp:useBean id="list" scope="page" type="com.epam.app.model.Card"/>
                     <tr style="padding: auto">
@@ -98,13 +102,13 @@
                     </tbody>
                 </table>
             </div>
+    <div style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 1200px; margin:0 auto;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 align-self-center">
 
-            </tr>
-
-        </table>
-        <script type="text/javascript" src="../cabinet/sorting.js"></script>
-        <button onclick="location.href='/home'"><fmt:message key="back.bn"/></button>
-        <table width="100%">
+                <button onclick="location.href='/home'"><fmt:message key="back.bn"/></button>
+        <table>
             <tr style="text-align: center">
                 <c:choose>
                     <c:when test="${(flag eq 1)}">
@@ -127,6 +131,20 @@
                 </c:choose>
             </tr>
         </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/sorting.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.bootstrap.min.js"></script>
+    <script src="assets/js/-Bootswatch-Theme-Switcher-BS4-.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <script src="assets/js/aos-2.1.1.js"></script>
+    <script src="assets/js/Table-With-Search.js"></script>
+
     </div>
     <div style="height: 20vh;"><jsp:include page="footer.jsp"></jsp:include></div>
 </body>
