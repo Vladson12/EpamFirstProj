@@ -13,8 +13,8 @@ import java.io.IOException;
 
 import static com.epam.app.util.password.Password.hash;
 
-@WebServlet("/cabinet/settings")
-public class UserSettingsController extends HttpServlet {
+@WebServlet("/cabinet/changePassword")
+public class ChangePasswordController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/changePassword.jsp").forward(req, resp);
@@ -26,7 +26,6 @@ public class UserSettingsController extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         User passwordUpdatedUser = UserService.get(id);
         if (!Password.matches(oldPassword, passwordUpdatedUser.getPassword())) {
-            System.out.println("DONT MATCH!");
             req.setAttribute("errMessage", "Incorrect enter of old password");
             req.getRequestDispatcher("/changePassword.jsp").forward(req, resp);
             return;
@@ -35,6 +34,6 @@ public class UserSettingsController extends HttpServlet {
         passwordUpdatedUser.setPassword(hash(newPassword));
         UserService.updateUser(passwordUpdatedUser);
         req.getSession().setAttribute("loggedInUser", passwordUpdatedUser);
-        resp.sendRedirect("/cabinet/changePassword?id=" + id);
+        resp.sendRedirect("/cabinet");
     }
 }

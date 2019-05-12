@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-md-12 align-self-center">
                             <h3><fmt:message key="profile_page.header"/></h3>
-                            <form method="post" action="profile?=${sessionScope.loggedInUser.id}">
+                            <form method="post" action="profile?=${sessionScope.loggedInUser.id}" onsubmit="return validate()">
                                 <jsp:useBean id="user" scope="session" type="com.epam.app.model.User"/>
                                 <label><input  value="${user.id}" type="hidden" name="id"></label>
                                 <label><fmt:message key="profile_page.name"/></label>

@@ -19,7 +19,7 @@
                     <div class="col-md-12 align-self-center">
                     <h1><fmt:message key="cabinet_page.title"/></h1>
                         <button onclick="location.href='/cabinet/profile?id=${sessionScope.loggedInUser.id}'"><fmt:message key="cabinet_page.profile_bn"/></button>
-                        <button onclick="location.href='/cabinet/settings?id=${sessionScope.loggedInUser.id}'"><fmt:message key="cabinet_page.changepass_bn"/></button>
+                        <button onclick="location.href='/cabinet/changePassword?id=${sessionScope.loggedInUser.id}'"><fmt:message key="cabinet_page.changepass_bn"/></button>
                         <button onclick="location.href='/cabinet/usercards?login=${sessionScope.loggedInUser.login}'"><fmt:message key="cabinet_page.mycards_bn"/></button>
                     </div>
                 </div>
