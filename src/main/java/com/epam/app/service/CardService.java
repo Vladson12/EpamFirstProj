@@ -10,10 +10,13 @@ import com.epam.app.model.enums.BookState;
 import com.epam.app.model.enums.CardState;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.epam.app.DAO.impl.ActualDaoFactory.getInstance;
+import static com.epam.app.model.enums.CardState.getPriority;
 
 public class CardService {
 
@@ -77,6 +80,21 @@ public class CardService {
         book.setBookState(newState);
 
         BOOK_DAO.updateBook(book);
+    }
+
+    public static void orderBook(String bookId, String userLogin){
+        Book book = BookService.getBookById(Integer.parseInt(bookId));
+        book.setBookState(BookState.ORDERED);
+        BookService.updateBook(book);
+        Card card = new Card(UserService.getByLogin(userLogin), book, LocalDate.now(ZoneId.systemDefault()),
+                LocalDate.now(ZoneId.systemDefault()).plusDays((long) 7), CardState.ORDERED);
+        CardService.create(card);
+    }
+
+
+    public static List<Card> updateCardsOfUser(String login){
+        return CardService.getAllCards(UserService.getByLogin(login)).stream()
+                .sorted(Comparator.comparingInt(o -> getPriority(o.getCardState()))).collect(Collectors.toList());
     }
 
 

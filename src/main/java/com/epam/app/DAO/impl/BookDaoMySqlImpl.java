@@ -65,7 +65,6 @@ public class BookDaoMySqlImpl implements BookDAO {
             statement.setString(4, book.getDescription());
             statement.setInt(5, book.getYear());
             statement.setInt(6, book.getGenre().ordinal() + 1);
-
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -21,7 +21,7 @@ public class LogoutController extends HttpServlet {
         session.invalidate();
         log.info("User " + user.getLogin() + " logouted");
         try {
-            response.sendRedirect("/welcome");
+            response.sendRedirect("/");
         } catch (IOException e) {
             log.error("Exceptions happen!", e);
         }

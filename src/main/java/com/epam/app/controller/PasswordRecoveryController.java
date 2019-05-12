@@ -14,9 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by vladd on 29.04.2019
- */
 @WebServlet("/passwordRecovery")
 public class PasswordRecoveryController extends HttpServlet {
     static final Logger log = Logger.getLogger(PasswordRecoveryController.class);
@@ -52,7 +49,7 @@ public class PasswordRecoveryController extends HttpServlet {
                 log.error("Exceptions happen!", e);
                 request.getRequestDispatcher("/exceptionPage.jsp").forward(request, response);
             }
-            request.getRequestDispatcher("/welcomePage.jsp").forward(request, response);
+            request.getRequestDispatcher("/").forward(request, response);
             log.info("Mail with password success sent to " + login);
         }
     }

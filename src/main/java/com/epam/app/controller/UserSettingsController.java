@@ -1,7 +1,6 @@
 package com.epam.app.controller;
 
 import com.epam.app.model.User;
-import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
 import com.epam.app.util.password.Password;
 
@@ -14,9 +13,6 @@ import java.io.IOException;
 
 import static com.epam.app.util.password.Password.hash;
 
-/**
- * Created by vladd on 28.04.2019
- */
 @WebServlet("/cabinet/settings")
 public class UserSettingsController extends HttpServlet {
     @Override
