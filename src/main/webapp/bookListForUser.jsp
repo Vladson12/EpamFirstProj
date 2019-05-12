@@ -10,11 +10,11 @@
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
         <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+        <link rel="stylesheet" href="assets/fonts/googleapis.com.roboto.css">
         <link rel="stylesheet" href="assets/css/Bold-BS4-Footer-Big-Logo.css">
         <link rel="stylesheet" href="assets/css/Bootstrap-Theme-Switchers.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+        <link rel="stylesheet" href="assets/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/aos-2.1.1.css">
         <link rel="stylesheet" href="assets/css/sticky-dark-top-nav-with-dropdown.css">
         <link rel="stylesheet" href="assets/css/styles.css">
         <link rel="stylesheet" href="assets/css/Table-With-Search.css">
@@ -22,9 +22,10 @@
         <link rel="stylesheet" href="assets/css/Toggle-Switch-1.css">
         <link rel="stylesheet" href="assets/css/Toggle-Switch.css">
     </head>
+
     <body style="background-color: rgba(255,255,255,0);">
         <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
-        <div style="height: 70vh; background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);background-repeat: round;background-size: cover;">
+        <div style="height: 70vh; background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
             <div id="change-me" style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 1200px; margin:0 auto;">
                 <div class="container">
                     <div class="row">

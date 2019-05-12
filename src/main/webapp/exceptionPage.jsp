@@ -9,10 +9,10 @@
     </head>
 
     <body style="background-color: rgba(255,255,255,0);">
-        <div><jsp:include page="menuBar.jsp"></jsp:include></div>
-        <div style="background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);height: 650px;background-repeat: round;background-size: cover;">
+        <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
+        <div style="height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
                     <h1>Ooooops...Something went wrong! :(</h1>
         </div>
-        <div><jsp:include page="footer.jsp"></jsp:include></div>
+        <div style="height: 20vh;"><jsp:include page="footer.jsp"></jsp:include></div>
     </body>
 </html>

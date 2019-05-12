@@ -25,8 +25,7 @@
 
     <body style="background-color: rgba(255,255,255,0);">
         <div style="height: 10vh"><jsp:include page="menuBar.jsp"></jsp:include></div>
-        <div class="align-middle" style="height: 70vh;background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);background-repeat: round;background-size: cover;">
-
+        <div class="align-middle" style="height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
             <div style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 1200px; margin:0 auto;">
                 <div class="container">
                     <div class="row">
@@ -107,8 +106,6 @@
                     </div>
                 </div>
             </div>
-
-
             <script src="assets/js/sorting.js"></script>
             <script src="assets/js/jquery.min.js"></script>
             <script src="assets/bootstrap/js/bootstrap.min.js"></script>
