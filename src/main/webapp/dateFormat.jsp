@@ -1,42 +1,42 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
-<!DOCTYPE html>
-<html style="background-color: #000000;">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Library : Card date</title>
-        <script language="JavaScript">
-            function back() {
-                window.close();
-            }
-        </script>
-    </head>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="internationalization.messages"/>
 
-    <body style="background-color: rgba(255,255,255,0);">
-        <div><jsp:include page="menuBar.jsp"></jsp:include></div>
-        <div style="background-image: url(&quot;assets/img/1348229547604-e1432042866949.jpg&quot;);height: 650px;background-repeat: round;background-size: cover;">
-            Select new date ${login}
-            <form name="form" action="/cardDate" method="post">
-                <input type="hidden" name="login" value="${login}"/>
-                <input type="hidden" name="id" value="${id}"/>
-                <table align="center">
-                    <td>End Date</td>
-                    <td>
-                        <input type="date" name="date"/>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td>
+<html lang="${language}" style="background-color: #000000;">
+<head>
+    <title><fmt:message key="card_date_page.title"/></title>
+    <script language="JavaScript">
+        function back() {
+            window.close();
+        }
+    </script>
+</head>
 
-                        </td>
-                        <td>
-                            <input type="submit" name="update" value="Update">
-                        </td>
-                    </tr>
-                </table>
-            </form>
+<body style="background-color: rgba(255,255,255,0);">
+<div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
+<div style="height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
+    <div style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 500px; margin:0 auto;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 align-self-center">
+                    <label>Select new date ${login}</label>
+                    <form name="form" action="/cardDate" method="post">
+                        <label><input type="hidden" name="login" value="${login}"/></label>
+                        <label><input type="hidden" name="id" value="${id}"/></label>
+                        <fmt:message key="card_date.end_date"/>
+                        <label><input type="date" name="date"/></label>
+                        <label><input type="submit" name="update" value="Update"></label>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div><jsp:include page="footer.jsp"></jsp:include></div>
-    </body>
+    </div>
+
+</div>
+<div style="height: 20vh;"><jsp:include page="footer.jsp"></jsp:include></div>
+</body>
 </html>

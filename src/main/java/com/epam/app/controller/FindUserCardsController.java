@@ -33,7 +33,7 @@ public class FindUserCardsController extends HttpServlet {
                 log.info("Requested cards of user " + login);
             } else {
                 req.getRequestDispatcher("/findUserCards.jsp").forward(req, resp);
-                log.info("Filed to get cards user " + login);
+                log.info("Failed to get cards user " + login);
             }
         }
     }
