@@ -16,7 +16,9 @@
                 if (login == null || login == "") {
                     alert("Email can't be blank");
                     return false;
-                }
+                } else
+                    alert("We sent mail with password on your email address!");
+                return true;
             }
         </script>
     </head>

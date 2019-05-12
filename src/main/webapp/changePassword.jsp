@@ -24,7 +24,8 @@
             } else if (newPassword !== confirmNewPassword) {
                 alert("ConfirmPassword should match the newPassword");
                 return false;
-            }
+            } else alert("Password has been changed!");
+            return true;
         }
     </script>
 </head>
@@ -41,7 +42,7 @@
                         <%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%>
                     </p></label>
                     <c:set var="user" value="${sessionScope.loggedInUser}"></c:set>
-                    <form name="form" method="post" action="settings?id=${user.id}" onsubmit="return validate()">
+                    <form name="form" method="post" action="changePassword?id=${user.id}" onsubmit="return validate()">
                         <label><fmt:message key="changepass_page.oldpass"/>:</label>
                         <label><input type="password" placeholder="<fmt:message key="changepass_page.oldpass_ph"/>" name="oldPass"></label>
                         <label><fmt:message key="changepass_page.newpass"/>:</label>

@@ -70,8 +70,8 @@ public class UserAddController extends HttpServlet {
             request.setAttribute("errMessage", "This Email is invalid");
             log.error("Failed to register new user by " + loggedInUser.getRole() + " " +
                     loggedInUser.getLogin() + ". Email is invalid");
+            request.getRequestDispatcher("/userAdd.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("/userAdd.jsp").forward(request, response);
     }
 
     @Override

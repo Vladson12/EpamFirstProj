@@ -15,16 +15,18 @@
             var name = document.form.name.value;
             var login = document.form.login.value;
 
-            if (name == null || name == "") {
-                alert("Username can't be blank");
-                return false;
-            } else if (login == null || login == "") {
-                alert("Email can't be blank");
-                return false;
+                if (name == null || name == "") {
+                    alert("Username can't be blank");
+                    return false;
+                } else if (login == null || login == "") {
+                    alert("Email can't be blank");
+                    return false;
+                } else
+                    alert("The user successfully added");
+                return true;
             }
-        }
-    </script>
-</head>
+        </script>
+    </head>
 
 <body style="background-color: rgba(255,255,255,0);">
 <div style="height: 10vh"><jsp:include page="menuBar.jsp"></jsp:include></div>

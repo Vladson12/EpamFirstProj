@@ -41,6 +41,7 @@ public class SaveBookController extends HttpServlet {
                 .stream().filter(o -> o.getBookState().equals(BookState.FREE)).collect(Collectors.toList())));
         req.getSession().setAttribute("page", new PageManager.Page(0));
         req.getSession().setAttribute("pages", pageManager.getPages());
+        req.getSession().setAttribute("message", "Success!");
         req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
     }
 }

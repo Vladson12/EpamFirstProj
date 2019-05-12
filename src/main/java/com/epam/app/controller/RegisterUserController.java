@@ -25,7 +25,7 @@ public class RegisterUserController extends HttpServlet {
         try {
             Config.set(this.getServletContext(), "mysql");
         } catch (RuntimeException e) {
-            log.error("Failed data base configuration!§ ", e);
+            log.error("Failed data base configuration! ", e);
         }
     }
 
@@ -37,6 +37,7 @@ public class RegisterUserController extends HttpServlet {
 
         boolean isValidLogin = UserService.isLoginValid(login);
         boolean isTheSameLogin = UserService.isLoginDuplicated(login);
+
         if (isValidLogin) {
             if (!isTheSameLogin) {
                 User user = new User(name, Role.READER, login, hash(password));
@@ -49,9 +50,9 @@ public class RegisterUserController extends HttpServlet {
         } else {
             request.setAttribute("errMessage", "This Email is invalid");
             log.info("Failed to register " + login + ". Email is invalid");
+            request.getRequestDispatcher("/registration.jsp").forward(request, response);
+            log.info("Successful registration by " + login);
         }
-        request.getRequestDispatcher("/registration.jsp").forward(request, response);
-        log.info("Successful registration by " + login);
     }
 
     @Override

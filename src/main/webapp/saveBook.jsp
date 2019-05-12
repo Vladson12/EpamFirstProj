@@ -2,6 +2,39 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
+<!DOCTYPE html>
+<html style="background-color: #000000;">
+<head>
+    <title>Save book</title>
+    <script>
+        function validate() {
+            var title = document.form.title.value;
+            var author = document.form.author.value;
+            var description = document.form.description.value;
+            var genre = document.form.genre.value;
+            var year = document.form.year.value;
+
+            if (title == null || title == "") {
+                alert("Title can't be blank");
+                return false;
+            } else if (author == null || author == "") {
+                alert("Author can't be blank");
+                return false;
+            } else if (description == null || description == "") {
+                alert("Description can't be blank");
+                return false;
+            } else if (genre == null || genre == "") {
+                alert("Genre can't be blank");
+                return false;
+            } else if (year == null || year == "") {
+                alert("Year can't be blank");
+                return false;
+            }
+            alert("The book successfully added");
+            return true;
+        }
+    </script>
+</head>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="internationalization.messages"/>
@@ -19,7 +52,7 @@
             <div class="row">
                 <div class="col-md-12 align-self-center">
                     <h2><fmt:message key="bookaddedit_page.header"/></h2>
-                    <form method="post" action="saveBook">
+                    <form method="post" action="saveBook" onsubmit="return validate()">
                         <jsp:useBean id="book" scope="session" type="com.epam.app.model.Book"/>
                         <input value="${book.id}" type="hidden" name="id"><br/>
                         <label><fmt:message key="bookaddedit_page.book_title"/></label><br/>
