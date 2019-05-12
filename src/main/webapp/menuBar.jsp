@@ -21,24 +21,6 @@
         <link rel="stylesheet" type="text/css" href="assets/css/Toggle-Switch-1-1.css">
         <link rel="stylesheet" type="text/css" href="assets/css/Toggle-Switch-1.css">
         <link rel="stylesheet" type="text/css" href="assets/css/Toggle-Switch.css">
-
-
-
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-        <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
-        <link rel="stylesheet" href="assets/css/Bold-BS4-Footer-Big-Logo.css">
-        <link rel="stylesheet" href="assets/css/Bootstrap-Theme-Switchers.css">
-        <link rel="stylesheet" href="assets/css/Data-Table-1.css">
-        <link rel="stylesheet" href="assets/css/Data-Table.css">
-        <link rel="stylesheet" href="assets/css/Download-App-Section.css">
-        <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form.css">
-        <link rel="stylesheet" href="assets/css/Full-Width-Div.css">
-        <link rel="stylesheet" href="assets/css/Pretty-Table-1.css">
-        <link rel="stylesheet" href="assets/css/Pretty-Table.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
     </head>
 
     <body>
@@ -60,9 +42,9 @@
                     </div>
                     <div class="collapse navbar-collapse text-white" id="navcol-1">
                         <ul class="nav navbar-nav text-white nav-right">
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link text-white" href="${pageContext.request.contextPath}/"><fmt:message key="menu_bar.home"/></a>
-                            </li>
+<%--                            <li class="nav-item" role="presentation">--%>
+<%--                                <a class="nav-link text-white" href="${pageContext.request.contextPath}/"><fmt:message key="menu_bar.home"/></a>--%>
+<%--                            </li>--%>
                             <c:if test="${not empty loggedInUser}">
                             <c:choose>
                                 <c:when test="${userRole eq 'READER'}">
@@ -84,16 +66,16 @@
                             </c:choose>
                             </c:if>
                         </ul>
-                        <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center">
-                            <li class="dropdown border-white d-xl-flex align-items-xl-start">
-                                <a data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle border-danger" href="#" style="color: rgb(255,0,0);">Dropdown </a>
-                                <div role="menu" class="dropdown-menu">
-                                    <a role="presentation" class="dropdown-item" href="#">First Item</a>
-                                    <a role="presentation" class="dropdown-item" href="#">Second Item</a>
-                                    <a role="presentation" class="dropdown-item" href="#">Third Item</a>
-                                </div>
-                            </li>
-                        </div>
+<%--                        <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center">--%>
+<%--                            <li class="dropdown border-white d-xl-flex align-items-xl-start">--%>
+<%--                                <a data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle border-danger" href="#" style="color: rgb(255,0,0);">Dropdown </a>--%>
+<%--                                <div role="menu" class="dropdown-menu">--%>
+<%--                                    <a role="presentation" class="dropdown-item" href="#">First Item</a>--%>
+<%--                                    <a role="presentation" class="dropdown-item" href="#">Second Item</a>--%>
+<%--                                    <a role="presentation" class="dropdown-item" href="#">Third Item</a>--%>
+<%--                                </div>--%>
+<%--                            </li>--%>
+<%--                        </div>--%>
                         <p class="ml-auto navbar-text actions">
                             <c:choose>
                             <c:when test="${loggedIn}">
