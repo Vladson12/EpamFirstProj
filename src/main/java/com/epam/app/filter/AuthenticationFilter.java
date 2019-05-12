@@ -36,7 +36,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         String uri = req.getRequestURI();
         HttpSession session = req.getSession();
-        if ((uri.contains("assets") || !((session == null || session.getAttribute("loggedInUser") == null) &&
+        if (((uri.contains("assets") || (uri.contains("cabinet"))) || !((session == null || session.getAttribute("loggedInUser") == null) &&
                 !(initValues.values().stream().anyMatch(s -> s.equals(uri)))))) {
             chain.doFilter(request, response);
         } else {

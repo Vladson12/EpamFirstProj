@@ -11,24 +11,24 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>LibrarySite</title>
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/fonts/googleapis.com.roboto.css">
-        <link rel="stylesheet" href="assets/css/Bold-BS4-Footer-Big-Logo.css">
-        <link rel="stylesheet" href="assets/css/Bootstrap-Theme-Switchers.css">
-        <link rel="stylesheet" href="assets/css/aos-2.1.1.css">
-        <link rel="stylesheet" href="assets/css/sticky-dark-top-nav-with-dropdown.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <link rel="stylesheet" href="assets/css/Toggle-Switch-1-1.css">
-        <link rel="stylesheet" href="assets/css/Toggle-Switch-1.css">
-        <link rel="stylesheet" href="assets/css/Toggle-Switch.css">
+        <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/fonts/googleapis.com.roboto.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/Bold-BS4-Footer-Big-Logo.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/Bootstrap-Theme-Switchers.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/aos-2.1.1.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/sticky-dark-top-nav-with-dropdown.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/Toggle-Switch-1-1.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/Toggle-Switch-1.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/Toggle-Switch.css">
     </head>
 
     <body>
         <c:set var="loggedIn" value="${not empty loggedInUser}"/>
         <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
         <div style="color: rgb(0,0,0);filter: contrast(100%);height: 80px;">
-            <nav class="navbar navbar-light navbar-expand-md text-white navbar-fixed-top navigation-clean-button" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="400" style="background-color: rgb(60,61,65);filter: contrast(156%);">
+            <nav class="navbar navbar-light navbar-expand-xl text-white navbar-fixed-top navigation-clean-button" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="400" style="background-color: rgb(60,61,65);filter: contrast(156%);">
                 <div class="container">
                     <div><a class="navbar-brand" href="#"><span><img class="border rounded" src="assets/img/LibLogo.jpg" style="width: 50px;" width="149px" alt="logo"><fmt:message key="menu_bar.title"/></span> </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
                     <div class="collapse navbar-collapse text-white" id="navcol-1">
@@ -79,10 +79,10 @@
                 </div>
             </nav>
         </div>
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/-Bootswatch-Theme-Switcher-BS4-.js"></script>
-        <script src="assets/js/bs-animation.js"></script>
-        <script src="assets/js/aos-2.1.1.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="assets/js/-Bootswatch-Theme-Switcher-BS4-.js"></script>
+        <script type="text/javascript" src="assets/js/bs-animation.js"></script>
+        <script type="text/javascript" src="assets/js/aos-2.1.1.js"></script>
     </body>
 </html>

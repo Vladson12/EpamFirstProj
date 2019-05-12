@@ -58,14 +58,4 @@
         <filter-name>PersonalFilter</filter-name>
         <url-pattern>/users</url-pattern>
     </filter-mapping>
-
-    <filter>
-        <filter-name>CharacterSetFilter</filter-name>
-        <filter-class>com.epam.app.filter.CharacterSetFilter</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>CharacterSetFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
 </web-app>
