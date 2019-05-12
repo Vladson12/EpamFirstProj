@@ -26,14 +26,15 @@
                             <label><fmt:message key="useredit_page.name"/></label><br/>
                             <label><input value="${user.name}" placeholder="<fmt:message key="useredit_page.name_ph"/>" type="text" name="name"></label><br/>
                             <label><fmt:message key="useredit_page.role"/><br/>
-                                    <select name="role" ${((sessionScope.loggedInUser.role eq 'ADMINISTRATOR') && (sessionScope.loggedInUser.id ne user.id)) ? '' : 'disabled'}>
-                                        <option value="READER" ${user.role eq 'READER' ? 'selected' : ''}><fmt:message key="role.reader"/></option>
-                                        <option value="LIBRARIAN" ${user.role eq 'LIBRARIAN' ? 'selected' : ''}><fmt:message key="role.librarian"/></option>
-                                        <option value="ADMINISTRATOR" ${user.role eq 'ADMINISTRATOR' ? 'selected' : ''}><fmt:message key="role.admin"/></option>
-                                    </select>
+                                <select name="role" ${((sessionScope.loggedInUser.role eq 'ADMINISTRATOR') && (sessionScope.loggedInUser.id ne user.id)) ? '' : 'disabled'}>
+                                    <option value="READER" ${user.role eq 'READER' ? 'selected' : ''}><fmt:message key="role.reader"/></option>
+                                    <option value="LIBRARIAN" ${user.role eq 'LIBRARIAN' ? 'selected' : ''}><fmt:message key="role.librarian"/></option>
+                                    <option value="ADMINISTRATOR" ${user.role eq 'ADMINISTRATOR' ? 'selected' : ''}><fmt:message key="role.admin"/></option>
+                                </select>
                             </label>
                             <label><fmt:message key="useredit_page.login"/></label><br/>
-                            <label><input value="${user.login}" type="text" disabled name="login"></label><br/>
+                            <label><input value="${user.login}" type="text" disabled name="login1"></label><br/>
+                            <label><input value="${user.login}" type="hidden" name="login"></label><br/>
                             <label><button type="submit"><fmt:message key="useredit_page.savechanges_bn"/></button></label><br/>
                         </form>
                         <label><button onclick="location.href='/users'"><fmt:message key="back.bn"/></button></label><br/>

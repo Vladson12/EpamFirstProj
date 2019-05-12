@@ -8,35 +8,35 @@
         <welcome-file>welcomePage.jsp</welcome-file>
     </welcome-file-list>
 
-    <filter>
-        <filter-name>AuthenticationFilter</filter-name>
-        <filter-class>com.epam.app.filter.AuthenticationFilter</filter-class>
-        <init-param>
-            <param-name>root</param-name>
-            <param-value>/</param-value>
-        </init-param>
-        <init-param>
-            <param-name>login</param-name>
-            <param-value>/login</param-value>
-        </init-param>
-        <init-param>
-            <param-name>registration</param-name>
-            <param-value>/registration</param-value>
-        </init-param>
-        <init-param>
-            <param-name>passwordRecovery</param-name>
-            <param-value>/passwordRecovery</param-value>
-        </init-param>
-        <init-param>
-            <param-name>assets</param-name>
-            <param-value>/assets/*</param-value>
-        </init-param>
-    </filter>
+<!--    <filter>-->
+<!--        <filter-name>AuthenticationFilter</filter-name>-->
+<!--        <filter-class>com.epam.app.filter.AuthenticationFilter</filter-class>-->
+<!--        <init-param>-->
+<!--            <param-name>root</param-name>-->
+<!--            <param-value>/</param-value>-->
+<!--        </init-param>-->
+<!--        <init-param>-->
+<!--            <param-name>login</param-name>-->
+<!--            <param-value>/login</param-value>-->
+<!--        </init-param>-->
+<!--        <init-param>-->
+<!--            <param-name>registration</param-name>-->
+<!--            <param-value>/registration</param-value>-->
+<!--        </init-param>-->
+<!--        <init-param>-->
+<!--            <param-name>passwordRecovery</param-name>-->
+<!--            <param-value>/passwordRecovery</param-value>-->
+<!--        </init-param>-->
+<!--        <init-param>-->
+<!--            <param-name>assets</param-name>-->
+<!--            <param-value>/assets/*</param-value>-->
+<!--        </init-param>-->
+<!--    </filter>-->
 
-    <filter-mapping>
-        <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+<!--    <filter-mapping>-->
+<!--        <filter-name>AuthenticationFilter</filter-name>-->
+<!--        <url-pattern>/*</url-pattern>-->
+<!--    </filter-mapping>-->
 
     <display-name>Log4jWeb</display-name>
 
@@ -45,17 +45,17 @@
         <param-value>WEB-INF/classes/log4j.properties</param-value>
     </context-param>
 
-    <filter>
-        <filter-name>PersonalFilter</filter-name>
-        <filter-class>com.epam.app.filter.PersonalFilter</filter-class>
-    </filter>
+<!--    <filter>-->
+<!--        <filter-name>PersonalFilter</filter-name>-->
+<!--        <filter-class>com.epam.app.filter.PersonalFilter</filter-class>-->
+<!--    </filter>-->
 
-    <filter-mapping>
-        <filter-name>PersonalFilter</filter-name>
-        <url-pattern>/addUser</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>PersonalFilter</filter-name>
-        <url-pattern>/users</url-pattern>
-    </filter-mapping>
+<!--    <filter-mapping>-->
+<!--        <filter-name>PersonalFilter</filter-name>-->
+<!--        <url-pattern>/addUser</url-pattern>-->
+<!--    </filter-mapping>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>PersonalFilter</filter-name>-->
+<!--        <url-pattern>/users</url-pattern>-->
+<!--    </filter-mapping>-->
 </web-app>
