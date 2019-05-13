@@ -15,22 +15,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @Log4j
 @WebServlet("/bookList")
 public class BookListController extends HttpServlet {
 
-    private static PageManager pageManager;
-    private List<Book> booksList;
+    private static PageManager<Book> pageManager;
     private String login;
     private String id;
 
-    static {
-        pageManager = new PageManager<Book>(10);
+    {
+        pageManager = new PageManager<>(10);
+        pageManager.setSortIdentificator(true);
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        login = req.getParameter("login");
         String side;
         if ((side = req.getParameter("pageSide")) != null) {
             if ("previous".equals(side)) {
@@ -39,20 +39,8 @@ public class BookListController extends HttpServlet {
                 pageManager.nextPage();
             }
         }
-        booksList = BookService.updateBookList(pageManager);
-        login = req.getParameter("login");
-        if (req.getParameter("insert") != null) {
-            String context = req.getParameter("context");
-            String genre = req.getParameter("genre");
-            if (!genre.isEmpty() && !context.isEmpty()) {
-                booksList = BookService.getByContextAndGenre(context, genre);
-            } else if (!genre.isEmpty()) {
-                booksList = BookService.getByGenre(genre);
-            } else if (!context.isEmpty()) {
-                booksList = BookService.getByContext(context);
-            }
-        }
-        req.getSession().setAttribute("list", booksList);
+        BookService.handleButtons(pageManager, req);
+        req.getSession().setAttribute("list", pageManager.sublist(pageManager.getItemList()));
         req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
     }
 
@@ -60,19 +48,23 @@ public class BookListController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         login = req.getParameter("login");
         id = req.getParameter("id");
-        doPut(req, resp);
+        if (id != null) {
+            doPut(req, resp);
+        }
+        resp.sendRedirect("/bookList");
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = UserService.getByLogin(login);
-        if(CardService.amountOfActiveCards(user) && !CardService.haveOverdueCards(user)) {
+        if (CardService.amountOfActiveCards(user) && !CardService.haveOverdueCards(user)) {
             CardService.orderBook(id, login);
-            req.getSession().setAttribute("list", BookService.updateBookList(pageManager));
+            pageManager.setItemList(BookService.updateBookList());
+            req.getSession().setAttribute("list", pageManager.sublist(pageManager.getItemList()));
             req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
-        }else{
+        } else {
             req.getSession().setAttribute("errMessage", "Error!");
-            log.info(login + "Failed to order books." +  "Reason: overdue card or book card excess");
+            log.info(login + "Failed to order books." + "Reason: overdue card or book card excess");
         }
     }
 

@@ -48,9 +48,9 @@
                     <table id="userTable" class="table table-bordered table-hover table-sm" style="font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
                         <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.90);">
                         <tr style="text-align: center">
-                            <th id="nameUL"   onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 39vh;"><fmt:message key="userlist_page.table_username"/></th>
-                            <th id="loginUL" onmouseover="this.style.cursor='pointer'" class="col-lg-3" style="width: 30vh;"><fmt:message key="userlist_page.table_login"/></th>
-                            <th id="roleUL"  onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 12vh;"><fmt:message key="userlist_page.table_role"/></th>
+                            <th id="nameUL" onclick="location.href='/users?sort=name'"  onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 39vh;"><fmt:message key="userlist_page.table_username"/></th>
+                            <th id="loginUL" onclick="location.href='/users?sort=login'" onmouseover="this.style.cursor='pointer'" class="col-lg-3" style="width: 30vh;"><fmt:message key="userlist_page.table_login"/></th>
+                            <th id="roleUL"  onclick="location.href='/users?sort=role'" onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 12vh;"><fmt:message key="userlist_page.table_role"/></th>
                             <th                                                         class="col-lg-2" style="width: 19vh;"><fmt:message key="userlist_page.table_actions"/></th>
                         </tr>
                         </thead>
@@ -132,7 +132,6 @@
                         </div>
                     </div>
                 </div>
-                <script src="assets/js/sorting.js"></script>
                 <script src="assets/js/jquery.min.js"></script>
                 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
                 <script src="assets/js/jquery.dataTables.min.js"></script>

@@ -45,15 +45,15 @@
                             <c:choose>
                                 <c:when test="${userRole eq 'READER'}">
                                     <li class="nav-item" role="presentation">
-                                        <a class="nav-link text-white" href="/bookList?login=${loggedInUser.login}'"><fmt:message key="home_page.booklist_bn"/></a>
+                                        <a class="nav-link text-white" href="/bookList?login=${loggedInUser.login}&update=true'"><fmt:message key="home_page.booklist_bn"/></a>
                                     </li>
                                 </c:when>
                                 <c:otherwise>
                                     <li class="nav-item" role="presentation">
-                                        <a class="nav-link text-white" href="/bookList?login=${loggedInUser.login}'"><fmt:message key="home_page.booklist_bn"/></a>
+                                        <a class="nav-link text-white" href="/bookList?login=${loggedInUser.login}&update=true'"><fmt:message key="home_page.booklist_bn"/></a>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <a class="nav-link text-white" href="/users"><fmt:message key="home_page.userlist_bn"/></a>
+                                        <a class="nav-link text-white" href="/users?updatePage=true"><fmt:message key="home_page.userlist_bn"/></a>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <a class="nav-link text-white" href="/addUser"><fmt:message key="home_page.adduser_bn"/></a>

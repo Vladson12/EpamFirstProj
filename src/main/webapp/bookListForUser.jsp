@@ -65,10 +65,10 @@
                     <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.90);">
                     <tr style="text-align: center">
                         <th                                                        ><fmt:message key="booklist_page.table_number"/></th>
-                        <th id="nameBL"   onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_title"/></th>
-                        <th id="authorBL" onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_author"/></th>
-                        <th id="genreBL"  onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_genre"/></th>
-                        <th id="yearBL"   onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_year"/></th>
+                        <th id="nameBL" onclick="location.href='/bookList?sort=name'"  onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_title"/></th>
+                        <th id="authorBL" onclick="location.href='/bookList?sort=author'" onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_author"/></th>
+                        <th id="genreBL"  onclick="location.href='/bookList?sort=genre'" onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_genre"/></th>
+                        <th id="yearBL"   onclick="location.href='/bookList?sort=year'" onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_year"/></th>
                         <th                                                        ><fmt:message key="booklist_page.table_actions"/></th>
                     </tr>
                     </thead>
@@ -146,7 +146,6 @@
                     </div>
                 </div>
             </div>
-            <script src="assets/js/sorting.js"></script>
             <script src="assets/js/jquery.min.js"></script>
             <script src="assets/bootstrap/js/bootstrap.min.js"></script>
             <script src="assets/js/jquery.dataTables.min.js"></script>

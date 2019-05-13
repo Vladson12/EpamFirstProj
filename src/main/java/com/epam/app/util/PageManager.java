@@ -1,6 +1,9 @@
 package com.epam.app.util;
 
+import com.epam.app.model.Book;
 import com.epam.app.model.User;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +16,14 @@ public class PageManager<T> {
 
     private int itemsCount;
     private int pagesCount;
+
+    @Getter
+    @Setter
+    private List<T> itemList;
+
+    @Getter
+    @Setter
+    private boolean sortIdentificator;
 
     public PageManager(int maxItemsOnPage) {
         this.maxItemsOnPage = maxItemsOnPage;
