@@ -40,12 +40,8 @@ public class AuthorizationUserController extends HttpServlet {
         User userAccount = UserService.findUser(login, password);
         if (UserService.isUserAllowed(login, password)) {
             if (userAccount != null) {
-                //////////////////////
                 HttpSession session = request.getSession(true);
                 SessionHelper.sessions.put(userAccount.getId(), session);
-                //////////////////
-                System.out.println(session == null ? "session + " + session.getId() + " is null" : "session "  + session.getId() + " is true");
-                /////////////////
                 session.setAttribute("loggedInUser", userAccount);
                 session.setAttribute("login", userAccount.getLogin());
                 request.getRequestDispatcher("/").forward(request, response);

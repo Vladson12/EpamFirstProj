@@ -90,7 +90,9 @@ public class UserController extends HttpServlet {
                 req.getParameter("login"), req.getParameter("role"));
         if(!newRole.equals(oldRole.toString())){
             HttpSession session = SessionHelper.sessions.remove(currentUser.getId());
-            session.invalidate();
+            if (session != null) {
+                session.invalidate();
+            }
         }
 
     }

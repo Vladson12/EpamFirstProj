@@ -1,11 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
-<!DOCTYPE html>
-<html style="background-color: #000000;">
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session"/>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="internationalization.messages"/>
+
+<html lang="${language}" style="background-color: #000000;">
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Library: Welcome</title>
+        <title><fmt:message key="exception_page.title"/></title>
     </head>
 
     <body style="background-color: rgba(255,255,255,0);">
@@ -15,7 +19,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 align-self-center">
-                            <h1>Ooooops...Something went wrong! :(</h1>
+                            <h1><fmt:message key="exception_page.header"/></h1>
                         </div>
                     </div>
                 </div>

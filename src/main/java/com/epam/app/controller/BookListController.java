@@ -61,7 +61,6 @@ public class BookListController extends HttpServlet {
         login = req.getParameter("login");
         id = req.getParameter("id");
         doPut(req, resp);
-        resp.sendRedirect("/bookList");
     }
 
     @Override
