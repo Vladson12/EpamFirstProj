@@ -1,16 +1,22 @@
 package com.epam.app.util;
 
+import com.epam.app.model.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class PageManager<T> {
 
     private int currentPage = 1;
-    private int maxItemsOnPage = 10;
+    private int maxItemsOnPage;
     private int pagesScrollBarSize = 9;
 
     private int itemsCount;
     private int pagesCount;
+
+    public PageManager(int maxItemsOnPage) {
+        this.maxItemsOnPage = maxItemsOnPage;
+    }
 
     public void setCurrentPage(int pageNum) {
         this.currentPage = pageNum;

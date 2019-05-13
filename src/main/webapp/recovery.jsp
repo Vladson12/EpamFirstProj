@@ -8,6 +8,7 @@
 
 <html lang="${language}" style="background-color: #000000;">
     <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title><fmt:message key="recovery_page.title"/></title>
         <script>
             function validate() {
@@ -25,8 +26,8 @@
 
     <body style="background-color: rgba(255,255,255,0);">
     <div style="height: 10vh"><jsp:include page="menuBar.jsp"></jsp:include></div>
-    <div style="height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-        <div style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 500px; margin:0 auto;">
+    <div class="d-flex" style="height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
+        <div class="align-self-center" style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 500px; margin:0 auto;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 align-self-center">
@@ -37,7 +38,7 @@
                             <label><input type="email" placeholder="<fmt:message key="recovery_page.email_ph"/>" name="login"></label>
                             <label><button type="submit"><fmt:message key="recovery_page.signin_bn"/></button></label>
                         </form>
-                            <label><button onclick="location.href='/'">Back</button></label>
+                        <label><button onclick="location.href='/login'"><fmt:message key="back.bn"/></button></label>
                     </div>
                 </div>
             </div>
