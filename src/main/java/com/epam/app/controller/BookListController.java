@@ -22,7 +22,7 @@ public class BookListController extends HttpServlet {
     private String id;
 
     static {
-        pageManager = new PageManager<Book>();
+        pageManager = new PageManager<Book>(10);
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

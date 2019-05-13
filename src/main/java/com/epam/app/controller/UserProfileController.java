@@ -13,7 +13,6 @@ import java.io.IOException;
 @WebServlet("/cabinet/profile")
 public class UserProfileController extends HttpServlet {
     @Override
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = UserService.get(Integer.parseInt(req.getParameter("id")));
         req.getSession().setAttribute("user", user);
