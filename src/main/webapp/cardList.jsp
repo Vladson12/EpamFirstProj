@@ -37,7 +37,7 @@
     <body style="background-color: rgba(255,255,255,0);">
     <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
     <div class="d-flex" style="min-height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-        <div class="align-self-center" style="background-color: rgb(255,255,255); margin:0 auto; max-width: 1200px; opacity: 0.90;">
+        <div class="align-self-center" style="background-color: rgb(255,255,255); margin:0 auto; max-width: 1200px;">
             <div class="container">
                 <div class="row">
                     <div class="col" style="font-size: 0.85rem;">
@@ -94,7 +94,7 @@
                                     <td style="text-align: center">
                                         <%if (list.getCardState().equals(CardState.ORDERED)) {%>
                                         <form action="/cabinet/usercards?login=${login}&id=${list.id}&button=reset" method="post">
-                                            <input style="font-size: 16px" type="submit" value="<fmt:message key="cardlist_page.actions_reset"/>">
+                                            <input type="submit" value="<fmt:message key="cardlist_page.actions_reset"/>">
                                         </form>
                                         <%}%>
                                     </td>
@@ -106,7 +106,7 @@
                     </tbody>
                 </table>
             </div>
-            <div style="background-color: rgb(255,255,255);opacity: 0.90; font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
+            <div style="background-color: rgba(0,0,0,0.90); font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 align-self-center">

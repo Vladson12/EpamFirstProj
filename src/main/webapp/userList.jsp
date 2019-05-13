@@ -29,7 +29,7 @@
     <body style="background-color: rgba(255,255,255,0);">
         <div style="height: 10vh"><jsp:include page="menuBar.jsp"></jsp:include></div>
         <div class="d-flex" style="min-height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-            <div class="align-self-center" style="background-color: rgb(255,255,255);opacity: 0.90; max-width: 1200px; font-size: 0.85rem; margin:0 auto;">
+            <div class="align-self-center" style="background-color: rgb(255,255,255); max-width: 1200px; font-size: 0.85rem; margin:0 auto;">
                 <div class="container">
                     <div class="row">
                         <div class="col" style="font-size: 0.85rem;">
@@ -89,7 +89,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div style="background-color: rgb(255,255,255);opacity: 0.90;font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
+                <div style="background-color: rgba(0,0,0,0.90);;font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 align-self-center">

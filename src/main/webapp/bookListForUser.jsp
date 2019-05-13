@@ -29,7 +29,7 @@
     <body style="background-color: rgba(255,255,255,0);">
     <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
     <div class="d-flex" style="min-height: 70vh; background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-        <div class="align-self-center" style="background-color: rgb(255,255,255);opacity: 0.90;max-width: 1200px; margin:0 auto;">
+        <div class="align-self-center" style="background-color: rgb(255,255,255); margin:0 auto;">
             <div class="container">
                 <div class="row">
                     <div class="col" style="font-size: 0.85rem;">
@@ -51,25 +51,26 @@
                             </label>
                             <label><input type="submit" name="insert" value="<fmt:message key="book_search.search_bn"/>"></label>
                         </form>
+                        <input type="button" value="<fmt:message key="bookslist_page.addbook"/>" onclick="location.href='/saveBook?id=0'">
                     </div>
                 </div>
             </div>
             <div>
-                <table id="bookList" class="table table-bordered table-hover table-sm" style="max-width: 1200px; font-size: 0.85rem; margin:0 auto;">
+                <table id="bookList" class="table table-bordered table-hover table-sm" style="font-size: 0.85rem; margin:0 auto;">
                     <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.90);">
                     <tr style="text-align: center">
-                        <th                                                         class="col-lg-1" style="width: 5vh;"><fmt:message key="booklist_page.table_number"/></th>
-                        <th id="nameBL"   onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 34vh;"><fmt:message key="booklist_page.table_title"/></th>
-                        <th id="authorBL" onmouseover="this.style.cursor='pointer'" class="col-lg-3" style="width: 20vh;"><fmt:message key="booklist_page.table_author"/></th>
-                        <th id="genreBL"  onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 19vh;"><fmt:message key="booklist_page.table_genre"/></th>
-                        <th id="yearBL"   onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 10vh;"><fmt:message key="booklist_page.table_year"/></th>
-                        <th                                                         class="col-lg-2" style="width: 12vh;"><fmt:message key="booklist_page.table_actions"/></th>
+                        <th                                                        ><fmt:message key="booklist_page.table_number"/></th>
+                        <th id="nameBL"   onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_title"/></th>
+                        <th id="authorBL" onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_author"/></th>
+                        <th id="genreBL"  onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_genre"/></th>
+                        <th id="yearBL"   onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_year"/></th>
+                        <th                                                        ><fmt:message key="booklist_page.table_actions"/></th>
                     </tr>
                     </thead>
                     <tbody style="background-color: #ffffff;">
                     <c:forEach var="list" items="${list}">
                         <jsp:useBean id="list" scope="page" type="com.epam.app.model.Book"/>
-                        <tr style="padding: auto">
+                        <tr >
                             <td style="text-align: center"><c:out value="${list.id}"/></td>
                             <td><c:out value="${list.title}"/></td>
                             <td><c:out value="${list.author}"/></td>
@@ -88,12 +89,12 @@
                                                 <button type="submit" value="Order"><fmt:message key="booklist_page.actions_view"/></button>
                                             </form>
                                         </div>
+                                        <div class="col">
                                         <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
                                         <c:if test="${userRole ne 'READER'}">
-                                        <div class="col">
                                             <input type="button" value="<fmt:message key="booklist_page.actions_edit"/>" onclick="location.href='/saveBook?id=${list.id}'">
-                                        </div>
                                         </c:if>
+                                        </div>
                                     </div>
                                 </div>
                             </td>
@@ -102,14 +103,15 @@
                     </tbody>
                 </table>
             </div>
-            <div style="background-color: rgb(255,255,255);opacity: 0.90; font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
+            <div style="background-color: rgba(0,0,0,0.90); font-size: 0.85rem;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12 align-self-center">
-                            <input type="button" value="<fmt:message key="back.bn"/>" onclick="location.href='..'">
-                            <input type="button" value="<fmt:message key="bookslist_page.addbook"/>" onclick="location.href='/saveBook?id=0'">
+                        <div class="col">
                             <input type="button" value="<fmt:message key="pagination.previous_page"/>" onclick="location.href='/bookList?pageSide=previous'">
                             <input type="button" value="<fmt:message key="pagination.next_page"/>" onclick="location.href='/bookList?pageSide=next'">
+                        </div>
+                        <div class="col">
+                            <input type="button" value="<fmt:message key="back.bn"/>" onclick="location.href='..'">
                         </div>
                     </div>
                 </div>
