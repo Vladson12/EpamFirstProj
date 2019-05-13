@@ -28,8 +28,8 @@
 
     <body style="background-color: rgba(255,255,255,0);">
         <div style="height: 10vh"><jsp:include page="menuBar.jsp"></jsp:include></div>
-        <div class="d-flex" style="height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-            <div class="align-self-center" style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 1200px; margin:0 auto;">
+        <div class="d-flex" style="min-height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
+            <div class="align-self-center" style="background-color: rgb(255,255,255);opacity: 0.90; max-width: 1200px; margin:0 auto;">
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -46,12 +46,12 @@
                 </div>
                 <div>
                     <table id="userTable" class="table table-bordered table-hover table-sm" style="font-size: 1vw; max-width: 1200px; margin:0 auto;">
-                        <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.81);">
+                        <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.90);">
                         <tr style="text-align: center">
-                            <th id="nameUL"   onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 34vh;"><fmt:message key="userlist_page.table_username"/></th>
-                            <th id="loginUL" onmouseover="this.style.cursor='pointer'" class="col-lg-3" style="width: 20vh;"><fmt:message key="userlist_page.table_login"/></th>
-                            <th id="roleUL"  onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 19vh;"><fmt:message key="userlist_page.table_role"/></th>
-                            <th class="col-lg-2" style="width: 19vh;"><fmt:message key="userlist_page.table_actions"/></th>
+                            <th id="nameUL"   onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 39vh;"><fmt:message key="userlist_page.table_username"/></th>
+                            <th id="loginUL" onmouseover="this.style.cursor='pointer'" class="col-lg-3" style="width: 30vh;"><fmt:message key="userlist_page.table_login"/></th>
+                            <th id="roleUL"  onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 12vh;"><fmt:message key="userlist_page.table_role"/></th>
+                            <th                                                         class="col-lg-2" style="width: 19vh;"><fmt:message key="userlist_page.table_actions"/></th>
                         </tr>
                         </thead>
                         <tbody style="background-color: #ffffff;">
