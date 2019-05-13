@@ -84,6 +84,25 @@
                                         </td>
                                     </tr>
                                 </c:when>
+                                <c:when test="${((userRole eq 'LIBRARIAN') &&(!userLogin.equals(user.login)) &&
+                                    ((user.role eq 'LIBRARIAN')||(user.role eq 'ADMINISTRATOR')))}">
+                                    <tr style="padding: auto">
+                                        <td><c:out value="${user.name}"/></td>
+                                        <td><c:out value="${user.login}"/></td>
+                                        <td><c:out value="${user.role}"/></td>
+                                        <td style="text-align: center">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <form action="/users?login=${user.login}&button=findCards" method="post">
+                                                            <input type="submit" value="<fmt:message key="userlist_page.actions_cardlist"/>">
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:when>
                             </c:choose>
                         </c:forEach>
                         </tbody>
