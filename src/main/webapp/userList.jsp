@@ -65,7 +65,18 @@
                                     <tr style="padding: auto">
                                         <td><c:out value="${user.name}"/></td>
                                         <td><c:out value="${user.login}"/></td>
-                                        <td><c:out value="${user.role}"/></td>
+                                        <c:choose>
+                                            <c:when test="${user.role eq 'ADMINISTRATOR'}">
+                                                <td><fmt:message key="role.admin"/></td>
+                                            </c:when>
+                                            <c:when test="${user.role eq 'LIBRARIAN'}">
+                                                <td><fmt:message key="role.librarian"/></td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td><fmt:message key="role.reader"/></td>
+                                            </c:otherwise>
+                                        </c:choose>
+
                                         <td style="text-align: center">
                                             <div class="container">
                                                 <div class="row">
@@ -77,6 +88,25 @@
                                                 <div class="col">
                                                         <form action="/users?login=${user.login}&button=edit" method="post">
                                                             <input type="submit" value="<fmt:message key="userlist_page.actions_edit"/>">
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:when>
+                                <c:when test="${((userRole eq 'LIBRARIAN') &&(!userLogin.equals(user.login)) &&
+                                    ((user.role eq 'LIBRARIAN')||(user.role eq 'ADMINISTRATOR')))}">
+                                    <tr style="padding: auto">
+                                        <td><c:out value="${user.name}"/></td>
+                                        <td><c:out value="${user.login}"/></td>
+                                        <td><c:out value="${user.role}"/></td>
+                                        <td style="text-align: center">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <form action="/users?login=${user.login}&button=findCards" method="post">
+                                                            <input type="submit" value="<fmt:message key="userlist_page.actions_cardlist"/>">
                                                         </form>
                                                     </div>
                                                 </div>

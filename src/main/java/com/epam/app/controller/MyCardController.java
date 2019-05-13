@@ -26,7 +26,7 @@ public class MyCardController extends HttpServlet {
     private String button;
 
     static {
-        pageManager = new PageManager<Card>(5);
+        pageManager = new PageManager<Card>(11);
     }
 
     @Override

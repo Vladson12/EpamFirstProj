@@ -70,7 +70,7 @@ public class UserDaoMySqlImpl implements UserDAO {
              Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(SELECT_ALL);) {
             while (rs.next()) {
-                array.add(new User(rs.getString("name"),
+                array.add(new User(rs.getInt("id"),rs.getString("name"),
                         getRole(rs.getInt("role")),
                         rs.getString("login"),
                         rs.getString("password")));

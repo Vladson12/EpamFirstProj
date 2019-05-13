@@ -32,7 +32,12 @@
         <div class="align-self-center" style="background-color: rgb(255,255,255); margin:0 auto;">
             <div class="container">
                 <div class="row">
-                    <div class="col" style="font-size: 0.85rem;">
+                    <div class="col-md-12 align-self-center" style="font-size: 0.85rem;">
+                        <p><%if(request.getSession().getAttribute("errMessage") != null){%>
+                            <script>
+                                alert("Amount of ordered book has been exceeded or you haven't returned the book in time!");
+                            </script><%}
+                                request.getSession().setAttribute("errMessage",null);%></p>
                         <form action="/bookList?show=" method="get">
                             <label><fmt:message key="book_search.by_name_and_author"/></label>
                             <label><input type="text" name="context" value=""></label>
@@ -74,19 +79,44 @@
                             <td style="text-align: center"><c:out value="${list.id}"/></td>
                             <td><c:out value="${list.title}"/></td>
                             <td><c:out value="${list.author}"/></td>
-                            <td><c:out value="${list.genre}"/></td>
+                            <c:choose>
+                                <c:when test="${list.genre eq 'TEXTBOOK'}">
+                                    <td><fmt:message key="book_genre.textbook"/></td>
+                                </c:when>
+                                <c:when test="${list.genre eq 'NARRATIVE_NONFICTION'}">
+                                    <td><fmt:message key="book_genre.narrative_nonfiction"/></td>
+                                </c:when>
+                                <c:when test="${list.genre eq 'DRAMA'}">
+                                    <td><fmt:message key="book_genre.drama"/></td>
+                                </c:when>
+                                <c:when test="${list.genre eq 'FANTASY'}">
+                                    <td><fmt:message key="book_genre.fantasy"/></td>
+                                </c:when>
+                                <c:when test="${list.genre eq 'CRIME_AND_DETECTIVE'}">
+                                    <td><fmt:message key="book_genre.crime_and_detective"/></td>
+                                </c:when>
+                                <c:when test="${list.genre eq 'SELF_HELP_BOOK'}">
+                                    <td><fmt:message key="book_genre.self_help"/></td>
+                                </c:when>
+                                <c:when test="${list.genre eq 'SCIENCE_FICTION'}">
+                                    <td><fmt:message key="book_genre.science_fiction"/></td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td><fmt:message key="book_genre.drama"/></td>
+                                </c:otherwise>
+                            </c:choose>
                             <td style="text-align: center"><c:out value="${list.year}"/></td>
                             <td>
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
                                             <form action="/bookList?login=${login}&id=${list.id}" method="post">
-                                                <button type="submit" value="Order"><fmt:message key="booklist_page.actions_order"/></button>
+                                                <button type="submit" value="order"><fmt:message key="booklist_page.actions_order"/></button>
                                             </form>
                                         </div>
                                         <div class="col">
-                                            <form action="/viewBook?login=${login}&id=${list.id}" method="post">
-                                                <button type="submit" value="Order"><fmt:message key="booklist_page.actions_view"/></button>
+                                            <form action="/viewBook?id=${list.id}" method="get">
+                                                <button type="submit" value="view"><fmt:message key="booklist_page.actions_view"/></button>
                                             </form>
                                         </div>
                                         <div class="col">

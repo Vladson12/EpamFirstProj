@@ -24,7 +24,7 @@ public class UserCardController extends HttpServlet {
     private String login;
 
     static {
-        pageManager = new PageManager<Card>(5);
+        pageManager = new PageManager<Card>(11);
     }
 
     @Override
