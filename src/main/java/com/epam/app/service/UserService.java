@@ -91,7 +91,7 @@ public class UserService {
         return str.toLowerCase().contains(subString.toLowerCase());
     }
 
-    public static void updateUserByFields(String userLogin, String name,String login,String role) {
+    public static void updateUserByFields(String userLogin, String name, String login,String role) {
         User updatedUser = UserService.getByLogin(userLogin);
         updatedUser.setName(name);
         updatedUser.setLogin(login);

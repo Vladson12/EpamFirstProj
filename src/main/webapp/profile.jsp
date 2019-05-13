@@ -2,17 +2,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
-<!DOCTYPE html>
-<html style="background-color: #000000;">
-<head>
-    <title>Personal Cabine: Profile</title>
-    <script>
-        function validate() {
-            alert("The operation was successful");
-            return true;
-        }
-    </script>
-</head>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session"/>
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="internationalization.messages"/>
@@ -21,6 +10,18 @@
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title><fmt:message key="profile_page.title"/></title>
+        <script>
+            function validate() {
+                var name = document.form.name.value;
+                if (name == null || name == "") {
+                    alert("Username can't be blank");
+                    return false;
+                } else {
+                    alert("The operation was successful");
+                    return true;
+                }
+            }
+        </script>
     </head>
 
     <body style="background-color: rgba(255,255,255,0);">
@@ -31,7 +32,7 @@
                     <div class="row">
                         <div class="col-md-12 align-self-center">
                             <h3><fmt:message key="profile_page.header"/></h3>
-                            <form method="post" action="profile?=${sessionScope.loggedInUser.id}" onsubmit="return validate()">
+                            <form name="form" method="post" action="profile?=${sessionScope.loggedInUser.id}" onsubmit="return validate()">
                                 <jsp:useBean id="user" scope="session" type="com.epam.app.model.User"/>
                                 <label><input  value="${user.id}" type="hidden" name="id"></label>
                                 <label><fmt:message key="profile_page.name"/></label>
