@@ -31,6 +31,18 @@
             <param-name>assets</param-name>
             <param-value>/assets/*</param-value>
         </init-param>
+        <init-param>
+            <param-name>about</param-name>
+            <param-value>/about</param-value>
+        </init-param>
+        <init-param>
+            <param-name>contacts</param-name>
+            <param-value>/contacts</param-value>
+        </init-param>
+        <init-param>
+            <param-name>faq</param-name>
+            <param-value>/faq</param-value>
+        </init-param>
     </filter>
 
     <filter-mapping>
