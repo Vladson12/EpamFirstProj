@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="assets/css/Toggle-Switch-1-1.css">
         <link rel="stylesheet" href="assets/css/Toggle-Switch-1.css">
         <link rel="stylesheet" href="assets/css/Toggle-Switch.css">
+        <link rel="stylesheet" href="assets/css/styleForButton.css">
     </head>
 
     <body style="background-color: rgba(255,255,255,0);">
@@ -137,11 +138,25 @@
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <input type="button" value="<fmt:message key="pagination.previous_page"/>" onclick="location.href='/bookList?pageSide=previous'">
-                            <input type="button" value="<fmt:message key="pagination.next_page"/>" onclick="location.href='/bookList?pageSide=next'">
+                            <form action="bookList?pageSide=previous" method="get">
+                                <button class="ourbtn" type="submit" value="<fmt:message key="pagination.previous_page"/>"><fmt:message key="pagination.previous_page"/></button>
+                                <%--                                <button type="submit" value="view"><fmt:message key="booklist_page.actions_view"/></button>--%>
+                            </form>
+<%--                            <input type="button" value="<fmt:message key="pagination.previous_page"/>" onclick="location.href='/bookList?pageSide=previous'">--%>
+<%--                            <input type="button" value="<fmt:message key="pagination.next_page"/>" onclick="location.href='/bookList?pageSide=next'">--%>
                         </div>
                         <div class="col">
-                            <input type="button" value="<fmt:message key="back.bn"/>" onclick="location.href='..'">
+<%--                        <form action="bookList?pageSide=next" method="get">--%>
+                            <button class="ourbtn" type="button"  onclick="location.href='/bookList?pageSide=next'" value="<fmt:message key="pagination.next_page"/>"><fmt:message key="pagination.next_page"/> </button>
+                            <%--                                <button type="submit" value="view"><fmt:message key="booklist_page.actions_view"/></button>--%>
+<%--                        </form>--%>
+                        </div>
+                        <div class="col">
+                            <form action=".." method="get">
+                                <button class="ourbtn" type="submit" value="view"><fmt:message key="back.bn"/></button>
+<%--                                <button type="submit" value="view"><fmt:message key="booklist_page.actions_view"/></button>--%>
+                            </form>
+<%--                            <input type="button" value="<fmt:message key="back.bn"/>" onclick="location.href='..'">--%>
                         </div>
                     </div>
                 </div>
@@ -155,7 +170,7 @@
             <script src="assets/js/bs-animation.js"></script>
             <script src="assets/js/aos-2.1.1.js"></script>
             <script src="assets/js/Table-With-Search.js"></script>
-        </div>
+            <script src='assets/js/3.2.1.jquery.min.js'></script></div>
     </div>
     <div style="height: 20vh;"><jsp:include page="footer.jsp"></jsp:include></div>
     </body>
