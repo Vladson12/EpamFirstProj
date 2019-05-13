@@ -35,7 +35,7 @@ public class CardService {
 
     public static List<Book> getAllBooks(User user) {
         return CARD_DAO.getAllBookId(user)
-                .stream().map(i -> BOOK_DAO.getBookById(i)).collect(Collectors.toList());
+                .stream().map(BOOK_DAO::getBookById).collect(Collectors.toList());
     }
 
     public static List<Card> getAllCards(User user) {
@@ -97,5 +97,15 @@ public class CardService {
                 .sorted(Comparator.comparingInt(o -> getPriority(o.getCardState()))).collect(Collectors.toList());
     }
 
+    public static Boolean amountOfActiveCards(User user) {
+        return CARD_DAO.getAllCards(user)
+                .stream().map(CARD_DAO::getCard).filter(o->!o.getCardState().equals(CardState.RETURNED))
+                .count()<10;
+    }
+
+    public static Boolean haveOverdueCards(User user) {
+        return CARD_DAO.getAllCards(user)
+                .stream().map(CARD_DAO::getCard).anyMatch(o->o.getCardState().equals(CardState.OVERDUE));
+    }
 
 }

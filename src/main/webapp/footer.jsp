@@ -29,7 +29,9 @@
                 <div class="container">
                     <div class="row text-center" style="margin-bottom: 0px;">
                         <div class="col-12 col-sm-6 col-md-3 col-xl-4">
-                            <div data-aos="fade-right" data-aos-duration="3000" data-aos-delay="1500" style="background-position: center;margin-top: 15px;width: 300px;"><img class="rounded-circle img-fluid d-lg-flex justify-content-lg-end align-items-lg-end" style="width: 350px;" src="assets/img/Обои%20на%20рабочий%20стол%201920x1080.jpg"></div>
+                            <div class="d-table-cell" data-aos="fade-right" data-aos-duration="3000" data-aos-delay="1500" style="width: 300px;">
+                                <img class="rounded-circle img-fluid d-lg-flex" style="width: 350px;" src="assets/img/Обои%20на%20рабочий%20стол%201920x1080.jpg">
+                            </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-2">
                             <h5>Get started</h5>
@@ -58,15 +60,19 @@
                             </ul>
                         </div>
                         <div class="col-md-3 col-xl-2 social-networks">
+                            <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                            <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                            <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
+                            <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
                             <form>
                                 <c:forEach items="${param}" var="parameter">
                                     <c:if test="${parameter.key ne 'language'}">
                                         <input type="hidden" name="${parameter.key}" value="${parameter.value}">
                                     </c:if>
                                 </c:forEach>
-                                <select id="language" name="language"  onchange="submit()">
-                                    <option value="ru" ${language == 'ru' ? 'selected' : ''}><fmt:message key="menu_bar.lang_ru"/></option>
+                                <select class="border rounded custom-select custom-select-sm" id="language" name="language"  onchange="submit()">
                                     <option value="en" ${language == 'en' ? 'selected' : ''}><fmt:message key="menu_bar.lang_en"/></option>
+                                    <option value="ru" ${language == 'ru' ? 'selected' : ''}><fmt:message key="menu_bar.lang_ru"/></option>
                                 </select>
                             </form>
                         </div>

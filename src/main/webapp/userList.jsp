@@ -29,10 +29,10 @@
     <body style="background-color: rgba(255,255,255,0);">
         <div style="height: 10vh"><jsp:include page="menuBar.jsp"></jsp:include></div>
         <div class="d-flex" style="min-height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-            <div class="align-self-center" style="background-color: rgb(255,255,255);opacity: 0.90; max-width: 1200px; margin:0 auto;">
+            <div class="align-self-center" style="background-color: rgb(255,255,255);opacity: 0.90; max-width: 1200px; font-size: 0.85rem; margin:0 auto;">
                 <div class="container">
                     <div class="row">
-                        <div class="col">
+                        <div class="col" style="font-size: 0.85rem;">
                             <form action="/users?show=" method="get">
                                 <label><fmt:message key="user_search.by_login"/></label>
                                 <label><input type="text" name="login" value=""></label>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div>
-                    <table id="userTable" class="table table-bordered table-hover table-sm" style="font-size: 1vw; max-width: 1200px; margin:0 auto;">
+                    <table id="userTable" class="table table-bordered table-hover table-sm" style="font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
                         <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.90);">
                         <tr style="text-align: center">
                             <th id="nameUL"   onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 39vh;"><fmt:message key="userlist_page.table_username"/></th>
@@ -96,21 +96,15 @@
                         </tbody>
                     </table>
                 </div>
-                <div style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 1200px; margin:0 auto;">
+                <div style="background-color: rgb(255,255,255);opacity: 0.90;font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 align-self-center">
-                                <table width="100%">
-                                    <tr style="text-align: center">
-                                        <td>
-                                            <input style="font-size: 16px; text-align: left" type="button" value="<fmt:message key="pagination.previous_page"/>"
-                                                   onclick="location.href='/users?pageSide=previous'">
-                                            <input style="font-size: 16px; text-align: left" type="button" value="<fmt:message key="pagination.next_page"/>"
-                                                   onclick="location.href='/users?pageSide=next'">
-                                        </td>
-                                    </tr>
-                                </table>
-                                <button class="w3-btn w3-round-large" onclick="location.href='/users'"><fmt:message key="userlist_page.touserlist_bn"/></button>
+                                <input type="button" value="<fmt:message key="pagination.previous_page"/>"
+                                       onclick="location.href='/users?pageSide=previous'">
+                                <input type="button" value="<fmt:message key="pagination.next_page"/>"
+                                       onclick="location.href='/users?pageSide=next'">
+                                <button onclick="location.href='/users'"><fmt:message key="userlist_page.touserlist_bn"/></button>
                             </div>
                         </div>
                     </div>

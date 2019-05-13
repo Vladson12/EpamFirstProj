@@ -37,10 +37,16 @@
     <body style="background-color: rgba(255,255,255,0);">
     <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
     <div class="d-flex" style="min-height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-        <div class="align-self-center" style="margin:0 auto;opacity: 0.90;">
-            <h1><c:out value="${login}" /></h1>
+        <div class="align-self-center" style="background-color: rgb(255,255,255); margin:0 auto; max-width: 1200px; opacity: 0.90;">
+            <div class="container">
+                <div class="row">
+                    <div class="col" style="font-size: 0.85rem;">
+                        <h1><c:out value="${login}" /></h1>
+                    </div>
+                </div>
+            </div>
             <div>
-                <table id="userCard" class="table table-bordered table-hover table-sm" style="font-size: 1vw; max-width: 1200px; margin:0 auto;">
+                <table id="userCard" class="table table-bordered table-hover table-sm" style="font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
                     <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.90);">
                         <tr style="text-align: center">
                             <th                                                           class="col" style="width: 5vh;">№</th>
@@ -100,7 +106,7 @@
                     </tbody>
                 </table>
             </div>
-            <div style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 1200px; margin:0 auto;">
+            <div style="background-color: rgb(255,255,255);opacity: 0.90; font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 align-self-center">
@@ -108,21 +114,21 @@
                             <c:choose>
                                 <c:when test="${(flag eq 1)}">
                                     <label>
-                                        <input style="text-align: left" type="button" value="<fmt:message key="pagination.previous_page"/>"
+                                        <input type="button" value="<fmt:message key="pagination.previous_page"/>"
                                         onclick="location.href='/cards?login=${login}&pageSide=previous'">
                                     </label>
                                     <label>
-                                        <input style="text-align: left" type="button" value="<fmt:message key="pagination.next_page"/>"
+                                        <input type="button" value="<fmt:message key="pagination.next_page"/>"
                                         onclick="location.href='/cards?login=${login}&pageSide=next'">
                                     </label>
                                 </c:when>
                                 <c:when test="${(flag eq 2)}">
                                     <label>
-                                        <input style="text-align: left" type="button" value="<fmt:message key="pagination.previous_page"/>"
+                                        <input type="button" value="<fmt:message key="pagination.previous_page"/>"
                                             onclick="location.href='/cabinet/usercards?login=${login}&pageSide=previous'">
                                     </label>
                                     <label>
-                                        <input style="text-align: left" type="button" value="<fmt:message key="pagination.next_page"/>"
+                                        <input type="button" value="<fmt:message key="pagination.next_page"/>"
                                             onclick="location.href='/cabinet/usercards?login=${login}&pageSide=next'">
                                     </label>
                                     </c:when>

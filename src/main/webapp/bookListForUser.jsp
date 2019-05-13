@@ -33,20 +33,25 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 align-self-center" style="font-size: 0.85rem;">
+                        <p><%if(request.getSession().getAttribute("errMessage") != null){%>
+                            <script>
+                                alert("Amount of ordered book has been exceeded or you haven't returned the book in time!");
+                            </script><%}
+                                request.getSession().setAttribute("errMessage",null);%></p>
                         <form action="/bookList?show=" method="get">
                             <label><fmt:message key="book_search.by_name_and_author"/></label>
-                            <label><input type="text" name="author" value=""></label>
+                            <label><input type="text" name="context" value=""></label>
                             <label><fmt:message key="book_search.by_genre"/></label>
                             <label>
                                 <select name="genre">
-                                <option value="" selected>-</option>
-                                <option value="TEXTBOOK"><fmt:message key="book_genre.textbook"/></option>
-                                <option value="NARRATIVE_NONFICTION"><fmt:message key="book_genre.narrative_nonfiction"/></option>
-                                <option value="DRAMA"><fmt:message key="book_genre.drama"/></option>
-                                <option value="FANTASY"><fmt:message key="book_genre.fantasy"/></option>
-                                <option value="CRIME_AND_DETECTIVE"><fmt:message key="book_genre.crime_and_detective"/></option>
-                                <option value="SELF_HELP_BOOK"><fmt:message key="book_genre.self_help"/></option>
-                                <option value="SCIENCE_FICTION"><fmt:message key="book_genre.science_fiction"/></option>
+                                    <option value="" selected>-</option>
+                                    <option value="TEXTBOOK"><fmt:message key="book_genre.textbook"/></option>
+                                    <option value="NARRATIVE_NONFICTION"><fmt:message key="book_genre.narrative_nonfiction"/></option>
+                                    <option value="DRAMA"><fmt:message key="book_genre.drama"/></option>
+                                    <option value="FANTASY"><fmt:message key="book_genre.fantasy"/></option>
+                                    <option value="CRIME_AND_DETECTIVE"><fmt:message key="book_genre.crime_and_detective"/></option>
+                                    <option value="SELF_HELP_BOOK"><fmt:message key="book_genre.self_help"/></option>
+                                    <option value="SCIENCE_FICTION"><fmt:message key="book_genre.science_fiction"/></option>
                                 </select>
                             </label>
                             <label><input type="submit" name="insert" value="<fmt:message key="book_search.search_bn"/>"></label>
@@ -102,14 +107,14 @@
                     </tbody>
                 </table>
             </div>
-            <div style="background-color: rgb(255,255,255);opacity: 0.90;font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
+            <div style="background-color: rgb(255,255,255);opacity: 0.90; font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 align-self-center">
-                            <input style="font-size: 16px; text-align: right" type="button" value="<fmt:message key="back.bn"/>" onclick="location.href='..'">
-                            <input style="font-size: 16px; text-align: right" type="button" value="<fmt:message key="bookslist_page.addbook"/>" onclick="location.href='/saveBook?id=0'">
-                            <input style="font-size: 16px; text-align: left" type="button" value="<fmt:message key="pagination.previous_page"/>" onclick="location.href='/bookList?pageSide=previous'">
-                            <input style="font-size: 16px; text-align: left" type="button" value="<fmt:message key="pagination.next_page"/>" onclick="location.href='/bookList?pageSide=next'">
+                            <input type="button" value="<fmt:message key="back.bn"/>" onclick="location.href='..'">
+                            <input type="button" value="<fmt:message key="bookslist_page.addbook"/>" onclick="location.href='/saveBook?id=0'">
+                            <input type="button" value="<fmt:message key="pagination.previous_page"/>" onclick="location.href='/bookList?pageSide=previous'">
+                            <input type="button" value="<fmt:message key="pagination.next_page"/>" onclick="location.href='/bookList?pageSide=next'">
                         </div>
                     </div>
                 </div>
