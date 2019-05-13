@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="assets/css/Toggle-Switch-1-1.css">
         <link rel="stylesheet" href="assets/css/Toggle-Switch-1.css">
         <link rel="stylesheet" href="assets/css/Toggle-Switch.css">
+
     </head>
 
     <body style="background-color: rgba(255,255,255,0);">
@@ -33,6 +34,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 align-self-center" style="font-size: 0.85rem;">
+                        <p><%if(request.getSession().getAttribute("errMessage") != null){%>
+                            <script>
+                                alert("Amount of ordered book has been exceeded or you haven't returned the book in time!");
+                            </script><%}
+                                request.getSession().setAttribute("errMessage",null);%></p>
                         <form action="/bookList?show=" method="get">
                             <label><fmt:message key="book_search.by_name_and_author"/></label>
                             <label><input type="text" name="author" value=""></label>
@@ -54,6 +60,7 @@
                     </div>
                 </div>
             </div>
+
             <div>
                 <table id="bookList" class="table table-bordered table-hover table-sm" style="max-width: 1200px; font-size: 0.85rem; margin:0 auto;">
                     <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.90);">
@@ -83,11 +90,11 @@
                                                 <button type="submit" value="Order"><fmt:message key="booklist_page.actions_order"/></button>
                                             </form>
                                         </div>
-                                        <div class="col">
-                                            <form action="/viewBook?login=${login}&id=${list.id}" method="post">
-                                                <button type="submit" value="Order"><fmt:message key="booklist_page.actions_view"/></button>
-                                            </form>
-                                        </div>
+<%--                                        <div class="col">--%>
+<%--                                            <form action="/viewBook?login=${login}&id=${list.id}" method="post">--%>
+<%--                                                <button type="submit" value="Order"><fmt:message key="booklist_page.actions_view"/></button>--%>
+<%--                                            </form>--%>
+<%--                                        </div>--%>
                                         <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
                                         <c:if test="${userRole ne 'READER'}">
                                         <div class="col">

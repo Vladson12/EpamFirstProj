@@ -1,7 +1,4 @@
-
-console.log("hello");
 window.onload = function () {
-    console.log("hello");
     var bookCL = document.getElementById("bookCL");
     var fromCL = document.getElementById("fromCL");
     var toCL = document.getElementById("toCL");
