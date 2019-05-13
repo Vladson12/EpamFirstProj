@@ -108,5 +108,4 @@ public class CardService {
                 .stream().map(CARD_DAO::getCard).anyMatch(o->o.getCardState().equals(CardState.OVERDUE));
     }
 
-
 }
