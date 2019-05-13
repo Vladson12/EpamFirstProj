@@ -65,7 +65,14 @@
                                     <tr style="padding: auto">
                                         <td><c:out value="${user.name}"/></td>
                                         <td><c:out value="${user.login}"/></td>
-                                        <td><c:out value="${user.role}"/></td>
+                                        <c:choose>
+                                            <c:when test="${user.role eq 'ADMINISTRATOR'}">
+                                                <%--<c:out value=<fmt:message key="role.admin"/></td>--%>
+                                                <fmt:message key="role.admin"/></td>
+                                            </c:when>
+
+                                        </c:choose>
+
                                         <td style="text-align: center">
                                             <div class="container">
                                                 <div class="row">

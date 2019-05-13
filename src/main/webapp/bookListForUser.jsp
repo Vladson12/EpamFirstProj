@@ -80,12 +80,12 @@
                                     <div class="row">
                                         <div class="col">
                                             <form action="/bookList?login=${login}&id=${list.id}" method="post">
-                                                <button type="submit" value="Order"><fmt:message key="booklist_page.actions_order"/></button>
+                                                <button type="submit" value="order"><fmt:message key="booklist_page.actions_order"/></button>
                                             </form>
                                         </div>
                                         <div class="col">
-                                            <form action="/viewBook?login=${login}&id=${list.id}" method="post">
-                                                <button type="submit" value="Order"><fmt:message key="booklist_page.actions_view"/></button>
+                                            <form action="/viewBook?id=${list.id}" method="get">
+                                                <button type="submit" value="view"><fmt:message key="booklist_page.actions_view"/></button>
                                             </form>
                                         </div>
                                         <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
