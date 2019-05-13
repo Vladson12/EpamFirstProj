@@ -9,7 +9,6 @@
 <html lang="${language}">
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>LibrarySite</title>
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
         <link rel="stylesheet" href="assets/fonts/googleapis.com.roboto.css">
@@ -34,36 +33,20 @@
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-2">
-                            <h5>Get started</h5>
+                            <h5><fmt:message key="footer.our_library"/></h5>
                             <ul>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Downloads<br></a></li>
-                                <li><a href="#">Sign Up</a></li>
-                                <li></li>
-                            </ul>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-2">
-                            <h5>Our Company</h5>
-                            <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li></li>
-                                <li><a href="#">Reviews</a></li>
-                                <li><a href="#">Contacts</a></li>
+                                <li><a href="/about"><fmt:message key="aboutus_page.title"/></a></li>
+                                <li><a href="/contacts"><fmt:message key="contacts_page.title"/></a></li>
                             </ul>
                         </div>
                         <div class="col-sm-6 col-md-2">
-                            <h5>Support</h5>
+                            <h5><fmt:message key="footer.support"/></h5>
                             <ul>
-                                <li><a href="#">FAQ</a></li>
-                                <li><a href="#">Forums</a></li>
-                                <li><a href="#">External Links</a></li>
+                                <li><a href="/faq"><fmt:message key="faq_page.title"/></a></li>
                             </ul>
                         </div>
                         <div class="col-md-3 col-xl-2 social-networks">
-                            <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
-                            <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                            <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
-                            <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+                            <a class="twitter" href="https://vk.com/public182293374"><i class="fa fa-vk"></i></a>
                             <form>
                                 <c:forEach items="${param}" var="parameter">
                                     <c:if test="${parameter.key ne 'language'}">
