@@ -21,7 +21,7 @@ public class UserController extends HttpServlet {
     private static PageManager pageManager;
 
     static {
-        pageManager = new PageManager<User>();
+        pageManager = new PageManager<User>(10);
     }
 
 

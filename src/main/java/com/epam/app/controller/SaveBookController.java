@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @WebServlet("/saveBook")
 public class SaveBookController extends HttpServlet {
-    private static PageManager pageManager = new PageManager<Book>();
+    private static PageManager pageManager = new PageManager<Book>(10);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

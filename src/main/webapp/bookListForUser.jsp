@@ -8,7 +8,7 @@
 
 <html lang="${language}" style="background-color: #000000;">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title><fmt:message key="bookslist_page.title"/></title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -28,8 +28,9 @@
 
 <body style="background-color: rgba(255,255,255,0);">
 <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
-<div style="height: 70vh; background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-    <div id="change-me" style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 1200px; margin:0 auto;">
+<div class="d-flex" style="height: 70vh; background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
+    <div class="align-self-center" style="margin:0 auto;">
+    <div style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 1200px; margin:0 auto;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 align-self-center">
@@ -75,27 +76,25 @@
                     <td><c:out value="${list.genre}"/></td>
                     <td style="text-align: center"><c:out value="${list.year}"/></td>
                     <td>
-                        <div class="table-responsive table-borderless">
-                            <table>
-                                <tr>
-                                    <td style="padding: 0; width: 33.3%;">
-                                        <form action="/bookList?login=${login}&id=${list.id}" method="post">
-                                            <button type="submit" value="Order"><fmt:message key="booklist_page.actions_order"/></button>
-                                        </form>
-                                    </td>
-                                    <td style="padding: 0; width: 33.3%;">
-                                        <form action="/viewBook?login=${login}&id=${list.id}" method="post">
-                                            <button type="submit" value="Order"><fmt:message key="booklist_page.actions_view"/></button>
-                                        </form>
-                                    </td>
-                                    <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
-                                    <c:if test="${userRole ne 'READER'}">
-                                        <td style="padding: 0; width: 33.3%;">
-                                            <input type="button" value="<fmt:message key="booklist_page.actions_edit"/>" onclick="location.href='/saveBook?id=${list.id}'">
-                                        </td>
-                                    </c:if>
-                                </tr>
-                            </table>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <form action="/bookList?login=${login}&id=${list.id}" method="post">
+                                        <button type="submit" value="Order"><fmt:message key="booklist_page.actions_order"/></button>
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    <form action="/viewBook?login=${login}&id=${list.id}" method="post">
+                                        <button type="submit" value="Order"><fmt:message key="booklist_page.actions_view"/></button>
+                                    </form>
+                                </div>
+                                <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
+                                <c:if test="${userRole ne 'READER'}">
+                                    <div class="col">
+                                        <input type="button" value="<fmt:message key="booklist_page.actions_edit"/>" onclick="location.href='/saveBook?id=${list.id}'">
+                                    </div>
+                                </c:if>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -107,13 +106,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 align-self-center">
-                    <input style="font-size: 16px; text-align: right" type="button" value="<fmt:message key="back.bn"/>" onclick="location.href='/home'">
+                    <input style="font-size: 16px; text-align: right" type="button" value="<fmt:message key="back.bn"/>" onclick="location.href='..'">
                     <input style="font-size: 16px; text-align: right" type="button" value="<fmt:message key="bookslist_page.addbook"/>" onclick="location.href='/saveBook?id=0'">
                     <input style="font-size: 16px; text-align: left" type="button" value="<fmt:message key="pagination.previous_page"/>" onclick="location.href='/bookList?pageSide=previous'">
                     <input style="font-size: 16px; text-align: left" type="button" value="<fmt:message key="pagination.next_page"/>" onclick="location.href='/bookList?pageSide=next'">
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <script src="assets/js/sorting.js"></script>
     <script src="assets/js/jquery.min.js"></script>
