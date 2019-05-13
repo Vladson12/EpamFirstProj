@@ -67,10 +67,14 @@
                                         <td><c:out value="${user.login}"/></td>
                                         <c:choose>
                                             <c:when test="${user.role eq 'ADMINISTRATOR'}">
-                                                <%--<c:out value=<fmt:message key="role.admin"/></td>--%>
-                                                <fmt:message key="role.admin"/></td>
+                                                <td><fmt:message key="role.admin"/></td>
                                             </c:when>
-
+                                            <c:when test="${user.role eq 'LIBRARIAN'}">
+                                                <td><fmt:message key="role.librarian"/></td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td><fmt:message key="role.reader"/></td>
+                                            </c:otherwise>
                                         </c:choose>
 
                                         <td style="text-align: center">

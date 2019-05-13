@@ -78,7 +78,32 @@
                             <td style="text-align: center"><c:out value="${list.id}"/></td>
                             <td><c:out value="${list.title}"/></td>
                             <td><c:out value="${list.author}"/></td>
-                            <td><c:out value="${list.genre}"/></td>
+                            <c:choose>
+                                <c:when test="${list.genre eq 'TEXTBOOK'}">
+                                    <td><fmt:message key="book_genre.textbook"/></td>
+                                </c:when>
+                                <c:when test="${list.genre eq 'NARRATIVE_NONFICTION'}">
+                                    <td><fmt:message key="book_genre.narrative_nonfiction"/></td>
+                                </c:when>
+                                <c:when test="${list.genre eq 'DRAMA'}">
+                                    <td><fmt:message key="book_genre.drama"/></td>
+                                </c:when>
+                                <c:when test="${list.genre eq 'FANTASY'}">
+                                    <td><fmt:message key="book_genre.fantasy"/></td>
+                                </c:when>
+                                <c:when test="${list.genre eq 'CRIME_AND_DETECTIVE'}">
+                                    <td><fmt:message key="book_genre.crime_and_detective"/></td>
+                                </c:when>
+                                <c:when test="${list.genre eq 'SELF_HELP_BOOK'}">
+                                    <td><fmt:message key="book_genre.self_help"/></td>
+                                </c:when>
+                                <c:when test="${list.genre eq 'SCIENCE_FICTION'}">
+                                    <td><fmt:message key="book_genre.science_fiction"/></td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td><fmt:message key="book_genre.drama"/></td>
+                                </c:otherwise>
+                            </c:choose>
                             <td style="text-align: center"><c:out value="${list.year}"/></td>
                             <td>
                                 <div class="container">
