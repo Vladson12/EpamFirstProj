@@ -1,14 +1,17 @@
 package com.epam.app.controller;
 
 import com.epam.app.model.User;
+import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
 import com.epam.app.util.PageManager;
+import com.epam.app.util.SessionHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -37,6 +40,8 @@ public class UserController extends HttpServlet {
         }
         if (req.getParameter("update") != null) {
             updateUser(req, resp);
+            ////////
+
         }
         if (req.getParameter("delete") != null) {
             deleteUser(req, resp);
@@ -78,8 +83,16 @@ public class UserController extends HttpServlet {
     }
 
     private void updateUser(HttpServletRequest req, HttpServletResponse resp) {
+        User currentUser = UserService.getByLogin(userLogin);
+        Role oldRole = currentUser.getRole();
+        String newRole = req.getParameter("role");
         UserService.updateUserByFields(userLogin, req.getParameter("name"),
                 req.getParameter("login"), req.getParameter("role"));
+        if(!newRole.equals(oldRole.toString())){
+            HttpSession session = SessionHelper.sessions.remove(currentUser.getId());
+            session.invalidate();
+        }
+
     }
 
     private void deleteUser(HttpServletRequest req, HttpServletResponse resp) {

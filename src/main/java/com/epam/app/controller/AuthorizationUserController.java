@@ -4,6 +4,7 @@ package com.epam.app.controller;
 import com.epam.app.config.Config;
 import com.epam.app.model.User;
 import com.epam.app.service.UserService;
+import com.epam.app.util.SessionHelper;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -32,15 +33,19 @@ public class AuthorizationUserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(true);
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
         String hashed = hash(password);
         User userAccount = UserService.findUser(login, password);
-
         if (UserService.isUserAllowed(login, password)) {
             if (userAccount != null) {
+                //////////////////////
+                HttpSession session = request.getSession(true);
+                SessionHelper.sessions.put(userAccount.getId(), session);
+                //////////////////
+                System.out.println(session == null ? "session + " + session.getId() + " is null" : "session "  + session.getId() + " is true");
+                /////////////////
                 session.setAttribute("loggedInUser", userAccount);
                 session.setAttribute("login", userAccount.getLogin());
                 request.getRequestDispatcher("/").forward(request, response);

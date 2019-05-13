@@ -68,6 +68,7 @@
                             <td><c:out value="${user.name}"/></td>
                             <td><c:out value="${user.login}"/></td>
                             <td><c:out value="${user.role}"/></td>
+
                             <td style="text-align: center">
                                 <div class="container">
                                     <div class="row">
