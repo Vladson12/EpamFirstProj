@@ -30,8 +30,8 @@
             } else if (year == null || year == "") {
                 alert("Year can't be blank");
                 return false;
-            }
-            alert("The book successfully added");
+            } else
+                alert("The book successfully added");
             return true;
         }
     </script>
