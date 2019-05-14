@@ -70,7 +70,6 @@
     <div class="d-flex" style="min-height: 70vh; background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
         <div style="font-size: 0.85rem; min-width:30vw; margin:0 auto; margin-top: 1vh; background-color: #ffffff;">
             <div class="container">
-
                 <div>
                     <form name="form" method="post" action="saveBook" onsubmit="return validate()">
                         <div class="form-group">
@@ -78,8 +77,6 @@
                             <input value="${book.id}" type="hidden" name="id">
                             <h4><fmt:message key="bookaddedit_page.header"/></h4>
                             <div id="formdiv">
-
-
                                 <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
                                     <div class="col-md-8 offset-md-1">
                                         <p style="margin-left:2%;font-family:Roboto, sans-serif;">
@@ -90,8 +87,6 @@
                                         <input value="${book.title}" name="title" class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" name="name" placeholder="Name" />
                                     </div>
                                 </div>
-
-
                                 <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
                                     <div class="col-md-8 offset-md-1">
                                         <p style="margin-left:2%;font-family:Roboto, sans-serif;">
