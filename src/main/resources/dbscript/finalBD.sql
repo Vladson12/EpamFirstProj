@@ -178,9 +178,6 @@ CREATE TABLE `library`.`card` (
   CONSTRAINT `reader` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-insert into `library`.`card` (user, book, start_date, end_date, card_state) values (5,129,'2017-01-11','2019-07-10',3);
-insert into `library`.`card` (user, book, start_date, end_date, card_state) values (7,139,'2014-03-11','2018-01-03',2);
-insert into `library`.`card` (user, book, start_date, end_date, card_state) values (5,150,'2018-04-12','2019-11-15',1);
 
 
 
