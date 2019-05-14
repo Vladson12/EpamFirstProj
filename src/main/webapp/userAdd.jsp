@@ -58,8 +58,8 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%>
-                                <label><input type="submit" value="Add"/></label><br/>
-                                <label><input type="reset" value="Reset"/></label><br/>
+                                <label><input type="submit" value="<fmt:message key="useradd_page.add_bn"/>"/></label><br/>
+                                <label><input type="reset" value="<fmt:message key="useradd_page.reset_bn"/>"/></label><br/>
                             </form>
                             <label><button class="w3-btn w3-round-large" onclick="location.href='/users'"><fmt:message key="back.bn"/></button></label><br/>
                         </div>
