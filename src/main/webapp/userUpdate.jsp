@@ -50,7 +50,7 @@
                                 <label><input value="${user.login}" type="hidden" name="login"></label><br/>
                                 <label><button type="submit"><fmt:message key="useredit_page.savechanges_bn"/></button></label><br/>
                             </form>
-                            <label><button onclick="location.href='..'"><fmt:message key="back.bn"/></button></label><br/>
+                            <label><button onclick="location.href='/users'"><fmt:message key="back.bn"/></button></label><br/>
                         </div>
                     </div>
                 </div>

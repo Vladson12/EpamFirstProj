@@ -35,12 +35,9 @@ public class SaveBookController extends HttpServlet {
         book.setDescription(req.getParameter("description"));
         book.setYear(Integer.parseInt(req.getParameter("year")));
         book.setGenre(Genre.valueOf(req.getParameter("genre")));
-
         BookService.updateBook(book);
-        req.getSession().setAttribute("list", pageManager.sublist(BookService.getAllBooks()
-                .stream().filter(o -> o.getBookState().equals(BookState.FREE)).collect(Collectors.toList())));
-        req.getSession().setAttribute("page", new PageManager.Page(0));
-        req.getSession().setAttribute("pages", pageManager.getPages());
+
+        req.getSession().setAttribute("list", pageManager.sublist(BookService.updateBookList()));
         req.getSession().setAttribute("message", "Success!");
         req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
     }
