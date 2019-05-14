@@ -48,10 +48,7 @@ public class BookListController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         login = req.getParameter("login");
         id = req.getParameter("id");
-        if (id != null) {
-            doPut(req, resp);
-        }
-        resp.sendRedirect("/bookList");
+        doPut(req, resp);
     }
 
     @Override

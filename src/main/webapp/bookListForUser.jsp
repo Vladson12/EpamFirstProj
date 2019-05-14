@@ -56,7 +56,7 @@
                             </label>
                             <label><input type="submit" name="insert" value="<fmt:message key="book_search.search_bn"/>"></label>
                         </form>
-                        <input type="button" value="<fmt:message key="bookslist_page.addbook"/>" onclick="location.href='/saveBook?id=0'">
+                            <input type="button" ${sessionScope.loggedInUser.role eq 'READER' ? 'hidden' : ''} value="<fmt:message key="bookslist_page.addbook"/>" onclick="location.href='/saveBook?id=0'">
                     </div>
                 </div>
             </div>
