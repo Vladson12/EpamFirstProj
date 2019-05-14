@@ -10,6 +10,33 @@
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title><fmt:message key="registration_page.title"/></title>
+        <style>
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                font-size: 0.75rem;
+                padding: 2px 4px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                margin: 1px 1px;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+            .button5 {
+                background-color: white;
+                color: black;
+                border: 2px solid #000000;
+                border-radius: 5px;
+            }
+            .button5:hover {
+                background-color: #e04c40;
+                color: white;
+            }
+        </style>
+
         <script>
             function validate() {
                 var name = document.form.name.value;
@@ -52,9 +79,9 @@
                                 <label><input type="password" placeholder="<fmt:message key="registration_page.password_ph"/>" name="password"></label><br/>
                                 <label><fmt:message key="registration_page.confirm"/>:</label><br/>
                                 <label><input type="password" placeholder="<fmt:message key="registration_page.confirm_ph"/>" name="conpassword"></label><br/>
-                                <label><button type="submit"><fmt:message key="registration_page.create_bn"/></button></label><br/>
+                                <label><button class="button button5" type="submit"><fmt:message key="registration_page.create_bn"/></button></label><br/>
                             </form>
-                            <label><button onclick="location.href='..'"><fmt:message key="back.bn"/></button></label><br/>
+                            <label><button class="button button5" onclick="location.href='..'"><fmt:message key="back.bn"/></button></label><br/>
                         </div>
                     </div>
                 </div>
