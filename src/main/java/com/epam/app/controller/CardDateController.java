@@ -34,15 +34,17 @@ public class CardDateController extends HttpServlet {
             LocalDate newDate = LocalDate.parse(date).plusDays(1);
             if (LocalDate.now(ZoneId.systemDefault()).compareTo(newDate) > 0) {
                 req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
+            } else {
+                CardService.updateCardStatusAndDate(CardService.get(Integer.parseInt(id)),
+                        CardState.AT_HOME, newDate);
+                req.getRequestDispatcher("/cards").forward(req, resp);
+                log.info("User " + login + "Card status has been update");
             }
-            CardService.updateCardStatusAndDate(CardService.get(Integer.parseInt(id)),
-                    CardState.AT_HOME, newDate);
-            req.getRequestDispatcher("/cards").forward(req, resp);
-            log.info("User " + login + "Card status has been update");
+        } else {
+            req.setAttribute("login", login);
+            req.setAttribute("id", id);
+            req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
         }
-        req.setAttribute("login", login);
-        req.setAttribute("id", id);
-        req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
 
     }
 }
