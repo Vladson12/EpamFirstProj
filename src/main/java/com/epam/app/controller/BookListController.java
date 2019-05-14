@@ -57,12 +57,11 @@ public class BookListController extends HttpServlet {
         if (CardService.amountOfActiveCards(user) && !CardService.haveOverdueCards(user)) {
             CardService.orderBook(id, login);
             pageManager.setItemList(BookService.updateBookList());
-            req.getSession().setAttribute("list", pageManager.sublist(pageManager.getItemList()));
-            req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
         } else {
             req.getSession().setAttribute("errMessage", "Error!");
             log.info(login + "Failed to order books." + "Reason: overdue card or book card excess");
         }
+        req.getSession().setAttribute("list", pageManager.sublist(pageManager.getItemList()));
         req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
     }
 
