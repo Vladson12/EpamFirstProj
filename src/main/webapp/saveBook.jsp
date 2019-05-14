@@ -74,6 +74,7 @@
                     <form name="form" method="post" action="saveBook" onsubmit="return validate()">
                         <div class="form-group">
                             <jsp:useBean id="book" scope="session" type="com.epam.app.model.Book"/>
+                            <input value="${book.id}" type="hidden" name="id">
                             <h4><fmt:message key="bookaddedit_page.header"/></h4>
                             <div id="formdiv">
                                 <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
@@ -140,6 +141,7 @@
                                     <div class="col-12 col-md-4 offset-md-4">
                                         <button class="button button5" style="font-family:Roboto, sans-serif;" type="reset">Clear </button>
                                         <button class="button button5" style="margin-left:16px;" type="submit">Submit </button>
+                                        <button class="button button5" onclick="location.href='/bookList'" style="margin-left:16px;" type="back">Back </button>
                                     </div>
                                 </div>
                             </div>
