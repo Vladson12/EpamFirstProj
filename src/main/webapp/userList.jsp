@@ -79,9 +79,9 @@
                     <table id="userTable" class="table table-bordered table-hover table-sm" style="font-size: 0.85rem;">
                         <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.90);">
                         <tr style="text-align: center">
-                            <th id="nameUL"   onmouseover="this.style.cursor='pointer'" style="width: 39vh;"><fmt:message key="userlist_page.table_username"/></th>
-                            <th id="loginUL" onmouseover="this.style.cursor='pointer'"  style="width: 30vh;"><fmt:message key="userlist_page.table_login"/></th>
-                            <th id="roleUL"  onmouseover="this.style.cursor='pointer'"  style="width: 12vh;"><fmt:message key="userlist_page.table_role"/></th>
+                            <th id="nameUL" onclick="location.href='/users?sort=name'" onmouseover="this.style.cursor='pointer'" style="width: 39vh;"><fmt:message key="userlist_page.table_username"/></th>
+                            <th id="loginUL" onclick="location.href='/users?sort=login'" onmouseover="this.style.cursor='pointer'"  style="width: 30vh;"><fmt:message key="userlist_page.table_login"/></th>
+                            <th id="roleUL" onclick="location.href='/users?sort=role'" onmouseover="this.style.cursor='pointer'"  style="width: 12vh;"><fmt:message key="userlist_page.table_role"/></th>
                             <th                                                         style="width: 19vh;"><fmt:message key="userlist_page.table_actions"/></th>
                         </tr>
                         </thead>

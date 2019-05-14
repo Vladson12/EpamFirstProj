@@ -10,6 +10,32 @@
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title><fmt:message key="bookaddedit_page.book_title"/></title>
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            font-size: 0.75rem;
+            padding: 2px 4px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1px 1px;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+        .button5 {
+            background-color: white;
+            color: black;
+            border: 2px solid #000000;
+            border-radius: 5px;
+        }
+        .button5:hover {
+            background-color: #e04c40;
+            color: white;
+        }
+    </style>
     <script>
         function validate() {
             var title = document.form.title.value;
@@ -39,44 +65,90 @@
         }
     </script>
 </head>
-
     <body style="background-color: rgba(255,255,255,0);">
-        <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
-        <div class="d-flex" style="height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-            <div class="align-self-center" style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 500px; margin:0 auto;">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 align-self-center">
-                            <h2><fmt:message key="bookaddedit_page.header"/></h2>
-                            <form name="form" method="post" action="saveBook" onsubmit="return validate()">
-                                <jsp:useBean id="book" scope="session" type="com.epam.app.model.Book"/>
-                                <input value="${book.id}" type="hidden" name="id"><br/>
-                                <label><fmt:message key="bookaddedit_page.book_title"/></label><br/>
-                                <label><input value="${book.title}" type="text" name="title"></label><br/>
-                                <label><fmt:message key="bookaddedit_page.book_author"/></label><br/>
-                                <label><input value="${book.author}" type="text" name="author"></label><br/>
-                                <label><fmt:message key="bookaddedit_page.book_description"/></label><br/>
-                                <label><input value="${book.description}" type="text" name="description"></label><br/>
-                                <label><fmt:message key="bookaddedit_page.book_genre"/></label><br/>
-                                <label><select name = "genre">
-                                    <option value = "TEXTBOOK" ${book.genre eq 'TEXTBOOK' ? 'selected' : ''}><fmt:message key="book_genre.textbook"/></option>
-                                    <option value = "NARRATIVE_NONFICTION" ${book.genre eq 'NARRATIVE_NONFICTION' ? 'selected' : ''}><fmt:message key="book_genre.narrative_nonfiction"/></option>
-                                    <option value = "FANTASY" ${book.genre eq 'FANTASY' ? 'selected' : ''}><fmt:message key="book_genre.fantasy"/></option>
-                                    <option value = "DRAMA" ${book.genre eq 'DRAMA' ? 'selected' : ''}><fmt:message key="book_genre.drama"/></option>
-                                    <option value = "CRIME_AND_DETECTIVE" ${book.genre eq 'CRIME_AND_DETECTIVE' ? 'selected' : ''}><fmt:message key="book_genre.crime_and_detective"/></option>
-                                    <option value = "SELF_HELP_BOOK" ${book.genre eq 'SELF_HELP_BOOK' ? 'selected' : ''}><fmt:message key="book_genre.self_help"/></option>
-                                    <option value = "SCIENCE_FICTION" ${book.genre eq 'SCIENCE_FICTION' ? 'selected' : ''}><fmt:message key="book_genre.science_fiction"/></option>
-                                </select></label><br/>
-                                <label><fmt:message key="bookaddedit_page.book_year"/></label><br/>
-                                <label><input value="${book.year}" type="text" name="year"></label><br/>
-                                <label><button type="submit"><fmt:message key="bookaddedit_page.save_bn"/></button></label><br/>
-                            </form>
-                            <label><button class="w3-btn w3-round-large" onclick="location.href='/bookList'"><fmt:message key="back.bn"/></button></label><br/>
+    <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
+    <div class="d-flex" style="min-height: 70vh; background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
+        <div style="min-width:30vw; margin:0 auto; margin-top: 1vh; background-color: #ffffff;">
+            <div class="container">
+                <div>
+                    <form name="form" method="post" action="saveBook" onsubmit="return validate()">
+                        <div class="form-group">
+                            <jsp:useBean id="book" scope="session" type="com.epam.app.model.Book"/>
+                            <h4><fmt:message key="bookaddedit_page.header"/></h4>
+                            <div id="formdiv">
+                                <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                    <div class="col-md-8 offset-md-1">
+                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;">
+                                            <strong><fmt:message key="bookaddedit_page.book_title"/></strong>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-10 offset-md-1">
+                                        <input value="${book.title}" name="title" class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" name="name" placeholder="Name" />
+                                    </div>
+                                </div>
+                                <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                    <div class="col-md-8 offset-md-1">
+                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;">
+                                            <strong><fmt:message key="bookaddedit_page.book_author"/></strong>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-10 offset-md-1">
+                                        <input class="form-control" style="font-family:Roboto, sans-serif;" value="${book.author}" type="text" name="author"/>
+                                    </div>
+                                </div>
+                                <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                    <div class="col-md-8 offset-md-1">
+                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;">
+                                            <strong><fmt:message key="bookaddedit_page.book_description"/></strong>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-10 offset-md-1">
+                                        <input class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" value="${book.description}" type="text" name="description" placeholder="Place" />
+                                    </div>
+                                </div>
+                                <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;margin-top:-16px;">
+                                    <div class="col-md-8 offset-md-1">
+                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;">
+                                            <strong><fmt:message key="bookaddedit_page.book_genre"/></strong>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-10 offset-md-1">
+                                        <select class="form-control" style="font-family:Roboto, sans-serif;" name="genre">
+                                            <optgroup label="This is a group">
+                                                <option value="TEXTBOOK" ${book.genre eq 'TEXTBOOK' ? 'selected' : ''}><fmt:message key="book_genre.textbook"/></option>
+                                                <option value="NARRATIVE_NONFICTION"${book.genre eq 'NARRATIVE_NONFICTION' ? 'selected' : ''}><fmt:message key="book_genre.narrative_nonfiction"/></option>
+                                                <option value="FANTASY"${book.genre eq 'FANTASY' ? 'selected' : ''}><fmt:message key="book_genre.fantasy"/></option>
+                                                <option value="DRAMA"${book.genre eq 'DRAMA' ? 'selected' : ''}><fmt:message key="book_genre.drama"/></option>
+                                                <option value="CRIME_AND_DETECTIVE"${book.genre eq 'CRIME_AND_DETECTIVE' ? 'selected' : ''}><fmt:message key="book_genre.crime_and_detective"/></option>
+                                                <option value="SELF_HELP_BOOK"${book.genre eq 'SELF_HELP_BOOK' ? 'selected' : ''}><fmt:message key="book_genre.self_help"/></option>
+                                                <option value="SCIENCE_FICTION"${book.genre eq 'SCIENCE_FICTION' ? 'selected' : ''}><fmt:message key="book_genre.science_fiction"/></option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                    <div class="col-md-8 offset-md-1">
+                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;">
+                                            <strong><fmt:message key="bookaddedit_page.book_year"/></strong>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-10 offset-md-1" style="font-family:Roboto, sans-serif;">
+                                        <input class="form-control"  value="${book.year}" type="text" name="year" style="margin-left:0px;" placeholder="Name" />
+                                    </div>
+                                </div>
+                                <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                    <div class="col-12 col-md-4 offset-md-4">
+                                        <button class="button button5" style="font-family:Roboto, sans-serif;" type="reset">Clear </button>
+                                        <button class="button button5" style="margin-left:16px;" type="submit">Submit </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
         <div style="height: 20vh;"><jsp:include page="footer.jsp"></jsp:include></div>
     </body>
 </html>
