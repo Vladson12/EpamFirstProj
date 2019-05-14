@@ -68,17 +68,21 @@
     <body style="background-color: rgba(255,255,255,0);">
     <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
     <div class="d-flex" style="min-height: 70vh; background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-        <div style="min-width:30vw; margin:0 auto; margin-top: 1vh; background-color: #ffffff;">
+        <div style="font-size: 0.85rem; min-width:30vw; margin:0 auto; margin-top: 1vh; background-color: #ffffff;">
             <div class="container">
+
                 <div>
                     <form name="form" method="post" action="saveBook" onsubmit="return validate()">
                         <div class="form-group">
                             <jsp:useBean id="book" scope="session" type="com.epam.app.model.Book"/>
+                            <input value="${book.id}" type="hidden" name="id">
                             <h4><fmt:message key="bookaddedit_page.header"/></h4>
                             <div id="formdiv">
+
+
                                 <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
                                     <div class="col-md-8 offset-md-1">
-                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;">
+                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;">
                                             <strong><fmt:message key="bookaddedit_page.book_title"/></strong>
                                         </p>
                                     </div>
@@ -86,9 +90,11 @@
                                         <input value="${book.title}" name="title" class="form-control" type="text" style="margin-left:0px;font-family:Roboto, sans-serif;" name="name" placeholder="Name" />
                                     </div>
                                 </div>
+
+
                                 <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
                                     <div class="col-md-8 offset-md-1">
-                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;">
+                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;">
                                             <strong><fmt:message key="bookaddedit_page.book_author"/></strong>
                                         </p>
                                     </div>
@@ -98,7 +104,7 @@
                                 </div>
                                 <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
                                     <div class="col-md-8 offset-md-1">
-                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;">
+                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;">
                                             <strong><fmt:message key="bookaddedit_page.book_description"/></strong>
                                         </p>
                                     </div>
@@ -108,13 +114,13 @@
                                 </div>
                                 <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;margin-top:-16px;">
                                     <div class="col-md-8 offset-md-1">
-                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;">
+                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;">
                                             <strong><fmt:message key="bookaddedit_page.book_genre"/></strong>
                                         </p>
                                     </div>
                                     <div class="col-md-10 offset-md-1">
                                         <select class="form-control" style="font-family:Roboto, sans-serif;" name="genre">
-                                            <optgroup label="This is a group">
+                                            <optgroup label="-">
                                                 <option value="TEXTBOOK" ${book.genre eq 'TEXTBOOK' ? 'selected' : ''}><fmt:message key="book_genre.textbook"/></option>
                                                 <option value="NARRATIVE_NONFICTION"${book.genre eq 'NARRATIVE_NONFICTION' ? 'selected' : ''}><fmt:message key="book_genre.narrative_nonfiction"/></option>
                                                 <option value="FANTASY"${book.genre eq 'FANTASY' ? 'selected' : ''}><fmt:message key="book_genre.fantasy"/></option>
@@ -128,7 +134,7 @@
                                 </div>
                                 <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
                                     <div class="col-md-8 offset-md-1">
-                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;">
+                                        <p style="margin-left:2%;font-family:Roboto, sans-serif;">
                                             <strong><fmt:message key="bookaddedit_page.book_year"/></strong>
                                         </p>
                                     </div>
@@ -137,10 +143,13 @@
                                     </div>
                                 </div>
                                 <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
-                                    <div class="col-12 col-md-4 offset-md-4">
+                                    <div class="btn-group" role="group" style="text-align: center;">
                                         <button class="button button5" style="font-family:Roboto, sans-serif;" type="reset">Clear </button>
-                                        <button class="button button5" style="margin-left:16px;" type="submit">Submit </button>
+                                        <button class="button button5"  type="submit"><fmt:message
+                                                key="bookaddedit_page.save_bn"/> </button>
+                                        <button class="button button5" onclick="location.href='/bookList'"  type="submit"><fmt:message key="back.bn"/></button>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>

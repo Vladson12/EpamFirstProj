@@ -25,48 +25,112 @@
                     return true;
                 }
             </script>
-        </head>
+        <style>
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                font-size: 0.75rem;
+                padding: 2px 4px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                margin: 1px 1px;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+            .button5 {
+                background-color: white;
+                color: black;
+                border: 2px solid #000000;
+                border-radius: 5px;
+            }
+            .button5:hover {
+                background-color: #e04c40;
+                color: white;
+            }
+        </style>
+
+    </head>
 
     <body style="background-color: rgba(255,255,255,0);">
         <div style="height: 10vh"><jsp:include page="menuBar.jsp"></jsp:include></div>
         <div class="d-flex" style="height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-            <div class="align-self-center" style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 500px; margin:0 auto;">
+            <div style="font-size: 0.85rem; min-width:30vw; margin:0 auto; margin-top: 1vh; background-color: #ffffff;">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 align-self-center">
-                            <h2><fmt:message key="useradd_page.header"/></h2>
-                            <form name="form" action="addUser" method="post" onsubmit="return validate()">
-                                <label><fmt:message key="useradd_page.username"/></label><br/>
-                                <label><input type="text" placeholder="<fmt:message key="useradd_page.username_ph"/>" name="name"/></label><br/>
-                                <label><fmt:message key="useradd_page.email"/></label><br/>
-                                <label><input type="email" placeholder="<fmt:message key="useradd_page.email_ph"/>" name="login"/></label><br/>
-                                <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
-                                <c:choose>
-                                    <c:when test="${userRole eq 'ADMINISTRATOR'}">
-                                        <label>Role</label><br/>
-                                        <label><select name="role">
-                                            <option value="READER" selected><fmt:message key="role.reader"/></option>
-                                            <option value="LIBRARIAN"><fmt:message key="role.librarian"/></option>
-                                            <option value="ADMINISTRATOR"><fmt:message key="role.admin"/></option>
-                                        </select></label><br/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <label>Role</label><br/>
-                                        <label><select name="role">
-                                            <option value="READER" selected><fmt:message key="role.reader"/></option>
-                                        </select></label><br/>
-                                    </c:otherwise>
-                                </c:choose>
-                                <%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%>
-                                <label><input type="submit" value="Add"/></label><br/>
-                                <label><input type="reset" value="Reset"/></label><br/>
+                    <div>
+                        <form name="form" action="addUser" method="post" onsubmit="return validate()">
+                            <div class="form-group">
+                                <h2><fmt:message key="useradd_page.header"/></h2>
+                                    <div id="formdiv">
+                                        <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                            <div class="col-md-8 offset-md-1">
+                                                <p style="margin-left:2%;font-family:Roboto, sans-serif;">
+                                                    <strong><fmt:message key="useradd_page.username"/></strong>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-10 offset-md-1">
+                                                <input value="${book.title}" name="title" class="form-control" type="text" placeholder="<fmt:message key="useradd_page.username_ph"/>" name="name" style="margin-left:0px;font-family:Roboto, sans-serif;"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                            <div class="col-md-8 offset-md-1">
+                                                <p style="margin-left:2%;font-family:Roboto, sans-serif;">
+                                                    <strong><fmt:message key="useradd_page.email"/></strong>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-10 offset-md-1">
+                                                <input value="${book.title}" name="title" class="form-control" type="email" placeholder="<fmt:message key="useradd_page.email_ph"/>" name="login" style="margin-left:0px;font-family:Roboto, sans-serif;"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;margin-top:-16px;">
+                                            <div class="col-md-8 offset-md-1">
+                                                <p style="margin-left:2%;font-family:Roboto, sans-serif;">
+                                                    <strong><fmt:message key="profile_page.role"/></strong>
+                                                </p>
+                                            </div>
+                                        <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
+                                        <c:choose>
+                                        <c:when test="${userRole eq 'ADMINISTRATOR'}">
+                                        <div class="col-md-10 offset-md-1">
+                                            <select class="form-control" style="font-family:Roboto, sans-serif;" name="role">
+                                                <optgroup label="This is a group">
+                                                    <option value="READER" selected><fmt:message key="role.reader"/></option>
+                                                    <option value="LIBRARIAN"><fmt:message key="role.librarian"/></option>
+                                                    <option value="ADMINISTRATOR"><fmt:message key="role.admin"/></option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                        <div class="col-md-10 offset-md-1">
+                                            <select class="form-control" style="font-family:Roboto, sans-serif;" name="role">
+                                                <optgroup label="This is a group">
+                                                    <option value="READER" selected><fmt:message key="role.reader"/></option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                        </c:otherwise>
+                                        </c:choose>
+                                        </div>
+
+                                        <%=(request.getAttribute("errMessage") == null) ? "" : request.getAttribute("errMessage")%>
+                                        <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                            <div class="btn-group" role="group" style="text-align: center;">
+                                                <button class="button button5" value="Reset" style="font-family:Roboto, sans-serif;" type="reset"><fmt:message key="cardlist_page.actions_reset"/></button>
+                                                <button class="button button5" value="Add"  type="submit"><fmt:message key="useredit_page.savechanges_bn"/></button>
+                                                <button class="button button5" onclick="location.href='..'"  type="submit"><fmt:message key="back.bn"/></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
-                            <label><button class="w3-btn w3-round-large" onclick="location.href='/users'"><fmt:message key="back.bn"/></button></label><br/>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         <div style="height: 20vh"><jsp:include page="footer.jsp"></jsp:include></div>
     </body>
 </html>
