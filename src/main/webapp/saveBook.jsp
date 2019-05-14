@@ -53,7 +53,7 @@
                     <div class="row">
                         <div class="col-md-12 align-self-center">
                             <h2><fmt:message key="bookaddedit_page.header"/></h2>
-                            <form method="post" action="saveBook" onsubmit="return validate()">
+                            <form name="form" method="post" action="saveBook" onsubmit="return validate()">
                                 <jsp:useBean id="book" scope="session" type="com.epam.app.model.Book"/>
                                 <input value="${book.id}" type="hidden" name="id"><br/>
                                 <label><fmt:message key="bookaddedit_page.book_title"/></label><br/>

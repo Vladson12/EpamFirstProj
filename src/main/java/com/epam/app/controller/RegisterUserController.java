@@ -44,6 +44,7 @@ public class RegisterUserController extends HttpServlet {
                 User user = new User(name, Role.READER, login, hash(password));
                 UserService.create(user);
                 request.getRequestDispatcher("/authorization.jsp").forward(request, response);
+                log.info("Successful registration by " + login);
             } else {
                 request.setAttribute("errMessage", "This email already exists!");
                 log.info("Failed to register " + login + ". User with this login is already exists");
@@ -52,7 +53,6 @@ public class RegisterUserController extends HttpServlet {
             request.setAttribute("errMessage", "This Email is invalid");
             log.info("Failed to register " + login + ". Email is invalid");
             request.getRequestDispatcher("/registration.jsp").forward(request, response);
-            log.info("Successful registration by " + login);
         }
     }
 
