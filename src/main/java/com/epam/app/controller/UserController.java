@@ -13,20 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/users")
 public class UserController extends HttpServlet {
 
-    private List<User> allUsers;
     private String button;
     private String userLogin;
-    private static PageManager pageManager;
+    private static PageManager<User> pageManager;
 
-    static {
-        pageManager = new PageManager<User>(10);
+    {
+        pageManager = new PageManager<>(10);
+        pageManager.setSortIdentificator(true);
+
     }
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,19 +39,12 @@ public class UserController extends HttpServlet {
         }
         if (req.getParameter("update") != null) {
             updateUser(req, resp);
-            ////////
-
         }
         if (req.getParameter("delete") != null) {
             deleteUser(req, resp);
         }
-        if (req.getParameter("insert") != null) {
-            String login = req.getParameter("login");
-            allUsers = UserService.getByContext(login);
-        } else {
-            allUsers = UserService.getAllUsers();
-        }
-        req.getSession().setAttribute("users", pageManager.sublist(allUsers));
+        UserService.handleButtons(pageManager, req);
+        req.getSession().setAttribute("users", pageManager.sublist(pageManager.getItemList()));
         req.getRequestDispatcher("/userList.jsp").forward(req, resp);
     }
 
@@ -88,7 +80,7 @@ public class UserController extends HttpServlet {
         String newRole = req.getParameter("role");
         UserService.updateUserByFields(userLogin, req.getParameter("name"),
                 req.getParameter("login"), req.getParameter("role"));
-        if(!newRole.equals(oldRole.toString())){
+        if (newRole != null && !newRole.equals(oldRole.toString())) {
             HttpSession session = SessionHelper.sessions.remove(currentUser.getId());
             if (session != null) {
                 session.invalidate();

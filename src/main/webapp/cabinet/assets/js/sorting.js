@@ -3,13 +3,7 @@ window.onload = function () {
     var fromCL = document.getElementById("fromCL");
     var toCL = document.getElementById("toCL");
     var stateCL = document.getElementById("stateCL");
-    var nameUL = document.getElementById("nameUL");
-    var loginUL = document.getElementById("loginUL");
-    var roleUL = document.getElementById("roleUL");
-    var nameBL = document.getElementById("nameBL");
-    var authorBL = document.getElementById("authorBL");
-    var genreBL = document.getElementById("genreBL");
-    var yearBL = document.getElementById("yearBL");
+
     if (bookCL) {
         bookCL.addEventListener("click", function() {
             sortTable(1,"userCard");
@@ -30,43 +24,7 @@ window.onload = function () {
             sortTable(4,"userCard");
         });
     }
-    if (nameUL) {
-        nameUL.addEventListener("click", function() {
-            sortTable(0,"userTable");
-        });
-    }
-    if (loginUL) {
-        loginUL.addEventListener("click", function() {
-            sortTable(1,"userTable");
-        });
-    }
-    if (roleUL) {
-        roleUL.addEventListener("click", function() {
-            sortTable(2,"userTable");
-        });
-    }
-    if (nameBL) {
-        nameBL.addEventListener("click", function() {
-            sortTable(1,"bookList");
-        });
-    }
-    if (authorBL) {
-        authorBL.addEventListener("click", function() {
-            sortTable(2,"bookList");
-        });
-    }
-    if (genreBL) {
-        genreBL.addEventListener("click", function() {
-            sortTable(3,"bookList");
-        });
-    }
-    if (yearBL) {
-        yearBL.addEventListener("click", function() {
-            sortTable(5,"bookList");
-        });
-    }
     function sortTable(n,name) {
-        console.log("hello");
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
         table = document.getElementById(name);
         switching = true;
