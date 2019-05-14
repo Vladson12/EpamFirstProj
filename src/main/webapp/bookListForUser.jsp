@@ -157,7 +157,7 @@
                                         <div >
 
                                         <c:if test="${userRole ne 'READER'}">
-                                            <input type="button" class="button button5" value="<fmt:message key="booklist_page.actions_edit"/>" onclick="location.href='/saveBook?id=${list.id}'">
+                                            <input type="button"  onclick="location.href='/saveBook?id=${list.id}'" class="button button5" value="<fmt:message key="booklist_page.actions_edit"/>">
                                         </c:if>
                                     </div>
                                 </div>

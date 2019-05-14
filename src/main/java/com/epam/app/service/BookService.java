@@ -84,14 +84,14 @@ public class BookService {
     }
 
     private static List<Book> getByContextAndGenre(String context, String genre) {
-        return BookService.getAllBooks().stream().filter(predicateContext(context))
+        return BookService.updateBookList().stream().filter(predicateContext(context))
                 .filter(predicateGenre(genre)).collect(Collectors.toList());
     }
 
     private static List<Book> getByContext(String context) {
         Predicate<Book> containsAuthor = o -> containsIgnoreCase(o.getAuthor(), context);
         Predicate<Book> containsTitle = o -> containsIgnoreCase(o.getTitle(), context);
-        List<Book> allBooks = BookService.getAllBooks().
+        List<Book> allBooks = BookService.updateBookList().
                 stream().filter(containsAuthor.or(containsTitle)).collect(Collectors.toList());
         if (allBooks.isEmpty()) {
             return new ArrayList<>();
@@ -101,12 +101,12 @@ public class BookService {
     }
 
     private static List<Book> getByTitle(String title) {
-        return BookService.getAllBooks().
+        return BookService.updateBookList().
                 stream().filter(predicateContext(title)).collect(Collectors.toList());
     }
 
     private static List<Book> getByGenre(String genre) {
-        return BookService.getAllBooks().
+        return BookService.updateBookList().
                 stream().filter(predicateGenre(genre)).collect(Collectors.toList());
     }
 
@@ -128,7 +128,7 @@ public class BookService {
 
     private static List<Book> sortBookListByComparator(PageManager<Book> pageManager, Comparator<Book> comparator) {
         pageManager.setCurrentPage(1);
-        List<Book> books = pageManager.getItemList().stream()
+        List<Book> books = BookService.updateBookList().stream()
                 .sorted(comparator)
                 .collect(Collectors.toList());
         if (!pageManager.isSortIdentificator())
