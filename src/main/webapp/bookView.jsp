@@ -61,7 +61,7 @@
                     <p>${book.description}</p>
                     <h4><fmt:message key="bookaddedit_page.book_year"/></h4>
                     <p>${book.year}</p>
-                    <button onclick="location.href='/saveBook?id=${book.id}'"><fmt:message key="booklist_page.actions_edit"/></button>
+                    <button ${sessionScope.loggedInUser.role eq 'READER' ? 'hidden' : ''} onclick="location.href='/saveBook?id=${book.id}'"><fmt:message key="booklist_page.actions_edit"/></button>
                     <button onclick="location.href='/cabinet'"><fmt:message key="back.bn"/></button>
                 </div>
             </div>
