@@ -63,6 +63,7 @@ public class BookListController extends HttpServlet {
             req.getSession().setAttribute("errMessage", "Error!");
             log.info(login + "Failed to order books." + "Reason: overdue card or book card excess");
         }
+        req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
     }
 
 }

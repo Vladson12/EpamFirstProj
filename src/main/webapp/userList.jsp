@@ -24,34 +24,65 @@
         <link rel="stylesheet" href="assets/css/Toggle-Switch-1-1.css">
         <link rel="stylesheet" href="assets/css/Toggle-Switch-1.css">
         <link rel="stylesheet" href="assets/css/Toggle-Switch.css">
+        <style>
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                font-size: 0.75rem;
+                padding: 2px 4px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                margin: 1px 1px;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+
+
+            .button5 {
+                background-color: white;
+                color: black;
+                border: 2px solid #000000;
+                border-radius: 5px;
+            }
+
+            .button5:hover {
+                background-color: #e04c40;
+                color: white;
+            }
+        </style>
     </head>
 
     <body style="background-color: rgba(255,255,255,0);">
         <div style="height: 10vh"><jsp:include page="menuBar.jsp"></jsp:include></div>
         <div class="d-flex" style="min-height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-            <div class="align-self-center" style="background-color: rgb(255,255,255); max-width: 1200px; font-size: 0.85rem; margin:0 auto;">
-                <div class="container">
-                    <div class="row">
-                        <div class="col" style="font-size: 0.85rem;">
-                            <form action="/users?show=" method="get">
-                                <label><fmt:message key="user_search.by_login"/></label>
-                                <label><input type="text" name="login" value=""></label>
-                                <label><input type="submit" name="insert" value="<fmt:message key="user_search.search_bn"/>"></label>
-                            </form>
-                        </div>
-                        <div class="col">
-                            <label><button onclick="location.href='/addUser'"><fmt:message key="userlist_page.adduser_bn"/></button></label>
+            <div style="min-width: 60vw; margin:0 auto; margin-top: 1vh;">
+                <div class="container-fluid">
+                    <div class="row" style="background-color: #ffffff;">
+                        <div style="font-size: 0.7rem;">
+                            <div style="float: left;">
+                                <form action="/users?show=" method="get">
+                                    <fmt:message key="user_search.by_login"/>
+                                    <input class="button button5" type="text" name="login" value="">
+                                    <input class="button button5" type="submit" name="insert" value="<fmt:message key="user_search.search_bn"/>">
+                                </form>
+                            </div>
+                            <div style="float: right; font-size: 0.7rem;">
+                                <button class="button button5" onclick="location.href='/addUser'"><fmt:message key="userlist_page.adduser_bn"/></button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <table id="userTable" class="table table-bordered table-hover table-sm" style="font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
+                    <table id="userTable" class="table table-bordered table-hover table-sm" style="font-size: 0.85rem;">
                         <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.90);">
                         <tr style="text-align: center">
-                            <th id="nameUL" onclick="location.href='/users?sort=name'"  onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 39vh;"><fmt:message key="userlist_page.table_username"/></th>
-                            <th id="loginUL" onclick="location.href='/users?sort=login'" onmouseover="this.style.cursor='pointer'" class="col-lg-3" style="width: 30vh;"><fmt:message key="userlist_page.table_login"/></th>
-                            <th id="roleUL"  onclick="location.href='/users?sort=role'" onmouseover="this.style.cursor='pointer'" class="col-lg-2" style="width: 12vh;"><fmt:message key="userlist_page.table_role"/></th>
-                            <th                                                         class="col-lg-2" style="width: 19vh;"><fmt:message key="userlist_page.table_actions"/></th>
+                            <th id="nameUL"   onmouseover="this.style.cursor='pointer'" style="width: 39vh;"><fmt:message key="userlist_page.table_username"/></th>
+                            <th id="loginUL" onmouseover="this.style.cursor='pointer'"  style="width: 30vh;"><fmt:message key="userlist_page.table_login"/></th>
+                            <th id="roleUL"  onmouseover="this.style.cursor='pointer'"  style="width: 12vh;"><fmt:message key="userlist_page.table_role"/></th>
+                            <th                                                         style="width: 19vh;"><fmt:message key="userlist_page.table_actions"/></th>
                         </tr>
                         </thead>
                         <tbody style="background-color: #ffffff;">
@@ -82,12 +113,12 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <form action="/users?login=${user.login}&button=findCards" method="post">
-                                                            <input type="submit" value="<fmt:message key="userlist_page.actions_cardlist"/>">
+                                                            <input class="button button5" type="submit" value="<fmt:message key="userlist_page.actions_cardlist"/>">
                                                         </form>
                                                 </div>
                                                 <div class="col">
                                                         <form action="/users?login=${user.login}&button=edit" method="post">
-                                                            <input type="submit" value="<fmt:message key="userlist_page.actions_edit"/>">
+                                                            <input class="button button5" type="submit" value="<fmt:message key="userlist_page.actions_edit"/>">
                                                         </form>
                                                     </div>
                                                 </div>
@@ -106,7 +137,7 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <form action="/users?login=${user.login}&button=findCards" method="post">
-                                                            <input type="submit" value="<fmt:message key="userlist_page.actions_cardlist"/>">
+                                                            <input class="button button5" type="submit" value="<fmt:message key="userlist_page.actions_cardlist"/>">
                                                         </form>
                                                     </div>
                                                 </div>
@@ -119,15 +150,15 @@
                         </tbody>
                     </table>
                 </div>
-                <div style="background-color: rgba(0,0,0,0.90);;font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
+                <div style="background-color: rgba(0,0,0,0.90);font-size: 0.7rem;">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 align-self-center">
-                                <input type="button" value="<fmt:message key="pagination.previous_page"/>"
+                                <input class="button button5" type="button" value="<fmt:message key="pagination.previous_page"/>"
                                        onclick="location.href='/users?pageSide=previous'">
-                                <input type="button" value="<fmt:message key="pagination.next_page"/>"
+                                <input class="button button5" type="button" value="<fmt:message key="pagination.next_page"/>"
                                        onclick="location.href='/users?pageSide=next'">
-                                <button onclick="location.href='/users'"><fmt:message key="userlist_page.touserlist_bn"/></button>
+                                <button class="button button5" onclick="location.href='/users'"><fmt:message key="userlist_page.touserlist_bn"/></button>
                             </div>
                         </div>
                     </div>

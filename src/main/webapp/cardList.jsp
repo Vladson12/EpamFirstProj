@@ -25,6 +25,35 @@
         <link rel="stylesheet" href="assets/css/Toggle-Switch-1.css">
         <link rel="stylesheet" href="assets/css/Toggle-Switch.css">
         <title><fmt:message key="cardlist_page.title"/></title>
+        <style>
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                font-size: 0.75rem;
+                padding: 2px 4px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                margin: 1px 1px;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+
+
+            .button5 {
+                background-color: white;
+                color: black;
+                border: 2px solid #000000;
+                border-radius: 5px;
+            }
+
+            .button5:hover {
+                background-color: #e04c40;
+                color: white;
+            }
+        </style>
 
         <script language="JavaScript" >
             function open_window() {
@@ -37,16 +66,16 @@
     <body style="background-color: rgba(255,255,255,0);">
     <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
     <div class="d-flex" style="min-height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-        <div class="align-self-center" style="background-color: rgb(255,255,255); margin:0 auto; max-width: 1200px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col" style="font-size: 0.85rem;">
-                        <h1><c:out value="${login}" /></h1>
+        <div style="min-width: 60vw; margin:0 auto; margin-top: 1vh">
+            <div class="container-fluid">
+                <div class="row" style="background-color: #ffffff;">
+                    <div style="font-size: 0.7rem;">
+                        <p><c:out value="${login}" /></p>
                     </div>
                 </div>
             </div>
             <div>
-                <table id="userCard" class="table table-bordered table-hover table-sm" style="font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
+                <table id="userCard" class="table table-bordered table-hover table-sm" style="font-size: 0.85rem;">
                     <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.90);">
                         <tr style="text-align: center">
                             <th                                                           class="col" style="width: 5vh;">№</th>
@@ -75,16 +104,16 @@
                                     <td style="text-align: center">
                                     <%if (list.getCardState().equals(CardState.ORDERED)) {%>
                                     <form action="/cards?id=${list.id}&button=home" method="post">
-                                        <input type="submit" value="<fmt:message key="cardlist_page.actions_takehome"/>">
+                                        <input type="submit" class="button button5" value="<fmt:message key="cardlist_page.actions_takehome"/>">
                                     </form>
                                     <form action="/cards?id=${list.id}&button=hall" method="post">
-                                        <input type="submit" value="<fmt:message key="cardlist_page.actions_taketohall"/>">
+                                        <input type="submit" class="button button5" value="<fmt:message key="cardlist_page.actions_taketohall"/>">
                                     </form>
                                     <%} else if(list.getCardState().equals(CardState.AT_HALL) ||
                                             list.getCardState().equals(CardState.AT_HOME) ||
                                             list.getCardState().equals(CardState.OVERDUE)) {%>
                                     <form action="/cards?id=${list.id}&button=return" method="post">
-                                        <input type="submit" value="<fmt:message key="cardlist_page.actions_return"/>">
+                                        <input type="submit" class="button button5" value="<fmt:message key="cardlist_page.actions_return"/>">
                                     </form>
                                     <%}%>
                                 </td>
@@ -94,7 +123,7 @@
                                     <td style="text-align: center">
                                         <%if (list.getCardState().equals(CardState.ORDERED)) {%>
                                         <form action="/cabinet/usercards?login=${login}&id=${list.id}&button=reset" method="post">
-                                            <input type="submit" value="<fmt:message key="cardlist_page.actions_reset"/>">
+                                            <input type="submit" class="button button5" value="<fmt:message key="cardlist_page.actions_reset"/>">
                                         </form>
                                         <%}%>
                                     </td>
@@ -106,34 +135,22 @@
                     </tbody>
                 </table>
             </div>
-            <div style="background-color: rgba(0,0,0,0.90); font-size: 0.85rem; max-width: 1200px; margin:0 auto;">
-                <div class="container">
-                    <div class="row">
+            <div style="background-color: rgba(0,0,0,0.90); font-size: 0.7rem; ">
+                <div class="container-fluid">
+                    <div class="row" style="background-color: #ffffff; font-size: 0.7rem;">
                         <div class="col-md-12 align-self-center">
-                            <label><button onclick="location.href='/cabinet'"><fmt:message key="back.bn"/></button></label>
                             <c:choose>
                                 <c:when test="${(flag eq 1)}">
-                                    <label>
-                                        <input type="button" value="<fmt:message key="pagination.previous_page"/>"
-                                        onclick="location.href='/cards?login=${login}&pageSide=previous'">
-                                    </label>
-                                    <label>
-                                        <input type="button" value="<fmt:message key="pagination.next_page"/>"
-                                        onclick="location.href='/cards?login=${login}&pageSide=next'">
-                                    </label>
+                                    <button  class="button button5" type="button" onclick="location.href='/cards?login=${login}&pageSide=previous'" value="<fmt:message key="pagination.previous_page"/>"><fmt:message key="pagination.previous_page"/></button>
+                                    <button  class="button button5" type="button" onclick="location.href='/cards?login=${login}&pageSide=next'" value="<fmt:message key="pagination.next_page"/>"><fmt:message key="pagination.next_page"/></button>
                                 </c:when>
                                 <c:when test="${(flag eq 2)}">
-                                    <label>
-                                        <input type="button" value="<fmt:message key="pagination.previous_page"/>"
-                                            onclick="location.href='/cabinet/usercards?login=${login}&pageSide=previous'">
-                                    </label>
-                                    <label>
-                                        <input type="button" value="<fmt:message key="pagination.next_page"/>"
-                                            onclick="location.href='/cabinet/usercards?login=${login}&pageSide=next'">
-                                    </label>
-                                    </c:when>
+                                    <button  class="button button5" type="button" onclick="location.href='/cabinet/usercards?login=${login}&pageSide=previous'" value="<fmt:message key="pagination.previous_page"/>"><fmt:message key="pagination.previous_page"/></button>
+                                    <button  class="button button5" type="button" onclick="location.href='/cabinet/usercards?login=${login}&pageSide=next'" value="<fmt:message key="pagination.next_page"/>"><fmt:message key="pagination.next_page"/></button>
+                                </c:when>
                                 </c:choose>
-                            </div>
+                            <button  class="button button5" type="button" onclick="location.href='/cabinet'" value="<fmt:message key="back.bn"/>"><fmt:message key="back.bn"/></button>
+                        </div>
                         </div>
                     </div>
                 </div>
