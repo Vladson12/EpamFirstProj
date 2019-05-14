@@ -1,5 +1,7 @@
 package com.epam.app.controller;
 
+import com.epam.app.model.User;
+import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
 import com.epam.app.util.mail.Mail;
 import com.epam.app.util.password.Password;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import static com.epam.app.util.password.Password.hash;
 
 @WebServlet("/passwordRecovery")
 public class PasswordRecoveryController extends HttpServlet {
@@ -37,6 +41,9 @@ public class PasswordRecoveryController extends HttpServlet {
             request.getRequestDispatcher("/recovery.jsp").forward(request, response);
             log.info("Failed to send a mail " + login + ". User with this login is not exists");
         } else {
+            User currentUser = UserService.getByLogin(login);
+            currentUser.setPassword(hash(password));
+            UserService.updateUser(currentUser);
             try {
                 String subject = "Library: Password Recovery";
                 String body = "You password was successfully changed.\n" +
