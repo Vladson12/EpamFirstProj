@@ -115,7 +115,7 @@
                                             </form>
                                         </div>
                                         <div class="col">
-                                            <form action="/viewBook?id=${list.id}" method="get">
+                                            <form action="/viewBook?id=${list.id}" method="post">
                                                 <button type="submit" value="view"><fmt:message key="booklist_page.actions_view"/></button>
                                             </form>
                                         </div>
