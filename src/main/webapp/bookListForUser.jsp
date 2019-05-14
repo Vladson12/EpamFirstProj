@@ -101,10 +101,10 @@
                     <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.90);">
                     <tr style="text-align: center">
                         <th                                                         style="width: 3%"><fmt:message key="booklist_page.table_number"/></th>
-                        <th id="nameBL"   onmouseover="this.style.cursor='pointer'" style="width: 32%"><fmt:message key="booklist_page.table_title"/></th>
-                        <th id="authorBL" onmouseover="this.style.cursor='pointer'" style="width: 20%"><fmt:message key="booklist_page.table_author"/></th>
-                        <th id="genreBL"  onmouseover="this.style.cursor='pointer'" style="width: 29%"><fmt:message key="booklist_page.table_genre"/></th>
-                        <th id="yearBL"   onmouseover="this.style.cursor='pointer'" style="width: 4%"><fmt:message key="booklist_page.table_year"/></th>
+                        <th id="nameBL"   onclick="location.href='/bookList?sort=name'"   onmouseover="this.style.cursor='pointer'" style="width: 32%"><fmt:message key="booklist_page.table_title"/></th>
+                        <th id="authorBL" onclick="location.href='/bookList?sort=author'" onmouseover="this.style.cursor='pointer'" style="width: 20%"><fmt:message key="booklist_page.table_author"/></th>
+                        <th id="genreBL"  onclick="location.href='/bookList?sort=genre'"  onmouseover="this.style.cursor='pointer'" style="width: 29%"><fmt:message key="booklist_page.table_genre"/></th>
+                        <th id="yearBL"   onclick="location.href='/bookList?sort=year'"   onmouseover="this.style.cursor='pointer'" style="width: 4%"><fmt:message key="booklist_page.table_year"/></th>
                         <th                                                         style="width: 12%"><fmt:message key="booklist_page.table_actions"/></th>
                     </tr>
                     </thead>
