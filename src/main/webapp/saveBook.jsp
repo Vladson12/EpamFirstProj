@@ -9,7 +9,7 @@
 <html lang="${language}" style="background-color: #000000;">
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Save book</title>
+    <title><fmt:message key="bookaddedit_page.book_title"/></title>
     <style>
         .button {
             background-color: #4CAF50; /* Green */
