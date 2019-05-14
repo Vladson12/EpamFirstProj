@@ -24,53 +24,88 @@
         <link rel="stylesheet" href="assets/css/Toggle-Switch-1-1.css">
         <link rel="stylesheet" href="assets/css/Toggle-Switch-1.css">
         <link rel="stylesheet" href="assets/css/Toggle-Switch.css">
-        <link rel="stylesheet" href="assets/css/styleForButton.css">
+        <style>
+            .button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                font-size: 0.75rem;
+                padding: 2px 4px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                margin: 1px 1px;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+
+
+            .button5 {
+                background-color: white;
+                color: black;
+                border: 2px solid #000000;
+                border-radius: 5px;
+            }
+
+            .button5:hover {
+                background-color: #e04c40;
+                color: white;
+            }
+        </style>
     </head>
 
     <body style="background-color: rgba(255,255,255,0);">
+    <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
     <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
     <div class="d-flex" style="min-height: 70vh; background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-        <div class="align-self-center" style="background-color: rgb(255,255,255); margin:0 auto;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 align-self-center" style="font-size: 0.85rem;">
-                        <p><%if(request.getSession().getAttribute("errMessage") != null){%>
-                            <script>
-                                alert("Amount of ordered book has been exceeded or you haven't returned the book in time!");
-                            </script><%}
-                                request.getSession().setAttribute("errMessage",null);%></p>
-                        <form action="/bookList?show=" method="get">
-                            <label><fmt:message key="book_search.by_name_and_author"/></label>
-                            <label><input type="text" name="context" value=""></label>
-                            <label><fmt:message key="book_search.by_genre"/></label>
-                            <label>
-                                <select name="genre">
-                                    <option value="" selected>-</option>
-                                    <option value="TEXTBOOK"><fmt:message key="book_genre.textbook"/></option>
-                                    <option value="NARRATIVE_NONFICTION"><fmt:message key="book_genre.narrative_nonfiction"/></option>
-                                    <option value="DRAMA"><fmt:message key="book_genre.drama"/></option>
-                                    <option value="FANTASY"><fmt:message key="book_genre.fantasy"/></option>
-                                    <option value="CRIME_AND_DETECTIVE"><fmt:message key="book_genre.crime_and_detective"/></option>
-                                    <option value="SELF_HELP_BOOK"><fmt:message key="book_genre.self_help"/></option>
-                                    <option value="SCIENCE_FICTION"><fmt:message key="book_genre.science_fiction"/></option>
-                                </select>
-                            </label>
-                            <label><input type="submit" name="insert" value="<fmt:message key="book_search.search_bn"/>"></label>
-                        </form>
-                        <input type="button" value="<fmt:message key="bookslist_page.addbook"/>" onclick="location.href='/saveBook?id=0'">
+        <div style="min-width: 60vw; margin:0 auto; margin-top: 1vh;">
+            <p><%if(request.getSession().getAttribute("errMessage") != null){%>
+                <script>
+                    alert("Amount of ordered book has been exceeded or you haven't returned the book in time!");
+                </script><%}
+                    request.getSession().setAttribute("errMessage",null);%></p>
+            <div class="container-fluid" >
+                <div class="row" style="background-color: #ffffff;">
+                    <div style="font-size: 0.7rem;">
+                        <div style="float: left;">
+                            <form action="/bookList?show=" method="get">
+                                <label><fmt:message key="book_search.by_name_and_author"/></label>
+                                <label><input type="text" name="context" value=""></label>
+                                <label><fmt:message key="book_search.by_genre"/></label>
+                                <label>
+                                    <select name="genre">
+                                        <option value="" selected>-</option>
+                                        <option value="TEXTBOOK"><fmt:message key="book_genre.textbook"/></option>
+                                        <option value="NARRATIVE_NONFICTION"><fmt:message key="book_genre.narrative_nonfiction"/></option>
+                                        <option value="DRAMA"><fmt:message key="book_genre.drama"/></option>
+                                        <option value="FANTASY"><fmt:message key="book_genre.fantasy"/></option>
+                                        <option value="CRIME_AND_DETECTIVE"><fmt:message key="book_genre.crime_and_detective"/></option>
+                                        <option value="SELF_HELP_BOOK"><fmt:message key="book_genre.self_help"/></option>
+                                        <option value="SCIENCE_FICTION"><fmt:message key="book_genre.science_fiction"/></option>
+                                    </select>
+                                </label>
+                                <label><input  class="button button5" type="submit" name="insert" value="<fmt:message key="book_search.search_bn"/>"></label>
+                            </form>
+                        </div>
+                        <c:if test="${userRole ne 'READER'}">
+                        <div style="float: right; font-size: 0.7rem;">
+                            <input  class="button button5" type="button" value="<fmt:message key="bookslist_page.addbook"/>" onclick="location.href='/saveBook?id=0'">
+                        </div>
+                        </c:if>
                     </div>
                 </div>
             </div>
             <div>
-                <table id="bookList" class="table table-bordered table-hover table-sm" style="font-size: 0.85rem; margin:0 auto;">
+                <table id="bookList" class="table table-bordered table-hover table-sm" style="font-size: 0.85rem;">
                     <thead class="bill-header cs" style="background-color: rgba(0,0,0,0.90);">
                     <tr style="text-align: center">
-                        <th                                                        ><fmt:message key="booklist_page.table_number"/></th>
-                        <th id="nameBL"   onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_title"/></th>
-                        <th id="authorBL" onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_author"/></th>
-                        <th id="genreBL"  onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_genre"/></th>
-                        <th id="yearBL"   onmouseover="this.style.cursor='pointer'"><fmt:message key="booklist_page.table_year"/></th>
-                        <th                                                        ><fmt:message key="booklist_page.table_actions"/></th>
+                        <th                                                         style="width: 3%"><fmt:message key="booklist_page.table_number"/></th>
+                        <th id="nameBL"   onmouseover="this.style.cursor='pointer'" style="width: 32%"><fmt:message key="booklist_page.table_title"/></th>
+                        <th id="authorBL" onmouseover="this.style.cursor='pointer'" style="width: 20%"><fmt:message key="booklist_page.table_author"/></th>
+                        <th id="genreBL"  onmouseover="this.style.cursor='pointer'" style="width: 29%"><fmt:message key="booklist_page.table_genre"/></th>
+                        <th id="yearBL"   onmouseover="this.style.cursor='pointer'" style="width: 4%"><fmt:message key="booklist_page.table_year"/></th>
+                        <th                                                         style="width: 12%"><fmt:message key="booklist_page.table_actions"/></th>
                     </tr>
                     </thead>
                     <tbody style="background-color: #ffffff;">
@@ -108,24 +143,22 @@
                             </c:choose>
                             <td style="text-align: center"><c:out value="${list.year}"/></td>
                             <td>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col">
+                                <div class="btn-group" role="group" style="text-align: center;">
+                                        <div >
                                             <form action="/bookList?login=${login}&id=${list.id}" method="post">
-                                                <button type="submit" value="order"><fmt:message key="booklist_page.actions_order"/></button>
+                                                <button type="submit"class="button button5"  value="order"><fmt:message key="booklist_page.actions_order"/></button>
                                             </form>
                                         </div>
-                                        <div class="col">
+                                        <div >
                                             <form action="/viewBook?id=${list.id}" method="get">
-                                                <button type="submit" value="view"><fmt:message key="booklist_page.actions_view"/></button>
+                                                <button type="submit" class="button button5" value="view"><fmt:message key="booklist_page.actions_view"/></button>
                                             </form>
                                         </div>
-                                        <div class="col">
-                                        <c:set var="userRole" value="${sessionScope.loggedInUser.role}"/>
+                                        <div >
+
                                         <c:if test="${userRole ne 'READER'}">
-                                            <input type="button" value="<fmt:message key="booklist_page.actions_edit"/>" onclick="location.href='/saveBook?id=${list.id}'">
+                                            <input type="button" class="button button5" value="<fmt:message key="booklist_page.actions_edit"/>" onclick="location.href='/saveBook?id=${list.id}'">
                                         </c:if>
-                                        </div>
                                     </div>
                                 </div>
                             </td>
@@ -134,30 +167,16 @@
                     </tbody>
                 </table>
             </div>
-            <div style="background-color: rgba(0,0,0,0.90); font-size: 0.85rem;">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <form action="bookList?pageSide=previous" method="get">
-                                <button class="ourbtn" type="submit" value="<fmt:message key="pagination.previous_page"/>"><fmt:message key="pagination.previous_page"/></button>
-                                <%--                                <button type="submit" value="view"><fmt:message key="booklist_page.actions_view"/></button>--%>
-                            </form>
-<%--                            <input type="button" value="<fmt:message key="pagination.previous_page"/>" onclick="location.href='/bookList?pageSide=previous'">--%>
-<%--                            <input type="button" value="<fmt:message key="pagination.next_page"/>" onclick="location.href='/bookList?pageSide=next'">--%>
-                        </div>
-                        <div class="col">
-<%--                        <form action="bookList?pageSide=next" method="get">--%>
-                            <button class="ourbtn" type="button"  onclick="location.href='/bookList?pageSide=next'" value="<fmt:message key="pagination.next_page"/>"><fmt:message key="pagination.next_page"/> </button>
-                            <%--                                <button type="submit" value="view"><fmt:message key="booklist_page.actions_view"/></button>--%>
-<%--                        </form>--%>
-                        </div>
-                        <div class="col">
-                            <form action=".." method="get">
-                                <button class="ourbtn" type="submit" value="view"><fmt:message key="back.bn"/></button>
-<%--                                <button type="submit" value="view"><fmt:message key="booklist_page.actions_view"/></button>--%>
-                            </form>
-<%--                            <input type="button" value="<fmt:message key="back.bn"/>" onclick="location.href='..'">--%>
-                        </div>
+            <div class="container-fluid">
+                <div class="row" style="background-color: #ffffff; font-size: 0.7rem;">
+                    <div style="float: left;  font-size: 0.7rem;">
+                        <button  class="button button5" type="button" onclick="location.href='/bookList?pageSide=previous'" value="<fmt:message key="pagination.previous_page"/>"><fmt:message key="pagination.previous_page"/></button>
+                        <button  class="button button5" type="button" onclick="location.href='/bookList?pageSide=next'" value="<fmt:message key="pagination.next_page"/>"><fmt:message key="pagination.next_page"/> </button>
+                    </div>
+                    <div style="float: right; font-size: 0.7rem;">
+                        <form action=".." method="get" style="float: right; ">
+                            <button class="button button5" type="submit" value="<fmt:message key="back.bn"/>"><fmt:message key="back.bn"/></button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -170,7 +189,8 @@
             <script src="assets/js/bs-animation.js"></script>
             <script src="assets/js/aos-2.1.1.js"></script>
             <script src="assets/js/Table-With-Search.js"></script>
-            <script src='assets/js/3.2.1.jquery.min.js'></script></div>
+            <script src='assets/js/3.2.1.jquery.min.js'></script>
+        </div>
     </div>
     <div style="height: 20vh;"><jsp:include page="footer.jsp"></jsp:include></div>
     </body>

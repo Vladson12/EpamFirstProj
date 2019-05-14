@@ -65,7 +65,7 @@
                         <p class="ml-auto navbar-text actions">
                             <c:choose>
                             <c:when test="${loggedIn}">
-                                <a class="btn btn-light text-white action-button"  style="font-size: 0.85rem" role="button" href="${pageContext.request.contextPath}/cabinet">
+                                <a class="btn btn-light text-white action-button"  style="font-size: 0.85rem;border-radius: 5px;" role="button" href="${pageContext.request.contextPath}/cabinet">
                                         ${loggedInUser.name}:
                                     <c:if test="${loggedInUser.role eq 'ADMINISTRATOR'}">
                                         <fmt:message key="role.admin"/>
@@ -77,7 +77,7 @@
                                         <fmt:message key="role.reader"/>
                                     </c:if>
                                 </a>
-                                <a class="btn btn-light text-white action-button"  style="font-size: 0.85rem" role="button" href="${pageContext.request.contextPath}/logout"><fmt:message key="menu_bar.signout"/></a>
+                                <a class="btn btn-light text-white action-button"  style="font-size: 0.85rem;border-radius: 5px;" role="button" href="${pageContext.request.contextPath}/logout"><fmt:message key="menu_bar.signout"/></a>
                             </c:when>
                             <c:otherwise>
                                 <a class="btn btn-light text-white action-button"  style="font-size: 0.85rem" role="button" href="${pageContext.request.contextPath}/login"><fmt:message key="menu_bar.signin"/></a>
