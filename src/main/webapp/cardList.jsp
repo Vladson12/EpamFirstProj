@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="assets/css/Toggle-Switch-1-1.css">
         <link rel="stylesheet" href="assets/css/Toggle-Switch-1.css">
         <link rel="stylesheet" href="assets/css/Toggle-Switch.css">
+        <link rel="icon" type="image/ico" href="assets/img/LibLogo.jpg" />
         <title><fmt:message key="cardlist_page.title"/></title>
         <style>
             .button {
