@@ -22,19 +22,12 @@ import static com.epam.app.util.password.Password.hash;
 @Log4j
 @WebServlet("/addUser")
 public class UserAddController extends HttpServlet {
-
-    private static String name;
-    private static String login;
-    private static String role;
-    private static String password;
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        name = request.getParameter("name");
-        login = request.getParameter("login");
-        role = request.getParameter("role");
-        password = Password.generate();
+        String name = request.getParameter("name");
+        String login = request.getParameter("login");
+        String role = request.getParameter("role");
+        String password = Password.generate();
 
         User user = new User(name, Role.getRole(role), login, hash(password));
         HttpSession session = request.getSession(true);

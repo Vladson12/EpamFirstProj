@@ -1,4 +1,4 @@
-package com.epam.app.DAO;
+package com.epam.app.dao;
 
 public interface DaoFactory {
 

@@ -11,13 +11,13 @@ import java.io.IOException;
 import static org.mockito.Mockito.*;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
-public class RegisterUserControllerTest {
+public class RegisterControllerTest {
 
-    private static String path = "/registration.jsp";
+    private static final String path = "/userRegistration.jsp";
 
     @Test
     public void doGet() throws ServletException, IOException {
-        final RegisterUserController controller = new RegisterUserController();
+        final RegisterController controller = new RegisterController();
         final HttpServletRequest request = mock(HttpServletRequest.class);
         final HttpServletResponse response = mock(HttpServletResponse.class);
         final RequestDispatcher dispatcher = mock(RequestDispatcher.class);
@@ -27,8 +27,4 @@ public class RegisterUserControllerTest {
         verify(dispatcher).forward(request, response);
     }
 
-    @Test
-    public void doPost() {
-
-    }
 }

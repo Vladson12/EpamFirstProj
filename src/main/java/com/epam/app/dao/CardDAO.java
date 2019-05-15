@@ -1,4 +1,4 @@
-package com.epam.app.DAO;
+package com.epam.app.dao;
 
 import com.epam.app.model.Book;
 import com.epam.app.model.Card;

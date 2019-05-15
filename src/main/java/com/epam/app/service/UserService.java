@@ -1,6 +1,6 @@
 package com.epam.app.service;
 
-import com.epam.app.DAO.UserDAO;
+import com.epam.app.dao.UserDAO;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.Role;
 import com.epam.app.util.PageManager;
@@ -15,14 +15,16 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.epam.app.DAO.impl.ActualDaoFactory.getInstance;
+import static com.epam.app.dao.impl.ActualDaoFactory.getInstance;
 
 public class UserService {
+    private static final UserDAO USER_DAO = getInstance().getUserDAO();
 
-    public static final UserDAO USER_DAO = getInstance().getUserDAO();
+    private UserService() {
+    }
 
-    public static boolean create(User user) {
-        return USER_DAO.addUser(user);
+    public static void create(User user) {
+        USER_DAO.addUser(user);
     }
 
     public static User get(int id) {
@@ -37,7 +39,7 @@ public class UserService {
         return USER_DAO.getAllUsers();
     }
 
-    public static List<String> getAllLogins() {
+    private static List<String> getAllLogins() {
         return getAllUsers().stream().map(User::getLogin).collect(Collectors.toList());
     }
 
@@ -78,7 +80,6 @@ public class UserService {
         return null;
     }
 
-
     public static void updateUserByFields(String userLogin, String name, String login, String role) {
         User updatedUser = UserService.getByLogin(userLogin);
         updatedUser.setName(name);
@@ -106,6 +107,8 @@ public class UserService {
                     break;
                 case "role":
                     pageManager.setItemList(UserService.sortUserListByRole(pageManager));
+                    break;
+                default:
                     break;
             }
         } else {

@@ -1,15 +1,14 @@
-package com.epam.app.DAO.impl;
+package com.epam.app.dao.impl;
 
-import com.epam.app.DAO.BookDAO;
-import com.epam.app.DAO.CardDAO;
-import com.epam.app.DAO.DaoFactory;
-import com.epam.app.DAO.UserDAO;
+import com.epam.app.dao.BookDAO;
+import com.epam.app.dao.CardDAO;
+import com.epam.app.dao.DaoFactory;
+import com.epam.app.dao.UserDAO;
 import com.epam.app.config.Config;
 
 public class ActualDaoFactory implements DaoFactory {
-
-    public static final DaoFactory factory = Config.getFactory();
-    public static final ActualDaoFactory ACTUAL_FACTORY = new ActualDaoFactory();
+    private static final DaoFactory factory = Config.getFactory();
+    private static final ActualDaoFactory ACTUAL_FACTORY = new ActualDaoFactory();
 
     private ActualDaoFactory() {
     }

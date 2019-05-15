@@ -7,8 +7,10 @@ import java.util.Date;
 import java.util.Properties;
 
 public class Mail {
-    public static Session getSession() {
+    private Mail() {
+    }
 
+    private static Session getSession() {
         final String fromEmail = "technovladson@gmail.com"; //requires valid gmail id
         final String password = "Polina2313"; // correct password for gmail id
         String smtpHostServer = "smtp.gmail.com";
@@ -22,9 +24,11 @@ public class Mail {
         props.put("mail.smtp.debug", "true");
         props.put("mail.smtp.socketFactory.port", fromEmail);
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.ssl.checkserveridentity", true);
         props.put("mail.smtp.socketFactory.fallback", "false");
 
         Authenticator auth = new Authenticator() {
+            @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(fromEmail, password);
             }
@@ -36,7 +40,6 @@ public class Mail {
     }
 
     public static void send(String toEmail, String subject, String body) throws MessagingException {
-
         MimeMessage msg = new MimeMessage(getSession());
 
         msg.addHeader("Content-type", "text/HTML; charset=UTF-8");

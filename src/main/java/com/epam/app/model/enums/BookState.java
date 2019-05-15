@@ -6,7 +6,6 @@ public enum BookState {
     ONHANDS;
 
     public static BookState getBookState(int bookStateId) {
-
         switch (bookStateId) {
             case 1:
                 return FREE;
@@ -16,8 +15,6 @@ public enum BookState {
                 return ONHANDS;
             default:
                 throw new  IllegalArgumentException("Argument must be in a range of 1 to 3");
-
         }
-
     }
 }

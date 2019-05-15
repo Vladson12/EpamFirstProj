@@ -18,8 +18,6 @@ public class Book {
     private int year;
     private Genre genre;
 
-
-
     public Book(String author, String title, String description, int year, Genre genre) {
         this.author = author;
         this.title = title;

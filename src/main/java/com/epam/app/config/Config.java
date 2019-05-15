@@ -1,7 +1,7 @@
 package com.epam.app.config;
 
-import com.epam.app.DAO.DaoFactory;
-import com.epam.app.DAO.impl.DaoFactorySupplier;
+import com.epam.app.dao.DaoFactory;
+import com.epam.app.dao.impl.DaoFactorySupplier;
 import com.epam.app.model.Book;
 import com.epam.app.model.Card;
 import com.epam.app.model.User;
@@ -23,7 +23,6 @@ import java.util.TimerTask;
 import java.util.stream.Collectors;
 
 public class Config {
-
     private static DaoFactory factory;
     private static boolean isSet = false;
 
@@ -44,7 +43,6 @@ public class Config {
     }
 
     private static void daemonThread(){
-        System.out.println("hello");
         Timer timer = new Timer ();
         TimerTask hourlyTask = new TimerTask () {
             @Override
@@ -64,12 +62,10 @@ public class Config {
                         Book book = cards.getBook();
                         book.setBookState(BookState.FREE);
                         BookService.updateBook(book);
-                        System.out.println(cards.getId());
                     }
-                System.out.println(overdueCards);
             }
         };
-        Thread th = new Thread(() -> timer.schedule (hourlyTask, 0l, 1000*60*60*3));
+        Thread th = new Thread(() -> timer.schedule (hourlyTask, 0L, 1000L*60*60*3));
         th.setDaemon(true);
         th.start();
     }

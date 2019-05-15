@@ -1,6 +1,6 @@
-package com.epam.app.DAO.impl;
+package com.epam.app.dao.impl;
 
-import com.epam.app.DAO.BookDAO;
+import com.epam.app.dao.BookDAO;
 import com.epam.app.model.Book;
 import com.epam.app.model.enums.Genre;
 import lombok.extern.log4j.Log4j;
@@ -16,7 +16,6 @@ import static com.epam.app.util.db.mysql.BookQueryMySql.*;
 
 @Log4j
 public class BookDaoMySqlImpl implements BookDAO {
-
     @Override
     public List<Book> getAllBooks() {
         List<Book> array = new ArrayList<>();
@@ -54,7 +53,6 @@ public class BookDaoMySqlImpl implements BookDAO {
         }
         return book;
     }
-
 
     @Override
     public void addBook(Book book) {
@@ -94,7 +92,6 @@ public class BookDaoMySqlImpl implements BookDAO {
             log.error("Failed get book by author " + e);
         }
         return book;
-
     }
 
     @Override
@@ -129,7 +126,7 @@ public class BookDaoMySqlImpl implements BookDAO {
         }
     }
 
-    private ResultSet getAll() throws SQLException {
+    private ResultSet getAll() {
         ResultSet resultSet = null;
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement();

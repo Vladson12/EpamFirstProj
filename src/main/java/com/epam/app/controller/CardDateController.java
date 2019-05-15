@@ -3,7 +3,6 @@ package com.epam.app.controller;
 import com.epam.app.model.enums.CardState;
 import com.epam.app.service.CardService;
 import lombok.extern.log4j.Log4j;
-import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +16,6 @@ import java.time.ZoneId;
 @Log4j
 @WebServlet("/cardDate")
 public class CardDateController extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
@@ -45,6 +43,5 @@ public class CardDateController extends HttpServlet {
             req.setAttribute("id", id);
             req.getRequestDispatcher("/dateFormat.jsp").forward(req, resp);
         }
-
     }
 }

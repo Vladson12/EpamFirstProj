@@ -1,7 +1,6 @@
 package com.epam.app.model.enums;
 
 public enum Genre {
-
     TEXTBOOK,
     NARRATIVE_NONFICTION,
     DRAMA,

@@ -16,7 +16,7 @@ public class UserProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = UserService.get(Integer.parseInt(req.getParameter("id")));
         req.getSession().setAttribute("user", user);
-        req.getRequestDispatcher("/profile.jsp").forward(req, resp);
+        req.getRequestDispatcher("/userProfile.jsp").forward(req, resp);
     }
 
     @Override

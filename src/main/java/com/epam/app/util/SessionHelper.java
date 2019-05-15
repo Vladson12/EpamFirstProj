@@ -9,10 +9,13 @@ import java.util.Map;
 public class SessionHelper {
     private static final HashMap<Integer, List<HttpSession>> sessions = new HashMap<>();
 
+    private SessionHelper() {
+    }
+
     public static void registerSession(int id, HttpSession session) {
         final List<HttpSession> httpSessions = sessions.get(id);
         if (httpSessions == null) {
-            List<HttpSession> newSessions = new ArrayList<HttpSession>();
+            List<HttpSession> newSessions = new ArrayList<>();
             newSessions.add(session);
             sessions.put(id, newSessions);
         } else {
@@ -25,7 +28,6 @@ public class SessionHelper {
         if (removed != null) {
             for (HttpSession r : removed) {
                 r.invalidate();
-                System.out.println("user id: " + id + ", removed session id: " + r.getId());
             }
         }
     }
@@ -37,7 +39,6 @@ public class SessionHelper {
     }
 
     public static void printSessions() {
-        System.out.println("===================================");
         System.out.println("ACTIVE SESSIONS: ");
         for (Map.Entry<Integer, List<HttpSession>> entry : sessions.entrySet()) {
             System.out.println("user id: " + entry.getKey());
@@ -46,7 +47,5 @@ public class SessionHelper {
                 System.out.println(session.getId());
             }
         }
-        System.out.println("===================================");
-        System.out.println("===================================");
     }
 }

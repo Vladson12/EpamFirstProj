@@ -1,6 +1,5 @@
 package com.epam.app.controller;
 
-
 import com.epam.app.model.Book;
 import com.epam.app.model.User;
 import com.epam.app.service.BookService;
@@ -24,11 +23,12 @@ public class BookListController extends HttpServlet {
     private String login;
     private String id;
 
-    {
+    static {
         pageManager = new PageManager<>(10);
         pageManager.setSortIdentificator(true);
     }
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         login = req.getParameter("login");
         String side;
@@ -41,7 +41,7 @@ public class BookListController extends HttpServlet {
         }
         BookService.handleButtons(pageManager, req);
         req.getSession().setAttribute("list", pageManager.sublist(pageManager.getItemList()));
-        req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
+        req.getRequestDispatcher("/bookList.jsp").forward(req, resp);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class BookListController extends HttpServlet {
             log.info(login + "Failed to order books." + "Reason: overdue card or book card excess");
         }
         req.getSession().setAttribute("list", pageManager.sublist(pageManager.getItemList()));
-        req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
+        req.getRequestDispatcher("/bookList.jsp").forward(req, resp);
     }
 
 }

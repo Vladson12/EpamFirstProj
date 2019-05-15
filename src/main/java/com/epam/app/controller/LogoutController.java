@@ -3,7 +3,6 @@ package com.epam.app.controller;
 import com.epam.app.model.User;
 import com.epam.app.util.SessionHelper;
 import lombok.extern.log4j.Log4j;
-import org.apache.log4j.Logger;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,12 +14,11 @@ import java.io.IOException;
 @Log4j
 @WebServlet("/logout")
 public class LogoutController extends HttpServlet {
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("loggedInUser");
         SessionHelper.endSession(user.getId(), session);
-        //TODO remove method invocation below
-        SessionHelper.printSessions();
         log.info("User " + user.getLogin() + " logouted");
         try {
             response.sendRedirect("/");

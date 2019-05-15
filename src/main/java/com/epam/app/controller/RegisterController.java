@@ -18,8 +18,7 @@ import static com.epam.app.util.password.Password.hash;
 
 @Log4j
 @WebServlet("/registration")
-public class RegisterUserController extends HttpServlet {
-
+public class RegisterController extends HttpServlet {
     @Override
     public void init() {
         try {
@@ -29,6 +28,7 @@ public class RegisterUserController extends HttpServlet {
         }
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String name = request.getParameter("name");
@@ -42,7 +42,7 @@ public class RegisterUserController extends HttpServlet {
             if (!isTheSameLogin) {
                 User user = new User(name, Role.READER, login, hash(password));
                 UserService.create(user);
-                request.getRequestDispatcher("/authorization.jsp").forward(request, response);
+                request.getRequestDispatcher("/userLogin.jsp").forward(request, response);
                 log.info("Successful registration by " + login);
             } else {
                 request.setAttribute("errMessage", "This email already exists!");
@@ -51,13 +51,13 @@ public class RegisterUserController extends HttpServlet {
         } else {
             request.setAttribute("errMessage", "This Email is invalid");
             log.info("Failed to register " + login + ". Email is invalid");
-            request.getRequestDispatcher("/registration.jsp").forward(request, response);
+            request.getRequestDispatcher("/userRegistration.jsp").forward(request, response);
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/registration.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/userRegistration.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

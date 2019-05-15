@@ -10,10 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by vladd on 13.05.2019
- */
-
 @WebServlet("/viewBook")
 public class BookViewController extends HttpServlet {
     @Override
@@ -26,7 +22,6 @@ public class BookViewController extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         Book viewableBook = BookService.getBookById(id);
         req.setAttribute("book", viewableBook);
-        System.out.println(viewableBook);
         req.getRequestDispatcher("/bookView.jsp").forward(req, resp);
     }
 }

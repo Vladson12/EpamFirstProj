@@ -1,15 +1,14 @@
 package com.epam.app.model.enums;
 
 public enum CardState {
-
     ORDERED,
     AT_HOME,
     AT_HALL,
     RETURNED,
     OVERDUE;
 
-    public static CardState getCardState(int CardStateId) {
-        switch (CardStateId) {
+    public static CardState getCardState(int cardStateId) {
+        switch (cardStateId) {
             case 1:
                 return ORDERED;
             case 2:

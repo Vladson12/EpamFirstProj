@@ -1,7 +1,5 @@
 package com.epam.app.util;
 
-import com.epam.app.model.Book;
-import com.epam.app.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PageManager<T> {
-
     private int currentPage = 1;
-    private int maxItemsOnPage;
-    private int pagesScrollBarSize = 9;
+    private final int maxItemsOnPage;
+    private final int pagesScrollBarSize = 9;
 
     private int itemsCount;
     private int pagesCount;
@@ -84,10 +81,10 @@ public class PageManager<T> {
         }
     }
 
-    public static class Page {
-        private int number;
+    static class Page {
+        private final int number;
 
-        public Page(int number) {
+        Page(int number) {
             this.number = number;
         }
 

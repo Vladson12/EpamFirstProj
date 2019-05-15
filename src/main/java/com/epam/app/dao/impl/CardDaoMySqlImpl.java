@@ -1,6 +1,6 @@
-package com.epam.app.DAO.impl;
+package com.epam.app.dao.impl;
 
-import com.epam.app.DAO.CardDAO;
+import com.epam.app.dao.CardDAO;
 import com.epam.app.model.Card;
 import com.epam.app.model.User;
 import com.epam.app.model.enums.CardState;
@@ -13,14 +13,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.epam.app.DAO.impl.DaoFactoryMySqlImpl.*;
+import static com.epam.app.dao.impl.DaoFactoryMySqlImpl.*;
 import static com.epam.app.model.enums.CardState.*;
 import static com.epam.app.util.db.DbUtils.*;
 import static com.epam.app.util.db.mysql.CardQueryMySql.*;
 
 @Log4j
 public class CardDaoMySqlImpl implements CardDAO {
-
     @Override
     public void addCard(Card card) {
         try (Connection connection = getConnection();
@@ -61,19 +60,19 @@ public class CardDaoMySqlImpl implements CardDAO {
 
     @Override
     public List<Integer> getAllBookId(User user) {
-        List<Integer> IdBookList = new ArrayList<>();
+        List<Integer> idBookList = new ArrayList<>();
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(SELECT_BY_USER)) {
             statement.setInt(1, user.getId());
             try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
-                    IdBookList.add(rs.getInt("book"));
+                    idBookList.add(rs.getInt("book"));
                 }
             }
         } catch (SQLException e) {
             log.error("Failed get all book ID " + e);
         }
-        return IdBookList;
+        return idBookList;
     }
 
     @Override
@@ -107,7 +106,7 @@ public class CardDaoMySqlImpl implements CardDAO {
         } catch (SQLException e) {
             log.error("Failed get all cards " + e);
         }
-        return  arrayOfIdCard;
+        return arrayOfIdCard;
     }
 
     @Override
@@ -125,7 +124,7 @@ public class CardDaoMySqlImpl implements CardDAO {
     @Override
     public void updateCardStatusAndDate(Card card, CardState cardState, LocalDate endDate) {
         try (Connection connection = DbUtils.getConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_DATE);){
+             PreparedStatement statement = connection.prepareStatement(UPDATE_DATE)){
             statement.setInt(1, cardState.ordinal()+1);
             statement.setDate(2, Date.valueOf(endDate));
             statement.setInt(3, card.getId());

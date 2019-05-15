@@ -13,16 +13,10 @@ import java.io.IOException;
 
 @WebFilter("/PersonalFilter")
 public class PersonalFilter implements Filter {
-
-    static final Logger log = Logger.getLogger(PersonalFilter.class);
-
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-    }
+    private static final Logger log = Logger.getLogger(PersonalFilter.class);
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession();
@@ -35,11 +29,6 @@ public class PersonalFilter implements Filter {
         } else {
             chain.doFilter(request, response);
         }
-
     }
-
-    public void destroy() {
-    }
-
 }
 

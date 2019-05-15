@@ -12,7 +12,6 @@ import java.util.Properties;
 
 @Log4j
 public class DbUtils {
-
     private static final BasicDataSource DATA_SOURCE = new BasicDataSource();
     private static final Properties properties = new Properties();
 
@@ -23,6 +22,9 @@ public class DbUtils {
         DATA_SOURCE.setMaxOpenPreparedStatements(100);
     }
 
+    private DbUtils() {
+    }
+
     public static void setPropertiesFile(String dbPropsFile) {
 
         try (FileInputStream is = new FileInputStream(dbPropsFile)) {
@@ -30,7 +32,6 @@ public class DbUtils {
         } catch (FileNotFoundException e) {
             log.error("Can't load properties! File not found! " + e);
         } catch (IOException e) {
-            System.err.println("Can't load properties!");
             log.error("Can't load properties! " + e);
         }
         setProperties();

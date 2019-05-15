@@ -1,7 +1,6 @@
 package com.epam.app.controller;
 
 import com.epam.app.model.User;
-import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
 import com.epam.app.util.mail.Mail;
 import com.epam.app.util.password.Password;
@@ -20,7 +19,7 @@ import static com.epam.app.util.password.Password.hash;
 
 @WebServlet("/passwordRecovery")
 public class PasswordRecoveryController extends HttpServlet {
-    static final Logger log = Logger.getLogger(PasswordRecoveryController.class);
+    private static final Logger log = Logger.getLogger(PasswordRecoveryController.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -31,14 +30,13 @@ public class PasswordRecoveryController extends HttpServlet {
         boolean isLoginValid = UserService.isLoginValid(login);
         boolean isUserRegistered = UserService.isLoginDuplicated(login);
 
-
         if (!isLoginValid) {
             request.setAttribute("errMessage", "This is not valid email address!");
-            request.getRequestDispatcher("/recovery.jsp").forward(request, response);
+            request.getRequestDispatcher("/userPasswordRecovery.jsp").forward(request, response);
             log.info("Failed to send a mail " + login + ". The invalid email address!");
         } else if (!isUserRegistered) {
             request.setAttribute("errMessage", "There is no user with this email!");
-            request.getRequestDispatcher("/recovery.jsp").forward(request, response);
+            request.getRequestDispatcher("/userPasswordRecovery.jsp").forward(request, response);
             log.info("Failed to send a mail " + login + ". User with this login is not exists");
         } else {
             User currentUser = UserService.getByLogin(login);
@@ -63,7 +61,7 @@ public class PasswordRecoveryController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/recovery.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/userPasswordRecovery.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

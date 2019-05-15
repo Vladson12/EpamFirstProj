@@ -44,14 +44,12 @@
             <param-value>/faq</param-value>
         </init-param>
     </filter>
-
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
     <display-name>Log4jWeb</display-name>
-
     <context-param>
         <param-name>log4j-config-location</param-name>
         <param-value>WEB-INF/classes/log4j.properties</param-value>
@@ -61,7 +59,6 @@
         <filter-name>PersonalFilter</filter-name>
         <filter-class>com.epam.app.filter.PersonalFilter</filter-class>
     </filter>
-
     <filter-mapping>
         <filter-name>PersonalFilter</filter-name>
         <url-pattern>/addUser</url-pattern>
@@ -70,5 +67,4 @@
         <filter-name>PersonalFilter</filter-name>
         <url-pattern>/users</url-pattern>
     </filter-mapping>
-
 </web-app>

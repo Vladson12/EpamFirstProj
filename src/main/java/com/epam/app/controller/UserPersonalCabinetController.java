@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/cabinet")
-public class PersonalCabinetController extends HttpServlet {
+public class UserPersonalCabinetController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/cabinet.jsp").forward(req, resp);
+        req.getRequestDispatcher("/userCabinet.jsp").forward(req, resp);
     }
 }

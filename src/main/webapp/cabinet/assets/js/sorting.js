@@ -61,4 +61,4 @@ window.onload = function () {
             }
         }
     }
-}
+};

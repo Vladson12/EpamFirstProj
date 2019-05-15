@@ -1,6 +1,6 @@
-package com.epam.app.DAO.impl;
+package com.epam.app.dao.impl;
 
-import com.epam.app.DAO.UserDAO;
+import com.epam.app.dao.UserDAO;
 import com.epam.app.model.User;
 import com.epam.app.util.db.DbUtils;
 import lombok.extern.log4j.Log4j;
@@ -14,44 +14,38 @@ import static com.epam.app.util.db.mysql.UserQueryMySql.*;
 
 @Log4j
 public class UserDaoMySqlImpl implements UserDAO {
-
     private ResultSet getAll() {
         ResultSet resultSet = null;
         try (Connection connection = DbUtils.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(SELECT_ALL);) {
+             ResultSet rs = statement.executeQuery(SELECT_ALL)) {
             resultSet = rs;
         } catch (SQLException e) {
             log.error("Failed getAll " + e);
         }
         return resultSet;
-
     }
 
     @Override
-    public boolean addUser(User user) {
+    public void addUser(User user) {
         try (Connection connection = DbUtils.getConnection();
              PreparedStatement statement = connection.prepareStatement(INSERT)) {
             statement.setString(1, user.getName());
             statement.setInt(2, user.getRole().ordinal() + 1);
             statement.setString(3, user.getLogin());
             statement.setString(4, user.getPassword());
-            int i = statement.executeUpdate();
+            statement.executeUpdate();
 
-            if (i != 0)
-                return true;
         } catch (
                 SQLException e) {
             log.error("Failed add user " + e);
         }
-        return false;
-
     }
 
     @Override
     public void updateUser(User user) {
         try (Connection connection = DbUtils.getConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE);) {
+             PreparedStatement statement = connection.prepareStatement(UPDATE)) {
             statement.setString(1, user.getName());
             statement.setInt(2, user.getRole().ordinal() + 1);
             statement.setString(3, user.getLogin());
@@ -68,7 +62,7 @@ public class UserDaoMySqlImpl implements UserDAO {
         List<User> array = new ArrayList<>();
         try (Connection connection = DbUtils.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(SELECT_ALL);) {
+             ResultSet rs = statement.executeQuery(SELECT_ALL)) {
             while (rs.next()) {
                 array.add(new User(rs.getInt("id"),rs.getString("name"),
                         getRole(rs.getInt("role")),
@@ -79,7 +73,6 @@ public class UserDaoMySqlImpl implements UserDAO {
             log.error("Failed get all users " + e);
         }
         return array;
-
     }
 
     @Override
@@ -100,7 +93,6 @@ public class UserDaoMySqlImpl implements UserDAO {
             log.error("Failed get user by ID " + e);
         }
         return user;
-
     }
 
     @Override
@@ -122,7 +114,6 @@ public class UserDaoMySqlImpl implements UserDAO {
             log.error("Failed get user by login " + e);
         }
         return user;
-
     }
 
     @Override

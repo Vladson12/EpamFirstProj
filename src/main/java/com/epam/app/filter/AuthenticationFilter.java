@@ -1,7 +1,6 @@
 package com.epam.app.filter;
 
 import lombok.extern.log4j.Log4j;
-import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -16,11 +15,10 @@ import java.util.Map;
 @Log4j
 @WebFilter("/AuthenticationFilter")
 public class AuthenticationFilter implements Filter {
+    private static final Map<String, String> initValues = new HashMap<>();
 
-//    static final Logger log = Logger.getLogger(AuthenticationFilter.class);
-    private final static Map<String, String> initValues = new HashMap<>();
-
-    public void init(FilterConfig fConfig) throws ServletException {
+    @Override
+    public void init(FilterConfig fConfig) {
         log.info("AuthenticationFilter initialized");
         Enumeration<String> initParameterNames = fConfig.getInitParameterNames();
         while (initParameterNames.hasMoreElements()) {
@@ -30,6 +28,7 @@ public class AuthenticationFilter implements Filter {
         }
     }
 
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         HttpServletRequest req = (HttpServletRequest) request;
@@ -37,17 +36,11 @@ public class AuthenticationFilter implements Filter {
         String uri = req.getRequestURI();
         HttpSession session = req.getSession();
         if ((uri.contains("assets") || !((session == null || session.getAttribute("loggedInUser") == null) &&
-                !(initValues.values().stream().anyMatch(s -> s.equals(uri)))))) {
+                initValues.values().stream().noneMatch(s -> s.equals(uri))))) {
             chain.doFilter(request, response);
         } else {
             res.sendRedirect(req.getContextPath() + "/login");
         }
     }
-
-
-    public void destroy() {
-        //close any resources here
-    }
-
 }
 

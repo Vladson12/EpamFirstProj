@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 public class Card {
-
     private static final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     private int id;
     private User user;

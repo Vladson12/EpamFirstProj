@@ -1,4 +1,4 @@
-package com.epam.app.DAO;
+package com.epam.app.dao;
 
 import com.epam.app.model.User;
 
@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserDAO {
 
-    boolean addUser(User user);
+    void addUser(User user);
 
     User getUser(int userId);
 

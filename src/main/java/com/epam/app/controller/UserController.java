@@ -5,7 +5,6 @@ import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
 import com.epam.app.util.PageManager;
 import com.epam.app.util.SessionHelper;
-import com.sun.xml.internal.bind.v2.TODO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,12 +15,11 @@ import java.io.IOException;
 
 @WebServlet("/users")
 public class UserController extends HttpServlet {
-
     private String button;
     private String userLogin;
-    private static PageManager<User> pageManager;
+    private static final PageManager<User> pageManager;
 
-    {
+    static {
         pageManager = new PageManager<>(10);
         pageManager.setSortIdentificator(true);
 
@@ -38,7 +36,7 @@ public class UserController extends HttpServlet {
             }
         }
         if (req.getParameter("update") != null) {
-            updateUser(req, resp);
+            updateUser(req);
         }
         if (req.getParameter("delete") != null) {
             deleteUser(req, resp);
@@ -52,13 +50,19 @@ public class UserController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         userLogin = req.getParameter("login");
         button = req.getParameter("button");
-        if (button.equals("edit")) {
-            doPut(req, resp);
-        } else if (button.equals("delete")) {
-            doDelete(req, resp);
-        } else if (button.equals("findCards")) {
-            req.setAttribute("login", userLogin);
-            req.getRequestDispatcher("/cards").forward(req, resp);
+        switch (button) {
+            case "edit":
+                doPut(req, resp);
+                break;
+            case "delete":
+                doDelete(req, resp);
+                break;
+            case "findCards":
+                req.setAttribute("login", userLogin);
+                req.getRequestDispatcher("/cards").forward(req, resp);
+                break;
+            default:
+                break;
         }
     }
 
@@ -74,7 +78,7 @@ public class UserController extends HttpServlet {
         req.getRequestDispatcher("/userDelete.jsp").forward(req, resp);
     }
 
-    private void updateUser(HttpServletRequest req, HttpServletResponse resp) {
+    private void updateUser(HttpServletRequest req) {
         User currentUser = UserService.getByLogin(userLogin);
         Role oldRole = currentUser.getRole();
         String newRole = req.getParameter("role");
@@ -82,8 +86,6 @@ public class UserController extends HttpServlet {
                 req.getParameter("login"), req.getParameter("role"));
         if (newRole != null && !newRole.equals(oldRole.toString())) {
             SessionHelper.endUserSessions(currentUser.getId());
-            //TODO remove method invocation below
-            SessionHelper.printSessions();
         }
 
     }

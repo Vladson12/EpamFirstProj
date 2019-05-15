@@ -1,10 +1,6 @@
 package com.epam.app.util.db.mysql;
 
-/**
- * Created by vladd on 23.04.2019
- */
 public class CardQueryMySql {
-
     public static final String INSERT = "INSERT into card (user, book, start_date, end_date,card_state) values (?,?,?,?,?);";
     public static final String SELECT = "SELECT * from card where idhome_card = ?;";
     public static final String SELECT_BY_BOOK = "SELECT * from card where book = ?;";
@@ -14,5 +10,4 @@ public class CardQueryMySql {
 
     private CardQueryMySql() {
     }
-
 }

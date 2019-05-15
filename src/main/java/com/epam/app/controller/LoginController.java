@@ -22,8 +22,7 @@ import static com.epam.app.util.password.Password.hash;
 @Log4j
 @NoArgsConstructor
 @WebServlet("/login")
-public class AuthorizationUserController extends HttpServlet {
-
+public class LoginController extends HttpServlet {
     @Override
     public void init() {
         Config.set(this.getServletContext(), "mysql");
@@ -36,14 +35,11 @@ public class AuthorizationUserController extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        String hashed = hash(password);
         User userAccount = UserService.findUser(login, password);
         if (UserService.isUserAllowed(login, password)) {
             if (userAccount != null) {
                 HttpSession session = request.getSession(true);
                 SessionHelper.registerSession(userAccount.getId(), session);
-                //TODO remove method invocation below
-                SessionHelper.printSessions();
                 session.setAttribute("loggedInUser", userAccount);
                 session.setAttribute("login", userAccount.getLogin());
                 response.sendRedirect("/");
@@ -52,14 +48,14 @@ public class AuthorizationUserController extends HttpServlet {
         } else {
             String errMessage = "Incorrect Username or password!";
             request.setAttribute("errMessage", errMessage);
-            request.getRequestDispatcher("/authorization.jsp").forward(request, response);
+            request.getRequestDispatcher("/userLogin.jsp").forward(request, response);
             log.error("Unsuccessful attempt to login by " + login);
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/authorization.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/userLogin.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

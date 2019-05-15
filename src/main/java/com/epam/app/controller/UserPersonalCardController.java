@@ -4,7 +4,6 @@ import com.epam.app.model.Card;
 import com.epam.app.model.enums.CardState;
 import com.epam.app.service.CardService;
 import com.epam.app.util.PageManager;
-import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,9 +16,8 @@ import java.time.ZoneId;
 import java.util.List;
 
 @WebServlet("/cabinet/usercards")
-public class MyCardController extends HttpServlet {
-
-    private static PageManager pageManager;
+public class UserPersonalCardController extends HttpServlet {
+    private static final PageManager pageManager;
     private String login;
     private List<Card> cards;
     private String id;

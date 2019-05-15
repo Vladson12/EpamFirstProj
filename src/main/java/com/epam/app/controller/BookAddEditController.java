@@ -1,7 +1,6 @@
 package com.epam.app.controller;
 
 import com.epam.app.model.Book;
-import com.epam.app.model.enums.BookState;
 import com.epam.app.model.enums.Genre;
 import com.epam.app.service.BookService;
 import com.epam.app.util.PageManager;
@@ -12,19 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 @WebServlet("/saveBook")
-public class SaveBookController extends HttpServlet {
-    private static PageManager pageManager = new PageManager<Book>(10);
+public class BookAddEditController extends HttpServlet {
+    private static final PageManager pageManager = new PageManager<Book>(10);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Book book = BookService.getBookById(Integer.parseInt(req.getParameter("id")));
         req.getSession().setAttribute("book", book);
-        req.getRequestDispatcher("/saveBook.jsp").forward(req, resp);
+        req.getRequestDispatcher("/bookAddEdit.jsp").forward(req, resp);
     }
 
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id = Integer.parseInt(req.getParameter("id"));
         Book book = new Book();
@@ -39,7 +38,7 @@ public class SaveBookController extends HttpServlet {
 
         req.getSession().setAttribute("list", pageManager.sublist(BookService.updateBookList()));
         req.getSession().setAttribute("message", "Success!");
-        req.getRequestDispatcher("/bookListForUser.jsp").forward(req, resp);
+        req.getRequestDispatcher("/bookList.jsp").forward(req, resp);
     }
 }
 

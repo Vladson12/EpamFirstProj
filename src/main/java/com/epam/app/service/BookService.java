@@ -1,6 +1,6 @@
 package com.epam.app.service;
 
-import com.epam.app.DAO.BookDAO;
+import com.epam.app.dao.BookDAO;
 import com.epam.app.model.Book;
 import com.epam.app.model.enums.BookState;
 import com.epam.app.util.PageManager;
@@ -13,11 +13,13 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.epam.app.DAO.impl.ActualDaoFactory.getInstance;
+import static com.epam.app.dao.impl.ActualDaoFactory.getInstance;
 
 public class BookService {
+    private BookService() {
+    }
 
-    public static final BookDAO BOOK_DAO = getInstance().getBookDAO();
+    private static final BookDAO BOOK_DAO = getInstance().getBookDAO();
 
     public static void addBook(Book book) {
         BOOK_DAO.addBook(book);
@@ -31,7 +33,7 @@ public class BookService {
         return BOOK_DAO.getBookByAuthor(author);
     }
 
-    public static List<Book> getAllBooks() {
+    private static List<Book> getAllBooks() {
         return BOOK_DAO.getAllBooks();
     }
 
@@ -62,6 +64,8 @@ public class BookService {
                     break;
                 case "year":
                     pageManager.setItemList(BookService.sortBookListByYear(pageManager));
+                    break;
+                default:
                     break;
             }
         } else if (pageManager.getItemList() != null) {
@@ -166,6 +170,4 @@ public class BookService {
     private static boolean containsIgnoreCase(String str, String subString) {
         return str.toLowerCase().contains(subString.toLowerCase());
     }
-
-
 }
