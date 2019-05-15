@@ -53,7 +53,7 @@
                                         <input type="hidden" name="${parameter.key}" value="${parameter.value}">
                                     </c:if>
                                 </c:forEach>
-                                <select class="border rounded custom-select custom-select-sm" id="language" name="language"  onchange="submit()">
+                                <select class="border rounded custom-select custom-select-sm" id="language" name="language" onchange="submit()">
                                     <option value="en" ${language == 'en' ? 'selected' : ''}><fmt:message key="menu_bar.lang_en"/></option>
                                     <option value="ru" ${language == 'ru' ? 'selected' : ''}><fmt:message key="menu_bar.lang_ru"/></option>
                                 </select>

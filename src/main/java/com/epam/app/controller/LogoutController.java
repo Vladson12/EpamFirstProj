@@ -18,11 +18,9 @@ public class LogoutController extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("loggedInUser");
-        session.invalidate();
-        ////////////////////
-        SessionHelper.sessions.remove(session);
-        ////////////////////
-//        System.out.println(session == null ? "session + " + session.getId() + " is null" : "session "  + session.getId() + " is true");
+        SessionHelper.endSession(user.getId(), session);
+        //TODO remove method invocation below
+        SessionHelper.printSessions();
         log.info("User " + user.getLogin() + " logouted");
         try {
             response.sendRedirect("/");

@@ -5,13 +5,13 @@ import com.epam.app.model.enums.Role;
 import com.epam.app.service.UserService;
 import com.epam.app.util.PageManager;
 import com.epam.app.util.SessionHelper;
+import com.sun.xml.internal.bind.v2.TODO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/users")
@@ -81,10 +81,9 @@ public class UserController extends HttpServlet {
         UserService.updateUserByFields(userLogin, req.getParameter("name"),
                 req.getParameter("login"), req.getParameter("role"));
         if (newRole != null && !newRole.equals(oldRole.toString())) {
-            HttpSession session = SessionHelper.sessions.remove(currentUser.getId());
-            if (session != null) {
-                session.invalidate();
-            }
+            SessionHelper.endUserSessions(currentUser.getId());
+            //TODO remove method invocation below
+            SessionHelper.printSessions();
         }
 
     }

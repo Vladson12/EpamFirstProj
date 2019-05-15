@@ -41,10 +41,12 @@ public class AuthorizationUserController extends HttpServlet {
         if (UserService.isUserAllowed(login, password)) {
             if (userAccount != null) {
                 HttpSession session = request.getSession(true);
-                SessionHelper.sessions.put(userAccount.getId(), session);
+                SessionHelper.registerSession(userAccount.getId(), session);
+                //TODO remove method invocation below
+                SessionHelper.printSessions();
                 session.setAttribute("loggedInUser", userAccount);
                 session.setAttribute("login", userAccount.getLogin());
-                request.getRequestDispatcher("/").forward(request, response);
+                response.sendRedirect("/");
                 log.info("User " + userAccount.getLogin() + " logged in.");
             }
         } else {
