@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface CardDAO {
-
     void addCard(Card card);
 
     Card getCard(int id);
@@ -23,5 +22,4 @@ public interface CardDAO {
     void updateCardStatus(Card card, CardState cardState);
 
     void updateCardStatusAndDate(Card card, CardState cardState, LocalDate endDate);
-
 }

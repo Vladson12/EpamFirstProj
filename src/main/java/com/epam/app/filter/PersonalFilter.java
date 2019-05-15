@@ -24,7 +24,7 @@ public class PersonalFilter implements Filter {
 
         if ((session != null && (curUser = (User) session.getAttribute("loggedInUser")) != null) &&
                 !((curUser.getRole() == Role.LIBRARIAN) || (curUser.getRole() == Role.ADMINISTRATOR))) {
-            res.sendRedirect(req.getContextPath() + "/exception");
+            res.sendRedirect("/exception");
             log.info("Unauthorized access request");
         } else {
             chain.doFilter(request, response);

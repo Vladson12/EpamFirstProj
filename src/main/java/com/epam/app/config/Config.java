@@ -54,17 +54,16 @@ public class Config {
                         .filter(card -> isOverdue(card.getEndDate()))
                         .collect(Collectors.toList());
                 for (Card cards: overdueCards)
-                    if (cards.getCardState().equals(CardState.AT_HOME)
-                            ||cards.getCardState().equals(CardState.AT_HALL)) {
+                    if (cards.getCardState().equals(CardState.AT_HOME) || cards.getCardState().equals(CardState.AT_HALL)) {
                         CardService.updateCardState(cards,CardState.OVERDUE);
-                    }else if(cards.getCardState().equals(CardState.ORDERED)){
+                    } else if (cards.getCardState().equals(CardState.ORDERED)){
                         CardService.updateCardState(cards,CardState.RETURNED);
                         Book book = cards.getBook();
                         book.setBookState(BookState.FREE);
                         BookService.updateBook(book);
                     }
-            }
-        };
+            }};
+
         Thread th = new Thread(() -> timer.schedule (hourlyTask, 0L, 1000L*60*60*3));
         th.setDaemon(true);
         th.start();

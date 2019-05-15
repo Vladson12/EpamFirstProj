@@ -39,7 +39,7 @@ public class AuthenticationFilter implements Filter {
                 initValues.values().stream().noneMatch(s -> s.equals(uri))))) {
             chain.doFilter(request, response);
         } else {
-            res.sendRedirect(req.getContextPath() + "/login");
+            res.sendRedirect("/login");
         }
     }
 }

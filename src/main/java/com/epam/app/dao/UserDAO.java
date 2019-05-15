@@ -5,7 +5,6 @@ import com.epam.app.model.User;
 import java.util.List;
 
 public interface UserDAO {
-
     void addUser(User user);
 
     User getUser(int userId);

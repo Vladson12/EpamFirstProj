@@ -24,13 +24,12 @@ public class RegisterController extends HttpServlet {
         try {
             Config.set(this.getServletContext(), "mysql");
         } catch (RuntimeException e) {
-            log.error("Failed data base configuration! ", e);
+            log.error("Failed to configure database! ", e);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String name = request.getParameter("name");
         String login = request.getParameter("login");
         String password = request.getParameter("password");

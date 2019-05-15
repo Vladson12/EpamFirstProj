@@ -10,9 +10,6 @@ public class ActualDaoFactory implements DaoFactory {
     private static final DaoFactory factory = Config.getFactory();
     private static final ActualDaoFactory ACTUAL_FACTORY = new ActualDaoFactory();
 
-    private ActualDaoFactory() {
-    }
-
     public static ActualDaoFactory getInstance() {
         return ACTUAL_FACTORY;
     }
