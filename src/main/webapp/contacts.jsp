@@ -12,8 +12,8 @@
     <title><fmt:message key="contacts_page.title"/></title>
     <style>
         #map {
-            height: 40%;
-            width: 100%;
+            height: 30%;
+            width: 30%;
         }
     </style>
 </head>

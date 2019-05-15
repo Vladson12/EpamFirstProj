@@ -139,7 +139,7 @@
                                 </div>
                                 <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
                                     <div class="btn-group" role="group" style="text-align: center;">
-                                        <button class="button button5" style="font-family:Roboto, sans-serif;" type="reset">Clear </button>
+                                        <button class="button button5" style="font-family:Roboto, sans-serif;" type="reset"><fmt:message key="useradd_page.reset_bn"></fmt:message></button>
                                         <button class="button button5"  type="submit"><fmt:message
                                                 key="bookaddedit_page.save_bn"/> </button>
                                         <button class="button button5" onclick="location.href='/bookList'"  type="submit"><fmt:message key="back.bn"/></button>
