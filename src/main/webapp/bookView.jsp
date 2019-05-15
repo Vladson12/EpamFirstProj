@@ -10,13 +10,43 @@
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title><fmt:message key="bookview_page.title"/></title>
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            font-size: 0.75rem;
+            padding: 2px 4px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1px 1px;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+
+        .button5 {
+            background-color: white;
+            color: black;
+            border: 2px solid #000000;
+            border-radius: 5px;
+        }
+
+        .button5:hover {
+            background-color: #e04c40;
+            color: white;
+        }
+    </style>
+
 </head>
 
 <body style="background-color: rgba(255,255,255,0);">
 <div style="height: 10vh;"><jsp:include page="menuBar.jsp"></jsp:include></div>
-<div class="d-flex" style="height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
-    <div class="align-self-center" style="background-color: rgb(255,255,255);opacity: 0.84;font-size: 1vw; max-width: 500px; margin:0 auto;">
-        <div class="container">
+<div class="d-flex" style="min-height: 70vh;background-image: url(assets/img/1348229547604-e1432042866949.jpg);background-repeat: round;background-size: cover;">
+    <div style="background-color: rgb(255,255,255);min-width: 60vw; margin:0 auto; margin-top: 1vh;">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 align-self-center">
                     <h3><fmt:message key="bookview_page.header"/></h3>
@@ -61,8 +91,8 @@
                     <p>${book.description}</p>
                     <h4><fmt:message key="bookaddedit_page.book_year"/></h4>
                     <p>${book.year}</p>
-                    <button ${sessionScope.loggedInUser.role eq 'READER' ? 'hidden' : ''} onclick="location.href='/saveBook?id=${book.id}'"><fmt:message key="booklist_page.actions_edit"/></button>
-                    <button onclick="location.href='/cabinet'"><fmt:message key="back.bn"/></button>
+                    <button ${sessionScope.loggedInUser.role eq 'READER' ? 'hidden' : ''} class="button button5" onclick="location.href='/saveBook?id=${book.id}'"><fmt:message key="booklist_page.actions_edit"/></button>
+                    <button class="button button5" onclick="location.href='/cabinet'"><fmt:message key="back.bn"/></button>
                 </div>
             </div>
         </div>

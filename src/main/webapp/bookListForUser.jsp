@@ -67,7 +67,7 @@
                     request.getSession().setAttribute("errMessage",null);%></p>
             <div class="container-fluid" >
                 <div class="row" style="background-color: #ffffff;">
-                    <div style="font-size: 0.7rem;">
+                    <div class="col-md-12 align-self-center" style="font-size: 0.7rem;">
                         <div style="float: left;">
                             <form action="/bookList?show=" method="get">
                                 <label><fmt:message key="book_search.by_name_and_author"/></label>
