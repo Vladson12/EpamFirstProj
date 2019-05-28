@@ -1,0 +1,33 @@
+
+.form-control:focus {
+  border-color: #25476a;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.bill-header.cs {
+  background-color: rgba(37,71,106,0.56);
+  color: #fff;
+}
+
+.counter {
+  color: #ccc;
+}
+
+.counter {
+  color: #ccc;
+}
+
+
+.warning.no-result {
+  text-align: center;
+}
+
+.search.form-control {
+  border-radius: 0px !important;
+}
+
+.search-table-col {
+}
+

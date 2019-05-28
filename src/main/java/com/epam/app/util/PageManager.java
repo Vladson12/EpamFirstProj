@@ -1,16 +1,30 @@
 package com.epam.app.util;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class PageManager<T> {
-
     private int currentPage = 1;
-    private int maxItemsOnPage = 10;
-    private int pagesScrollBarSize = 9;
+    private final int maxItemsOnPage;
+    private final int pagesScrollBarSize = 9;
 
     private int itemsCount;
     private int pagesCount;
+
+    @Getter
+    @Setter
+    private List<T> itemList;
+
+    @Getter
+    @Setter
+    private boolean sortIdentificator;
+
+    public PageManager(int maxItemsOnPage) {
+        this.maxItemsOnPage = maxItemsOnPage;
+    }
 
     public void setCurrentPage(int pageNum) {
         this.currentPage = pageNum;
@@ -37,7 +51,7 @@ public class PageManager<T> {
     }
 
     public List<Page> getPages() {
-        List<Page> pages = new ArrayList<Page>();
+        List<Page> pages = new ArrayList<>();
         if (currentPage - pagesScrollBarSize / 2 <= 0) {
             for (int i = 1; i <= pagesScrollBarSize && i <= pagesCount; i++) {
                 pages.add(new Page(i));
@@ -57,23 +71,20 @@ public class PageManager<T> {
 
     public void nextPage() {
         if (currentPage < pagesCount) {
-            System.out.println("next");
-
             currentPage++;
         }
     }
 
     public void previousPage() {
-        System.out.println("previous");
         if (currentPage > 1) {
             currentPage--;
         }
     }
 
-    public static class Page {
-        private int number;
+    static class Page {
+        private final int number;
 
-        public Page(int number) {
+        Page(int number) {
             this.number = number;
         }
 

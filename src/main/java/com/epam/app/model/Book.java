@@ -1,6 +1,7 @@
 package com.epam.app.model;
 
 import com.epam.app.model.enums.BookState;
+import com.epam.app.model.enums.Genre;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,17 +10,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Book {
-    private int id;
+    private Integer id;
     private String author;
-    private BookState bookState;
+    private BookState bookState = BookState.FREE;
     private String title;
     private String description;
+    private int year;
+    private Genre genre;
 
-
-    public Book(String author, BookState bookState, String title, String description) {
+    public Book(String author, String title, String description, int year, Genre genre) {
         this.author = author;
-        this.bookState = bookState;
         this.title = title;
         this.description = description;
+        this.year = year;
+        this.genre = genre;
     }
 }

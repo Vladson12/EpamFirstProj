@@ -6,12 +6,15 @@ public enum BookState {
     ONHANDS;
 
     public static BookState getBookState(int bookStateId) {
-        if (bookStateId == 1)
-            return FREE;
-        else if (bookStateId == 2)
-            return ORDERED;
-        else
-            return ONHANDS;
-
+        switch (bookStateId) {
+            case 1:
+                return FREE;
+            case 2:
+                return ORDERED;
+            case 3:
+                return ONHANDS;
+            default:
+                throw new  IllegalArgumentException("Argument must be in a range of 1 to 3");
+        }
     }
 }
